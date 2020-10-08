@@ -1,10 +1,4 @@
-# Cognitive Services - Optional Content #
-
-## Optional: Play around with the: Intelligent Kiosk 
-
-Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)
-
-## Optional: For those who want to get to know Python 
+# Cognitive Services #
 
 You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily (and for free) run in [Azure Notebooks](https://notebooks.azure.com). SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
 
@@ -725,3 +719,7 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 3. Close the **Cloud Shell** prompt at the bottom of the portal.
 
 4. Close your browser application.
+
+## Optional: Play around with the: Intelligent Kiosk 
+
+Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)

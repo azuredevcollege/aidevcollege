@@ -1,12 +1,8 @@
-# Azure Machine Learning Services Bootcamp (Version 2.0)
-
-* 09/2019 - Added challenge 5 (production deployment to Azure Kubernetes Service)
-* 05/2019 - Lots of new capabilities [have been announced](https://azure.microsoft.com/en-us/blog/making-ai-real-for-every-developer-and-every-organization/).
-* 12/2019 - Azure Machine Learning is now [general available](https://azure.microsoft.com/en-us/blog/azure-machine-learning-service-a-look-under-the-hood/).
+# AI Developer College
 
 ![alt text](images/logo.png "Azure Machine Learning Services")
 
-Here are the top two resources you'll need this afternoon:
+Here are the top two resources you'll need today:
 
 1. [Azure Machine Learning Services documentation](https://docs.microsoft.com/en-us/azure/machine-learning/service/)
 1. [Azure Machine Learning SDK for Python documentation](https://docs.microsoft.com/en-us/python/api/overview/azure/ml/intro?view=azure-ml-py)

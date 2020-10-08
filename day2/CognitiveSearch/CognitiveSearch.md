@@ -1,8 +1,4 @@
-# Azure (Cognitive) Search - Optional Content #
-
-## Want to get to know Python in combination with Azure Cognitive Search? ##
-
-Here you go :)
+# Azure (Cognitive) Search #
 
 ## Create an Azure Cognitive Search index in Python using Jupyter notebooks ##
 
