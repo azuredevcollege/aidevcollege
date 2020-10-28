@@ -745,11 +745,11 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 
 First, create a `Azure Search` instance in the Azure Portal:
 
-![alt text](../images/azure_search_service.png "Azure Search")
+![alt text](./images/azure_search_service.png "Azure Search")
 
 For our purposes, the `Free Tier` is sufficient:
 
-![alt text](../images/azure_search_sizes.png "Azure Search Sizes")
+![alt text](./images/azure_search_sizes.png "Azure Search Sizes")
 
 However, the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index longer documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above - as of November 2018).
 
@@ -768,35 +768,35 @@ In our case, we'll upload our data to Blob Storage and let Azure Search index it
 
 Once we have uploaded the PDF files, we can go into our Azure Search instance and goto `Import Data`:
 
-![alt text](../images/azure_search_import_data.png "Azure Search Import Data")
+![alt text](./images/azure_search_import_data.png "Azure Search Import Data")
 
 Next, we need to define the `Data Source`:
 
-![alt text](../images/azure_search_new_datasource.png "Azure Search Existing Data Source")
+![alt text](./images/azure_search_new_datasource.png "Azure Search Existing Data Source")
 
 We'll skip `Cognitive Search` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
 
-![alt text](../images/azure_search_create_index.png "Azure Search Index Setting")
+![alt text](./images/azure_search_create_index.png "Azure Search Index Setting")
 
 :question: Question: Does it make sense to have any of the fields `Filterable`, `Sortable`, or `Facetable`?
 
 Lastly, we need to give our Indexer a name and also set the schedule. In our case, we'll only run it once, but in a real world scenario, we might want to keep it running to index new, incoming data:
 
-![alt text](../images/azure_search_indexer.png "Azure Search Indexer")
+![alt text](./images/azure_search_indexer.png "Azure Search Indexer")
 
 After a minute or two, our Indexer will have indexed all the PDFs and we should be able to query them.
 
-![alt text](../images/azure_search_indexed.png "Azure Search indexed our PDFs")
+![alt text](./images/azure_search_indexed.png "Azure Search indexed our PDFs")
 
 ## Querying Content
 
 Azure Search now indexed all our PDFs via the `pdf-blob-indexer` into the `pdf-index` index. Ideally, we would use the REST API of Azure Search to perform sophisticated queries, but in our case, we can use the `Azure Search Explorer`:
 
-![alt text](../images/azure_search_explorer.png "Azure Search Explorer")
+![alt text](./images/azure_search_explorer.png "Azure Search Explorer")
 
 [Querying data](https://docs.microsoft.com/en-us/azure/search/search-query-overview) in Azure Search can get quite sophisticated, but for our example here, we can just put in a simple query:
 
-![alt text](../images/azure_search_explorer_example.png "Azure Search Query Example")
+![alt text](./images/azure_search_explorer_example.png "Azure Search Query Example")
 
 Using double-quotes `"..."` will search for the whole string, rather than each substring. If we want to make a search term mandatory, we need to prefix a `+`. There is a billion more things we can do, but for now, we'll see that we get one document back, as one only one PDF contained the term `Content Moderator`:
 
@@ -831,11 +831,11 @@ As before, let's upload our data to Blob Storage and let Azure Search index it f
 
 Once we're done, we'll repeat the steps from before, `Import Dataset`, walk through the wizard, but this time, we'll configure the `Cognitive Search` part in the second tab.
 
-![alt text](../images/cognitive_search_setup.png "Setting up Cognitive Search")
+![alt text](./images/cognitive_search_setup.png "Setting up Cognitive Search")
 
 Next, we need to define the skillset. In our case, we'll enable all features:
 
-![alt text](../images/cognitive_search_skillset.png "Defining the skillset")
+![alt text](./images/cognitive_search_skillset.png "Defining the skillset")
 
 We might not want to make our `content` field retrievable, as it does not necessarily provide a lot of value - however, we want to keep it `searchable`, so that Azure Search can do its job. Since we have the original files in Blob and the location stored in `metadata_storage_path`, we can always just retrieve the original file.
 
@@ -897,7 +897,7 @@ In the language of your choice (Python solution is provided), write two small sc
 
 First, create a `Computer Vision` API Key in the Azure Portal:
 
-![alt text](../images/vision_service.png "Computer Vision Service")
+![alt text](./images/vision_service.png "Computer Vision Service")
 
 As we're dealing with images, we need a few Python packages to help with this:
 
@@ -1032,15 +1032,15 @@ First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure c
 
 Create a new project of type `Object detection` and make sure to use the `Limited Trial` (object detection is currently only supported as a free trial, since it is not GA yet).
 
-![alt text](../images/customvision_project.png "Custom Vision Project")
+![alt text](./images/customvision_project.png "Custom Vision Project")
 
 Next, add all the training images from the [dataset](). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
 
-![alt text](../images/customvision_tagging.png "Tagging the training images")
+![alt text](./images/customvision_tagging.png "Tagging the training images")
 
 Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
 
-![alt text](../images/customvision_performance.png "Object Detection performance")
+![alt text](./images/customvision_performance.png "Object Detection performance")
 
 Let's briefly look at the results and make sure we understand them:
 
@@ -1076,7 +1076,7 @@ You can use can use this file: [`data/test.wav`](data/test.wav) (English).
 Now that we have converted a user's speech input into text, we'll try to determine the intent of that text in the next challenge.
 
 
-![alt text](../images/speech_api_service.png "Speech API Service")
+![alt text](./images/speech_api_service.png "Speech API Service")
 
 As region, we'll be using `West Europe` in this example. You can find your API key under the service, then `Keys`.
 
@@ -1183,7 +1183,7 @@ More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-servic
 
 Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
 
-## Challenge 5 (Azure Cognitive Services - Language)
+## Azure Cognitive Services - Language
 
 :triangular_flag_on_post: **Goal:** Make your application understand the meaning of text
 
@@ -1227,7 +1227,7 @@ In the language of your choice (Python solution is provided), write a small scri
 
 Then create a `Text Analytics` API Key in the Azure Portal (in the `West Europe` region):
 
-![alt text](../images/text_analytics_api.png "Text Analytics API")
+![alt text](./images/text_analytics_api.png "Text Analytics API")
 
 Let's start with :
 
@@ -1323,7 +1323,7 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 First, create a `Translator Text` API Key in the Azure Portal:
 
-![alt text](../images/translator_api.png "Translator Service")
+![alt text](./images/translator_api.png "Translator Service")
 
 As in challenge 3, we can create a token for our requests, but the Translator API also allows to direct access the service by specifying the API key:
 
@@ -1371,13 +1371,13 @@ Once we hit `Test`, we can test if the systems is able to recognize the intent o
 
 Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `Pizza Type` with entity type `Simple` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Composite` with the name `PizzaOrder` and add `Number` and `Pizza Type` as children.
 
-![alt text](../images/entities_luis.png "LUIS Entities")
+![alt text](./images/entities_luis.png "LUIS Entities")
 
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
 Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the composite entity (= the detected number) and select `Wrap as Composite Entity`, then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
 
-![alt text](../images/composite_types_luis.png "LUIS Intents")
+![alt text](./images/composite_types_luis.png "LUIS Intents")
 
 Hit `Train` again to give it a final training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Keys and Endpoints`). It should look something like this:
 
@@ -1454,7 +1454,7 @@ The output should look something like this:
 
 Excellent - Now we know what the user wants to order, and the associated quantities. :pizza: :pizza: :pizza:
 
-## Challenge 7 (Azure Cognitive Services - Search)
+## Azure Cognitive Services - Search
 
 :triangular_flag_on_post: **Goal:** Write a script for auto-suggestion of text
 
@@ -1467,7 +1467,7 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 
 First, create a `Bing Autosuggeest` API Key in the Azure Portal:
 
-![alt text](../images/bing_autosuggest.png "Bing Autosuggest")
+![alt text](./images/bing_autosuggest.png "Bing Autosuggest")
 
 As in challenge 3 and 5, we can either create a token for our requests, or directly access the service by specifying the API key we've just created:
 
