@@ -290,11 +290,11 @@ This step shows you how to query an index using the [Search Documents REST API](
 
 First, create a `Azure Search` instance in the Azure Portal:
 
-![alt text](./images/azure_search_service.png "Azure Search")
+![alt text](./img/azure_search_service.png "Azure Search")
 
 For our purposes, the `Free Tier` is sufficient:
 
-![alt text](./images/azure_search_sizes.png "Azure Search Sizes")
+![alt text](./img/azure_search_sizes.png "Azure Search Sizes")
 
 However, the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index longer documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above - as of November 2018).
 
@@ -313,35 +313,35 @@ In our case, we'll upload our data to Blob Storage and let Azure Search index it
 
 Once we have uploaded the PDF files, we can go into our Azure Search instance and goto `Import Data`:
 
-![alt text](./images/azure_search_import_data.png "Azure Search Import Data")
+![alt text](./img/azure_search_import_data.png "Azure Search Import Data")
 
 Next, we need to define the `Data Source`:
 
-![alt text](./images/azure_search_new_datasource.png "Azure Search Existing Data Source")
+![alt text](./img/azure_search_new_datasource.png "Azure Search Existing Data Source")
 
 We'll skip `Cognitive Search` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
 
-![alt text](./images/azure_search_create_index.png "Azure Search Index Setting")
+![alt text](./img/azure_search_create_index.png "Azure Search Index Setting")
 
 :question: Question: Does it make sense to have any of the fields `Filterable`, `Sortable`, or `Facetable`?
 
 Lastly, we need to give our Indexer a name and also set the schedule. In our case, we'll only run it once, but in a real world scenario, we might want to keep it running to index new, incoming data:
 
-![alt text](./images/azure_search_indexer.png "Azure Search Indexer")
+![alt text](./img/azure_search_indexer.png "Azure Search Indexer")
 
 After a minute or two, our Indexer will have indexed all the PDFs and we should be able to query them.
 
-![alt text](./images/azure_search_indexed.png "Azure Search indexed our PDFs")
+![alt text](./img/azure_search_indexed.png "Azure Search indexed our PDFs")
 
 ## Querying Content
 
 Azure Search now indexed all our PDFs via the `pdf-blob-indexer` into the `pdf-index` index. Ideally, we would use the REST API of Azure Search to perform sophisticated queries, but in our case, we can use the `Azure Search Explorer`:
 
-![alt text](./images/azure_search_explorer.png "Azure Search Explorer")
+![alt text](./img/azure_search_explorer.png "Azure Search Explorer")
 
 [Querying data](https://docs.microsoft.com/en-us/azure/search/search-query-overview) in Azure Search can get quite sophisticated, but for our example here, we can just put in a simple query:
 
-![alt text](./images/azure_search_explorer_example.png "Azure Search Query Example")
+![alt text](./img/azure_search_explorer_example.png "Azure Search Query Example")
 
 Using double-quotes `"..."` will search for the whole string, rather than each substring. If we want to make a search term mandatory, we need to prefix a `+`. There is a billion more things we can do, but for now, we'll see that we get one document back, as one only one PDF contained the term `Content Moderator`:
 
@@ -376,11 +376,11 @@ As before, let's upload our data to Blob Storage and let Azure Search index it f
 
 Once we're done, we'll repeat the steps from before, `Import Dataset`, walk through the wizard, but this time, we'll configure the `Cognitive Search` part in the second tab.
 
-![alt text](./images/cognitive_search_setup.png "Setting up Cognitive Search")
+![alt text](./img/cognitive_search_setup.png "Setting up Cognitive Search")
 
 Next, we need to define the skillset. In our case, we'll enable all features:
 
-![alt text](./images/cognitive_search_skillset.png "Defining the skillset")
+![alt text](./img/cognitive_search_skillset.png "Defining the skillset")
 
 We might not want to make our `content` field retrievable, as it does not necessarily provide a lot of value - however, we want to keep it `searchable`, so that Azure Search can do its job. Since we have the original files in Blob and the location stored in `metadata_storage_path`, we can always just retrieve the original file.
 
@@ -416,7 +416,7 @@ We've been lazy and did everything through the portal - obviously not the way we
 For sake of time today we won't be able to go into more detail here, but feel free to have a look at it.
 
 
-# Optional: Play around a bit with Azure Search 
+## Optional: Play around a bit with Azure Search 
 
 - https://azjobsdemo.azurewebsites.net/
 - https://docs.microsoft.com/en-us/samples/azure-samples/search-dotnet-asp-net-mvc-jobs/search-dotnet-asp-net-mvc-jobs/
