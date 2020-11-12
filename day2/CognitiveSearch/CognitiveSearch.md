@@ -456,7 +456,7 @@ Thank you `Free Tier` for only allowing 32768 characters per document...
 
 Let's try some search queries:
 
-* `"Partner Communication"` --> returns `create-search-service.png` (text was recognized via OCR)
+* `"Pin to Dashboard"` --> returns `create-search-service.png` (text was recognized via OCR)
 * `"Charlotte"` --> returns `MSFT_cloud_architecture_contoso.pdf` (location was recognized via OCR in image)
 
 Good, so looks like our skillset worked. Please note that ideally we'd query through the API an directly specify the relevant fields, e.g., `location:Charlotte` in the second example:
