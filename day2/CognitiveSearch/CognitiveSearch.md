@@ -16,19 +16,9 @@ All requests require an api-key on every request sent to your service. Having a 
 
 In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
 
-0. Register here [Azure Notebooks](https://notebooks.azure.com)
-1. Create a project 
-    ![NewProject](./img/NewProject.png)
+1. We reuse the `Compute VM` from the Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveSearch.ipynb`.
 
-    ![CreateNewProject](./img/CreateNewProject.png)
-
-2. Create a notebook
-   ![Notebooks](./img/Notebooks.png)
-
-3. Create a new Python3.6 notebook.
-   ![CreateNewNotebook](./img/CreateNewNotebook.png)
-
-4. In the first cell, load the libraries used for working with JSON and formulating HTTP requests.
+2. In the first cell, load the libraries used for working with JSON and formulating HTTP requests.
 
    ```python
    import json
@@ -36,7 +26,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
    from pprint import pprint
    ```
 
-5. In the second cell, input the request elements that will be constants on every request. Replace the search service name (YOUR-SEARCH-SERVICE-NAME) and admin API key (YOUR-ADMIN-API-KEY) with valid values. 
+3. In the second cell, input the request elements that will be constants on every request. Replace the search service name (YOUR-SEARCH-SERVICE-NAME) and admin API key (YOUR-ADMIN-API-KEY) with valid values. 
 
    ```python
    endpoint = 'https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/'
@@ -47,7 +37,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
 
    If you get ConnectionError `"Failed to establish a new connection"`, verify that the api-key is a primary or secondary admin key, and that all leading and trailing characters (`?` and `/`) are in place.
 
-6. In the third cell, formulate the request. This GET request targets the indexes collection of your search service and selects the name property of existing indexes.
+4. In the third cell, formulate the request. This GET request targets the indexes collection of your search service and selects the name property of existing indexes.
 
    ```python
    url = endpoint + "indexes" + api_version + "&$select=name"
@@ -56,7 +46,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
    pprint(index_list)
    ```
 
-7. Run each step. If indexes exist, the response contains a list of index names. In the screenshot below, the service already has an azureblob-index and a realestate-us-sample index.
+5. Run each step. If indexes exist, the response contains a list of index names. In the screenshot below, the service already has an azureblob-index and a realestate-us-sample index.
 
    In contrast, an empty index collection returns this response: `{'@odata.context': 'https://mydemo.search.windows.net/$metadata#indexes(name)', 'value': []}`
 

@@ -264,7 +264,7 @@ from azureml.core.runconfig import RunConfiguration
 # Let Azure ML manage dependencies by setting user_managed_dependencies to False
 # Use docker containers by setting docker.enabled to True
 # Our workspace needs to know what environment to use
-env = Environment("bootcamp-env")
+env = Environment("aidevcollege-env")
 env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
 env.docker.enabled = True # Use a docker container
 
@@ -277,7 +277,7 @@ env.python.conda_dependencies = packages
     
 # Register the environment 
 env.register(workspace=ws)
-registered_env = Environment.get(ws, 'bootcamp-env')
+registered_env = Environment.get(ws, 'aidevcollege-env')
 
 # Create a new runconfig object for the pipeline
 run_config = RunConfiguration()
