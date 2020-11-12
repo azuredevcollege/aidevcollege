@@ -32,15 +32,10 @@ You can solve these tasks in a programming language of your choice. For sake of 
 In the language of your choice (Python solution is provided), write a small scripts that
 [Text Analytics Service with Other Programming Languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Text-Analytics/quickstarts/nodejs)
 
-Sign into [Azure Notebooks](https://notebooks.azure.com/) and create a new Project in:
 
-![Create a Cognitive Services Project](./images/CreateProjectTextAnalytics.png)
+In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
 
-Create a new `Python 3.6 Notebook` in [Azure Notebooks](https://notebooks.azure.com/).
-
-![Create Notebook Cognitive Services Challenge](./images/CreateNotebookTextAnalytics.png)
-
-![Use the following Details](./images/CreateNotebookTextAnalyticsDetails.png)
+1. We reuse the `Compute VM` from the Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
 Let's start with connecting to your Text Analytics Service. Get the Key and the URL from the Azure portal :
 
@@ -200,7 +195,7 @@ import requests
 import json
 
 # set to your own subscription key value
-subscription_key = None
+subscription_key = "xxx" # Paste your API key here
 assert subscription_key
 
 # replace <My Endpoint String> with the string from your endpoint URL
@@ -218,7 +213,7 @@ params = {
 
 response = requests.post(face_api_url, params=params,
                          headers=headers, json={"url": image_url})
-print(json.dumps(response.json()))
+print(json.dumps(response.json(), indent = 2))
 ```
 
 ### Examine the response
@@ -538,26 +533,26 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
 Extracting text from printed text in images is very similar - except that is a synchronous call, hence we directly get back the recognition result:
 
 ```python
-key = "xxxx" # Paste your API Key here!
-
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
-image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
-
-headers = {'Ocp-Apim-Subscription-Key': key}
-params  = {'language': 'unk', 'detectOrientation': 'true'}
-data    = {'url': image_url}
-
-response = requests.post(url, headers=headers, params=params, json=data)
-recognition_result = response.json()
-
-# Extract the word bounding boxes and text
-line_infos = [region["lines"] for region in recognition_result["regions"]]
-word_infos = []
-for line in line_infos:
-    for word_metadata in line:
-        for word_info in word_metadata["words"]:
-            word_infos.append(word_info)
-word_infos
+    key = "xxxx" # Paste your API Key here!
+    
+    url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
+    image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
+    
+    headers = {'Ocp-Apim-Subscription-Key': key}
+    params  = {'language': 'unk', 'detectOrientation': 'true'}
+    data    = {'url': image_url}
+    
+    response = requests.post(url, headers=headers, params=params, json=data)
+    recognition_result = response.json()
+    
+    # Extract the word bounding boxes and text
+    line_infos = [region["lines"] for region in recognition_result["regions"]]
+    word_infos = []
+    for line in line_infos:
+        for word_metadata in line:
+            for word_info in word_metadata["words"]:
+                word_infos.append(word_info)
+    word_infos
 ```
 
 Example Notebook:
