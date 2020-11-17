@@ -153,7 +153,7 @@ Use the same Notebook as before and copy the following code in a cell below the 
 import requests, json
 
 api_key = "xxx" # Paste your API key here
-region = "<paste-your-text-translator-service-region here>"
+region = "<paste-your-text-translator-service-region here>" # Paste your region here
 url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0"
 headers = {'Ocp-Apim-Subscription-Key': api_key, 'Ocp-Apim-Subscription-Region': region, 'Content-type': 'application/json'}
 
@@ -589,7 +589,7 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
 
 First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
-Next, add all the training images from the [dataset](). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+Next, add all the training images from the [dataset](./data/beer_glassess). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
 
 Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
 
@@ -607,112 +607,6 @@ Results:
 Under `Quick Test`, we can briefly upload our testing images and see what the service will detect. As we only added 15 training images with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the detection performance significantly.
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
-
-### Optional Reveal the intention of the text
-
-For retrieving the intent of the text, we'll be using the Language Understanding service in Azure, called LUIS. In many cases, LUIS is used to power chatbots, but it can also be used for "standalone" processing of text. We could even use it for e.g., automatically analyzing emails and categorizing them, or figuring out what products and amounts are on an invoice.
-
-Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English (English supports a few more features as of May 2019).
-
-Quick explanation on how LUIS works:
-
-* Under Intents, we'll define the "actions" we can to detect
-* Under Entities, we'll define the "things" we want to extract from the intents
-* Utterances are just examples that we'll use to train LUIS
-
-Create two new intents:
-
-* `CreateOrder`
-* `DeleteOrder`
-
-Then, add the utterances (our training examples) from the main page of this repository to the three intents.
-
-Hit `Train`.
-
-Once we hit `Test`, we can test if the systems is able to recognize the intent of our text. We'll notice that it is not working that well, hence we can add some more examples and re-train.
-
-Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `Pizza Type` with entity type `Simple` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Composite` with the name `PizzaOrder` and add `Number` and `Pizza Type` as children.
-
-
-As we can see, LUIS supports a range of entity types, like regex, lists, etc.
-
-Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the composite entity (= the detected number) and select `Wrap as Composite Entity`, then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
-
-
-Hit `Train` again to give it a final training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Keys and Endpoints`). It should look something like this:
-
-```
-https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
-```
-
-With a bit of Python, we can now get the intent through the API:
-
-```python
-import requests, json
-
-# Paste your Endpoint URL here
-url = "https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q="
-
-query = "ich hätte gerne 9 pizza calzone"
-
-response = requests.get(url + query)
-print(json.dumps(response.json(), indent=2))
-```
-
-The output should look something like this:
-
-```json
-{
-  "query": "ich h\u00e4tte gerne 9 pizza calzone",
-  "topScoringIntent": {
-    "intent": "CreateOrder",
-    "score": 0.414687634
-  },
-  "entities": [
-    {
-      "entity": "calzone",
-      "type": "PizzaType",
-      "startIndex": 24,
-      "endIndex": 30,
-      "score": 0.6114218
-    },
-    {
-      "entity": "9 pizza calzone",
-      "type": "PizzaOrder",
-      "startIndex": 16,
-      "endIndex": 30,
-      "score": 0.6957668
-    },
-    {
-      "entity": "9",
-      "type": "builtin.number",
-      "startIndex": 16,
-      "endIndex": 16,
-      "resolution": {
-        "value": "9"
-      }
-    }
-  ],
-  "compositeEntities": [
-    {
-      "parentType": "PizzaOrder",
-      "value": "9 pizza calzone",
-      "children": [
-        {
-          "type": "PizzaType",
-          "value": "calzone"
-        },
-        {
-          "type": "builtin.number",
-          "value": "9"
-        }
-      ]
-    }
-  ]
-}
-```
-
-Excellent - Now we know what the user wants to order, and the associated quantities. :pizza: :pizza: :pizza:
 
 ### Azure Cognitive Services - Vision & Custom Vision
 
@@ -956,7 +850,7 @@ headers = {'Authorization': token,
 
 data = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
 <voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'> \
-    Hello, welcome to the Cognitive Services Bootcamp!  \
+    Hello, welcome to the AI Developer College!  \
 </voice></speak>"
 
 response = requests.post(url, headers=headers, data=data)
@@ -1017,7 +911,7 @@ For recognizing longer text with multiple sentences, you can follow the [followi
 
 ***Note:***
 
-As of May 2019, also compressed audio is supported (e.g., MP3s), see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-codec-compressed-audio-input-streams),
+Compressed audio is supported (e.g., MP3s), see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-codec-compressed-audio-input-streams),
 
 Besides that, the speech-to-text API expects audio with the following specifics:
 * 16-bit WAV format with PCM or OGG format with OPUS
@@ -1027,7 +921,9 @@ More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-servic
 
 Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
 
-## Azure Cognitive Services - Language
+##  Azure Cognitive Services - Language - Reveal the intention of the text
+
+For retrieving the intent of the text, we'll be using the Language Understanding service in Azure, called LUIS. In many cases, LUIS is used to power chatbots, but it can also be used for "standalone" processing of text. We could even use it for e.g., automatically analyzing emails and categorizing them, or figuring out what products and amounts are on an invoice.
 
 :triangular_flag_on_post: **Goal:** Make your application understand the meaning of text
 
@@ -1037,6 +933,22 @@ In the language of your choice (Python solution is provided), write two small sc
 1. Detect the intent and entities of the text (German) - see examples below (using [https://eu.luis.ai](https://eu.luis.ai))
 
 Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
+
+Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English (English supports a few more features as of May 2019).
+
+Quick explanation on how LUIS works:
+
+* Under Intents, we'll define the "actions" we can to detect
+* Under Entities, we'll define the "things" we want to extract from the intents
+* Utterances are just examples that we'll use to train LUIS
+
+Create two new intents:
+
+* `CreateOrder`
+* `CancelOrder`
+
+Then, add the utterances (our training examples) from the main page of this repository to the three intents.
+
 
 LUIS example data:
 
@@ -1057,173 +969,29 @@ Utterances:
 (None) Bitte Termin fuer Montag einstellen
 ```
 
-### Azure Cognitive Services - Text Analytics
-
-:triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
-
-In the language of your choice (Python solution is provided), write a small scripts that
-
-1. Extracts sentiment, key phrases and entities from unstructured text using the [Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)
-
-:question: **Questions:** 
-
-1. What happens if we do not pass in the `language` parameter while getting the sentiment? 
-
-Then create a `Text Analytics` API Key in the Azure Portal (in the `West Europe` region):
-
-![alt text](./images/text_analytics_api.png "Text Analytics API")
-
-Let's start with :
-
-```python
-import requests
-from pprint import pprint
-
-subscription_key = "xxx" # Paste your API key here
-text_analytics_base_url = "https://westeurope.api.cognitive.microsoft.com/text/analytics/v2.1/"
-headers = {"Ocp-Apim-Subscription-Key": subscription_key}
-```
-
-## Detect Language
-
-Firstly, we can extract the language from text:
-
-```python
-language_api_url = text_analytics_base_url + "languages"
-
-documents = { "documents": [
-    { "id": "1", "text": "This is a document written in English." },
-    { "id": "2", "text": "Este es un document escrito en Español." },
-    { "id": "3", "text": "这是一个用中文写的文件" }
-]}
-
-response  = requests.post(language_api_url, headers=headers, json=documents)
-languages = response.json()
-pprint(languages)
-```
-
-## Detect Sentiment
-
-Secondly, we can detect the sentiment of a given phrase:
-
-```python
-sentiment_url = text_analytics_base_url + "sentiment"
-
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had a terrible time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
-
-response  = requests.post(sentiment_url, headers=headers, json=documents)
-sentiments = response.json()
-pprint(sentiments)
-```
-
-## Detect Key Phrases
-
-Thirdly, we can easily detect key phrases from text:
-
-```python
-keyphrase_url = text_analytics_base_url + "keyPhrases"
-
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had a terrible time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
-
-response  = requests.post(keyphrase_url, headers=headers, json=documents)
-key_phrases = response.json()
-pprint(key_phrases)
-```
-
-## Detect Entities
-
-And last but not least, we can detect the entities in text:
-
-```python
-entities_url = text_analytics_base_url + "entities"
-
-documents = {"documents" : [
-  {"id": "1", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800."}
-]}
-
-response  = requests.post(entities_url, headers=headers, json=documents)
-entities = response.json()
-pprint(entities)
-```
-
-If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
-
-:question: **Questions:** 
-
-1. Why do we need to fill the `None` intent with examples?
-1. What is the `Review endpoint utterances` feature in LUIS?
-
-## Translate Text
-
-First, create a `Translator Text` API Key in the Azure Portal:
-
-![alt text](./images/translator_api.png "Translator Service")
-
-As in challenge 3, we can create a token for our requests, but the Translator API also allows to direct access the service by specifying the API key:
-
-```python
-import requests, json
-
-api_key = "xxx" # Paste your API key here
-
-url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0"
-headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
-
-params = {'to': 'de'}
-
-body = [{'text' : 'I want to order 4 pizza Magarita and 8 beer!'},
-        {'text' : 'Please add 42 salads to the order!'}]
-
-response = requests.post(url, headers=headers, params=params, json=body)
-print(json.dumps(response.json(), indent=2))
-```
-
-As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
-
-## Reveal the intention of the text
-
-For retrieving the intent of the text, we'll be using the Language Understanding service in Azure, called LUIS. In many cases, LUIS is used to power chatbots, but it can also be used for "standalone" processing of text. We could even use it for e.g., automatically analyzing emails and categorizing them, or figuring out what products and amounts are on an invoice.
-
-Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English (English supports a few more features as of May 2019).
-
-Quick explanation on how LUIS works:
-
-* Under Intents, we'll define the "actions" we can to detect
-* Under Entities, we'll define the "things" we want to extract from the intents
-* Utterances are just examples that we'll use to train LUIS
-
-Create two new intents:
-
-* `CreateOrder`
-* `DeleteOrder`
-
-Then, add the utterances (our training examples) from the main page of this repository to the three intents.
 
 Hit `Train`.
 
 Once we hit `Test`, we can test if the systems is able to recognize the intent of our text. We'll notice that it is not working that well, hence we can add some more examples and re-train.
 
-Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `Pizza Type` with entity type `Simple` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Composite` with the name `PizzaOrder` and add `Number` and `Pizza Type` as children.
+Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `Pizza Type` with entity type `Machine learned` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `Pizza Type` as children. 
 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
+Further we will add a `PizzaPhraseList` with some `Pizza Type Samples`:
+
+![alt text](./images/PizzaPhraseList.png)
+
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
-Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the composite entity (= the detected number) and select `Wrap as Composite Entity`, then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
+Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the entity (= the detected number) and then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
 
 ![alt text](./images/composite_types_luis.png "LUIS Intents")
 
-Hit `Train` again to give it a final training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Keys and Endpoints`). It should look something like this:
+![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
+
+
+Hit `Train` again to give it a final training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
 
 ```
 https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
@@ -1246,11 +1014,12 @@ print(json.dumps(response.json(), indent=2))
 The output should look something like this:
 
 ```json
+
 {
   "query": "ich h\u00e4tte gerne 9 pizza calzone",
   "topScoringIntent": {
     "intent": "CreateOrder",
-    "score": 0.414687634
+    "score": 0.4941804
   },
   "entities": [
     {
@@ -1258,14 +1027,14 @@ The output should look something like this:
       "type": "PizzaType",
       "startIndex": 24,
       "endIndex": 30,
-      "score": 0.6114218
+      "score": 0.80077827
     },
     {
       "entity": "9 pizza calzone",
       "type": "PizzaOrder",
       "startIndex": 16,
       "endIndex": 30,
-      "score": 0.6957668
+      "score": 0.566134334
     },
     {
       "entity": "9",
@@ -1273,27 +1042,14 @@ The output should look something like this:
       "startIndex": 16,
       "endIndex": 16,
       "resolution": {
+        "subtype": "integer",
         "value": "9"
       }
     }
-  ],
-  "compositeEntities": [
-    {
-      "parentType": "PizzaOrder",
-      "value": "9 pizza calzone",
-      "children": [
-        {
-          "type": "PizzaType",
-          "value": "calzone"
-        },
-        {
-          "type": "builtin.number",
-          "value": "9"
-        }
-      ]
-    }
   ]
 }
+​
+​
 ```
 
 Excellent - Now we know what the user wants to order, and the associated quantities. :pizza: :pizza: :pizza:
@@ -1309,9 +1065,9 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 1. What other services does Bing Search offer?
 1. How does the service react in case of a denial-of-service (DoS) attack?
 
-First, create a `Bing Autosuggeest` API Key in the Azure Portal:
+First, create a `Bing Search v7` API Key in the Azure Portal:
 
-![alt text](./images/bing_autosuggest.png "Bing Autosuggest")
+![alt text](./images/bing_searchv7.png "Bing Search v7")
 
 As in challenge 3 and 5, we can either create a token for our requests, or directly access the service by specifying the API key we've just created:
 
@@ -1320,7 +1076,7 @@ As in challenge 3 and 5, we can either create a token for our requests, or direc
 import requests, json
 
 key = "xxx" # Paste your API key here
-url = "https://api.cognitive.microsoft.com/bing/v7.0/suggestions"
+url = "https://api.bing.microsoft.com/v7.0/Suggestions"
 
 search_term = "warum ist"
 
@@ -1343,14 +1099,14 @@ for s in suggestions:
 Output:
 
 ```json
-warum ist gartenarbeit gut
-warum ist meerwasser salzig
-warum ist man
-warum ist der himmel blau
-warum ist die banane krumm
-warum ist das licht gegeben
-warum ist meine schwester haesslich
-warum ist man genervt
+warum ist
+warum ist das
+warum ist es so
+warum ist blut rot
+warum ist messi klein
+warum ist stuhl braun
+warum ist diamant hart
+warum ist rauchen cool
 ```
 
 People search for weird stuff... :flushed: :satisfied:
