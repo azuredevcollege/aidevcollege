@@ -1,0 +1,291 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+variables:
+  azureml.resourceGroup: mlops-demo
+  azureml.workspaceName: mlops-mlwrksp
+  azureml.location: westeurope
+  amlcompute.clusterName: cpu-cluster
+  amlcompute.vmSize: STANDARD_DS2_V2
+  amlcompute.minNodes: 0
+  amlcompute.maxNodes: 2
+  amlcompute.idleSecondsBeforeScaledown: 300
+  experiment.name: diabetes_sklearn
+  model.name: diabetes_model
+  service.name.staging: diabetes-service-aci
+  aks.clusterName: aks
+  aks.vmSize: Standard_B4ms
+  aks.agentCount: 3
+  service.name.production: diabetes-service-aks
+
+stages:
+- stage: Build
+  displayName: 'Train, Evaluate & Register Model'
+  jobs:
+  - job: Train
+    displayName: 'Train, Evaluate & Register Model'
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UsePythonVersion@0
+      displayName: 'Use Python 3.6'
+      inputs:
+        versionSpec: '3.6'
+        addToPath: true
+        architecture: 'x64'
+    - task: Bash@3
+      displayName: 'Install Python Requirements'
+      inputs:
+        targetType: filePath
+        filePath: 'setup/install_requirements.sh'
+        workingDirectory: 'setup'
+    - script: 'pytest tests/unit/data_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=data_test --cov-report=xml --cov-report=html'
+      displayName: 'Data Quality Check'
+    - task: PublishTestResults@2
+      displayName: 'Publish Data Quality Check test results'
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: '**/test-*.xml'
+        testRunTitle: 'Data Quality Check'
+    - task: AzureCLI@1
+      displayName: 'Add AzureML CLI Extension'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az extension add -n azure-cli-ml'
+    - task: AzureCLI@1
+      displayName: 'Create Azure ML Service Workspace'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml workspace create -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -l $(azureml.location) --exist-ok --yes'
+    - task: AzureCLI@1
+      displayName: 'Create Azure ML Compute'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml computetarget create amlcompute -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(amlcompute.clusterName) -s $(amlcompute.vmSize) --min-nodes $(amlcompute.minNodes) --max-nodes $(amlcompute.maxNodes) --idle-seconds-before-scaledown $(amlcompute.idleSecondsBeforeScaledown)'
+    - task: AzureCLI@1
+      displayName: 'Upload Data to the Default Datastore'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml datastore upload -w $(azureml.workspaceName) -g $(azureml.resourceGroup) -n $(az ml datastore show-default -w $(azureml.workspaceName) -g $(azureml.resourceGroup) --query name -o tsv) -p data -u diabetes --overwrite true'
+    - task: Bash@3
+      displayName: 'Create Metadata and Models Folder'
+      inputs:
+        targetType: 'inline'
+        script: 'mkdir metadata && mkdir models'
+    - task: AzureCLI@1
+      displayName: 'Train Model'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml run submit-script -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -e $(experiment.name) --ct $(amlcompute.clusterName) -d conda_dependencies.yml -c train_diabetes -t ../metadata/run.json train_diabetes.py'
+        workingDirectory: 'training'
+    - task: AzureCLI@1
+      displayName: 'Register Model'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) -f metadata/run.json  --asset-path outputs/models/sklearn_diabetes_model.pkl -d "Linear model using diabetes dataset" --tag "data"="diabetes" --tag "model"="regression" --model-framework ScikitLearn -t metadata/model.json'    
+    - task: AzureCLI@1
+      displayName: 'Download Model'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az ml model download -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -i $(jq -r .modelId metadata/model.json) -t ./models --overwrite'    
+    - task: CopyFiles@2
+      displayName: 'Copy files to Artifact Staging Directory'
+      inputs:
+        SourceFolder: '$(Build.SourcesDirectory)'
+        Contents: |
+          **/metadata/*
+          **/models/*
+          **/deployment/*
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    - task: Bash@3
+      displayName: 'Display Artifact Staging Directory'
+      inputs:
+        targetType: 'inline'
+        script: 'pwd && ls -laR $(Build.ArtifactStagingDirectory)'
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish Artifact: drop'
+      inputs:
+        ArtifactName: 'drop'
+        publishLocation: 'Container'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+- stage: Staging
+  displayName: 'Deploy to Staging'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+    # track deployments on the environment
+  - deployment: DeployToACI
+    displayName: 'Deploy to Azure Container Instance'
+    pool:
+      vmImage: 'ubuntu-latest'
+    # creates an environment if it doesn’t exist
+    environment: 'diabetes-staging'
+    strategy:
+      # default deployment strategy
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Artifact: drop'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(System.ArtifactsDirectory)' 
+          - task: UsePythonVersion@0
+            displayName: 'Use Python 3.6'
+            inputs:
+              versionSpec: '3.6'
+              addToPath: true
+              architecture: 'x64'
+          - task: AzureCLI@1
+            displayName: 'Add AzureML CLI Extension'
+            inputs:
+              azureSubscription: 'MyAzureSubscription'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az extension add -n azure-cli-ml'
+          - task: AzureCLI@1
+            displayName: 'Deploy to ML Service to ACI'
+            inputs:
+              azureSubscription: 'MyAzureSubscription'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az ml model deploy -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.staging) -f ../metadata/model.json --dc aciDeploymentConfig.yml --ic inferenceConfig.yml --overwrite'
+              workingDirectory: '$(System.ArtifactsDirectory)/drop/deployment'
+  - job: IntegrationTests
+    displayName: 'Run Integration Tests'
+    dependsOn: DeployToACI
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UsePythonVersion@0
+      displayName: 'Use Python 3.6'
+      inputs:
+        versionSpec: '3.6'
+        addToPath: true
+        architecture: 'x64'
+    - task: Bash@3
+      displayName: 'Install Python Requirements'
+      inputs:
+        targetType: filePath
+        filePath: 'setup/install_requirements.sh'
+        workingDirectory: 'setup'
+    - task: AzureCLI@1
+      displayName: 'Add AzureML CLI Extension'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az extension add -n azure-cli-ml'
+    - task: AzureCLI@1
+      displayName: 'Run Integration Tests'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'pytest integration_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=integration_test --cov-report=xml --cov-report=html --scoreurl $(az ml service show -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.staging) --query scoringUri -o tsv)'
+        workingDirectory: 'tests/integration'
+    - task: PublishTestResults@2
+      displayName: 'Publish test results'
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: '**/test-*.xml'
+        testRunTitle: 'Integration Tests (Staging)'
+- stage: Production
+  displayName: 'Deploy to Production'
+  dependsOn: Staging
+  condition: succeeded()
+  jobs:
+    # track deployments on the environment
+  - deployment: DeployToAKS
+    displayName: 'Deploy to Azure Kubernetes Service'
+    pool:
+      vmImage: 'ubuntu-latest'
+    # creates an environment if it doesn’t exist
+    environment: 'diabetes-production'
+    strategy:
+      # default deployment strategy
+      runOnce:
+        deploy:
+          steps:
+          - download: none
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Artifact: drop'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'drop'
+              downloadPath: '$(System.ArtifactsDirectory)' 
+          - task: UsePythonVersion@0
+            displayName: 'Use Python 3.6'
+            inputs:
+              versionSpec: '3.6'
+              addToPath: true
+              architecture: 'x64'
+          - task: AzureCLI@1
+            displayName: 'Add AzureML CLI Extension'
+            inputs:
+              azureSubscription: 'MyAzureSubscription'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az extension add -n azure-cli-ml'
+          - task: AzureCLI@1
+            displayName: 'Create Azure Kubernetes Service'
+            inputs:
+              azureSubscription: 'MyAzureSubscription'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az ml computetarget create aks -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(aks.clusterName) -s $(aks.vmSize) -a $(aks.agentCount)'
+              workingDirectory: '$(System.ArtifactsDirectory)/drop/deployment'
+          - task: AzureCLI@1
+            displayName: 'Deploy to ML Service to AKS'
+            inputs:
+              azureSubscription: 'MyAzureSubscription'
+              scriptLocation: 'inlineScript'
+              inlineScript: 'az ml model deploy -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.production) -f ../metadata/model.json --dc aksDeploymentConfig.yml --ic inferenceConfig.yml --ct $(aks.clusterName) --overwrite'
+              workingDirectory: '$(System.ArtifactsDirectory)/drop/deployment'
+  - job: IntegrationTests
+    displayName: 'Run Integration Tests'
+    dependsOn: DeployToAKS
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: UsePythonVersion@0
+      displayName: 'Use Python 3.6'
+      inputs:
+        versionSpec: '3.6'
+        addToPath: true
+        architecture: 'x64'
+    - task: Bash@3
+      displayName: 'Install Python Requirements'
+      inputs:
+        targetType: filePath
+        filePath: 'setup/install_requirements.sh'
+        workingDirectory: 'setup'
+    - task: AzureCLI@1
+      displayName: 'Add AzureML CLI Extension'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'az extension add -n azure-cli-ml'
+    - task: AzureCLI@1
+      displayName: 'Run Integration Tests'
+      inputs:
+        azureSubscription: 'MyAzureSubscription'
+        scriptLocation: 'inlineScript'
+        inlineScript: 'pytest integration_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=integration_test --cov-report=xml --cov-report=html --scoreurl $(az ml service show -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.production) --query scoringUri -o tsv) --scorekey $(az ml service get-keys -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.production) --query primaryKey -o tsv)'
+        workingDirectory: 'tests/integration'
+    - task: PublishTestResults@2
+      displayName: 'Publish test results'
+      condition: succeededOrFailed()
+      inputs:
+        testResultsFiles: '**/test-*.xml'
+        testRunTitle: 'Integration Tests (Production)'
