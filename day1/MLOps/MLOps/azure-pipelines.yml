@@ -7,8 +7,8 @@ trigger:
 - master
 
 variables:
-  azureml.resourceGroup: mlops-demo
-  azureml.workspaceName: mlops-mlwrksp
+  azureml.resourceGroup: mlops-aidevcollege
+  azureml.workspaceName: mlops-aidevcollege
   azureml.location: westeurope
   amlcompute.clusterName: cpu-cluster
   amlcompute.vmSize: STANDARD_DS2_V2
@@ -42,9 +42,9 @@ stages:
       displayName: 'Install Python Requirements'
       inputs:
         targetType: filePath
-        filePath: 'setup/install_requirements.sh'
-        workingDirectory: 'setup'
-    - script: 'pytest tests/unit/data_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=data_test --cov-report=xml --cov-report=html'
+        filePath: 'day1/MLOps/MLOps/setup/install_requirements.sh'
+        workingDirectory: 'day1/MLOps/MLOps/setup'
+    - script: 'pytest day1/MLOps/MLOps/tests/unit/data_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=data_test --cov-report=xml --cov-report=html'
       displayName: 'Data Quality Check'
     - task: PublishTestResults@2
       displayName: 'Publish Data Quality Check test results'
@@ -75,7 +75,7 @@ stages:
       inputs:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
-        inlineScript: 'az ml datastore upload -w $(azureml.workspaceName) -g $(azureml.resourceGroup) -n $(az ml datastore show-default -w $(azureml.workspaceName) -g $(azureml.resourceGroup) --query name -o tsv) -p data -u diabetes --overwrite true'
+        inlineScript: 'az ml datastore upload -w $(azureml.workspaceName) -g $(azureml.resourceGroup) -n $(az ml datastore show-default -w $(azureml.workspaceName) -g $(azureml.resourceGroup) --query name -o tsv) -p day1/MLOps/MLOps/data -u diabetes --overwrite true'
     - task: Bash@3
       displayName: 'Create Metadata and Models Folder'
       inputs:
@@ -87,23 +87,25 @@ stages:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
         inlineScript: 'az ml run submit-script -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -e $(experiment.name) --ct $(amlcompute.clusterName) -d conda_dependencies.yml -c train_diabetes -t ../metadata/run.json train_diabetes.py'
-        workingDirectory: 'training'
+        workingDirectory: 'day1/MLOps/MLOps/training'
     - task: AzureCLI@1
       displayName: 'Register Model'
       inputs:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
-        inlineScript: 'az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) -f metadata/run.json  --asset-path outputs/models/sklearn_diabetes_model.pkl -d "Linear model using diabetes dataset" --tag "data"="diabetes" --tag "model"="regression" --model-framework ScikitLearn -t metadata/model.json'    
+        inlineScript: 'az ml model register -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(model.name) -f ../metadata/run.json  --asset-path outputs/models/sklearn_diabetes_model.pkl -d "Linear model using diabetes dataset" --tag "data"="diabetes" --tag "model"="regression" --model-framework ScikitLearn -t ../metadata/model.json'
+        workingDirectory: 'day1/MLOps/MLOps/training'    
     - task: AzureCLI@1
       displayName: 'Download Model'
       inputs:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
-        inlineScript: 'az ml model download -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -i $(jq -r .modelId metadata/model.json) -t ./models --overwrite'    
+        inlineScript: 'az ml model download -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -i $(jq -r .modelId ../metadata/model.json) -t ./models --overwrite'
+        workingDirectory: 'day1/MLOps/MLOps/training' 
     - task: CopyFiles@2
       displayName: 'Copy files to Artifact Staging Directory'
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)'
+        SourceFolder: '$(Build.SourcesDirectory)/day1/MLOps/MLOps'
         Contents: |
           **/metadata/*
           **/models/*
@@ -180,8 +182,8 @@ stages:
       displayName: 'Install Python Requirements'
       inputs:
         targetType: filePath
-        filePath: 'setup/install_requirements.sh'
-        workingDirectory: 'setup'
+        filePath: 'day1/MLOps/MLOps/setup/install_requirements.sh'
+        workingDirectory: 'day1/MLOps/MLOps/setup'
     - task: AzureCLI@1
       displayName: 'Add AzureML CLI Extension'
       inputs:
@@ -194,7 +196,7 @@ stages:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
         inlineScript: 'pytest integration_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=integration_test --cov-report=xml --cov-report=html --scoreurl $(az ml service show -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.staging) --query scoringUri -o tsv)'
-        workingDirectory: 'tests/integration'
+        workingDirectory: 'day1/MLOps/MLOps/tests/integration'
     - task: PublishTestResults@2
       displayName: 'Publish test results'
       condition: succeededOrFailed()
@@ -268,8 +270,8 @@ stages:
       displayName: 'Install Python Requirements'
       inputs:
         targetType: filePath
-        filePath: 'setup/install_requirements.sh'
-        workingDirectory: 'setup'
+        filePath: 'day1/MLOps/MLOps/setup/install_requirements.sh'
+        workingDirectory: 'day1/MLOps/MLOps/setup'
     - task: AzureCLI@1
       displayName: 'Add AzureML CLI Extension'
       inputs:
@@ -282,7 +284,7 @@ stages:
         azureSubscription: 'MyAzureSubscription'
         scriptLocation: 'inlineScript'
         inlineScript: 'pytest integration_test.py --doctest-modules --junitxml=junit/test-results.xml --cov=integration_test --cov-report=xml --cov-report=html --scoreurl $(az ml service show -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.production) --query scoringUri -o tsv) --scorekey $(az ml service get-keys -g $(azureml.resourceGroup) -w $(azureml.workspaceName) -n $(service.name.production) --query primaryKey -o tsv)'
-        workingDirectory: 'tests/integration'
+        workingDirectory: 'day1/MLOps/MLOps/tests/integration'
     - task: PublishTestResults@2
       displayName: 'Publish test results'
       condition: succeededOrFailed()

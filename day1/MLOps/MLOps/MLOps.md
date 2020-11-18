@@ -13,7 +13,7 @@ With Azure ML + Azure DevOps you can effectively and cohesively manage your data
 
 # Challenege-0: Create an Azure DevOps Organisation
 
-<img src="./images/azuredevops.png" width="300" height="200"/>
+<img src="./media/azuredevops.png" width="300" height="200"/>
 
 ## Here is what you will learn
 - Create an Azure DevOps account for your organisation
@@ -61,7 +61,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 # Challenge-1: Work with Azure Repos
 
-![Azure Repos](./images/repos.svg)
+![Azure Repos](./media/repos.svg)
 
 ## Here is what you will learn
 - Create a Git repository for your code
@@ -75,11 +75,11 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege/day1/MLOps/MLOps). Click the green "Code" button and copy the
 https url.
 
-![Clone GitHub](./images/clone-adc-github.png)
+![Clone GitHub](./media/clone-adc-github.png)
 
 Go to your Azure DevOps project import the repository and name it *aidevcollege*:
 
-![Import](./images/import-adc-repo.png)
+![Import](./media/import-adc-repo.png)
 
 ## Clone the repository to your local machine, use SSH key authentication
 
@@ -93,6 +93,67 @@ Follow these steps described [here](https://docs.microsoft.com/en-us/azure/devop
 Now that you have added your SSH public key to Azure DevOps, you are ready to clone the Azure Developer College's repository to your local machine.
 
 Open a shell and go to your project's folder and clone the repository as described [here](https://docs.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops&tabs=current-page#step-3-clone-the-git-repository-with-ssh) to your local machine.
+
+
+#### Create Service Principal
+
+Service Principal enables non-interactive authentication for any specific user login. This is useful for setting up a machine learning workflow as an automated process.
+
+> Note that you must have administrator privileges over the Azure subscription to complete these steps.
+
+Follow the instructions from the section __Service Principal Authentication__ in [this notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb) to create a service principal for your project. We recommend to scope the Service Principal to the _Resource Group_. When editing Access Control, select _Contributor_ and add your Service Principal to your Resource Group.
+
+<p align="left"><img width="50%" src="media/ado_lib.png" alt="Library in Azure DevOps project"/></p>
+
+#### Config for AzureML workspace
+
+Note the configuration details of your AML Workspace in a `config.json` file. This file will later be needed for your Release Pipeline to have access to your AzureML workspace.  You can find most of the info in the Azure Portal.
+
+
+```
+    {
+        "subscription_id": "subscription_id",
+        "resource_group": "resource_group",
+        "workspace_name": "workspace_name",
+        "workspace_region": "workspace_region",
+        "service_principal_id": "service_principal_id",
+        "service_principal_password": "service_principal_password",
+        "tenant_id": "tenant_id"
+    }
+```
+
+> **Important:** Add `service_principal_id`, `service_principal_password`, and `tenant_id` to the `config.json` file above. You can then upload the `config.json` file to the secure file libary of your DevOps project. Make sure to enable all pipelines to have access to the secure file.
+
+Add `config.json` to Library of secure files in the Azure DevOps project. Select on the Pipelines icon on the left, then Library. In your library go to *Secure files* and *+ Secure File*. Upload the `config.json` file and make sure to allow all pipelines to use it.
+
+#### Add Service Connections to your DevOps project
+
+Next, we configure the project such that the release pipeline has access to the code in github repo, to your AzureML Workspace, and to the Azure Container Registry (for Docker images).
+
+Go to the settings of your project, `Service Connections` and click on `New Service Connection`.
+
+- Create one Service Connection of type `GitHub`.
+- Create one of type `Azure Resource Manager`. Select scope level as Machine Learning Workspace and use the same credentials from above.
+
+<p align="left"><img width="50%" src="media/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
+
+#### Install MLOps extension for Azure DevOps
+
+You can install the MLOps extension from here: [https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.vss-services-azureml](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.vss-services-azureml). This will allow you to connect your TinyYOLO model to your pipeline.
+
+### Create Release Pipeline
+
+Now we can build the Release pipeline for the project by selecting __Releases__ under _Pipelines_ then __New Pipeline__ in the Azure DevOps project. Select the template for the stage as _Empty job_. 
+
+__Connect Artifacts__
+
+First, add the artifacts. Our pipeline is connected to two `Artifacts`.
+
+* [This](https://github.com/Azure-Samples/onnxruntime-iot-edge) GitHub repository and, 
+* Your Model Registry from the AzureML Workspace. Click on the drop down and select service principal you created. 
+
+You can add these by clicking the `+ Add` button, next to `Artifacts`. 
+
 
 
 

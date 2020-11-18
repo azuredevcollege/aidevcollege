@@ -1,0 +1,24 @@
+{
+  "name": "tfjs-cv-objectdetection",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaschaDittmann/tfjs-cv-objectdetection.git"
+  },
+  "author": "Sascha Dittmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SaschaDittmann/tfjs-cv-objectdetection/issues"
+  },
+  "homepage": "https://github.com/SaschaDittmann/tfjs-cv-objectdetection#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "description": "Use the power of Machine Learning to detect Azure Logos in the web browser"
+}

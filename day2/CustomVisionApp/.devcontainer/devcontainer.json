@@ -1,0 +1,21 @@
+{
+	"appPort": 3000,
+
+	"extensions": [
+		"dbaeumer.vscode-eslint"
+	],
+
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+
+	// Run Bash script in .devcontainer directory
+	"postCreateCommand": "/bin/bash ./.devcontainer/post-create.sh > ~/post-create.log",
+
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": {
+			"VARIANT": "14"
+		}
+	},
+}
