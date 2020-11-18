@@ -9,11 +9,11 @@ Similar to the [DevOps](https://en.wikipedia.org/wiki/DevOps) or [DataOps](https
 Azure ML contains a number of asset management and orchestration services to help you manage the lifecycle of your model training & deployment workflows.
 
 With Azure ML + Azure DevOps you can effectively and cohesively manage your datasets, experiments, models, and ML-infused applications.
-![ML lifecycle](./media/ml-lifecycle.png)
+![ML lifecycle](./images/ml-lifecycle.png)
 
 # Challenege-0: Create an Azure DevOps Organisation
 
-<img src="./media/azuredevops.png" width="300" height="200"/>
+<img src="./images/azuredevops.png" width="300" height="200"/>
 
 ## Here is what you will learn
 - Create an Azure DevOps account for your organisation
@@ -61,7 +61,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 # Challenge-1: Work with Azure Repos
 
-![Azure Repos](./media/repos.svg)
+![Azure Repos](./images/repos.svg)
 
 ## Here is what you will learn
 - Create a Git repository for your code
@@ -75,11 +75,11 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege/day1/MLOps/MLOps). Click the green "Code" button and copy the
 https url.
 
-![Clone GitHub](./media/clone-adc-github.png)
+![Clone GitHub](./images/clone-adc-github.png)
 
 Go to your Azure DevOps project import the repository and name it *aidevcollege*:
 
-![Import](./media/import-adc-repo.png)
+![Import](./images/import-adc-repo.png)
 
 ## Clone the repository to your local machine, use SSH key authentication
 
@@ -103,7 +103,7 @@ Service Principal enables non-interactive authentication for any specific user l
 
 Follow the instructions from the section __Service Principal Authentication__ in [this notebook](https://github.com/Azure/MachineLearningNotebooks/blob/master/how-to-use-azureml/manage-azureml-service/authentication-in-azureml/authentication-in-azureml.ipynb) to create a service principal for your project. We recommend to scope the Service Principal to the _Resource Group_. When editing Access Control, select _Contributor_ and add your Service Principal to your Resource Group.
 
-<p align="left"><img width="50%" src="media/ado_lib.png" alt="Library in Azure DevOps project"/></p>
+<p align="left"><img width="50%" src="images/ado_lib.png" alt="Library in Azure DevOps project"/></p>
 
 #### Config for AzureML workspace
 
@@ -135,7 +135,7 @@ Go to the settings of your project, `Service Connections` and click on `New Serv
 - Create one Service Connection of type `GitHub`.
 - Create one of type `Azure Resource Manager`. Select scope level as Machine Learning Workspace and use the same credentials from above.
 
-<p align="left"><img width="50%" src="media/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
+<p align="left"><img width="50%" src="images/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
 
 #### Install MLOps extension for Azure DevOps
 
