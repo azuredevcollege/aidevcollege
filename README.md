@@ -25,6 +25,7 @@ Here's the overview of the training week. Happy hacking!
 - [Day 1 - Azure Machine Learning Operations](day1/MLOps/MLOps.md)
 - [Day 2 - Cognitive Search](day2/CognitiveSearch/CognitiveSearch.md)
 - [Day 2 - Cognitive Services](day2/CognitiveServices/Challenge/CognitiveServices.md)
+- [Day 2 - Custom Vision APP](day2/CustomVisionApp/README.md)
 
 ## Contributing ##
 
