@@ -4,7 +4,9 @@ This example shows you how to use a Machine Learning, which was created with the
 
 The [Azure Logo images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet) used in this example, are from the AI Vision Provision demo shown at the Microsoft Connect() event in 2018 and are not published with this repository.
 
-## Training, Testing and Downloading the Model
+In this challenge we will use a pretrained model which is already downloaded and run the sample code to detect logos on an uploaded image. For explanation purposes the `Training, Testing & Downloading Model part` is explained. Afterwards you will open Visual Studio Code and run `npm install` as well as `node server.js` to start the project. At `http://localhost:3000` you can then test the model by uploading some of the [Azure Logo images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet).
+
+## Explanation: Training, Testing and Downloading the Model
 
 There are two options, either to choose the __Classification__ or the __Object Detection__ model. <br>
 In this case to detect the objects on an image the `Object Detection Model` was chosen. For downloading purposes we chose the `General (Compact)` domain which is slightly less accurate than a standard domain with the same amount of training data.
@@ -67,9 +69,9 @@ And finally the Model is downloaded:
 
 ![Download Model](./images/DownloadModel.png)
 
-## Open the Custom Vision App in Visual Studio Code
+## Start the Challenge: Open the Custom Vision App in Visual Studio Code
 
-First we open up the Code in Visual Studio:
+First we open up the Code in Visual Studio Code:
 
 ![Open the Code](./images/VisualStudioCode.png)
 
@@ -107,6 +109,10 @@ $ node server.js
 
 ## Final Result
 
+Finally you can test the model at `http://localhost:3000` by uploading some of the [Azure Logo images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet). <br>
+
+This is how the model should the detect the objects as shown below:
+
 ![Final Results](./images/FinalResult.png)
 
 ![Final Results](./images/FinalResult2.png)
@@ -115,8 +121,8 @@ $ node server.js
 
 If you want, you can test the deployed application under under [https://tfjs-objectdetection.azureedge.net](https://tfjs-objectdetection.azureedge.net).
 
+## Bonus Challenge:
+In this repository there is a github action included. If you create a `service principal` and a [`secret from a pre deployed storage account`](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md), you can use the [`static website`](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions) feature from the storage account. The documentation on how to complete the tasks are included in the links. 
 
 ## References
  YouTube Video: https://www.youtube.com/watch?v=7gOYpT732ow&list=PLZk8J6FocZbaClHkIPk4SWZHxn_9VArb5&index=2
-
-
