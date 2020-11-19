@@ -79,9 +79,11 @@ In the `predict.js` file there is the `Load Model` Function to load the machine 
 ![Load Model](./images/loadModel.png)
 
 From the custom vision service we get the `detected boxes`, `detected classes` and `detected scores` in return:
+<br>
 ![Returned from Service](./images/ReturnService.png)
 
 Further we receive the `target classes` structured in indexes and labels:
+<br>
 ![Indexes Labels](./images/IndexesLabels.png)
 
 ## Setup
