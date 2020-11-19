@@ -10,4 +10,4 @@ yarn-error.log
 .yalc
 .DS_STORE
 yalc.lock
-
+*.png
