@@ -11,7 +11,7 @@ Here are the top two resources you'll need today:
 
 ## Challenge 1 - Basic model training on Azure
 
-:zap: Here are some **[hints](hints/challenge_01.md)** for this challenge!
+:zap: Here are some **[challenge](challenges/challenge_01.md)** for this challenge!
 
 In this first challenge, you'll be training a basic machine learning model on Azure. We'll be using the popular MNIST dataset, as it allows us to focus on getting familiar with the mechanics of Azure Machine Learning. MNIST is a data set containing:
 
@@ -35,7 +35,7 @@ Guidance:
 
 ## Challenge 2 - Advanced model training on Azure
 
-:zap: Here are some **[hints](hints/challenge_02.md)** for this challenge!
+:zap: Here are some **[challenge](challenges/challenge_02.md)** for this challenge!
 
 In this challenge, you'll be training a more advanced machine learning model on Azure (in fact, you'll be training a Deep Convolution Neural Network). We'll be using the same data set, but this time, we'll use Azure Machine Learning Compute for speeding up and scaling our training.
 
@@ -45,7 +45,7 @@ Guidance:
 
 ## Challenge 3 - Model deployment on Azure
 
-:zap: Here are some **[hints](hints/challenge_03.md)** for this challenge!
+:zap: Here are some **[challenge](challenges/challenge_03.md)** for this challenge!
 
 In this third challenge, you'll be taking the model you've trained in the second challenge and deploy it to Azure Container Instances (ACI). This is perfect for test/dev scenarios and giving our model a quick test drive (we'll get to production deployments in a later challenge).
 
@@ -55,7 +55,7 @@ Guidance:
 
 ## Challenge 4 - Automated Machine Learning
 
-:zap: Here are some **[hints](hints/challenge_04.md)** for this challenge!
+:zap: Here are some **[challenge](challenges/challenge_04.md)** for this challenge!
 
 In this challenge, you'll be using Automated Machine Learning to let Azure figure out which Machine Learning algorithm performs best on our dataset. We'll fully leverage the Azure Portal for that, hence no coding needed!
 
@@ -67,7 +67,7 @@ Guidance:
 
 ## Challenge 5 - Production deployment to Azure Kubernetes Service (AKS)
 
-:zap: Here are some **[hints](hints/challenge_05.md)** for this challenge!
+:zap: Here are some **[challenge](challenges/challenge_05.md)** for this challenge!
 
 In this last challenge, you'll be training a model and deploying the model to showcase how you can use AutoML for a simple classification problem. This model will predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy the model to Azure Kubernetes Service (AKS). Since this will mimic a production deployment, we want to make sure to enable authentication and telemetry monitoring (using Application Insights) for our model!
 
