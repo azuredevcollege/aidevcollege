@@ -1,4 +1,4 @@
-# Hints for Challenge 5
+# Challenge 5
 
 In this challenge we will be training a model to showcase how you can use AutoML for a simple classification problem. The goal is to predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy to Azure Kubernetes Service (AKS). We'll also enable the following features:
 

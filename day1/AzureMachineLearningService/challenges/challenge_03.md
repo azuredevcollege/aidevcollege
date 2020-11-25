@@ -1,4 +1,4 @@
-# Hints for Challenge 3
+# Challenge 3
 
 After challenge 2, we finally have a model that has an accuracy of more than 99% - time to deploy it as an API!
 Hence, we'll be taking the model and we will deploy it to an [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/).

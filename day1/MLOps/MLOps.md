@@ -25,7 +25,7 @@ Azure DevOps provides integrated features that you can access through your web b
 - __Azure Artifacts__ allows teams to share Maven, npm, and NuGet packages from public and private sources and integrate package sharing into your CI/CD pipelines
 
 ### Getting started
-To get started with Azure DevOps navigate to the [Azure DevOps overview page](https://azure.microsoft.com/services/devops/). Here you will find further links to the documentation, support, pricing and Blogs. 
+To get started with Azure DevOps navigate to the [Azure DevOps overview page](https://app.vssps.visualstudio.com/). Here you will find further links to the documentation, support, pricing and Blogs. 
 
 ### Here is what you will learn
 - Create an Azure DevOps account for your organisation
@@ -59,7 +59,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 ### Import the Azure Developer College GitHub repository to your Azure Repo
 
-Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege/day1/MLOps/MLOps). Click the green "Code" button and copy the
+Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the
 https url.
 
 ![Clone GitHub](./images/clone-adc-github.png)

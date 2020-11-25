@@ -1,4 +1,4 @@
-# Hints for Challenge 1
+# Challenge 1
 
 ## Setup part
 

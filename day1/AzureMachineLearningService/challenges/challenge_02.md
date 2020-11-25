@@ -1,4 +1,4 @@
-# Hints for Challenge 2
+# Challenge 2
 
 In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a Deep Convolutional Neural Network in this challenge. For training this more powerful and complex model, we'll need more compute. Therefore, instead of training a model in our Notebook VM, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. The good thing is, that the interaction with Azure Machine Learning won't change.
 
