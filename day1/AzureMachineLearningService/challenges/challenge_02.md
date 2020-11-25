@@ -102,6 +102,8 @@ os.makedirs(script_folder, exist_ok=True)
 
 This cell writes the `train.py` to the `scripts` folder (we could have created it manually and copied it in):
 
+**Option 1:**
+
 ```python
 %%writefile $script_folder/train.py
 
@@ -240,6 +242,155 @@ os.makedirs('outputs', exist_ok=True)
 model.save('./outputs/keras-tf-mnist.h5')
 ```
 
+**Option 2:**
+```python
+%%writefile $script_folder/train2.py
+
+import argparse
+import os
+import numpy as np
+import gzip
+import struct
+import glob
+
+import keras
+from keras.datasets import mnist
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
+
+from azureml.core import Run
+
+# load compressed MNIST gz files we just downloaded and return numpy arrays
+def load_data(filename, label=False):
+    with gzip.open(filename) as gz:
+        struct.unpack('I', gz.read(4))
+        n_items = struct.unpack('>I', gz.read(4))
+        if not label:
+            n_rows = struct.unpack('>I', gz.read(4))[0]
+            n_cols = struct.unpack('>I', gz.read(4))[0]
+            res = np.frombuffer(gz.read(n_items[0] * n_rows * n_cols), dtype=np.uint8)
+            res = res.reshape(n_items[0], n_rows * n_cols)
+        else:
+            res = np.frombuffer(gz.read(n_items[0]), dtype=np.uint8)
+            res = res.reshape(n_items[0], 1)
+    return res
+
+# Helper class for real-time logging
+class CheckpointCallback(keras.callbacks.Callback):
+    def __init__(self, run):
+        self.run = run
+
+    def on_train_begin(self, logs={}):
+        return
+
+    def on_train_end(self, logs={}):
+        return
+
+    def on_epoch_begin(self, epoch, logs={}):
+        return
+
+    def on_epoch_end(self, epoch, logs={}):
+        self.run.log('Training accuracy', logs.get('acc'))
+        self.run.log('Training loss', logs.get('loss'))
+        return
+
+    def on_batch_begin(self, batch, logs={}):
+        return
+
+    def on_batch_end(self, batch, logs={}):
+        return
+
+# input image dimensions and number of classes
+img_rows, img_cols = 28, 28
+num_classes = 10
+
+# retrieve the 2 arguments configured through `arguments` in the ScriptRunConfig
+parser = argparse.ArgumentParser()
+parser.add_argument('--data-folder', type=str, dest='data_folder', help='data folder mounting point')
+parser.add_argument('--regularization', type=float, dest='reg', default=0.01, help='regularization rate')
+parser.add_argument('--batch-size', type=int, dest='batch_size', default=128, help='batch size')
+parser.add_argument('--epochs', type=int, dest='epochs', default=12, help='number of epochs')
+args = parser.parse_args()
+
+batch_size = args.batch_size
+epochs = args.epochs
+data_folder = os.path.join(args.data_folder, 'mnist')
+
+data_folder = args.data_folder
+print('Data folder:', data_folder)
+
+# get the file paths on the compute
+x_train_path = glob.glob(os.path.join(data_folder, '**/train-images-idx3-ubyte.gz'), recursive=True)[0]
+x_test_path = glob.glob(os.path.join(data_folder, '**/t10k-images-idx3-ubyte.gz'), recursive=True)[0]
+y_train_path = glob.glob(os.path.join(data_folder, '**/train-labels-idx1-ubyte.gz'), recursive=True)[0]
+y_test = glob.glob(os.path.join(data_folder, '**/t10k-labels-idx1-ubyte.gz'), recursive=True)[0]
+
+# load train and test set into numpy arrays
+x_train = load_data(x_train_path, False) / 255.0
+x_test = load_data(x_test_path, False) / 255.0
+y_train = load_data(y_train_path, True).reshape(-1)
+y_test = load_data(y_test, True).reshape(-1)
+
+if K.image_data_format() == 'channels_first':
+    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols)
+    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
+    input_shape = (1, img_rows, img_cols)
+else:
+    x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
+    x_test = x_test.reshape(x_test.shape[0], img_rows, img_cols, 1)
+    input_shape = (img_rows, img_cols, 1)
+    
+# convert class vectors to binary class matrices
+y_train = keras.utils.to_categorical(y_train, num_classes)
+y_test = keras.utils.to_categorical(y_test, num_classes)
+
+print(x_train.shape)
+print(y_train.shape)
+print(x_test.shape)
+print(y_test.shape)
+
+# get hold of the current run
+run = Run.get_submitted_run()
+
+# Design our Convolutional Neural Network
+model = Sequential()
+model.add(Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape))
+model.add(Conv2D(64, (3, 3), activation='relu'))
+model.add(MaxPooling2D(pool_size=(2, 2)))
+model.add(Dropout(0.25))
+model.add(Flatten())
+model.add(Dense(128, activation='relu'))
+model.add(Dropout(0.5))
+model.add(Dense(num_classes, activation='softmax'))
+
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.Adadelta(),
+              metrics=['acc'])
+
+# Train our model and use callback to log every epoch to AML
+checkpoints = CheckpointCallback(run)
+train_score = model.fit(x_train, y_train,
+                        batch_size=batch_size,
+                        epochs=epochs,
+                        verbose=1,
+                        validation_data=(x_test, y_test),
+                        callbacks=[checkpoints])
+
+test_score = model.evaluate(x_test, y_test, verbose=0)
+
+# Log accuracy and run details to our Azure ML Workspace
+run.log('Test Accuracy', np.float(test_score[1]))
+run.log('Batch Size', batch_size)
+run.log('Epochs', epochs)
+
+# Save model, the outputs folder is automatically uploaded into experiment record by AML Compute
+os.makedirs('outputs', exist_ok=True)
+model.save('./outputs/keras-tf-mnist.h5')
+
+```
+
 This looks a little bit more complex than our last example! Let's walk through what this script does:
 
 1. We define a custom callback class for logging the results of each epoch into our Azure Machine Learning workspace
@@ -280,6 +431,7 @@ registered_env = Environment.get(ws, 'aidevcollege-env')
 
 ```
 
+**Option 1:**
 ```python
 from azureml.train.estimator import Estimator
 from azureml.core import ScriptRunConfig
@@ -294,9 +446,28 @@ estimator = ScriptRunConfig(source_directory=script_folder,
                 arguments=script_params,
                 compute_target = compute_target,
                 environment=registered_env,
-                script='train.py')
+                script='train.py') 
 
 estimator.run_config.data_references = {ds.as_mount().data_reference_name: ds.as_mount().to_config()}
+```
+
+**Option 2:**
+```python
+from azureml.train.estimator import Estimator
+from azureml.core import ScriptRunConfig
+from azureml.core.dataset import Dataset
+
+ds = Dataset.File.from_files(path = web_paths)
+
+script_params = [ '--data-folder', ds.as_mount(), '--batch-size', 128, '--epochs', 8, '--regularization', 0.5]
+
+
+# Training Script and Parameters are used in the estimator to run an experiment
+estimator2 = ScriptRunConfig(source_directory=script_folder,
+                arguments=script_params,
+                compute_target = compute_target,
+                environment=registered_env,
+                script='train2.py')
 ```
 
 As you can see, we define where our scripts are, what the compute target should be, and the dependencies (`keras` in this case). Lastly, we also give in the script some static parameters, but ideally we would [automatically try out different hyperparameters](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters) to get superior accuracy (not covered here).
@@ -305,10 +476,20 @@ As you can see, we define where our scripts are, what the compute target should 
 
 Lastly, we can kick off the job:
 
+**Option 1:**
+
 ```python
 run = experiment.submit(config=estimator)
 run
 ```
+
+**Option 2:**
+
+```python
+run = experiment.submit(config=estimator2)
+run
+```
+
 
 The link `Link to Azure Portal` will bring us directly into our workspace:
 
