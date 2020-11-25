@@ -258,7 +258,6 @@ To get the training working, we need create an environment, a run configuration 
 ```python
 from azureml.core import Environment
 from azureml.core.conda_dependencies import CondaDependencies
-from azureml.core.runconfig import RunConfiguration
 
 # Create a Python environment for the experiment
 # Let Azure ML manage dependencies by setting user_managed_dependencies to False
@@ -279,35 +278,25 @@ env.python.conda_dependencies = packages
 env.register(workspace=ws)
 registered_env = Environment.get(ws, 'aidevcollege-env')
 
-# Create a new runconfig object for the pipeline
-run_config = RunConfiguration()
-
-# Assign the target of the runconfig object to the cluster created above  
-run_config.target = compute_target
-
-# Assign the environment of the runconfig object to the registered environment
-run_config.environment = registered_env
-print ("Run configuration created.")
-
 ```
 
 ```python
 from azureml.train.estimator import Estimator
+from azureml.core import ScriptRunConfig
 
 ds = ws.get_default_datastore()
 
-script_params = {
-    '--data-folder': ds.as_mount(),
-    '--batch-size': 128,
-    '--epochs': 8
-}
+script_params = [ '--data-folder', str(ds.as_mount()), '--batch-size', 128, '--epochs', 8]
+
 
 # Training Script and Parameters are used in the estimator to run an experiment
-estimator = Estimator(source_directory=script_folder,
-                script_params=script_params,
+estimator = ScriptRunConfig(source_directory=script_folder,
+                arguments=script_params,
                 compute_target = compute_target,
-                environment_definition=run_config.environment,
-                entry_script='train.py')
+                environment=registered_env,
+                script='train.py')
+
+estimator.run_config.data_references = {ds.as_mount().data_reference_name: ds.as_mount().to_config()}
 ```
 
 As you can see, we define where our scripts are, what the compute target should be, and the dependencies (`keras` in this case). Lastly, we also give in the script some static parameters, but ideally we would [automatically try out different hyperparameters](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters) to get superior accuracy (not covered here).
