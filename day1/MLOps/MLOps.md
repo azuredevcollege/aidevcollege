@@ -92,7 +92,7 @@ Go to the settings of your project, `Service Connections` and click on `New Serv
 
 - Create one Service Connection of type `Azure Resource Manager`.
 - Create a service principle of the type `Service Principle (automatic)`. 
-- Select your `Subscription` and name it `MyAzureSubscription` in the *Service connection name*.
+- Select your `Subscription` and name it **`MyAzureSubscription`** in the *Service connection name*.
 
 <p align="left"><img width="50%" src="images/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
 
@@ -104,21 +104,26 @@ In the next screen you select `service principal (automatic)`
 
 ![Create Service Connection](./images/serviceconnection2.png)
 
-In the next screen you select your *Subscription* and fill in `MyAzureSubscription` in the *Service connection name*.
+> **Important:**
+> In the next screen you select your *Subscription* and fill in **`MyAzureSubscription`** in the *Service connection name*.
 
 ![Service Connection Result](./images/serviceconnectionresult.png)
 
 
 ### Build and Release Pipeline
 
-Now we can look at the build and the Release pipeline for the project by selecting __azure-pipelines.yml__ under _Azure Repos_ in the __MLOps Folder__ in the Azure DevOps project. 
+1. Now we can look at the build and the Release pipeline for the project by selecting __azure-pipelines.yml__ under __Azure Repos__ in the __MLOps Folder__ in the Azure DevOps project. 
 
 <p align="left"><img width="50%" src="images/ado_lib.png" alt="Library in Azure DevOps project"/></p>
 
-Now let's look at the Pipeline it consists out of a:
-- `Train, Evaluate and Register` *Dev* Stage,
-- `Deploy to Staging` *Test* Stage and a 
-- `Deploy to Production` *Production* Stage.
+2. Now let's look at the Pipeline it consists out of a:
+    - `Train, Evaluate and Register` *Dev* Stage,
+    - `Deploy to Staging` *Test* Stage and a 
+    - `Deploy to Production` *Production* Stage.
+
+3. So now let's create/configure a pipeline under __Pipelines__  and select the **Existing Azure Pipelines YAML file**, in this challenge called **azure-pipelines.yml** as shown here:
+
+![Create Pipeline](./images/CreatePipeline.png)
 
 **Summarizing the Steps:**
 A Machine Learning model will be trained, evaluated and registered. Afterwards it will be deployed to a Azure Container Instance and finally it will be deployed to the Azure Kubernetes Service.
