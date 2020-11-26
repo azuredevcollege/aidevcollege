@@ -78,7 +78,7 @@ Next, we can deploy one of the iterations to ACI.
 
 On the details screen for each iteration, we can download the Model's `.pkl` file and also directly deploy it to ACI. Let's deploy one of the models:
 
-![alt text](../images/04-automl_deploy.png "Deploy model")
+![alt text](../images/DeployaModelonACI.png "Deploy model")
 
 In the same screen, we can also download the `yaml` for the Conda environment used, but more importantly, the `score.py` - this helps us to understand, what data we need to input into our API!
 
