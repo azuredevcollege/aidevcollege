@@ -66,15 +66,14 @@ from azureml.core import Image
 # Let Azure ML manage dependencies by setting user_managed_dependencies to False
 # Use docker containers by setting docker.enabled to True
 # Our workspace needs to know what environment to use
-env = Environment("bootcamp-env")
+env = Environment("aidevcollege-env")
 env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
 env.docker.enabled = True # Use a docker container
 
 # Create a the pip and conda package dependencies
-packages = CondaDependencies.create(pip_packages=["tensorflow","keras", "astor", "azureml-sdk", 
-                                                  "pynacl==1.2.1", "azureml-dataprep", "pillow==5.3.0",
-                                                  "azureml-defaults"
-                                                 ])
+packages = CondaDependencies.create(pip_packages=["tensorflow","keras", "astor", 'azureml-sdk', 
+                                                  'pynacl==1.2.1', 'azureml-dataprep', "pillow==5.3.0",
+                                                  "azureml-defaults"])
 
 # Add the package dependencies to the Python environment for the experiment
 env.python.conda_dependencies = packages
@@ -113,7 +112,7 @@ The first deployment should take around 5-8 minutes.
 
 Shortly after, we should see our ACI service coming up under the `Endpoints` tab:
 
-![alt text](../images/03-aci_endpoints_creating.png "Our ACI is deploying")
+![alt text](../images/kerasacideploy.png "Our ACI is deploying")
 
 Lastly, we can print out the service URL and the state of the service:
 

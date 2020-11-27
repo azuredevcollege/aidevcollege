@@ -8,13 +8,13 @@ In the Azure Portal, create a new `Machine Learning service workspace` resource:
 
 * Workspace name: `azure-ai-dev-college`
 * Resource Group: `azure-ai-dev-college`
-* Location: `East US` (cheaper than `West Europe`)
+* Location: `West Europe`
 
-![alt text](../images/01-create_workspace.png "Create Machine Learning Workspace")
+![alt text](../images/mlservicecreate.png "Create Machine Learning Workspace")
 
 Let's have a look at our Resource Group:
 
-![alt text](../images/01-resource_group.png "Our resource group")
+![alt text](../images/resourcegroup.png "Our resource group")
 
 * Application Insights - used for monitoring our models in production (will be used later)
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
@@ -25,11 +25,11 @@ Let's have a look at our Resource Group:
 
 Inside our `Machine Learning service workspace`, we'll create a new `Compute VM`:
 
-![alt text](../images/01-create_compute_vm.png "Compute VM")
+![alt text](../images/ComputeOverview.png "Compute VM")
 
 Hit `+ New`,keep it as `STANDARD_D3_V2` and give it a unique name:
 
-![alt text](../images/01-bootcamp_compute_vm.png "Creating the Compute VM for the college")
+![alt text](../images/Compute.png "Creating the Compute VM for the college")
 
 It'll take a few minutes until the VM has been created. The primary use for this VM is that we all have the same Jupyter environment. In this exercise, we'll use this VM to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enable instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
 
@@ -37,7 +37,7 @@ It'll take ~3 minutes until the VM is provisioned and ready to use.
 
 Once it is running, the UI will already give us a links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this ai dev college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
 
-![alt text](../images/01-compute_vm_ready.png "Our Compute VM is running")
+![alt text](../images/OurComputeVMRunning.png "Our Compute VM is running")
 
 You'll be using your AAD (Azure Active Directory) user to log into `Jupyter`. From a enterprise security point, this is a big plus. No extra credentials needed! :raised_hands:
 
@@ -126,7 +126,6 @@ import gzip
 import struct
 import joblib
 from sklearn.linear_model import LogisticRegression
-from sklearn.externals import joblib
 
 # load compressed MNIST gz files we just downloaded and return numpy arrays
 def load_data(filename, label=False):
@@ -237,7 +236,7 @@ Under the `Models` tab, we can now see that our model has been registered:
 
 Our model has been stored in the Storage Account that has been created initially for us:
 
-![alt text](../images/01-model_in_blob.png "Our model has been stored in Azure Blob")
+![alt text](../images/azurmlblobpkl.png "Our model has been stored in Azure Blob")
 
 At this point:
 
@@ -249,12 +248,9 @@ At this point:
 
 ## (Bonus) Compute VM Details
 
-If we have another look into our resource group `azure-ai-dev-college`, we can see that the Compute VM actually sits inside this group. It is just a regular Azure Virtual Machine:
-
-![alt text](../images/01-notebook_vm_portal.png "Compute VM resources in portal")
-
+If we have another look into our resource group `azure-ai-dev-college`, we can see that the Compute VM actually sits inside this group. It is just a regular Azure Virtual Machine.
 Furthermore, we can go into our Workspace and also see it listed under `Compute`:
 
-![alt text](../images/01-notebook_vm_workspace.png "Compute VM resources in our workspace")
+![alt text](../images/Compute.png "Compute VM resources in our workspace")
 
 In the [next challenge](challenge_02.md), we'll build a more powerful model and use Azure Machine Learning Compute to train it on a remote cluster.

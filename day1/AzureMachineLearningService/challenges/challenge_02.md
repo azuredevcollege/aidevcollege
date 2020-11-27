@@ -46,7 +46,7 @@ ds.upload(src_dir='./data', target_path='mnist', overwrite=True, show_progress=T
 
 If we go to the default Storage Account that the Azure ML Workspace created for us, then select Azure Blob, we can see that the dataset has been uploaded:
 
-![alt text](../images/02-dataset_in_azure_blob.png "MNIST dataset in Azure Blob")
+![alt text](../images/MNISTdatasetinBlob.png "MNIST dataset in Azure Blob")
 
 Next, we can create an `Azure Machine Learning Compute` cluster in Azure:
 

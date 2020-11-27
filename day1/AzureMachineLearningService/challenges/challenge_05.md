@@ -344,15 +344,15 @@ So let's start looking at Application Insights first.
 
 Navigate to your original resource group and select your Application Insights instance:
 
-![alt text](../images/05-app_insights.png "Application Insights")
+![alt text](../images/appinsights.png "Application Insights")
 
 We'll be greeted with some telemetry metrics of our model:
 
 ![alt text](../images/05-app_insights_metrics.png "Telemetry metrics")
 
-Next, let's navigate to `Logs (Analytics)`:
+Next, let's navigate to `Logs`:
 
-![alt text](../images/05-log_analytics.png "Log Analytics")
+![alt text](../images/LogAnalytics.png "Log Analytics")
 
 Enter `traces` in the query text field and hit run:
 
