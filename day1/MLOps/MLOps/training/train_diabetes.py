@@ -37,6 +37,8 @@ data = {"train": {"X": X_train, "y": y_train}, "test": {"X": X_test, "y": y_test
 
 print("Training the model...")
 # Randomly pic alpha
+# higher the alpha value, more restriction on the coefficients; 
+# low alpha > more generalization,
 alphas = np.arange(0.0, 1.0, 0.05)
 alpha = alphas[np.random.choice(alphas.shape[0], 1, replace=False)][0]
 print("alpha:", alpha)
@@ -44,6 +46,13 @@ run.log("alpha", alpha)
 reg = Ridge(alpha=alpha)
 reg.fit(data["train"]["X"], data["train"]["y"])
 run.log_list("coefficients", reg.coef_)
+
+# Ridge and Lasso regression are some of the simple techniques to reduce model complexity and prevent over-fitting 
+# which may result from simple linear regression.
+# This model solves a regression model where the loss function is the linear least squares function and regularization 
+# is given by the l2-norm. Also known as Ridge Regression or Tikhonov regularization. 
+# This estimator has built-in support for multi-variate regression (i.e., when y is a 2d-array of shape (n_samples, n_targets)).
+# https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Ridge.html
 
 print("Evaluate the model...")
 preds = reg.predict(data["test"]["X"])

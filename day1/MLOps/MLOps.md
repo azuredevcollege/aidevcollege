@@ -187,7 +187,7 @@ In the `Deploy to Production` *Production* Stage:
 
 ![Deployment to Azure Kubernetes Service](./images/ProductionStageAKS.png)
 
-You can see the steps in `jobs`, `steps` and `tasks` in the __azure-pipelines.yml__ file:
+You can see `jobs`, `steps` and `tasks` in the __azure-pipelines.yml__ file:
 
 ![Yaml File](./images/ProductionYAMLFILE.png)
 
@@ -199,6 +199,27 @@ Here you can see the final results within the **Azure Portal**:
 
 Here you can see the final results within the **Azure Machine Learning Workspace**:
 ![ML Workspace](./images/MLWorkspace.png)
+
+
+## What we have done so far:
+
+Overall we have 3 Stages called `Build`, called `Staging` and called `Production`. 
+Underneath we have several `jobs` e.g. to `train, evaluate and register` the `linear regression model` using [`Ridge Regression`](https://towardsdatascience.com/ridge-and-lasso-regression-a-complete-guide-with-python-scikit-learn-e20e34bcbf0b). Underneath the `jobs` we have several `tasks` to load the dependencies e.g. Azure CLI or Python dependencies and to publish the trained model as an Artifact. In the `Staging` Stage and `Production` Stage the trained model is downloaded and deployed to Azure Container Instance and Azure Kubernetes to provision the model later on in an Application. 
+
+Here you can see the overall `variables`, `stages`, `jobs`, `steps` and `tasks` sections in the __azure-pipelines.yml__ file:
+
+![Stages Jobs, Steps, Tasks](./images/azure_pipelines_explain.png).
+
+## Finally: Update the training script
+
+- Let's go into the folder `day1/MLOps/MLOps/training` in __Azure Repos__ and open the `train_diabetes.py` and modify the **`test_size`** to a reasonable size like **`0.33`**.
+- Now we trigger the pipeline again. This is supposed to show that once you change your training script the model is retrained. 
+
+```python
+
+X_train, X_test, y_train, y_test = train_test_split(diabetes, y, test_size=0.33, random_state=0)
+
+```
 
 > **Important:** If you want to know more about Azure DevOps there is another Azure Developer College going into the details of Azure Devops (https://github.com/azuredevcollege/trainingdays/tree/master/day4)
 
