@@ -22,16 +22,16 @@ We'll touch on the following services:
 
 You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily (and for free) run in [Azure Notebooks](https://notebooks.azure.com). SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
 
+## Text Analytics
+
 |Azure Cognitive Services|Information|
 |---|---|
 |[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/python|
-
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
 
 In the language of your choice (Python solution is provided), write a small scripts that
 [Text Analytics Service with Other Programming Languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Text-Analytics/quickstarts/nodejs)
-
 
 In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
 
@@ -137,6 +137,8 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 ### Translate Text
 
+:triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
+
 First, create a `Translator Text` API Key in the Azure Portal:
 
 ![Translator Text API](./images/TTCreate.png)
@@ -171,7 +173,9 @@ Example Result:
 
 As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
 
-### Create and run the sample
+### Face API
+
+:triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
 0. Deploy a Face Api Service in the Portal
 
@@ -216,7 +220,7 @@ response = requests.post(face_api_url, params=params,
 print(json.dumps(response.json(), indent = 2))
 ```
 
-### Examine the response
+#### Examine the response
 
 A successful response is returned in JSON.
 
@@ -407,30 +411,14 @@ A successful response is returned in JSON.
 |[Custom Vision Service](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home
 
 
-:triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written or printed text document in images machine-readable
-
 In the language of your choice (Python solution is provided), write two small scripts that
 
 1. Convert hand-written text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 1. Convert printed text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg)
 
-:question: **Questions:** 
-
-1. How well does the OCR service work with German text? How well with English?
-1. What happens when the image is not oriented correctly?
-
-:triangular_flag_on_post: **Goal:** Detect beer glasses in images
-
-1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
-
-:question: **Questions:** 
-
-1. What could we do to increase the detection performance?
-1. What happens if the beer glasses are really small in the image?
-
-Create a new `Python 3.6 Notebook` in [Azure Notebooks](https://notebooks.azure.com/).
-
 ## Optical Character Recognition - Images to Text - Handwritten content
+
+:triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written text document in images machine-readable
 
 First, create a `Computer Vision` API Key in the Azure Portal
 
@@ -528,7 +516,9 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg
 https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
 ```
 
-### Optical Character Recognition - Images to Text - Printed content
+## Optical Character Recognition - Images to Text - Printed content
+
+:triangular_flag_on_post: **Goal:** Leverage OCR to make a printed text document in images machine-readable
 
 Extracting text from printed text in images is very similar - except that is a synchronous call, hence we directly get back the recognition result:
 
@@ -587,6 +577,12 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
 
 ### Detecting Objects in Images
 
+
+:triangular_flag_on_post: **Goal:** Detect beer glasses in images
+
+1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
+
+
 First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
 Next, add all the training images from the [dataset](./data/beer_glassess). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
@@ -608,163 +604,12 @@ Under `Quick Test`, we can briefly upload our testing images and see what the se
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
 
-### Azure Cognitive Services - Vision & Custom Vision
+### Azure Cognitive Services - Custom Vision
 
-:triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written or printed text document in images machine-readable
-
-In the language of your choice (Python solution is provided), write two small scripts that
-
-1. Convert hand-written text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
-1. Convert printed text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg)
-
-:question: **Questions:** 
-
-1. How well does the OCR service work with German text? How well with English?
-1. What happens when the image is not oriented correctly?
-
-:triangular_flag_on_post: **Goal:** Detect beer glasses in images
-
-1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
-
-:question: **Questions:** 
-
-1. What could we do to increase the detection performance?
-1. What happens if the beer glasses are really small in the image?
-
-## Optical Character Recognition - Images to Text - Handwritten content
-
-First, create a `Computer Vision` API Key in the Azure Portal:
-
-![alt text](./images/vision_service.png "Computer Vision Service")
-
-As we're dealing with images, we need a few Python packages to help with this:
-
-```python
-import requests, json, time
-import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
-from matplotlib.patches import Polygon
-from PIL import Image
-from io import BytesIO
-```
-
-Ok, now we can start recognizing some text. With the Computer Vision API, this is a two-step process:
-
-1. Submit the image
-1. Query if the image has been processed
-
-```python
-key = "xxxx" # Paste your API Key here!
-
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/recognizeText"
-image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cursive_Writing_on_Notebook_paper.jpg/800px-Cursive_Writing_on_Notebook_paper.jpg"
-
-headers = {'Ocp-Apim-Subscription-Key': key}
-params  = {'mode': 'Handwritten'}
-data    = {'url': image_url}
-
-# Post image URL to the API
-response = requests.post(url, headers=headers, params=params, json=data)
-
-# Return query URL for getting the status
-operation_url = response.headers["Operation-Location"]
-
-# Poll until we get a result (...or something failed)
-recogntion = {}
-poll = True
-while (poll):
-    response_final = requests.get(operation_url, headers=headers)
-    recogntion = response_final.json()
-    time.sleep(1)
-    if ("recognitionResult" in recogntion):
-        poll= False 
-    if ("status" in recogntion and recogntion['status'] == 'Failed'):
-        poll= False
-
-print(json.dumps(recogntion, indent=2))
-```
-
-Ok, looks like it recognized something. Let's visualize it:
-
-```python
-polygons = []
-
-# Get bounding boxes of the text 
-if ("recognitionResult" in recogntion):
-    polygons = [(line["boundingBox"], line["text"])
-        for line in recogntion["recognitionResult"]["lines"]]
-
-# Display image and overlay text
-plt.figure(figsize=(15, 15))
-image = Image.open(BytesIO(requests.get(image_url).content))
-ax = plt.imshow(image)
-for polygon in polygons:
-    vertices = [(polygon[0][i], polygon[0][i+1])
-        for i in range(0, len(polygon[0]), 2)]
-    text = polygon[1]
-    patch = Polygon(vertices, closed=True, fill=False, linewidth=2, color='y')
-    ax.axes.add_patch(patch)
-    plt.text(vertices[0][0], vertices[0][1], text, fontsize=20, va="top")
-_ = plt.axis("off")
-```
-
-Here are two more images we can test with:
-
-```
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
-```
-
-
-
-## Optical Character Recognition - Images to Text - Printed content
-
-Extracting text from printed text in images is very similar - except that is a synchronous call, hence we directly get back the recognition result:
-
-```python
-key = "xxxx" # Paste your API Key here!
-
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
-image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
-
-headers = {'Ocp-Apim-Subscription-Key': key}
-params  = {'language': 'unk', 'detectOrientation': 'true'}
-data    = {'url': image_url}
-
-response = requests.post(url, headers=headers, params=params, json=data)
-recognition_result = response.json()
-
-# Extract the word bounding boxes and text
-line_infos = [region["lines"] for region in recognition_result["regions"]]
-word_infos = []
-for line in line_infos:
-    for word_metadata in line:
-        for word_info in word_metadata["words"]:
-            word_infos.append(word_info)
-word_infos
-
-# Display the image and overlay it with the extracted text
-plt.figure(figsize=(15, 15))
-image = Image.open(BytesIO(requests.get(image_url).content))
-ax = plt.imshow(image, alpha=0.5)
-for word in word_infos:
-    bbox = [int(num) for num in word["boundingBox"].split(",")]
-    text = word["text"]
-    origin = (bbox[0], bbox[1])
-    patch  = Rectangle(origin, bbox[2], bbox[3], fill=False, linewidth=2, color='y')
-    ax.axes.add_patch(patch)
-    plt.text(origin[0], origin[1], text, fontsize=12, weight="bold", va="top")
-plt.axis("off")
-```
-
-Here are two more images we can test with:
-
-```
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
-```
 
 ## Detecting Objects in Images
+
+:triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
 First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
@@ -795,7 +640,7 @@ Under `Quick Test`, we can briefly upload our testing images and see what the se
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
 
-### Azure Cognitive Services - Speech
+## Azure Cognitive Services - Speech
 
 :triangular_flag_on_post: **Goal:** Leverage Speech-to-Text and Text-to-Speech
 
@@ -805,11 +650,6 @@ In the language of your choice (Python solution is provided), write two small sc
 1. Convert speech into written text (German or English)
 
 You can use can use this file: [`data/test.wav`](data/test.wav) (English).
-
-:question: **Questions:** 
-
-1. What happens if you transcribe a long audio file with the speech-to-text API (>15s)?
-1. What happens if you select the wrong language in the text-to-speech API? How could you solve this problem?
 
 Now that we have converted a user's speech input into text, we'll try to determine the intent of that text in the next challenge.
 
@@ -1059,11 +899,6 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 :triangular_flag_on_post: **Goal:** Write a script for auto-suggestion of text
 
 1. Leverage Bing Autosuggest to make predictions on how a user might wants to continue an half-written sentence
-
-:question: **Questions:** 
-
-1. What other services does Bing Search offer?
-1. How does the service react in case of a denial-of-service (DoS) attack?
 
 First, create a `Bing Search v7` API Key in the Azure Portal:
 
