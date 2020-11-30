@@ -22,7 +22,7 @@ We'll touch on the following services:
 
 You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily (and for free) run in [Azure Notebooks](https://notebooks.azure.com). SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
 
-## Text Analytics
+## Azure Cognitive Services - Text Analytics
 
 |Azure Cognitive Services|Information|
 |---|---|
@@ -135,7 +135,7 @@ Example Result:
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
 
-### Translate Text
+## Azure Cognitive Services - Translate Text
 
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
@@ -173,7 +173,7 @@ Example Result:
 
 As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
 
-### Face API
+## Azure Cognitive Services - Face
 
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
@@ -220,7 +220,7 @@ response = requests.post(face_api_url, params=params,
 print(json.dumps(response.json(), indent = 2))
 ```
 
-#### Examine the response
+### Examine the response
 
 A successful response is returned in JSON.
 
@@ -403,7 +403,7 @@ A successful response is returned in JSON.
 ]
 ```
 
-### Create and use Computer Vision Service and Custom Vision ##
+## Azure Cognitive Services - Computer Vision Service
 
 |Azure Cognitive Services|Information|
 |---|---|
@@ -416,7 +416,7 @@ In the language of your choice (Python solution is provided), write two small sc
 1. Convert hand-written text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 1. Convert printed text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg)
 
-## Optical Character Recognition - Images to Text - Handwritten content
+### Optical Character Recognition - Images to Text - Handwritten content
 
 :triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written text document in images machine-readable
 
@@ -516,7 +516,7 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg
 https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
 ```
 
-## Optical Character Recognition - Images to Text - Printed content
+### Optical Character Recognition - Images to Text - Printed content
 
 :triangular_flag_on_post: **Goal:** Leverage OCR to make a printed text document in images machine-readable
 
@@ -575,49 +575,19 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg
 https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
 ```
 
-### Detecting Objects in Images
-
+## Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images
 
 :triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
 1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
 
-
 First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
-Next, add all the training images from the [dataset](./data/beer_glassess). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
-
-Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
-
-Let's briefly look at the results and make sure we understand them:
-
-Sliders - they set the results given certain thresholds
-* Probability Threshold: 82% - this means we only count detections with over 82% probability as beer glasses
-* Overlap Threshold: 51% - this means we want our detection results overlap at least 51% with the ground truth in the training set
-
-Results:
-* Precision: 30% - given a detection, it is 30% correct on average (meaning the algorithm will also detect other objects as glasses)
-* Recall: 100% - a recall of 100% means, it will detect all beer glasses (but maybe mistake some other objects as beer glasses too)
-* mAP: 83.3% - mean average precision - the average how well our detection algorithm works 
-
-Under `Quick Test`, we can briefly upload our testing images and see what the service will detect. As we only added 15 training images with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the detection performance significantly.
-
-If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
-
-### Azure Cognitive Services - Custom Vision
-
-
-## Detecting Objects in Images
-
-:triangular_flag_on_post: **Goal:** Detect beer glasses in images
-
-First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
-
-Create a new project of type `Object detection` and make sure to use the `Limited Trial` (object detection is currently only supported as a free trial, since it is not GA yet).
+Create a new project of type `Object detection`:
 
 ![alt text](./images/customvision_project.png "Custom Vision Project")
 
-Next, add all the training images from the [dataset](). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+Next, add all the training images from the [dataset](./data/beer_glassess). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
 
 ![alt text](./images/customvision_tagging.png "Tagging the training images")
 
@@ -660,7 +630,7 @@ As region, we'll be using `West Europe` in this example. You can find your API k
 
 You can use this file [`test.wav`](../data/test.wav) for testing.
 
-## Text-to-Speech
+### Text-to-Speech
 
 First, we need to request a token from the `Issue Token endpoint` of the Speech API. Each token is valid for 10 minutes, hence we can either reuse it multiple times (to minimize network traffic and latency), or request a new one for each call:
 
@@ -710,7 +680,7 @@ ipd.Audio('test.wav')
 
 There are [many different voices](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech) available to choose from. By updating the [XML request](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-text-to-speech#specify-a-voice), we can easily specify a different voice or language. From here on, it should be easy to generate German speech.
 
-## Speech-to-Text
+### Speech-to-Text
 
 Let's take the generated or provided `test.wav` from the example before and convert it back to text. Again, let's first create a token:
 
@@ -761,7 +731,7 @@ More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-servic
 
 Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
 
-##  Azure Cognitive Services - Language - Reveal the intention of the text
+## Azure Cognitive Services - Language - Reveal the intention of the text
 
 For retrieving the intent of the text, we'll be using the Language Understanding service in Azure, called LUIS. In many cases, LUIS is used to power chatbots, but it can also be used for "standalone" processing of text. We could even use it for e.g., automatically analyzing emails and categorizing them, or figuring out what products and amounts are on an invoice.
 
