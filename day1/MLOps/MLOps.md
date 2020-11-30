@@ -221,6 +221,10 @@ X_train, X_test, y_train, y_test = train_test_split(diabetes, y, test_size=0.33,
 
 ```
 
+**Final Result:** Now we see our second model registered in our `Machine Learning Workspace:`
+
+![Second Model registered](./images/newModel.png)
+
 > **Important:** If you want to know more about Azure DevOps there is another Azure Developer College going into the details of Azure Devops (https://github.com/azuredevcollege/trainingdays/tree/master/day4)
 
 #### Additional References
