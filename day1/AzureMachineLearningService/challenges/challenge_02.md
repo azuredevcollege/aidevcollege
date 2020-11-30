@@ -263,7 +263,7 @@ This looks a little bit more complex than our last example! Let's walk through w
 1. We log the final train and test accuracies to our experiment
 1. We save the model to the `outputs/` folder (Azure Machine Learning Compute will automatically upload that folder to the experiment afterwards)
 
-To get the training working, we need create an environment, a run configuration and package the scripts. Then we "send" them to Azure Machine Learning Compute. Azure ML uses the `Estimator` class for that:
+To get the training working, we need create an environment and package the scripts:
 
 ```python
 from azureml.core import Environment
@@ -289,6 +289,8 @@ env.register(workspace=ws)
 registered_env = Environment.get(ws, 'aidevcollege-env')
 
 ```
+Then we "send" them to Azure Machine Learning Compute. Azure ML uses the `ScriptRunConfig` class for that:
+Which is a configuration for the `Runs` of the `Experiments`.
 
 ```python
 from azureml.train.estimator import Estimator
@@ -304,7 +306,7 @@ estimator = ScriptRunConfig(source_directory=script_folder,
                 arguments=script_params,
                 compute_target = compute_target,
                 environment=registered_env,
-                script='train.py') 
+                script='train.py')
 
 estimator.run_config.data_references = {ds.as_mount().data_reference_name: ds.as_mount().to_config()}
 ```
@@ -387,7 +389,7 @@ At this point (in addition to the results from challenge 1):
 Great, now we have a well performing model. Obviously, we want other people, maybe some developers, make use of it. Therefore, we'll deploy it as an API to an Azure Container Instance in the [next challenge](challenge_03.md).
 
 
-# Optional: Option 2 Retrieving the Data from Web Paths 
+## Optional: Retrieving the Data from Web Paths as a second Option for this challenge
 
 If you do not want to upload the data to a blob storage - you can retrieve them directly from the respective URLS:
 For this you need to adjust the training script, the estimator and import the data via a web path. 
