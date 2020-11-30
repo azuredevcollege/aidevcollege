@@ -1,6 +1,6 @@
-# Azure (Cognitive) Search #
+# Azure (Cognitive) Search
 
-## Here is what you will learn ##
+## Here is what you will learn
 
 - Create an Azure Search Service in the Portal
 - Add Cognitive Skills to Azure Search
@@ -15,7 +15,7 @@ Regarding your application, your code issues query requests and handles response
 
 ![Azure Cognitive Search Architecture](./img/AzureSearchArchitecture.png)
 
-## What are the Features of Azure Cognitive Search? ##
+### What are the Features of Azure Cognitive Search? ##
 
 | Core Search  | Features |
 | --- | --- |
@@ -78,9 +78,9 @@ Azure Search [can index](https://docs.microsoft.com/en-us/azure/search/search-in
 - Indexing CSV blobs using the Azure Search Blob indexer
 - Indexing JSON blobs with Azure Search Blob indexer
 
-## Connect to an Azure Cognitive Search index in Python using Jupyter notebooks ##
+### Connect to an Azure Cognitive Search index in Python using Jupyter notebooks ##
 
-## Get a key and URL ##
+### Get a key and URL ##
 
 REST calls require the service URL and an access key on every request. A search service is created with both, so if you added Azure Cognitive Search to your subscription, follow these steps to get the necessary information:
 
@@ -128,7 +128,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
 
    In contrast, an empty index collection returns this response: `{'@odata.context': 'https://mydemo.search.windows.net/$metadata#indexes(name)', 'value': []}`
 
-## 1 - Create an index
+### 1 - Create an index
 
 Unless you are using the portal, an index must exist on the service before you can load data. This step uses the [Create Index REST API](https://docs.microsoft.com/rest/api/searchservice/create-index) to push an index schema to the service.
 
@@ -181,7 +181,7 @@ This index is named "hotels-quickstart" and has the field definitions you see be
 
 <a name="load-documents"></a>
 
-## 2 - Load documents
+### 2 - Load documents
 
 To push documents, use an HTTP POST request to your index's URL endpoint. The REST API is [Add, Update, or Delete Documents](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents). Documents originate from [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/hotels/HotelsData_toAzureSearch.JSON) on GitHub.
 
@@ -283,7 +283,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
     ![Send documents to an index](./img/indexcontent.png)
 
-## 3 - Search an index
+### 3 - Search an index
 
 This step shows you how to query an index using the [Search Documents REST API](https://docs.microsoft.com/rest/api/searchservice/search-documents).
 
@@ -332,29 +332,14 @@ This step shows you how to query an index using the [Search Documents REST API](
    searchstring = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
    ```
 
-### Azure Search & Cognitive Search
+## Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set
 
 :triangular_flag_on_post: **Goal:** Deploy an Azure Search instance and index a PDF-based data set 
 
 1. Deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance
-1. Index the unstructured PDF data set from [here](data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
+1. Index the unstructured PDF data set from [here](./data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
 
-:question: **Questions:** 
-
-1. What is an Index? What is an Indexer? What is a Data Source? How do they relate to each other?
-1. Why would you want to use replicas? Why would you want more partitions?
-1. How would you index `json` documents sitting in Azure Blob?
-
-:triangular_flag_on_post: **Goal:** Index an unstructured data set with Cognitive Search
-
-1. Add another index to the Azure Search instance, but this time enable Cognitive Search
-1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](data/search-dataset-cognitive.zip)) - which document contains the term `Pin to Dashboard`?
-
-:question: **Questions:** 
-
-1. Let's assume we've built a Machine Learning model that can detect beer glasses images (we'll do that in the next challenge) - how could we leverage this model directly in Azure Search for tagging our data?
-
-## Indexing PDF data
+### Indexing PDF data
 
 First, create a `Azure Search` instance in the Azure Portal as
 
@@ -391,7 +376,7 @@ After a minute or two, our Indexer will have indexed all the PDFs and we should 
 
 ![alt text](./img/azure_search_indexed.png "Azure Search indexed our PDFs")
 
-## Querying Content
+### Querying Content
 
 Azure Search now indexed all our PDFs via the `pdf-blob-indexer` into the `pdf-index` index. Ideally, we would use the REST API of Azure Search to perform sophisticated queries, but in our case, we can use the `Azure Search Explorer`:
 
@@ -425,7 +410,13 @@ https://bootcamps.blob.core.windows.net/datasets/What%20are%20Azure%20Cognitive%
 
 Perfect, now we know which document contained the term `Content Moderator`.
 
-## Indexing unstructured content (e.g. images, audio, etc.)
+## Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)
+
+
+:triangular_flag_on_post: **Goal:** Index an unstructured data set with Cognitive Search
+
+1. Add another index to the Azure Search instance, but this time enable Cognitive Search
+1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](data/search-dataset-cognitive.zip))
 
 In the first part, we've seen that Azure Search can index data like PDFs, PowerPoints, etc., as long as the documents are easily machine readable (=text). [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro) allows us to also index unstructured data. More precisely, it add capabilities for data extraction, natural language processing (NLP), and image processing to Azure Search indexing pipeline (for more see [here](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro#key-features-and-concepts)). In Azure Cognitive Search, a skillset responsible for the pipeline of the data and consists of multiple skills. Some skills have been pre-included, but it is also possible for us to write our own skills.
 
@@ -465,11 +456,11 @@ Good, so looks like our skillset worked. Please note that ideally we'd query thr
 * [Lucene Query Syntax](https://docs.microsoft.com/en-us/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 
 
-# Integrate Azure Search in an Node JS Application
+## Integrate Azure Search in an Node JS Application
 
 Now let's jump into code. We will create a Node.js application that that creates, loads, and queries an Azure Cognitive Search index. This article demonstrates how to create the application step-by-step. 
 
-## Set up your environment
+### Set up your environment
 
 Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js.
 
@@ -503,7 +494,7 @@ Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell cons
 
     ⚠ Get the query key as well. It's a best practice to issue query requests with read-only access. Use the **key** underneath the *Manage query keys* (e.g. *C4DD...*)
 
-## Important Parts of the Quickstart Application
+### Important Parts of the Quickstart Application
 
 Find the file **hotels_quickstart_index.json**. This file defines how Azure Cognitive Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure Cognitive Search can *search*, *filter*, *sort*, and *facet* upon the field. 
 
@@ -645,7 +636,7 @@ Have a look at the **hotels_quickstart_index.json** and get familiar with its se
 
 Now, have a look at the file **AzureSearchClient.js** and take your time to understand what happens here. You will find methods to check, if an index exists, to create and delete an index as well as methods to add data to the index (```postDataAsync```) and - of course - query data (```queryAsync```).
 
-## Prepare and run the sample
+### Prepare and run the sample
 
 Use a terminal window for the following commands.
 
@@ -660,13 +651,6 @@ If you want to see more detail of the requests, you can uncomment the [lines at 
 
 ![Run the node.js App with Azure Search](./img/resultappnodejsazuresearch.png)
 
-# House Keeping: Lab Cleanup
-
-Remove the sample resource group.
-
-```shell
-$ az group delete -n adc-azsearch-db-rg
-```
 ## Using the API
 
 We've been lazy and did everything through the portal - obviously not the way we want to work in the real world. Especially data ingestion and search should (and most likely needs) to be performed through the API. Luckily, the API is pretty easy to use (even using `curl` for it is easy):
@@ -677,6 +661,13 @@ We've been lazy and did everything through the portal - obviously not the way we
 
 For sake of time today we won't be able to go into more detail here, but feel free to have a look at it.
 
+## House Keeping: Lab Cleanup
+
+Remove the sample resource group.
+
+```shell
+$ az group delete -n adc-azsearch-db-rg
+```
 
 ## Optional: Play around a bit with Azure Search 
 
