@@ -2,8 +2,8 @@
 
 |Topic|Section|
 |---|---|
-|Getting familiar with Cognitive Search|[What is Azure Cognitive Search?](#what-is-azure-cognitive-search-)|
-|Create Azure Cognitive Search in the Portal|[Create an Azure Search Service in the Portal](#create-an-azure-search-service-in-the-portal-)|
+|Getting familiar with Cognitive Search|[What is Azure Cognitive Search?](#what-is-azure-cognitive-search)|
+|Create Azure Cognitive Search in the Portal|[Create an Azure Search Service in the Portal](#create-an-azure-search-service-in-the-portal)|
 |Connect to Azure Cognitive Search|[Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)|
 |Deploy an Azure Search instance and index a PDF-based data set|[Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set](#azure-search--cognitive-search---deploy-an-azure-search-instance-and-index-a-pdf-based-data-set)|
 |Indexing unstructured content|[Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#azure-search--cognitive-search-indexing-unstructured-content-eg-images-audio-etc)|
@@ -17,7 +17,7 @@
 - Integrate Azure Search in an Node JS application
 - Optional: Create an Azure Cognitive Search index in Python using Jupyter notebooks
 
-## What is Azure Cognitive Search? ##
+## What is Azure Cognitive Search?
 
 Azure Cognitive Search is a search-as-a-service cloud solution that gives developers APIs and tools for adding a rich search experience over private, heterogeneous content in web, mobile and enterprise applications. Your code or a tool invokes data ingestion (indexing) to create and load an index. Optionally, you can add cognitive skills to apply Artificial Intelligence processes during indexing. Doing so, you can add new information and structures useful for search and other scenarios.
 
@@ -25,14 +25,14 @@ Regarding your application, your code issues query requests and handles response
 
 ![Azure Cognitive Search Architecture](./img/AzureSearchArchitecture.png)
 
-### What are the Features of Azure Cognitive Search? ##
+### What are the Features of Azure Cognitive Search?
 
 | Core Search  | Features |
 | --- | --- |
 |Free-form text search | [**Full-text search**](https://docs.microsoft.com/en-us/azure/search/search-lucene-query-architecture) is a primary use case for most search-based apps. Queries can be formulated using a supported syntax. <br/><br/>[**Simple query syntax**](https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search) provides logical operators, phrase search operators, suffix operators, precedence operators.<br/><br/>[**Lucene query syntax**](https://docs.microsoft.com/en-us/rest/api/searchservice/lucene-query-syntax-in-azure-search) includes all operations in simple syntax, with extensions for fuzzy search, proximity search, term boosting, and regular expressions.|
 | Filters and facets | [**Faceted navigation**](https://docs.microsoft.com/en-us/azure/search/search-faceted-navigation) is enabled through a single query parameter. Azure Cognitive Search returns a faceted navigation structure you can use as the code behind a categories list, for self-directed filtering (for example, to filter catalog items by price-range or brand). <br/><br/> [**Filters**](https://docs.microsoft.com/en-us/azure/search/search-filters-facets) can be used to incorporate faceted navigation into your application's UI, enhance query formulation, and filter based on user- or developer-specified criteria. Create filters using the OData syntax. 
 
-### Facet Filters in a Search App ###
+### Facet Filters in a Search App
 
 Faceted navigation is used for self-directed filtering on query results in a search app, where your application offers UI controls for scoping search to groups of documents (for example, categories or brands), and Azure Cognitive Search provides the data structure to back the experience. 
 
@@ -61,7 +61,7 @@ View the full Azure Cognitive Search Feature list here:
 [Azure Cognitive Search Feature list](https://docs.microsoft.com/en-us/azure/search/search-what-is-azure-search#feature-descriptions)
 
 
-## Create an Azure Search Service in the Portal ##
+## Create an Azure Search Service in the Portal
 
 1. Create a new resource group, e.g. **adc-azsearch-db-rg** and add a service of type **Azure Cognitive Search**
 
