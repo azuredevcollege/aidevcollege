@@ -590,10 +590,9 @@ Example Result:
 
 ![Result](./images/OCRResult.png)
 
-Here are two more images we can test with:
+Here is one more image we can test with:
 
 ```
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg
 https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
 ```
 
