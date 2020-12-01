@@ -2,10 +2,18 @@
 
 In this repository you will find the materials and challenges for the Azure Cognitive Services.
 
-The associated training teaches you how to deploy and use the following two Azure technologies:
+The associated training teaches you how to deploy and use the following two Azure technology:
 
 * [Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
-* [Azure Search](https://azure.microsoft.com/en-us/services/search/) (including Cognitive Search)
+
+# What are Azure Cognitive Services?
+
+Azure Cognitive Services: 
+- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), data science skills or knowledge. 
+- enable developers to easily add cognitive features into their applications. 
+- The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
+- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language*, *Web Search*, and *Decision*.
+
 
 We'll touch on the following services:
 
@@ -18,9 +26,23 @@ We'll touch on the following services:
 |Text Analytics API|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|
 |Search API|[Search API](https://azure.microsoft.com/en-us/services/cognitive-services/directory/search/)|
 
-# Challenges #
+# Challenges
 
-You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily (and for free) run in [Azure Notebooks](https://notebooks.azure.com). SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
+You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute VM from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
+
+Today we will cover the following topics in several sections:
+
+|Topic|Section|
+|---|---|
+|Text Analytics |[Azure Cognitive Services - Text Analytics](#azure-cognitive-services---text-analytics)|
+|Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
+|Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
+|Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
+|Custom Vision||[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
+|Speech||[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
+|Language||[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
+|Search||[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
+
 
 ## Azure Cognitive Services - Text Analytics
 
@@ -35,7 +57,7 @@ In the language of your choice (Python solution is provided), write a small scri
 
 In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
 
-1. We reuse the `Compute VM` from the Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+1. We reuse the `Compute VM` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
 Let's start with connecting to your Text Analytics Service. Get the Key and the URL from the Azure portal :
 
