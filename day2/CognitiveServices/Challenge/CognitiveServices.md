@@ -545,26 +545,26 @@ https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
 Extracting text from printed text in images is very similar - except that is a synchronous call, hence we directly get back the recognition result:
 
 ```python
-    key = "xxxx" # Paste your API Key here!
-    
-    url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
-    image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
-    
-    headers = {'Ocp-Apim-Subscription-Key': key}
-    params  = {'language': 'unk', 'detectOrientation': 'true'}
-    data    = {'url': image_url}
-    
-    response = requests.post(url, headers=headers, params=params, json=data)
-    recognition_result = response.json()
-    
-    # Extract the word bounding boxes and text
-    line_infos = [region["lines"] for region in recognition_result["regions"]]
-    word_infos = []
-    for line in line_infos:
-        for word_metadata in line:
-            for word_info in word_metadata["words"]:
-                word_infos.append(word_info)
-    word_infos
+key = "xxxx" # Paste your API Key here or comment this line to use the key from above
+
+url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
+image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
+
+headers = {'Ocp-Apim-Subscription-Key': key}
+params  = {'language': 'unk', 'detectOrientation': 'true'}
+data    = {'url': image_url}
+
+response = requests.post(url, headers=headers, params=params, json=data)
+recognition_result = response.json()
+
+# Extract the word bounding boxes and text
+line_infos = [region["lines"] for region in recognition_result["regions"]]
+word_infos = []
+for line in line_infos:
+    for word_metadata in line:
+        for word_info in word_metadata["words"]:
+            word_infos.append(word_info)
+word_infos
 ```
 
 Example Notebook:
