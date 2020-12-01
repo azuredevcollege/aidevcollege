@@ -40,7 +40,7 @@ Today we will cover the following topics in several sections:
 |Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
 |Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
 |Speech|[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
-|Language||[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
+|Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
 |Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
 
 
