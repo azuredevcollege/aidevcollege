@@ -20,7 +20,19 @@ We'll touch on the following services:
 
 # Challenges #
 
-You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily (and for free) run in [Azure Notebooks](https://notebooks.azure.com). SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
+You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute VM from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
+
+|Topic|Section|
+|---|---|
+|Text Analytics |[Azure Cognitive Services - Text Analytics](#azure-cognitive-services---text-analytics)|
+|Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
+|Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
+|Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
+|Custom Vision||[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
+|Speech||[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
+|Language||[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
+|Search||[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
+
 
 ## Azure Cognitive Services - Text Analytics
 
