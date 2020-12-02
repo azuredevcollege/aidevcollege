@@ -1,0 +1,30 @@
+.removed {
+    display: none;
+}
+
+.invisible {
+    opacity: 0.2;
+}
+
+.imageOverlay {
+    position: relative;
+    float: left;
+    cursor: pointer;
+}
+
+.imageOverlay p {
+    position: absolute;
+    padding: 5px;
+    background-color: rgba(255, 111, 0, 0.85);
+    color: #FFF;
+    border: 1px dashed rgba(255, 255, 255, 0.7);
+    z-index: 2;
+    font-size: 10px;
+}
+
+.highlighter {
+    background: rgba(0, 255, 0, 0.25);
+    border: 1px dashed #fff;
+    z-index: 1;
+    position: absolute;
+}

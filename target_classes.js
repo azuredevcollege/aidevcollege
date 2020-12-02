@@ -1,0 +1,18 @@
+TARGET_CLASSES = {
+  0: "Active Directory",
+  1: "App Service",
+  2: "App Insights",
+  3: "Azure Functions",
+  4: "Azure Search",
+  5: "CDN",
+  6: "Cognitive Services",
+  7: "Cosmos DB",
+  8: "IoT Edge",
+  9: "Azure ML",
+  10: "Mobile Apps",
+  11: "MySQL",
+  12: "Notification Hubs",
+  13: "Redis Cache",
+  14: "SQL Database",
+  15: "Azure Storage",
+};
