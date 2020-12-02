@@ -373,8 +373,6 @@ At this point:
 * We've enabled authentication to protect our API endpoint (we can also enable [token-based authentication](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-azure-kubernetes-service#authentication-with-tokens))
 * We've used Application Insights to monitor model telemetry - this will allow us to set alarms if the model is down or getting slow
 
-That's it for today - Well done! :clap:
-
 Acknowledgements:
 
 * This Credit Card fraud Detection dataset is made available under the Open Database License: http://opendatacommons.org/licenses/odbl/1.0/. Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/ and is available at: https://www.kaggle.com/mlg-ulb/creditcardfraud

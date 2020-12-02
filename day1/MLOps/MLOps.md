@@ -227,6 +227,9 @@ X_train, X_test, y_train, y_test = train_test_split(diabetes, y, test_size=0.33,
 
 > **Important:** If you want to know more about Azure DevOps there is another Azure Developer College going into the details of Azure Devops (https://github.com/azuredevcollege/trainingdays/tree/master/day4)
 
+
+That's it for today - Well done! :clap:
+
 #### Additional References
 
 You can install the MLOps extension from here: [https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.vss-services-azureml](https://marketplace.visualstudio.com/items?itemName=ms-air-aiagility.vss-services-azureml). This will allow you to connect your TinyYOLO model to your pipeline.
