@@ -35,10 +35,12 @@ y = diabetes.pop('Y')
 X_train, X_test, y_train, y_test = train_test_split(diabetes, y, test_size=0.2, random_state=0)
 data = {"train": {"X": X_train, "y": y_train}, "test": {"X": X_test, "y": y_test}}
 
+# test_size -> to what percentage is the split of train and test data
+
 print("Training the model...")
 # Randomly pic alpha
 # higher the alpha value, more restriction on the coefficients; 
-# low alpha > more generalization,
+# low alpha > more generalization 
 alphas = np.arange(0.0, 1.0, 0.05)
 alpha = alphas[np.random.choice(alphas.shape[0], 1, replace=False)][0]
 print("alpha:", alpha)

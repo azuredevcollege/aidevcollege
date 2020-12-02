@@ -49,7 +49,7 @@ If we go to the default Storage Account that the Azure ML Workspace created for 
 ![alt text](../images/MNISTdatasetinBlob.png "MNIST dataset in Azure Blob")
 
 Next, we can create an `Azure Machine Learning Compute` cluster in Azure.
-Behind the scenes a VM-Scale-Set running Docker will be deployed. Later on our model will be containerized, trained and tested on those VMs.
+Behind the scenes a VM-Scale-Set running Docker will be deployed. Later on our training script will be containerized, executed and logged on those VMs.
 
 ```python
 from azureml.core.compute import AmlCompute

@@ -179,7 +179,7 @@ In summary, the code does the following things:
 1. Creates a helper function for loading our data (`load_data(...)`)
 1. Loads our MNIST train and test data, and scales all values to `[0, 1]`
 1. Tells our Azure ML Experiment to start logging a training run
-1. Creates a `LogisticRegression`-based classifier and trains it using the training data
+1. Creates a [`LogisticRegression`](https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html) - based classifier and trains it using the training data
 1. Uses the classifier to predict the numbers in the test dataset
 1. Compares the predictions to the ground truth and calculates the accuracy score
 1. Logs to accuracy to our run and finishes the run
@@ -203,7 +203,7 @@ We can [track more values or even time series](https://docs.microsoft.com/en-us/
 Finally, we can export our model and upload it to our Azure ML Workspace in the `outputs` directory:
 
 ```python
-from sklearn.externals import joblib
+import joblib
 
 # Write model to disk
 joblib.dump(value=clf, filename='scikit-learn-mnist.pkl')

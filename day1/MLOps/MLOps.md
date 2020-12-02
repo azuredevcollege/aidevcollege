@@ -212,7 +212,8 @@ Here you can see the overall `variables`, `stages`, `jobs`, `steps` and `tasks` 
 
 ## Finally: Update the training script
 
-- Let's go into the folder `day1/MLOps/MLOps/training` in __Azure Repos__ and open the `train_diabetes.py` and modify the **`test_size`** to a reasonable size like **`0.33`**.
+- Let's go into the folder `day1/MLOps/MLOps/training` in __Azure Repos__ and open the `train_diabetes.py` and modify the **`test_size`** to a reasonable size like **`0.33`**. The `test_size` splits the data into training and testing set. The training dataset will be used to fit the model and the testing dataset will be used to evaluate the quality of the model. We chose 33% of test data and 67% of training data as the respective split.
+
 - Now we trigger the pipeline again. This is supposed to show that once you change your training script the model is retrained. 
 
 ```python
