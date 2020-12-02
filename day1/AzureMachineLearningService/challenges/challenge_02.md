@@ -61,7 +61,7 @@ compute_min_nodes = 1
 compute_max_nodes = 1
 vm_size = "Standard_F16s_v2"
 
-# Check if a cluster with the same name already exists
+# Check if a cluster with the same name already exists # Behind the scenes VM-Scale-Set running Docker on it
 compute_targets = ws.compute_targets
 if compute_name in compute_targets and compute_targets[compute_name].type == 'AmlCompute':
     print("Found compute target, let's just reuse it:", compute_name)

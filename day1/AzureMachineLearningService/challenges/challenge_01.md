@@ -22,9 +22,12 @@ Let's have a look at our Resource Group:
 * Key vault - stores our secrets (will be used later)
 * Machine Learning service workspace - the center point for Machine Learning on Azure
 
+Now we can either launch the `Machine Learning service workspace` in the Resource Group or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
+
 ## Creating a Compute VM
 
-Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute VM`:
+Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute VM`
+The Compute VM actually sits inside this `Machine Learning service workspace`. It is just a regular Azure Virtual Machine.
 
 ![alt text](../images/ComputeOverview.png "Compute VM")
 
@@ -244,12 +247,5 @@ At this point:
 * Azure ML knows about our experiment and our initial run and tracked metrics
 * Azure ML saved our model file (`scikit-learn-mnist.pkl`) in Blob storage
 * We have registered our initial model as a Azure ML Model in our Workspace
-
-## (Bonus) Compute VM Details
-
-If we have another look into our resource group `azure-ai-dev-college`, we can see that the Compute VM actually sits inside this group. It is just a regular Azure Virtual Machine.
-Furthermore, we can go into our Workspace and also see it listed under `Compute`:
-
-![alt text](../images/Compute.png "Compute VM resources in our workspace")
 
 In the [next challenge](challenge_02.md), we'll build a more powerful model and use Azure Machine Learning Compute to train it on a remote cluster.
