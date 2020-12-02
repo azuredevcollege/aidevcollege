@@ -87,7 +87,7 @@ The cluster VM(s) will take around 2-4 minutes to spin up (looks like this got a
 
 As we can see, we can configure our minimum and maximum cluster size, and most importantly, the VM size. In our example, we'll stick with a medium VM without GPU for saving cost. If you want, you can try out a more powerful VM, or even a `NC` instance. More details on further configuration parameters can be found [here](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.compute.amlcompute(class)?view=azure-ml-py#provisioning-configuration-vm-size-----vm-priority--dedicated---min-nodes-0--max-nodes-none--idle-seconds-before-scaledown-none--vnet-resourcegroup-name-none--vnet-name-none--subnet-name-none--tags-none--description-none-), as for example `idle_seconds_before_scaledown`, which defines when the cluster should auto-scale down (only makes sense if `min_nodes != max_nodes`).
 
-If we now look under the `Compute` tab beneath `Training clusters` in our Azure ML Workspace, we can see our Azure Machine Learning Compute cluster:
+If we now look under the `Compute` tab beneath `Training clusters` or `Compute clusters`in our Azure ML Workspace, we can see our Azure Machine Learning Compute cluster:
 
 ![alt text](../images/02-create_training_cluster.png "Creating our Machine Learning Compute cluster for training")
 
@@ -263,7 +263,7 @@ This looks a little bit more complex than our last example! Let's walk through w
 1. We log the final train and test accuracies to our experiment
 1. We save the model to the `outputs/` folder (Azure Machine Learning Compute will automatically upload that folder to the experiment afterwards)
 
-To get the training working, we need create an environment and package the scripts:
+To get the training working, we need to create an environment and package the scripts:
 
 ```python
 from azureml.core import Environment

@@ -2,13 +2,14 @@
 
 ## Setup part
 
-In the Azure Portal, create a new `Machine Learning service workspace` resource:
+In the Azure Portal, create a new `Machine Learning` resource:
 
 ![alt text](../images/01-aml_workspace.png "Azure Machine Learning Workspace")
 
 * Workspace name: `azure-ai-dev-college`
 * Resource Group: `azure-ai-dev-college`
 * Location: `West Europe`
+* Leave the rest at default and create the service.
 
 ![alt text](../images/mlservicecreate.png "Create Machine Learning Workspace")
 
@@ -23,23 +24,21 @@ Let's have a look at our Resource Group:
 
 ## Creating a Compute VM
 
-Inside our `Machine Learning service workspace`, we'll create a new `Compute VM`:
+Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute VM`:
 
 ![alt text](../images/ComputeOverview.png "Compute VM")
 
-Hit `+ New`,keep it as `STANDARD_D3_V2` and give it a unique name:
+Hit `Create`, select `STANDARD_D3_V2` and give it a unique name:
 
 ![alt text](../images/Compute.png "Creating the Compute VM for the college")
 
-It'll take a few minutes until the VM has been created. The primary use for this VM is that we all have the same Jupyter environment. In this exercise, we'll use this VM to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enable instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
+It'll take a few minutes until the VM has been created. The primary use for this VM is that we all have the same Jupyter environment. In this exercise, we'll use this VM to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
 
-It'll take ~3 minutes until the VM is provisioned and ready to use.
-
-Once it is running, the UI will already give us a links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this ai dev college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
+Once it is running, the UI will already give us links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this ai dev college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
 
 ![alt text](../images/OurComputeVMRunning.png "Our Compute VM is running")
 
-You'll be using your AAD (Azure Active Directory) user to log into `Jupyter`. From a enterprise security point, this is a big plus. No extra credentials needed! :raised_hands:
+You'll be using your AAD (Azure Active Directory) user to log into `Jupyter`. From an enterprise security point, this is a big plus. No extra credentials needed! :raised_hands:
 
 ## Initial Azure Machine Learning Setup
 
@@ -98,7 +97,7 @@ If you are using multiple subscriptions or tenants, it might be required to tell
 Once you have ran the cell, restart the Notebook kernel (`Kernel` --> `Restart & Clear Output`) and wait a few seconds until it has restarted.
 </details>
 
-Next, let's create a new experiment (this will later show up in our Workspace after you've ran the first experiment). This is where all our experiment runs will be logged to:
+Next, let's create a new experiment (this will later show up in our Workspace after you've ran the first experiment) in a second cell. This is where all our experiment runs will be logged to:
 
 ```python
 experiment = Experiment(workspace = ws, name = "scikit-learn-mnist")
@@ -188,7 +187,7 @@ In the Azure ML Workspace, we can see that our experiment is finally showing up:
 
 ![alt text](../images/01-running_experiment.png "Our first experiment")
 
-Inside our experiment, we can see our first run:
+Inside our experiment, we can see our first run (your view might differ slightly):
 
 ![alt text](../images/01-runs.png "Viewing our runs")
 
