@@ -765,7 +765,7 @@ In the language of your choice (Python solution is provided), write two small sc
 
 Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
-Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English (English supports a few more features as of May 2019).
+Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English.
 
 Quick explanation on how LUIS works:
 
@@ -780,8 +780,13 @@ Create two new intents:
 
 Then, add the utterances (our training examples) from the main page of this repository to the three intents.
 
+There are five different options for chosing intents:
 
-LUIS example data:
+![kind of intents](./images/KindOfIntents.png)
+
+In this scenario we are using `Prebuilt Entity` and the `Machine Learned Entity`. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
+
+For this challenge we are copying the following LUIS phrases as shown below into the specific intents in the [User Interface](https://eu.luis.ai):
 
 ```
 2 Intents: "CreateOrder", "CancelOrder"
@@ -800,12 +805,7 @@ Utterances:
 (None) Bitte Termin fuer Montag einstellen
 ```
 
-
-Hit `Train`.
-
-Once we hit `Test`, we can test if the systems is able to recognize the intent of our text. We'll notice that it is not working that well, hence we can add some more examples and re-train.
-
-Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `Pizza Type` with entity type `Machine learned` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `Pizza Type` as children. 
+Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `PizzaType` with entity type `Machine learned` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `PizzaType` as children. 
 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
@@ -813,16 +813,17 @@ Further we will add a `PizzaPhraseList` with some `Pizza Type Samples`:
 
 ![alt text](./images/PizzaPhraseList.png)
 
+Then we connect the `PizzaType` to the `PizzaPhraseList`:
+
+![Pizza Phrase List linked to Pizza Type](./images/PizzaTypePizzaPhraseListLink.png)
+
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
 Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the entity (= the detected number) and then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
 
-![alt text](./images/composite_types_luis.png "LUIS Intents")
-
 ![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
 
-
-Hit `Train` again to give it a final training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
+Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
 
 ```
 https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
@@ -884,6 +885,8 @@ The output should look something like this:
 ```
 
 Excellent - Now we know what the user wants to order, and the associated quantities. :pizza: :pizza: :pizza:
+
+This service is highly used in Bot scenarios which you can read about [here](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&tabs=python).
 
 ## Azure Cognitive Services - Search
 
