@@ -129,7 +129,7 @@ In this repository there is a github action included. You can run the `Github Ac
 
 ![GithubActionsPages](./images/GithubActionsPages.png)
 
-Be sure to enable and *save* `Github Pages` underneath the `Settings`, beneath `Options` and select **Branch:** `gh-pages`:
+Be sure to enable and **save** `Github Pages` underneath the `Settings`, beneath `Options` and select **Branch:** `gh-pages:`
 
 ![EnableGithubPages](./images/EnableGithubPages.png)
 
