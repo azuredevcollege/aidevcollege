@@ -121,8 +121,23 @@ This is how the model should the detect the objects as shown below:
 
 If you want, you can test the deployed application under under [https://tfjs-objectdetection.azureedge.net](https://tfjs-objectdetection.azureedge.net).
 
-## Bonus Challenge:
-In this repository there is a github action included. If you create a `service principal` and a [`secret from a pre deployed storage account`](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md), you can use the [`static website`](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions) feature from the storage account. The documentation on how to complete the tasks are included in the links. 
+## Bonus Challenge
+
+### Option A - Github Pages
+
+In this repository there is a github action included. You can run the `Github Action` on the root level manually using the Github User Interface.
+
+![GithubActionsPages](./images/GithubActionsPages.png)
+
+Be sure to enable `Github Pages` underneath the `Settings`, beneath `Options` and select **Branch:** `gh-pages`:
+
+![EnableGithubPages](./images/EnableGithubPages.png)
+
+### Option B - Static Website
+
+If you want to create your own `static website` we have added another `Github Action` in the folder `day2/CustomVisionApp/.github/workflows`. Read the links below how to get this sample running:
+
+If you create a `service principal` and a [`secret from a pre deployed storage account`](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md), you can use the [`static website`](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions) feature from the storage account. The documentation on how to complete the tasks are included in the links.
 
 ## References
  YouTube Video: https://www.youtube.com/watch?v=7gOYpT732ow&list=PLZk8J6FocZbaClHkIPk4SWZHxn_9VArb5&index=2
