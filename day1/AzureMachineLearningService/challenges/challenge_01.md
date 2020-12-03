@@ -49,19 +49,18 @@ Inside the newly created Compute VM, first create a new folder via the `New` but
 
 ![alt text](../images/01-new_folder.png "New folder")
 
-**Note:** The next block is not needed anymore (as of May 2019), but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute VM` runs inside the workspace, it automatically connects to the workspace it lives in.
+> **Note:** The next block is not needed anymore, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute VM` runs inside the workspace, it automatically connects to the workspace it lives in.
 
-<details>
-~~Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):~~
-
+> <details>
+> ~~Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):~~
 ```json
-# Ignore this block, unless you run Jupyer directly on e.g., your laptop
-{
+ # Ignore this block, unless you run Jupyer directly on e.g., your laptop
+ {
     "subscription_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx",
     "resource_group": "azure-ai-dev-college",
     "workspace_name": "azure-ai-dev-college"
-}
-```
+ }
+ ```
 
 ![alt text](../images/01-create_notebook_file.png "Our new Azure Notebook for our code")
 
