@@ -84,7 +84,7 @@ In the same screen, we can also download the `yaml` for the Conda environment us
 
 We can see how AutoML is first creating an image, and then starts the deployment to a new Azure Container Instance.
 
-Once the deployment has finished (~7 minutes), we can find the scoring URI in our Workspace under `Deployments --> diabetes-api --> Details`:
+Once the deployment has finished (~7 minutes), we can find the scoring URI in our Workspace under `Endpoints --> pima-indian --> Details`:
 
 ![alt text](../images/04-automl_deployment_details.png "Deployment details")
 
