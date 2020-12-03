@@ -20,7 +20,7 @@ This workshop consists of multiple challenges, you have to complete. Your traine
 
 Here's the overview of the training week. Happy hacking!
   
-- [Day 0 - Azure Fundamentals](day1/AzureFundamentals/README.md)
+- [Day 0 - Azure Fundamentals](day0/README.md)
 - [Day 1 - Azure Machine Learning Service](day1/AzureMachineLearningService/README.md)
 - [Day 1 - Azure Machine Learning Operations - MLOps](day1/MLOps/MLOps.md)
 - [Day 2 - Cognitive Search](day2/CognitiveSearch/CognitiveSearch.md)
