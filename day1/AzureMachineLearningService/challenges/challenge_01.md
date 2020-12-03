@@ -53,6 +53,7 @@ Inside the newly created Compute VM, first create a new folder via the `New` but
 
 <details>
 ~~Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):~~
+
 ```json
  # Ignore this block, unless you run Jupyer directly on e.g., your laptop
  {
