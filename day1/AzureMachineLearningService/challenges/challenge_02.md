@@ -344,7 +344,7 @@ RunDetails(run).show()
 In the background, Azure ML Services will now perform the following steps:
 
 * Package our scripts and dependencies as a Docker image and push it to our Azure Container Registry (initially this will take ~5 minutes) - the Azure Container Registry will be created automatically
-* (Scale up the Azure Machine Learning Compute cluster - not happening here, since we have `min_size=1`)
+* (Scale up the Azure Machine Learning Compute cluster - not happening here, since we have `min_size=max_size=1`)
 * Pull the Docker image to the Azure Machine Learning Compute cluster
 * Mount the MNIST data from Azure Blob to the Azure Machine Learning Compute cluster
 * Start the training job
