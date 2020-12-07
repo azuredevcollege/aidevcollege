@@ -253,6 +253,7 @@ model.save('./outputs/keras-tf-mnist.h5')
 
 This looks a little bit more complex than our last example! Let's walk through what this script does:
 
+1. On the first line we use some iPython [cellmagic](https://ipython.readthedocs.io/en/stable/interactive/magics.html#cellmagic-writefile) to write the content of the cell to a file
 1. We define a custom callback class for logging the results of each epoch into our Azure Machine Learning workspace
 1. We define the input parameters for the script (data folder, batch size, and number of training epochs)
 1. We load the data from our Azure Blob share
@@ -343,7 +344,7 @@ RunDetails(run).show()
 In the background, Azure ML Services will now perform the following steps:
 
 * Package our scripts and dependencies as a Docker image and push it to our Azure Container Registry (initially this will take ~5 minutes) - the Azure Container Registry will be created automatically
-* (Scale up the Azure Machine Learning Compute cluster - not happening here, since we have `min_size=1`)
+* (Scale up the Azure Machine Learning Compute cluster - not happening here, since we have `min_size=max_size=1`)
 * Pull the Docker image to the Azure Machine Learning Compute cluster
 * Mount the MNIST data from Azure Blob to the Azure Machine Learning Compute cluster
 * Start the training job

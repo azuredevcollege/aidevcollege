@@ -19,7 +19,7 @@ Let's have a look at our Resource Group:
 
 * Application Insights - used for monitoring our models in production (will be used later)
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
-* Key vault - stores our secrets (will be used later)
+* Key vault - stores our secrets
 * Machine Learning service workspace - the center point for Machine Learning on Azure
 
 Now we can either launch the `Machine Learning service workspace` in the Resource Group or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
