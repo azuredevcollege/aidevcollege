@@ -24,32 +24,37 @@ Let's have a look at our Resource Group:
 
 Now we can either launch the `Machine Learning service workspace` in the Resource Group or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
 
-## Creating a Compute VM
 
-Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute VM`
-The Compute VM actually sits inside this `Machine Learning service workspace`. It is just a regular Azure Virtual Machine.
+## Creating a Compute Instance
 
-![alt text](../images/ComputeOverview.png "Compute VM")
+Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute Instance.`
+A compute instance can be used as fully configured and managed development environment in the cloud for machine learning.
+The Compute Instance actually sits inside this `Machine Learning service workspace`. It is just a **regular Azure Virtual Machine**.
+**Azure Machine Learning Service Workspace is the "umbrella" that groups all you machine learning resources**
+
+![alt text](../images/ComputeOverview.png "Compute Instance")
 
 Hit `Create`, select `STANDARD_D3_V2` and give it a unique name:
 
-![alt text](../images/Compute.png "Creating the Compute VM for the college")
+![alt text](../images/Compute.png "Creating the Compute Instance for the college")
 
-It'll take a few minutes until the VM has been created. The primary use for this VM is that we all have the same Jupyter environment. In this exercise, we'll use this VM to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
+It'll take a few minutes until the Compute Instance has been created. The primary use for this Compute Instance is that we all have the same Jupyter environment. In this exercise, we'll use this Compute Instance to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
+
+> Behind the scenes a regular Azure Virtual Machine will be deployed:
+![alt text](../images/behindTheScences.png)
+> For more Details check out the following [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-instance)
 
 Once it is running, the UI will already give us links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this ai dev college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
 
-![alt text](../images/OurComputeVMRunning.png "Our Compute VM is running")
-
-You'll be using your AAD (Azure Active Directory) user to log into `Jupyter`. From an enterprise security point, this is a big plus. No extra credentials needed! :raised_hands:
+![alt text](../images/OurComputeVMRunning.png "Our Compute Instance is running")
 
 ## Initial Azure Machine Learning Setup
 
-Inside the newly created Compute VM, first create a new folder via the `New` button on the top right of Jupyter. Everything we'll do in this workshop should happen in this folder. This is because Machine Learning Services will persist the whole contents of the experiment's folder, which exceeds the limit when you run your Jupyter Notebooks in the root folder.
+Inside the newly created Compute Instance, first create a new folder via the `New` button on the top right of Jupyter. *Everything we'll do in this workshop should happen in this folder*. We will call this **folder:** `aidevcollege`. This is because Machine Learning Services will persist the whole contents of the experiment's folder, which exceeds the limit when you run your Jupyter Notebooks in the root folder.
 
 ![alt text](../images/01-new_folder.png "New folder")
 
-> **Note:** The next block is **not** needed anymore, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute VM` runs inside the workspace, it automatically connects to the workspace it lives in.
+> **Note:** The next block is **not** needed anymore, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
 
 <details>
 Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):
@@ -65,10 +70,11 @@ Next, create a text file called `config.json` (also via the `New` button) and re
 
 ![alt text](../images/01-create_notebook_file.png "Our new Azure Notebook for our code")
 
-~~The `config.json` is used by the `Azure Machine Learning SDK` to connect to your `Azure Machine Learning workspace` running in Azure.~~
 </details>
 
-Finally, we can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `challenge01.ipynb`.
+Finally, we can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `challenge01.ipynb`. 
+
+> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue on the left hand side) and type **`b`** it will add another cell *below* the first cell. 
 
 ![alt text](../images/01-new_notebook.png "Our new Notebook")
 
@@ -88,7 +94,7 @@ This first cell imports the relevant libraries from the Azure Machine Learning S
 
 ![alt text](../images/01-authenticate.png "Authenticate to our workspace")
 
-Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using a `Azure Compute VM`):
+Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using a `Azure Compute Instance`):
 
 <details>
 If you are using multiple subscriptions or tenants, it might be required to tell the Jupyter Notebook, which one it should use. Hence, create a new cell and adapt the following code to use your subscription id (the one you have used in `config.json`):
@@ -106,7 +112,7 @@ Next, let's create a new experiment (this will later show up in our Workspace af
 experiment = Experiment(workspace = ws, name = "scikit-learn-mnist")
 ```
 
-Let's load some test data into our Compute VM (we'll do something more scalable in the next challenge):
+Let's load some test data into our Compute Instance (we'll do something more scalable in the next challenge):
 
 ```python
 import os
@@ -200,7 +206,8 @@ If we click the run number, we can see its details:
 
 We can [track more values or even time series](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-track-experiments), which would directly show up as diagrams. However, as we want to keep the code short, we'll skip this part for now (more on that in challenge 2).
 
-Finally, we can export our model and upload it to our Azure ML Workspace in the `outputs` directory:
+Finally, we can export our model and upload it to our Azure ML Workspace in the `outputs` directory.
+Go ahead and copy the code below in a new cell in your `aidevcollege` notebook.
 
 ```python
 import joblib
@@ -242,7 +249,7 @@ Our model has been stored in the Storage Account that has been created initially
 
 At this point:
 
-* We've trained a Machine Learning model using scikit-learn inside a `Compute VM` running `Jupyter`
+* We've trained a Machine Learning model using scikit-learn inside a `Compute Instance` running `Jupyter`
 * We achieved `92%` accuracy (not very good for this data set)
 * Azure ML knows about our experiment and our initial run and tracked metrics
 * Azure ML saved our model file (`scikit-learn-mnist.pkl`) in Blob storage

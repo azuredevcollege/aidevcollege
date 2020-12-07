@@ -1,8 +1,8 @@
 # Challenge 2
 
-In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a Deep Convolutional Neural Network in this challenge. For training this more powerful and complex model, we'll need more compute. Therefore, instead of training a model in our Notebook VM, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. The good thing is, that the interaction with Azure Machine Learning won't change.
+In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a Deep Convolutional Neural Network in this challenge. For training this more powerful and complex model, we'll need more compute. Therefore, instead of training a model in our Compute Instance, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. The good thing is, that the interaction with Azure Machine Learning won't change.
 
-**Note:** Obviously we do not need Azure Machine Learning Compute for such a simple task, a single VM instance (probably even without GPU) would be absolutely sufficient. However - for sake of education - we'll be using Azure Machine Learning Compute in this challenge. 
+**Note:** Obviously we do not need Azure Machine Learning Compute for such a simple task, a single Compute Instance (VM) (probably even without GPU) would be absolutely sufficient. However - for sake of education - we'll be using Azure Machine Learning Compute in this challenge. 
 
 First, let's create a new notebook `challenge02.ipynb` for this challenge.
 
@@ -43,13 +43,12 @@ print("Blob Container Name:", ds.container_name)
 
 ds.upload(src_dir='./data', target_path='mnist', overwrite=True, show_progress=True)
 ```
-
-If we go to the default Storage Account that the Azure ML Workspace created for us, then select Azure Blob, we can see that the dataset has been uploaded:
+Let's have a look at the files in the respective Storage Account. For this you will go into the `Azure Portal` and select the default Storage Account that the Azure ML Workspace created for us. Select this `Storage Account` and then select `Containers` on the left tile. Then you select `azureml-blobstore-[...]` and after that `mnist` we can see that the dataset has been uploaded:
 
 ![alt text](../images/MNISTdatasetinBlob.png "MNIST dataset in Azure Blob")
 
 Next, we can create an `Azure Machine Learning Compute` cluster in Azure.
-Behind the scenes a VM-Scale-Set running Docker will be deployed. Later on our training script will be containerized, executed and logged on those VMs.
+Behind the scenes a [VM-Scale-Set](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview) running Docker will be deployed. Later on our training script will be containerized, executed and logged on those VMs.
 
 ```python
 from azureml.core.compute import AmlCompute
@@ -101,7 +100,8 @@ script_folder = './scripts'
 os.makedirs(script_folder, exist_ok=True)
 ```
 
-This cell writes the `train.py` to the `scripts` folder (we could have created it manually and copied it in):
+The cell below writes the `train.py` to the `scripts` folder (we could have created it manually and copied it in).
+If you want to know more about `Tensorflow` you can read the following [documentation](https://www.tensorflow.org/tutorials/generative/dcgan).
 
 ```python
 %%writefile $script_folder/train.py
@@ -257,7 +257,7 @@ This looks a little bit more complex than our last example! Let's walk through w
 1. We define a custom callback class for logging the results of each epoch into our Azure Machine Learning workspace
 1. We define the input parameters for the script (data folder, batch size, and number of training epochs)
 1. We load the data from our Azure Blob share
-1. We transform the data to the format that `Keras` expects
+1. We transform the data to the format that [`Keras`](https://www.tensorflow.org/api_docs/python/tf/keras) expects
 1. We get hold of the current run (`Run.get_submitted_run()`) - the SDK will manage the run this time
 1. We build a Convolution Neural Network with two convolutional layers with ReLu as the activation function, followed by a dense 128 neuron large fully connected layer
 1. We let `Keras` assemble and train the model
