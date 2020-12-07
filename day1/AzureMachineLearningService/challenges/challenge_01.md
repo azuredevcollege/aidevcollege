@@ -177,12 +177,12 @@ In summary, the code does the following things:
 
 1. Imports `sklearn` (scikit-learn) as the Machine Learning framework
 1. Creates a helper function for loading our data (`load_data(...)`)
-1. Loads our MNIST train and test data, and scales all values to `[0, 1]`
+1. Loads our MNIST train and test data of handwritten digits, and scales all values to `[0, 1]`
 1. Tells our Azure ML Experiment to start logging a training run
 1. Creates a [`LogisticRegression`](https://ml-cheatsheet.readthedocs.io/en/latest/logistic_regression.html) - based classifier and trains it using the training data
 1. Uses the classifier to predict the numbers in the test dataset
 1. Compares the predictions to the ground truth and calculates the accuracy score
-1. Logs to accuracy to our run and finishes the run
+1. Logs the accuracy of our run and finishes the run
 
 As we can see, our model achieves `~92%` accuracy, which is actually pretty low for the MNIST dataset - we'll get back to this in the next challenge!
 
@@ -243,9 +243,9 @@ Our model has been stored in the Storage Account that has been created initially
 At this point:
 
 * We've trained a Machine Learning model using scikit-learn inside a `Compute VM` running `Jupyter`
-* We achieved `92%` accuracy (not very good for this data set)
+* We achieved `~92%` accuracy (not very good for this data set)
 * Azure ML knows about our experiment and our initial run and tracked metrics
-* Azure ML saved our model file (`scikit-learn-mnist.pkl`) in Blob storage
+* Azure ML saved our model file (`scikit-learn-mnist.pkl`) in a Blob storage
 * We have registered our initial model as a Azure ML Model in our Workspace
 
 In the [next challenge](challenge_02.md), we'll build a more powerful model and use Azure Machine Learning Compute to train it on a remote cluster.
