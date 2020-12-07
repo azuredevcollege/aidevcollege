@@ -2,7 +2,20 @@
 
 By now, we have a good understanding how Azure Machine Learning works. In this  challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
 
-**Note:** As of May 2019, Automated Machine Learning can also [be used directly from the Azure Portal](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-portal-experiments). In this challenge, we'll use the Portal, in the next challenge, we'll be using code.
+**Automated machine learning**, also referred to as automated ML or AutoML, is the process of automating the time consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Traditional machine learning model development is resource-intensive, requiring significant domain knowledge and time to produce and compare dozens of models. With automated machine learning, you'll accelerate the time it takes to get production-ready ML models with great ease and efficiency.
+
+**When to use it?**
+Apply automated ML when you want Azure Machine Learning to train and tune a model for you using the target metric you specify. Automated ML democratizes the machine learning model development process, and empowers its users, no matter their data science expertise, to identify an end-to-end machine learning pipeline for any problem. You can use the automated ML feature to:
+
+- Implement ML solutions without extensive programming knowledge
+- Save time and resources
+- Leverage data science best practices
+- Provide agile problem-solving
+
+**How automated ML works?**
+During training, Azure Machine Learning creates a number of pipelines in parallel that try different algorithms and parameters for you. The service iterates through ML algorithms paired with feature selections, where each iteration produces a model with a training score. The higher the score, the better the model is considered to "fit" your data. It will stop once it hits the exit criteria defined in the experiment.
+
+**Note:** Automated Machine Learning can also [be used directly from the Azure Portal](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-portal-experiments). In this challenge, we'll use the Portal, in the next challenge, we'll be using code.
 
 ## Dataset
 
@@ -41,7 +54,9 @@ Lastly we confirm the details:
 
 ![alt text](../images/04_automl_confirm_details.png "AutoML Confirm Details")
 
-Then we can name our experiment and we can either re-use our Compute VM, but we could also create a new `Azure Machine Learning compute` cluster or re-use the cluster from challenge 2. The `Create a new compute` window is self-explanatory after the last challenges (set minimum and maximum number of nodes to `1`)!
+Then we can name our experiment and we can either re-use our Compute VM, but we could also create a new `Azure Machine Learning compute` cluster or re-use the cluster from challenge 2. The `Create a new compute` window is self-explanatory after the last challenges (set minimum to `0` and maximum number of nodes to `1`)! 
+
+> To avoid charges when no jobs are running, set the minimum nodes to 0. This setting allows Azure Machine Learning to de-allocate the compute nodes when idle. Any higher value will result in charges for the number of nodes allocated.
 
 ![alt text](../images/04-create_compute.png "Create new compute")
 
@@ -55,6 +70,9 @@ Lastly we can configure the `Task type and settings` tab:
 ![alt text](../images/04-automl_select_task_type.png "Select task type")
  
 Here we make sure we set the job to `Classifcation` and define `diabetes` as the target column.
+
+**Classification**
+Classification is a common machine learning task. Classification is a type of supervised learning in which models learn using training data, and apply those learnings to new data. Azure Machine Learning offers featurizations specifically for these tasks, such as deep neural network text featurizers for classification. Learn more about featurization options. The main goal of classification models is to predict which categories new data will fall into based on learnings from its training data. Common classification examples include fraud detection, handwriting recognition, and object detection.
 
 Under `View additional configuration settings`, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set `Training job time (minutes)` to `10`. This means our training will terminate after a maximum of 10 minutes.
 
