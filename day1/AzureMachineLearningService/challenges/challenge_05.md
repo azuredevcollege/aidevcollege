@@ -55,9 +55,9 @@ import os
 
 # Configure our cluster details
 compute_name = "cpucluster"
-compute_min_nodes = 1
-compute_max_nodes = 6
-vm_size = "Standard_F16s_v2"
+compute_min_nodes = 0 # we use a minimum of 0 VMs if no job is scheduled
+compute_max_nodes = 20 # we use a maximum of 20 VMs
+vm_size = "Standard_F4s_v2"
 
 # Check if a cluster with the same name already exists
 compute_targets = ws.compute_targets
@@ -103,7 +103,7 @@ automl_settings = {
     "n_cross_validations": 3, # Number of cross validation splits.
     "primary_metric": 'average_precision_score_weighted', # This is the metric that you want to optimize.
     "enable_early_stopping": True, # Stop the run if the metric score is not showing improvement.
-    "max_concurrent_iterations": 64, # This is a limit for testing purpose, please increase it as per cluster size
+    "max_concurrent_iterations": 20, # How many concurrent training processes are executed in parallel. This is a limit for testing purpose, please increase it as per cluster size
     "experiment_timeout_hours": 0.25, # This is a time limit for testing purposes, remove it for real use cases, this will drastically limit ablity to find the best model possible
     "verbosity": logging.INFO,
 }
