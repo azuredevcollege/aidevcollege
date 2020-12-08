@@ -48,7 +48,7 @@ __Note:__ If you want to integrate Azure DevOps into your organization's Azure A
 4. Create an organization. Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/organizations/accounts/create-organization?toc=%2Fazure%2Fdevops%2Fget-started%2Ftoc.json&bc=%2Fazure%2Fdevops%2Fget-started%2Fbreadcrumb%2Ftoc.json&view=azure-devops)
 
 ### Create a new project
-Create a new project, name it "AIDevCollege" and use the "Agile" process template.
+Create a new project, name it "AIDevCollege" and use the "Agile" process template and leave the version control selection to **Git**.
 Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops).
 
 ![Create a project](./images/AIDevCollegeProject.png)
@@ -59,7 +59,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 ### Import the Azure Developer College GitHub repository to your Azure Repo
 
-Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the https url. Make sure to **use GIT** in the Azure Repos, it should be the current default.
+Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the https url. Make sure to **use GIT** in the Azure Repos as **Repository Type**, it should be the current default.
 
 ![Clone GitHub](./images/clone-adc-github.png)
 
@@ -174,9 +174,20 @@ A [task](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pip
 **Trigger**
 A trigger is something that's set up to tell the pipeline when to run. You can configure a pipeline to run upon a push to a repository, at scheduled times, or upon the completion of another build. All of these actions are known as triggers. For more information, see [build triggers](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/build/triggers.md) and [release triggers](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/release/triggers.md).
 
-1. Now we can look at the build and the Release pipeline for the project by selecting __azure-pipelines.yml__ under __Azure Repos__ in the __MLOps Folder__ in the Azure DevOps project. Copy the path `aidevcollege/day1/MLOps/MLOps`into the text field.
+0. Let's move to the Pipelines tile on the left hand side and **hit** *create a new pipeline* and **select** *Azure Repos Git*. Then select your previously created/cloned repository **aidevcollege**.
 
-    <p align="left"><img width="50%" src="images/ado_lib.png" alt="Library in Azure DevOps project"/></p>
+<p align="left"><img width="50%" src="images/ado_lib.png" alt="Library in Azure DevOps project"/></p>
+
+![Azure Repos Git](./images/AzureReposGit.png)
+
+1. Then we want to use the build and the Release pipeline for the project by selecting select the **Existing Azure Pipelines YAML file**. Copy the path `day1/MLOps/MLOps/azure-pipelines.yml` into the text field.
+
+![Select Existing YAML file](./images/existingyamlfile.png)
+
+And then *select* **Run**.
+
+![Hit Run](./images/HitRun.png)
+    
 
 2. Now let's look at the Pipeline it consists out of a:
     - `Train, Evaluate and Register` *Dev* Stage,
