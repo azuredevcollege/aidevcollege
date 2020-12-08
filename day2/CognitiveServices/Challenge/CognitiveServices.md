@@ -766,6 +766,7 @@ In the language of your choice (Python solution is provided), write two small sc
 Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
 Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English.
+The User Interface will guide you to provision a new LUIS resource in the region `west europe`, then you select your `Azure Subscription` and a `Resource Group`. Once the Resource is deployed you can go ahead and create the LUIS app.
 
 Quick explanation on how LUIS works:
 
@@ -780,7 +781,7 @@ Create two new intents:
 
 Then, add the utterances (our training examples) from the main page of this repository to the three intents.
 
-There are five different options for chosing intents:
+There are five different options for choosing intents:
 
 ![kind of intents](./images/KindOfIntents.png)
 
