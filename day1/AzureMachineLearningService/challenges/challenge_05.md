@@ -103,7 +103,7 @@ automl_settings = {
     "n_cross_validations": 3, # Number of cross validation splits.
     "primary_metric": 'average_precision_score_weighted', # This is the metric that you want to optimize.
     "enable_early_stopping": True, # Stop the run if the metric score is not showing improvement.
-    "max_concurrent_iterations": 2, # This is a limit for testing purpose, please increase it as per cluster size
+    "max_concurrent_iterations": 64, # This is a limit for testing purpose, please increase it as per cluster size
     "experiment_timeout_hours": 0.25, # This is a time limit for testing purposes, remove it for real use cases, this will drastically limit ablity to find the best model possible
     "verbosity": logging.INFO,
 }
@@ -117,8 +117,8 @@ automl_config = AutoMLConfig(task = 'classification',
                             )
 
 ```
-Call the submit method on the experiment object and pass the run configuration. 
-Depending on the data and the number of iterations this can run up to ~20 min.
+Call the submit method on the experiment object and pass the run configuration.
+Depending on the data and the number of iterations this can **run up to ~20 min**.
 
 ```python
 # Call the submit method on the experiment object and pass the run configuration.
