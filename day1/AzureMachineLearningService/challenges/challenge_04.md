@@ -70,7 +70,6 @@ or we use our existing one:
 
 ![alt text](../images/04-automl_compute.png "Use existing compute")
 
-
 Lastly we can configure the `Task type and settings` tab. 
 Here we make sure we set the job to `Classifcation` and define `diabetes` as the target column.
 
@@ -78,7 +77,7 @@ Here we make sure we set the job to `Classifcation` and define `diabetes` as the
 Classification is a common machine learning task. Classification is a type of supervised learning in which models learn using training data, and apply those learnings to new data. Azure Machine Learning offers featurizations specifically for these tasks, such as deep neural network text featurizers for classification. Learn more about featurization options. The main goal of classification models is to predict which categories new data will fall into based on learnings from its training data. Common classification examples include fraud detection, handwriting recognition, and object detection.
 
 ![alt text](../images/04-automl_select_task_type.png "Select task type")
- 
+
 **Under `View additional configuration settings`, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set `Training job time (hours)` to `0.25`. This means our training will terminate after a maximum of 15 minutes.**
 
 ![Exit criteria](../images/04_automl_exit_criteria.png)
