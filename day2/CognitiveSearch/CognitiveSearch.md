@@ -485,7 +485,9 @@ Now let's jump into code. We will create a Node.js application that that creates
 
 ### Set up your environment
 
-Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js.
+Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js:
+
+![Cloud Shell](./img/CloudShell.png)
 
 1. Create a development directory, giving it the name `adv-search` :
 
@@ -659,18 +661,18 @@ Now, have a look at the file **AzureSearchClient.js** and take your time to unde
 
 ### Prepare and run the sample
 
-Use a terminal window for the following commands.
+Use the **Cloud Shell** in the **Azure Portal** window for the following commands.
 
-1. Navigate to the source code folder *azure-search-javascript-samples/quickstart*.
+1. Navigate `cd` to the source code folder `adv-search/azure-search-javascript-samples/quickstart/REST`.
 1. Install the packages for the sample with `npm install`.  This command will download the packages upon which the code depends.
 
 Now back in Visual Studio Code, set a breakpoint in method ```doQueriesAsync``` (in **index.js** - the place where queries are sent to Azure Search and the corresponding response will be readable) and hit **F5** (if VS Code asks you, select *Node.JS App* as your environment).
 
-You should see a series of messages describing the actions being taken by the program and after some time, your breakpoint will be hit. Have a look at the ```body``` property in the method mentioned above...there you see the OData response from Azure Search. 
+You should see a series of messages describing the actions being taken by the program and after some time, your breakpoint will be hit. Have a look at the ```body``` property in the method mentioned above...there you see the OData response from Azure Search.
 
 If you want to see more detail of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js**.
 
-![Run the node.js App with Azure Search](./img/resultappnodejsazuresearch.png)
+![Run the node.js App with Azure Search](./img/AzureSearchAppSample.png)
 
 ## Using the API
 
