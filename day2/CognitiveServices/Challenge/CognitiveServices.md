@@ -765,14 +765,31 @@ In the language of your choice (Python solution is provided), write two small sc
 
 Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
-Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. As a base language, fell free to either choose German or English.
-The User Interface will guide you to provision a new LUIS resource in the region `west europe`, then you select your `Azure Subscription` and a `Resource Group`. Once the Resource is deployed you can go ahead and create the LUIS app.
+Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. First we need to deploy an *authorizing LUIS resource*.
+
+![LUIS Migration](./images/LUIS00.png)
+
+The User Interface will guide you to deploy a new LUIS resource to make sure to migrate new and existing Apps to that resource.
+
+![LUIS Migration](./images/LUIS01.png)
+
+In our case it is a regional migration of `west europe`:
+
+![LUIS Migration](./images/LUIS02.png)
+
+Then you select `Create new authoring resource`, choose your `Azure subscription` and an `Azure resource group` and give it an `Azure resource name`:
+
+![LUIS Migration](./images/LUIS03.png)
+
+Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `Pizza Order App`
+
+> **Note:** Culture is the language that your app understands, not the interface language.
 
 Quick explanation on how LUIS works:
 
 * Under Intents, we'll define the "actions" we can to detect
 * Under Entities, we'll define the "things" we want to extract from the intents
-* Utterances are just examples that we'll use to train LUIS
+* Utterances a**re just examples that we'll use to train LUIS
 
 Create two new intents:
 
