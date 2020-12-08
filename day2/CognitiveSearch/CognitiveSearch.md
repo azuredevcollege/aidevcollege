@@ -485,7 +485,7 @@ Now let's jump into code. We will create a Node.js application that that creates
 
 ### Set up your environment
 
-Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js:
+Begin by opening the **Cloud Shell** (next to the search field) in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js:
 
 ![Cloud Shell](./img/CloudShell.png)
 
