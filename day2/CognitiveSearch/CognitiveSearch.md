@@ -366,10 +366,10 @@ Please reuse the Azure Search instance which you initially created.
 
 Here we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal, use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
 
-> [!IMPORTANT]
+> ⚠ Caution: ⚠
 > Please be aware to first **unzip** the folder and upload the **unzipped** content of the folder.
 
-See the upload to the Storage Account below:
+**See the upload to the Storage Account below:**
 
 ![Upload Storage Account](./img/UploadStorageAccount.png)
 

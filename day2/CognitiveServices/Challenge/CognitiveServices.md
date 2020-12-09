@@ -2,10 +2,6 @@
 
 In this repository you will find the materials and challenges for the Azure Cognitive Services.
 
-The associated training teaches you how to deploy and use the following two Azure technology:
-
-* [Azure Cognitive Services](https://azure.microsoft.com/en-us/services/cognitive-services/)
-
 # What are Azure Cognitive Services?
 
 Azure Cognitive Services: 
@@ -19,12 +15,14 @@ We'll touch on the following services:
 
 |Service|Where?|
 |---|---|
-|Azure Search + Cognitive Search|[Azure Search + Cognitive Search](https://azure.microsoft.com/en-us/services/search/)|
-|Computer Vision API and Custom Vision Service |[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)|
-|Speech Services|[Speech Services](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)|
+|Text Analytics|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|
+|Translate Text|[Translate Text](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/translator-info-overview)|
+|Face Recognition|[Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/overview)|
+|Computer Vision|[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)|
+|Custom Vision|[Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/overview)|
+|Speech|[Speech Services](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)|
 |Language Understanding|[Language Understanding](https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/)|
-|Text Analytics API|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|
-|Search API|[Search API](https://azure.microsoft.com/en-us/services/cognitive-services/directory/search/)|
+|Bing Search API|[Bing Search API](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource)|
 
 # Challenges
 
@@ -952,7 +950,7 @@ This service is highly used in Bot scenarios which you can read about [here](htt
 
 Last but not least as Searching is essential these days we will look at the **Bing Search Cognitive Service**. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
 
-## Azure Cognitive Services - Search
+## Azure Cognitive Services - Bing Search
 
 :triangular_flag_on_post: **Goal:** Write a script for auto-suggestion of text
 
