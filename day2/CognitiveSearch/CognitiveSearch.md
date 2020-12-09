@@ -354,11 +354,11 @@ This step shows you how to query an index using the [Search Documents REST API](
    searchstring = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
    ```
 
-## Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set
+## Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set
 
-:triangular_flag_on_post: **Goal:** Deploy an Azure Search instance and index a PDF-based data set 
+:triangular_flag_on_post: **Goal:** Reuse the Azure Search instance and index a PDF-based data set 
 
-Index the unstructured PDF data set from [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
+We want to index the unstructured PDF data set from [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip).
 
 ### Indexing PDF data
 
