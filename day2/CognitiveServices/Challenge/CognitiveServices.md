@@ -823,30 +823,22 @@ Then you select `Create new authoring resource`, choose your `Azure subscription
 
 ![LUIS Migration](./images/LUIS03.png)
 
-Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `Pizza Order App`. Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
+Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `OrderApp`. Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
 > **Note:** Culture is the language that your app understands, not the interface language.
+> **Quick explanation on how LUIS works: **
+> * Under Intents, we'll define the "actions" we can to detect
+> * Under Entities, we'll define the "things" we want to extract from the intents
 
-Quick explanation on how LUIS works:
+![Explanation](./images/explanation.png)
 
-* Under Intents, we'll define the "actions" we can to detect
-* Under Entities, we'll define the "things" we want to extract from the intents
-* Utterances a**re just examples that we'll use to train LUIS
-
-Create two new intents:
+Now let's go into the LUIS Portal and **create two new intents** and give them the following *Intent names:*
 
 * `CreateOrder`
 * `CancelOrder`
 
-Then, add the utterances (our training examples) from the main page of this repository to the three intents.
-
-There are five different options for choosing intents:
-
-![kind of intents](./images/KindOfIntents.png)
-
-In this scenario we are using `Prebuilt Entity` and the `Machine Learned Entity`. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
-
-For this challenge we are copying the following LUIS phrases as shown below into the specific intents in the [User Interface](https://eu.luis.ai):
+For this challenge we are **copying the following LUIS phrases as shown below** into the specific intents:
+Then, add the user input examples (our training examples) from the main page of this repository to the three intents. Example User input are just examples that we'll use to train LUIS.
 
 ```
 2 Intents: "CreateOrder", "CancelOrder"
@@ -865,7 +857,18 @@ Utterances:
 (None) Bitte Termin fuer Montag einstellen
 ```
 
-Next, we can try to detect `Entities` in our text inputs. For that, goto Entities and add a `Prebuilt Entity` with the type `Number`. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. Secondly, add a normal Entity `PizzaType` with entity type `Machine learned` (ideally we could also use an entity and specify all possible Pizzas we sell). Lastly, add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `PizzaType` as children. 
+**Entities**
+There are five different options for choosing entities:
+
+![kind of entities](./images/KindOfIntents.png)
+
+In this scenario we are using `Prebuilt Entity` and the `Machine Learned Entity`. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
+
+Next, we can try to detect `Entities` in our text inputs. 
+
+1. For that, go to Entities and **add a `Prebuilt Entity` with the type `Number`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. 
+1. Secondly, **add a normal Entity `PizzaType` with entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
+1. Lastly, **add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `PizzaType` as children**. 
 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
@@ -879,7 +882,12 @@ Then we connect the `PizzaType` to the `PizzaPhraseList`:
 
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
-Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky, first click the beginning of the entity (= the detected number) and then directly click the last part of the entity (= the pizza type) and then select `PizzaOrder`. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. The final tagging should look something like this (make sure the green line covers the whole phrase):
+Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky:
+1. First click the beginning of the entity (= the detected number) and
+1. Then directly click the last part of the entity (= the pizza type) and 
+1. Then select `PizzaOrder`. 
+1. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. 
+1. The final tagging should look something like this (make sure the green line covers the whole phrase):
 
 ![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
 
@@ -889,7 +897,7 @@ Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Prod
 https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
 ```
 
-With a bit of Python, we can now get the intent through the API:
+With a bit of Python, we can now get the intent through the API, go ahead and copy the code into a new cell in your Notebook:
 
 ```python
 import requests, json

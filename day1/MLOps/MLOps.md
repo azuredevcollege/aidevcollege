@@ -180,23 +180,18 @@ A trigger is something that's set up to tell the pipeline when to run. You can c
 
 ![Azure Repos Git](./images/AzureReposGit.png)
 
-1. Then we want to use the build and the Release pipeline for the project by selecting select the **Existing Azure Pipelines YAML file**. Copy the path `day1/MLOps/MLOps/azure-pipelines.yml` into the text field.
+1. So now let's create/configure a pipeline under __Pipelines.__  For this Build and Release pipeline go ahead by selecting the **Existing Azure Pipelines YAML file**. Copy the path `day1/MLOps/MLOps/azure-pipelines.yml` into the text field and thus select the  **azure-pipelines.yml** as shown here:
 
 ![Select Existing YAML file](./images/existingyamlfile.png)
 
 And then *select* **Run**.
 
 ![Hit Run](./images/HitRun.png)
-    
 
 2. Now let's look at the Pipeline it consists out of a:
     - `Train, Evaluate and Register` *Dev* Stage,
     - `Deploy to Staging` *Test* Stage and a 
     - `Deploy to Production` *Production* Stage.
-
-3. So now let's create/configure a pipeline under __Pipelines__  and select the **Existing Azure Pipelines YAML file**, in this challenge called **azure-pipelines.yml** as shown here:
-
-![Create Pipeline](./images/CreatePipeline.png)
 
 **Summarizing the Steps:**
 A Machine Learning model will be trained, evaluated and registered. Afterwards it will be deployed to a Azure Container Instance and finally it will be deployed to the Azure Kubernetes Service.
