@@ -127,11 +127,13 @@ This is how the model should the detect the objects as shown below:
 
 ![Final Results](./images/FinalResult2.png)
 
+<br>
+<br>
 
+> **That's officially it for today - Well done! :clap:**
 
-**That's officially it for today - Well done! :clap:**
-
-
+<br>
+<br>
 
 ### Bonus Challenge - Want more?
 
