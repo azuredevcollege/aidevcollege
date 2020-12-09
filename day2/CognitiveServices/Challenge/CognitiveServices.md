@@ -857,14 +857,14 @@ Utterances:
 (None) Bitte Termin fuer Montag einstellen
 ```
 
-**Entities**
-There are five different options for choosing entities:
+**Entities:** There are five different options for choosing entities:
 
 ![kind of entities](./images/KindOfIntents.png)
 
-In this scenario we are using `Prebuilt Entity` and the `Machine Learned Entity`. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
+In this scenario we are using **`Prebuilt Entity`** and the **`Machine Learned Entity`**. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
 
-Next, we can try to detect `Entities` in our text inputs. Go ahead and **create 3 new entities** in the LUIS Portal. 
+Next, we **will try to detect `Entities`** in our text inputs. 
+Go ahead and **create 3 new entities** in the LUIS Portal. 
 
 1. Firstly for that, go to Entities and **add a `Prebuilt Entity` with the type `Number`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. 
 1. Secondly, **add a normal Entity `PizzaType` with entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
@@ -901,7 +901,8 @@ Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Prod
 https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
 ```
 
-With a bit of Python, we can now get the intent through the API, go ahead and copy the code into a new cell in your Notebook:
+With a bit of Python, we can now get the intent through the API.
+**Go ahead and copy the code into a new cell in your Notebook:**
 
 ```python
 import requests, json
