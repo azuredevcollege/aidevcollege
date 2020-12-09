@@ -864,15 +864,19 @@ There are five different options for choosing entities:
 
 In this scenario we are using `Prebuilt Entity` and the `Machine Learned Entity`. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
 
-Next, we can try to detect `Entities` in our text inputs. 
+Next, we can try to detect `Entities` in our text inputs. Go ahead and **create 3 new entities** in the LUIS Portal. 
 
-1. For that, go to Entities and **add a `Prebuilt Entity` with the type `Number`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. 
+1. Firstly for that, go to Entities and **add a `Prebuilt Entity` with the type `Number`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. 
 1. Secondly, **add a normal Entity `PizzaType` with entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
 1. Lastly, **add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `PizzaType` as children**. 
 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
-Further we will add a `PizzaPhraseList` with some `Pizza Type Samples`:
+Now let's go to the **PizzaType Entity** and add a **Machine Learning features** by selecting `Create new phrase list`:
+
+![CreateNewPhraseList](./images/CreateNewPhraseList.png)
+
+Further we will **add values to the `PizzaPhraseList`** with some **Pizza Type Samples e.g. Tonno, Salami, Pepperoni** as shown in the Screenshot below:
 
 ![alt text](./images/PizzaPhraseList.png)
 
@@ -882,11 +886,11 @@ Then we connect the `PizzaType` to the `PizzaPhraseList`:
 
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
-Finally, we can annotate our training examples. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky:
-1. First click the beginning of the entity (= the detected number) and
-1. Then directly click the last part of the entity (= the pizza type) and 
-1. Then select `PizzaOrder`. 
-1. Then tag all pizza types inside the `PizzaOrder` as `Pizza Type`. 
+Finally, **we will annotate our training examples**. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky:
+1. First **click the beginning of the entity** (= the detected number) and
+1. Then directly **click the last part of the entity** (= the pizza type) and 
+1. Then **select `PizzaOrder`**. 
+1. Then **tag all pizza types inside the `PizzaOrder` as `Pizza Type`**. 
 1. The final tagging should look something like this (make sure the green line covers the whole phrase):
 
 ![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
