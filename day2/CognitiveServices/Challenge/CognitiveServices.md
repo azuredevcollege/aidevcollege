@@ -758,6 +758,18 @@ For retrieving the intent of the text, we'll be using the Language Understanding
 
 :triangular_flag_on_post: **Goal:** Make your application understand the meaning of text
 
+First we deploy a Language Understanding Resource in the **Azure Portal** as shown below:
+
+![Azure Portal](./images/LanguageUnderstandingPortal1.png)
+
+Create the new resource:
+
+![Azure Portal](./images/LanguageUnderstandingPortal2.png)
+
+Once the resource is deployed you could either use the provided link to switch to the __Language Understanding Portal Europe__ in the *Quick   start* Guide in *step 2*.
+
+![Azure Portal](./images/LanguageUnderstandingPortal3.png)
+
 In the language of your choice (Python solution is provided), write two small scripts or apps that
 
 1. Translate the input text into German (using the Text Translator API)
