@@ -364,12 +364,23 @@ We want to index the unstructured PDF data set from [here](https://github.com/ai
 
 Please reuse the Azure Search instance which you initially created.
 
-Here we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal, use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
+Here we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal (**as described below**), use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
 
-> ⚠ Caution: ⚠
-> Please be aware to first **unzip** the folder and upload the **unzipped** content of the folder.
 
 **See the upload to the Storage Account below:**
+
+Let's create a **Storage Account** in the **Azure Portal**:
+
+![Create Storage](./img/CreateStorage1.png)
+
+Fill in a *unique name* and choose the region *west europe*:
+
+![Create Storage](./img/CreateStorage2.png)
+
+Now we can upload the **unzipped** data to the created Storage Account:
+
+> ⚠ Caution:
+> Please be aware to first **unzip** the folder and upload the **unzipped** content of the folder.
 
 ![Upload Storage Account](./img/UploadStorageAccount.png)
 
@@ -388,8 +399,6 @@ Next, we need to define the `Data Source`:
 We'll skip `Cognitive Search` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
 
 ![alt text](./img/azure_search_create_index.png "Azure Search Index Setting")
-
-:question: Question: Does it make sense to have any of the fields `Filterable`, `Sortable`, or `Facetable`?
 
 Lastly, we need to give our Indexer a name and also set the schedule. In our case, we'll only run it once, but in a real world scenario, we might want to keep it running to index new, incoming data:
 
@@ -665,14 +674,13 @@ Use the **Cloud Shell** in the **Azure Portal** window for the following command
 
 1. Navigate `cd` to the source code folder `adv-search/azure-search-javascript-samples/quickstart/REST`.
 1. Install the packages for the sample with `npm install`.  This command will download the packages upon which the code depends.
+1. Run `node index.js` and examine the results
 
-Now back in Visual Studio Code, set a breakpoint in method ```doQueriesAsync``` (in **index.js** - the place where queries are sent to Azure Search and the corresponding response will be readable) and hit **F5** (if VS Code asks you, select *Node.JS App* as your environment).
-
-You should see a series of messages describing the actions being taken by the program and after some time, your breakpoint will be hit. Have a look at the ```body``` property in the method mentioned above...there you see the OData response from Azure Search.
-
-If you want to see more detail of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js**.
+You should see a series of messages describing the actions being taken by the program. Have a look at OData response from Azure Search.
 
 ![Run the node.js App with Azure Search](./img/AzureSearchAppSample.png)
+
+> *Optional*: For more details of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js** to see additional logs.
 
 ## Using the API
 
