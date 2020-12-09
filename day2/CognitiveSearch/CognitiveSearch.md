@@ -60,6 +60,7 @@ In the SCM Application, we are using the Lucene query syntax ([Lucene Query Synt
 View the full Azure Cognitive Search Feature list here:
 [Azure Cognitive Search Feature list](https://docs.microsoft.com/en-us/azure/search/search-what-is-azure-search#feature-descriptions)
 
+Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance as in the following.
 
 ## Create an Azure Search Service in the Portal
 
@@ -357,8 +358,7 @@ This step shows you how to query an index using the [Search Documents REST API](
 
 :triangular_flag_on_post: **Goal:** Deploy an Azure Search instance and index a PDF-based data set 
 
-1. Deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance
-1. Index the unstructured PDF data set from [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
+Index the unstructured PDF data set from [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
 
 ### Indexing PDF data
 
