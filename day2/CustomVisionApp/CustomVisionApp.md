@@ -162,5 +162,5 @@ If you want to create your own `static website` by deploying the application on 
 If you create a `service principal` and a [`secret from a pre deployed storage account`](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md), you can use the [`static website`](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions) feature from the storage account. The documentation on how to complete the tasks are included in the links.
 
 
-## References
+#### References
  YouTube Video: https://www.youtube.com/watch?v=7gOYpT732ow&list=PLZk8J6FocZbaClHkIPk4SWZHxn_9VArb5&index=2
