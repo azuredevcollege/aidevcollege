@@ -803,7 +803,7 @@ In the language of your choice (Python solution is provided), write two small sc
 1. Translate the input text into German (using the Text Translator API)
 1. Detect the intent and entities of the text (German) 
 
-> For purposes completeness it is important to know that you can also deploy a Language Understanding Resource in the **Azure Portal**. Once the resource is deployed you could either use the provided link to switch to the __Language Understanding Portal Europe__ in the *Quick start* Guide in *step 2*.
+> As an alternative you can also deploy a Language Understanding Resource in the **Azure Portal**. Once the resource is deployed you could either use the provided link to switch to the __Language Understanding Portal Europe__ in the *Quick start* Guide in *step 2*.
 
 Or we directly jump into the __Language Understanding Portal Europe__ (using [https://eu.luis.ai](https://eu.luis.ai)) and deploy the *Language Understanding Service* from there.
 
