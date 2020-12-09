@@ -57,7 +57,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 ![Azure Repos](./images/repos.svg)
 
-### Import the Azure Developer College GitHub repository to your Azure Repo
+### Import the AI Developer College GitHub repository to your Azure Repo
 
 Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the https url. Make sure to **use GIT** in the Azure Repos as **Repository Type**, it should be the current default.
 
