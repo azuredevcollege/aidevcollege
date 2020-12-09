@@ -92,10 +92,13 @@ Further we receive the `target classes` structured in indexes and labels.
 ![Indexes Labels](./images/IndexesLabels.png)
 
 To sum it up images are annotated by boxes, labeled with classes and receive a score to what percentage an object was detected.
-In the following we have 2 Options, either you can run the application locally or you can use a predeployed option and test it with the sample [images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet) as previously stated.
+In the following we have 2 Options, either you can run the application locally or you can use a pre-deployed option and test it with the sample [images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet) as previously stated.
 
+## OPTION 1: Use a pre-deployed Application
 
-## OPTION 1: Setup your OWN Application
+If you want, you can test the deployed application under [https://tfjs-objectdetection.azureedge.net](https://tfjs-objectdetection.azureedge.net).
+
+## OPTION 2: Setup your own Application
 
 As prerequisite you should install [Node.js](https://nodejs.org/en/download/) and [Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview).
 
@@ -124,13 +127,9 @@ This is how the model should the detect the objects as shown below:
 
 ![Final Results](./images/FinalResult2.png)
 
-## OPTION 2: Use a pre-deployed Application
-
-If you want, you can test the deployed application under under [https://tfjs-objectdetection.azureedge.net](https://tfjs-objectdetection.azureedge.net).
 
 
-**That's officially it for today - Well done! :clap:**
-
+> **That's officially it for today - Well done! :clap:**
 
 
 
@@ -138,7 +137,7 @@ If you want, you can test the deployed application under under [https://tfjs-obj
 
 If you have chosen Option 1 and want to run the application as a Github Pages or as a static Website you can jump either to [Option A - Github Pages](#option-a---github-pages) or [Option B - Static Website](#option-b---static-website).
 
-#### Option A - Github Pages
+### Option A - Github Pages
 
 **What are Github Actions?**
 GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want. If you want more detail you can read the following [documentation](https://github.com/features/actions)
@@ -155,12 +154,12 @@ Finally this application is hosted by Github Pages:
 
 ![FinalResultCustomVisionGithubPages](./images/FinalResultCustomVisionGithubPages.png)
 
-#### Option B - Static Website
+### Option B - Static Website
 
 If you want to create your own `static website` by deploying the application on a (previously created) Storage Account, we have added another `Github Action` in the folder `day2/CustomVisionApp/.github/workflows`. Read the links below how to get this sample running:
 
 If you create a `service principal` and a [`secret from a pre deployed storage account`](https://github.com/Azure/actions-workflow-samples/blob/master/assets/create-secrets-for-GitHub-workflows.md), you can use the [`static website`](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-static-site-github-actions) feature from the storage account. The documentation on how to complete the tasks are included in the links.
 
 
-#### References
+### References
  YouTube Video: https://www.youtube.com/watch?v=7gOYpT732ow&list=PLZk8J6FocZbaClHkIPk4SWZHxn_9VArb5&index=2
