@@ -129,7 +129,7 @@ This is how the model should the detect the objects as shown below:
 
 
 
-> **That's officially it for today - Well done! :clap:**
+**That's officially it for today - Well done! :clap:**
 
 
 
