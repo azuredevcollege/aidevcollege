@@ -131,11 +131,14 @@ If you want, you can test the deployed application under under [https://tfjs-obj
 
 **That's officially it for today - Well done! :clap:**
 
-## Bonus Challenge - Want more?
+
+
+
+### Bonus Challenge - Want more?
 
 If you have chosen Option 1 and want to run the application as a Github Pages or as a static Website you can jump either to [Option A - Github Pages](#option-a---github-pages) or [Option B - Static Website](#option-b---static-website).
 
-### Option A - Github Pages
+#### Option A - Github Pages
 
 **What are Github Actions?**
 GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want. If you want more detail you can read the following [documentation](https://github.com/features/actions)
@@ -152,7 +155,7 @@ Finally this application is hosted by Github Pages:
 
 ![FinalResultCustomVisionGithubPages](./images/FinalResultCustomVisionGithubPages.png)
 
-### Option B - Static Website
+#### Option B - Static Website
 
 If you want to create your own `static website` by deploying the application on a (previously created) Storage Account, we have added another `Github Action` in the folder `day2/CustomVisionApp/.github/workflows`. Read the links below how to get this sample running:
 
