@@ -43,7 +43,7 @@ Today we will cover the following topics in several sections:
 |Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
 |Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
 
-Now let's start with the *Text Analytics Cognitive Service*. The Text Analytics API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including: sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.
+Now let's start with the **Text Analytics Cognitive Service**. The Text Analytics API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including: sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.
 
 ## Azure Cognitive Services - Text Analytics
 
@@ -168,7 +168,7 @@ Example Result:
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
 
-As the world gets more and more connected we'd like to translate some languages in the following. *Translator Cognitive Service* is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
+As the world gets more and more connected we'd like to translate some languages in the following. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
 
 ## Azure Cognitive Services - Translate Text
 
@@ -208,7 +208,7 @@ Example Result:
 
 As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
 
-As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a *Face Cognitive Service* for that.
+As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a **Face Cognitive Service** for that.
 
 The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
 
@@ -441,7 +441,7 @@ A successful response is returned in JSON.
   }
 ]
 ```
-As we already started to investigate images we will now look at a different service the *Computer Vision Cognitive Service* to analyze text on an image.
+As we already started to investigate images we will now look at a different service the **Computer Vision Cognitive Service** to analyze text on an image.
 
 Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
 
@@ -556,8 +556,10 @@ _ = plt.axis("off")
 
 **Here are two more images we can test with:**
 
-[Shopping List Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg)
-[Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
+
+> [Shopping List Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg) <br>
+> [Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
+
 
 Now we use the same service by just extracting text from printed text in images. 
 
@@ -617,9 +619,9 @@ plt.axis("off")
 
 **Here is one more [image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg) we can test with!**
 
-From recognizing text on images we will now detect objects on images for this we will introduce the *Custom Vision Cognitive Service.*
+From recognizing text on images we will now detect objects on images for this we will introduce the **Custom Vision Cognitive Service.**
 
-Azure Custom Vision is an image recognition service that lets you build, deploy, and improve your own image identifiers. An image identifier applies labels (which represent classes or objects) to images, according to their visual characteristics. Unlike the Computer Vision service, Custom Vision allows you to specify the labels and train custom models to detect them.
+**Azure Custom Vision** is an image recognition service that lets you build, deploy, and improve your own image identifiers. An image identifier applies labels (which represent classes or objects) to images, according to their visual characteristics. Unlike the Computer Vision service, Custom Vision allows you to specify the labels and train custom models to detect them.
 
 **What it does?**
 The Custom Vision service uses a machine learning algorithm to analyze images. You, the developer, submit groups of images that feature and lack the characteristics in question. You label the images yourself at the time of submission. Then, the algorithm trains to this data and calculates its own accuracy by testing itself on those same images. Once the algorithm is trained, you can test, retrain, and eventually use it in your image recognition app to classify new images. You can also export the model itself for offline use.
@@ -663,7 +665,7 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 So far we have covered a lot of Text Recognition, Translation, Face Recognition and Image Recognition, so now we will look at *Speech Recognition*.
 
-In the following sample, you learn about the benefits and capabilities of the *text-to-speech service*, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the *speech-to-text service* which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
+In the following sample, you learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
 
 ## Azure Cognitive Services - Speech
 
@@ -788,6 +790,9 @@ Besides that, the speech-to-text API expects audio with the following specifics:
 More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-audio-input-streams).
 
 Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
+**Language Understanding (LUIS)** is a cloud-based conversational AI service that applies custom machine-learning intelligence to a user's conversational, natural language text to predict overall meaning, and pull out relevant, detailed information.
+
+A client application for LUIS is any conversational application that communicates with a user in natural language to complete a task. Examples of client applications include social media apps, AI chatbots, and speech-enabled desktop applications.
 
 ## Azure Cognitive Services - Language - Reveal the intention of the text
 
@@ -945,7 +950,7 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 
 This service is highly used in Bot scenarios which you can read about [here](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&tabs=python).
 
-Last but not least as Searching is essential these days we will look at the *Bing Search Cognitive Service*. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
+Last but not least as Searching is essential these days we will look at the **Bing Search Cognitive Service**. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
 
 ## Azure Cognitive Services - Search
 
