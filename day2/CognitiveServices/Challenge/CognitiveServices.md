@@ -28,7 +28,7 @@ We'll touch on the following services:
 
 # Challenges
 
-You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute VM from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
+You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute VM from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
 
 Today we will cover the following topics in several sections:
 
@@ -43,6 +43,7 @@ Today we will cover the following topics in several sections:
 |Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
 |Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
 
+Now let's start with the *Text Analytics Cognitive Service*. The Text Analytics API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including: sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.
 
 ## Azure Cognitive Services - Text Analytics
 
@@ -52,14 +53,21 @@ Today we will cover the following topics in several sections:
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
 
-In the language of your choice (Python solution is provided), write a small scripts that
-[Text Analytics Service with Other Programming Languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Text-Analytics/quickstarts/nodejs)
+1. In the following tasks we will reuse the `Compute VM` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
-In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
+First we deploy the **Azure Text Analytics** Service in the **Azure Portal**:
 
-1. We reuse the `Compute VM` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+![Azure Portal](./images/CreateTextAnalytics.png)
 
-Let's start with connecting to your Text Analytics Service. Get the Key and the URL from the Azure portal :
+Fill in the *name* and hit *create*:
+
+![Azure Portal](./images/CreateTA.png)
+
+Get the Key and the URL under the section *keys* from the Azure portal:
+
+![Azure Portal: Key and URL](./images/keyendpointta.png)
+
+Let's start with connecting to your Text Analytics Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
 import requests
@@ -69,11 +77,13 @@ subscription_key = "xxx" # Paste your API key here
 text_analytics_base_url = "xxx" # Paste your URL in here
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 ```
-![Azure Portal: Key and URL](./images/keyendpointta.png)
+
+In the following copy the code into new Cells in your Jupyter Notebook.
+In general we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Services, by sending some data to the Service and let the **pre-trained Machine Learning Model** behind the scences give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
 
 ### Detect Language
 
-Firstly, we can extract the language from text. Run this in your Azure Notebook:
+Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
 language_api_url = text_analytics_base_url + "/text/analytics/v2.1/languages"
@@ -88,13 +98,14 @@ response  = requests.post(language_api_url, headers=headers, json=documents)
 languages = response.json()
 pprint(languages)
 ```
+
 Your result should look like this: 
 
 ![Detect Language](./images/TAlanguages.png)
 
 ### Detect Sentiment
 
-Secondly, we can detect the sentiment of a given phrase:
+Secondly, we can detect the sentiment of a given phrase, go ahead and copy the Code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 sentiment_url = text_analytics_base_url + "/text/analytics/v2.1/sentiment"
@@ -116,7 +127,7 @@ Example Result:
 
 ### Detect Key Phrases
 
-Thirdly, we can easily detect key phrases from text:
+Thirdly, we can easily detect key phrases from text, copy the Code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 keyphrase_url = text_analytics_base_url + "/text/analytics/v2.1/keyphrases"
@@ -138,7 +149,7 @@ Example Result:
 
 ### Detect Entities
 
-And last but not least, we can detect the entities in text:
+And last but not least, we can detect the entities in text, copy the Code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 entities_url = text_analytics_base_url + "/text/analytics/v2.1/entities"
@@ -157,6 +168,8 @@ Example Result:
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
 
+As the world gets more and more connected we'd like to translate some languages in the following. *Translator Cognitive Service* is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
+
 ## Azure Cognitive Services - Translate Text
 
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
@@ -171,7 +184,7 @@ The Translator API  allows to directly access the service by specifying the API 
 
 ![Translator Text API Key and URL](./images/TTKeyUrl.png)
 
-Use the same Notebook as before and copy the following code in a cell below the earlier code in the Notebook.
+Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again we conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes.
 
 ```python
 import requests, json
@@ -195,9 +208,15 @@ Example Result:
 
 As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
 
+As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a *Face Cognitive Service* for that.
+
+The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
+
 ## Azure Cognitive Services - Face
 
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
+
+Again we conduct a REST Call and send an image of a face to the *Face Cognitive Service* and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`
 
 0. Deploy a Face Api Service in the Portal
 
@@ -205,14 +224,12 @@ As we can see, we can translate multiple sentences within one API call. The serv
 
 ![Details of Deploy Face API](./images/deployfacedetails.png)
 
-1. Copy the following code into Visual Studio Code.
+1. Copy the following code into a new Cell into the `CognitiveServices.ipynb` Notebook.
 2. Make the following changes in code where needed:
     1. Replace the value of `subscription_key` with your subscription key.
     2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
     3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
-3. Save the code as a file with an `.py` extension. For example, `detect-face.py`.
-4. Open a command Terminal window (at the top of Visual Studio Code).
-5. In the Terminal, change into the correct directory, use the `python` command to run the sample. For example, `python detect-face.py`.
+3. Run the Cell and examine the response.
 
 ![Keys and Url of Face API](./images/KeyUrlFace.png)
 
@@ -424,6 +441,9 @@ A successful response is returned in JSON.
   }
 ]
 ```
+As we already started to investigate images we will now look at a different service the *Computer Vision Cognitive Service* to analyze text on an image.
+
+Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
 
 ## Azure Cognitive Services - Computer Vision Service
 
@@ -432,11 +452,14 @@ A successful response is returned in JSON.
 |[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision)|https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home
 |[Custom Vision Service](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/home
 
-
 In the language of your choice (Python solution is provided), write two small scripts that
 
 1. Convert hand-written text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 1. Convert printed text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg)
+
+Again we conduct REST Calls to the Computer Vision Cognitive Service and get a JSON in response.
+
+The Computer Vision Read API is Azure's latest OCR technology that extracts printed text (in several languages), handwritten text (English only), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
 
 ### Optical Character Recognition - Images to Text - Handwritten content
 
@@ -450,8 +473,7 @@ First, create a `Computer Vision` API Key in the Azure Portal
 
 ![Receive Computer Vision URL and Key](./images/CVKeyURL.png)
 
-
-As we're dealing with images, we need a few Python packages to help with this:
+As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
 ```python
 import requests, json, time
@@ -484,20 +506,21 @@ response = requests.post(url, headers=headers, params=params, json=data)
 operation_url = response.headers["Operation-Location"]
 
 # Poll until we get a result (...or something failed)
-recogntion = {}
+recognition = {}
 poll = True
 while (poll):
     response_final = requests.get(operation_url, headers=headers)
-    recogntion = response_final.json()
+    recognition = response_final.json()
     time.sleep(1)
-    if ("recognitionResult" in recogntion):
+    if ("recognitionResult" in recognition):
         poll= False 
-    if ("status" in recogntion and recogntion['status'] == 'Failed'):
+    if ("status" in recognition and recognition['status'] == 'Failed'):
         poll= False
 
-print(json.dumps(recogntion, indent=2))
+print(json.dumps(recognition, indent=2))
 ```
-Example Notebook and Result: 
+
+**Example Notebook and Result:**
 
 ![Python Code in Azure Notebook](./images/CVCode1.png)
 
@@ -527,22 +550,22 @@ for polygon in polygons:
 _ = plt.axis("off")
 ```
 
-Example Result: 
+**Visualization:**
 
 ![Result](./images/CVPartResult2.png)
 
-Here are two more images we can test with:
+**Here are two more images we can test with:**
 
-```
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg
-```
+[Shopping List Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg)
+[Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
+
+Now we use the same service by just extracting text from printed text in images. 
 
 ### Optical Character Recognition - Images to Text - Printed content
 
 :triangular_flag_on_post: **Goal:** Leverage OCR to make a printed text document in images machine-readable
 
-Extracting text from printed text in images is very similar - except that is a synchronous call, hence we directly get back the recognition result:
+It is very similar as the previous example- except that is a synchronous call, hence we directly get back the recognition result. Go ahead and copy the Code into a new Cell into your `CognitiveServices.ipynb` Notebook:
 
 ```python
 key = "xxxx" # Paste your API Key here or comment this line to use the key from above
@@ -567,9 +590,11 @@ for line in line_infos:
 word_infos
 ```
 
-Example Notebook:
+**Example Notebook:**
 
 ![Azure Notebook](./images/OcrCode.png)
+
+**Visualization:**
 
 ```python
 # Display the image and overlay it with the extracted text
@@ -586,15 +611,20 @@ for word in word_infos:
 plt.axis("off")
 ```
 
-Example Result:
+**Example Result:**
 
 ![Result](./images/OCRResult.png)
 
-Here is one more image we can test with:
+**Here is one more [image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg) we can test with!**
 
-```
-https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg
-```
+From recognizing text on images we will now detect objects on images for this we will introduce the *Custom Vision Cognitive Service.*
+
+Azure Custom Vision is an image recognition service that lets you build, deploy, and improve your own image identifiers. An image identifier applies labels (which represent classes or objects) to images, according to their visual characteristics. Unlike the Computer Vision service, Custom Vision allows you to specify the labels and train custom models to detect them.
+
+**What it does?**
+The Custom Vision service uses a machine learning algorithm to analyze images. You, the developer, submit groups of images that feature and lack the characteristics in question. You label the images yourself at the time of submission. Then, the algorithm trains to this data and calculates its own accuracy by testing itself on those same images. Once the algorithm is trained, you can test, retrain, and eventually use it in your image recognition app to classify new images. You can also export the model itself for offline use.
+
+Now let's create our own Custom Vision Service.
 
 ## Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images
 
@@ -631,6 +661,10 @@ Under `Quick Test`, we can briefly upload our testing images and see what the se
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
 
+So far we have covered a lot of Text Recognition, Translation, Face Recognition and Image Recognition, so now we will look at *Speech Recognition*.
+
+In the following sample, you learn about the benefits and capabilities of the *text-to-speech service*, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the *speech-to-text service* which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
+
 ## Azure Cognitive Services - Speech
 
 :triangular_flag_on_post: **Goal:** Leverage Speech-to-Text and Text-to-Speech
@@ -642,10 +676,13 @@ In the language of your choice (Python solution is provided), write two small sc
 
 You can use can use this file: [`data/test.wav`](data/test.wav) (English).
 
-Now that we have converted a user's speech input into text, we'll try to determine the intent of that text in the next challenge.
-
+Let's deploy a Speech service:
 
 ![alt text](./images/speech_api_service.png "Speech API Service")
+
+Fill in a *unique name* and select *create*:
+
+![Azure Portal](./images/CreateSpeech.png)
 
 As region, we'll be using `West Europe` in this example. You can find your API key under the service, then `Keys`.
 
@@ -703,7 +740,7 @@ There are [many different voices](https://docs.microsoft.com/en-us/azure/cogniti
 
 ### Speech-to-Text
 
-Let's take the generated or provided `test.wav` from the example before and convert it back to text. Again, let's first create a token:
+Let's take the generated or provided `test.wav` from the example before and convert it back to text. Again, copy the code and let's first create a token:
 
 ```python
 import requests, json
@@ -758,26 +795,16 @@ For retrieving the intent of the text, we'll be using the Language Understanding
 
 :triangular_flag_on_post: **Goal:** Make your application understand the meaning of text
 
-First we deploy a Language Understanding Resource in the **Azure Portal** as shown below:
-
-![Azure Portal](./images/LanguageUnderstandingPortal1.png)
-
-Create the new resource:
-
-![Azure Portal](./images/LanguageUnderstandingPortal2.png)
-
-Once the resource is deployed you could either use the provided link to switch to the __Language Understanding Portal Europe__ in the *Quick   start* Guide in *step 2*.
-
-![Azure Portal](./images/LanguageUnderstandingPortal3.png)
-
 In the language of your choice (Python solution is provided), write two small scripts or apps that
 
 1. Translate the input text into German (using the Text Translator API)
-1. Detect the intent and entities of the text (German) - see examples below (using [https://eu.luis.ai](https://eu.luis.ai))
+1. Detect the intent and entities of the text (German) 
 
-Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
+> For purposes completeness it is important to know that you can also deploy a Language Understanding Resource in the **Azure Portal**. Once the resource is deployed you could either use the provided link to switch to the __Language Understanding Portal Europe__ in the *Quick start* Guide in *step 2*.
 
-Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. First we need to deploy an *authorizing LUIS resource*.
+Or we directly jump into the __Language Understanding Portal Europe__ (using [https://eu.luis.ai](https://eu.luis.ai)) and deploy the *Language Understanding Service* from there.
+
+Head to [`eu.luis.ai`](https://eu.luis.ai) and create a new LUIS app. First we need create an *authorizing LUIS resource*.
 
 ![LUIS Migration](./images/LUIS00.png)
 
@@ -793,7 +820,7 @@ Then you select `Create new authoring resource`, choose your `Azure subscription
 
 ![LUIS Migration](./images/LUIS03.png)
 
-Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `Pizza Order App`
+Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `Pizza Order App`. Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
 > **Note:** Culture is the language that your app understands, not the interface language.
 
@@ -918,18 +945,19 @@ Excellent - Now we know what the user wants to order, and the associated quantit
 
 This service is highly used in Bot scenarios which you can read about [here](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0&tabs=python).
 
+Last but not least as Searching is essential these days we will look at the *Bing Search Cognitive Service*. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
+
 ## Azure Cognitive Services - Search
 
 :triangular_flag_on_post: **Goal:** Write a script for auto-suggestion of text
 
-1. Leverage Bing Autosuggest to make predictions on how a user might wants to continue an half-written sentence
+1. Leverage Bing Search to make predictions on how a user might wants to continue an half-written sentence
 
 First, create a `Bing Search v7` API Key in the Azure Portal:
 
 ![alt text](./images/bing_searchv7.png "Bing Search v7")
 
-As in challenge 3 and 5, we can either create a token for our requests, or directly access the service by specifying the API key we've just created:
-
+As in the previous tasks, we can either create a token for our requests, or directly access the service by specifying the API key we've just created:
 
 ```python
 import requests, json
