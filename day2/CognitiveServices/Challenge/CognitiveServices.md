@@ -638,7 +638,7 @@ Create a new project of type `Object detection`:
 
 ![alt text](./images/customvision_project.png "Custom Vision Project")
 
-Next, add all the training images from the [dataset](./data/beer_glassess). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+Next, add all the training images from the [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip). Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
 
 ![alt text](./images/customvision_tagging.png "Tagging the training images")
 
