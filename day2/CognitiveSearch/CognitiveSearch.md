@@ -325,7 +325,7 @@ This step shows you how to query an index using the [Search Documents REST API](
 
    ```python
    url = endpoint + "indexes/hotels-quickstart/docs" + api_version + search_string_option1
-   response  = requests.get(url, headers=headers, json=searchstring)
+   response  = requests.get(url, headers=headers, json=search_string_option1)
    query = response.json()
    pprint(query)
    ```
@@ -339,19 +339,19 @@ This step shows you how to query an index using the [Search Documents REST API](
    Apply a filter: 
 
    ```python
-   searchstring = '&search=*&$filter=Rating gt 4&$select=HotelId,HotelName,Description,Rating'
+   search_string_option3 = '&search=*&$filter=Rating gt 4&$select=HotelId,HotelName,Description,Rating'
    ```
 
    Take the top two results:
 
    ```python
-   searchstring = '&search=boutique&$top=2&$select=HotelId,HotelName,Description,Category'
+   search_string_option4 = '&search=boutique&$top=2&$select=HotelId,HotelName,Description,Category'
    ```
 
     Order by a specific field:
 
    ```python
-   searchstring = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
+   search_string_option5 = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
    ```
 
 ## Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set
