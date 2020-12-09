@@ -530,9 +530,9 @@ Ok, looks like it recognized something. Let's visualize it:
 polygons = []
 
 # Get bounding boxes of the text 
-if ("recognitionResult" in recogntion):
+if ("recognitionResult" in recognition):
     polygons = [(line["boundingBox"], line["text"])
-        for line in recogntion["recognitionResult"]["lines"]]
+        for line in recognition["recognitionResult"]["lines"]]
 
 # Display image and overlay text
 plt.figure(figsize=(15, 15))
