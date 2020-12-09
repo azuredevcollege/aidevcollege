@@ -124,12 +124,12 @@ This is how the model should the detect the objects as shown below:
 
 ![Final Results](./images/FinalResult2.png)
 
-## OPTION 2: Use a predeployed Application
+## OPTION 2: Use a pre-deployed Application
 
 If you want, you can test the deployed application under under [https://tfjs-objectdetection.azureedge.net](https://tfjs-objectdetection.azureedge.net).
 
 
-That's officially it for today - Well done! :clap:
+**That's officially it for today - Well done! :clap:**
 
 ## Bonus Challenge - Want more?
 
