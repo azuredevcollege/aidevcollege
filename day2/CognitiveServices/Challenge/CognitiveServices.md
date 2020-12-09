@@ -832,18 +832,18 @@ Once the Resource is deployed you can go ahead and create the LUIS app. Select `
 
 ![Explanation](./images/explanation.png)
 
-Now let's go into the LUIS Portal and **create two new intents** and give them the following *Intent names:*
+Now let's go into the LUIS Portal and **create three new intents** and give them the following *Intent names:*
 
 * `CreateOrder`
 * `CancelOrder`
+* `None    `
 
-For this challenge we are **copying the following LUIS phrases as shown below** into the specific intents:
-Then, add the user input examples (our training examples) from the main page of this repository to the three intents. Example User input are just examples that we'll use to train LUIS.
+For this challenge we are **copying the following LUIS phrases as shown below** into the specific intents 3 Intents: "CreateOrder", "CancelOrder", "None". Then, add the user input examples (our training examples) from the main page of this repository to the three intents. Example User input are just examples that we'll use to train LUIS.
 
 ```
-2 Intents: "CreateOrder", "CancelOrder"
+3 Intents: "CreateOrder", "CancelOrder", "None"
 
-Utterances:
+User Input Examples:
 
 (CreateOrder) Ich moechte eine Pizza Salami bestellen 
 (CreateOrder) Vier Pizza Hawaii bitte 
@@ -866,21 +866,24 @@ In this scenario we are using **`Prebuilt Entity`** and the **`Machine Learned E
 Next, we **will try to detect `Entities`** in our text inputs. 
 Go ahead and **create 3 new entities** in the LUIS Portal. 
 
-1. Firstly for that, go to Entities and **add a `Prebuilt Entity` with the type `Number`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text. 
-1. Secondly, **add a normal Entity `PizzaType` with entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
-1. Lastly, **add an entity of type `Machine learned` with the name `PizzaOrder` and add `Number` and `PizzaType` as children**. 
-
+1. Firstly for that, go to Entities and **add an Entity `Number`** with **entity type `Prebuilt Entity`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text.
+1. Secondly, **add an Entity `PizzaType`** with **entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
+1. Lastly, **add an Entity `PizzaOrder`** with **entity type `Machine learned`** 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
-Now let's go to the **PizzaType Entity** and add a **Machine Learning features** by selecting `Create new phrase list`:
+In the Entity `PizzaOrder`, go ahead and **add `Number` and `PizzaType` as Machine Learning features in this Entity**.
+
+![Pizza Order](./images/MachineLearningFeatures.png)
+
+Now let's go to the **`PizzaType` Entity** and **add a Machine Learning feature** by **selecting `Create new phrase list`**:
 
 ![CreateNewPhraseList](./images/CreateNewPhraseList.png)
 
-Further we will **add values to the `PizzaPhraseList`** with some **Pizza Type Samples e.g. Tonno, Salami, Pepperoni** as shown in the Screenshot below:
+Further we will **add values to the `PizzaPhraseList`** with some **Pizza Type Samples e.g. Tonno, Salami, Pepperoni, Mozarella, Hawaii, Magaritha** as shown in the Screenshot below:
 
 ![alt text](./images/PizzaPhraseList.png)
 
-Then we connect the `PizzaType` to the `PizzaPhraseList`:
+Thus we connected the `PizzaPhraseList` to the `PizzaType`:
 
 ![Pizza Phrase List linked to Pizza Type](./images/PizzaTypePizzaPhraseListLink.png)
 
@@ -891,7 +894,7 @@ Finally, **we will annotate our training examples**. Numbers will automatically 
 1. Then directly **click the last part of the entity** (= the pizza type) and 
 1. Then **select `PizzaOrder`**. 
 1. Then **tag all pizza types inside the `PizzaOrder` as `Pizza Type`**. 
-1. The final tagging should look something like this (make sure the green line covers the whole phrase):
+1. The final tagging should look something like this (See Screenshot below):
 
 ![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
 
@@ -901,7 +904,7 @@ Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Prod
 https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
 ```
 
-With a bit of Python, we can now get the intent through the API.
+With a bit of Python, we can now get the intent through the API. <br>
 **Go ahead and copy the code into a new cell in your Notebook:**
 
 ```python
