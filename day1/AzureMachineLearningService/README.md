@@ -118,4 +118,6 @@ Guidance:
 - [MLOps with Azure ML](https://github.com/microsoft/MLOpsPython) - running a ML Pipeline in Azure DevOps
 - [DevOps for AI: Deploying everywhere (Build 2018)](https://www.youtube.com/watch?v=Fo220toRwhM) - might be not fully up to date but gives some good ideas
 
+⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
+
 :zap: Let's go to **[AI Developer College Day 1 - MLOps](../MLOps/MLOps.md)**!
