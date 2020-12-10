@@ -60,6 +60,7 @@ In the SCM Application, we are using the Lucene query syntax ([Lucene Query Synt
 View the full Azure Cognitive Search Feature list here:
 [Azure Cognitive Search Feature list](https://docs.microsoft.com/en-us/azure/search/search-what-is-azure-search#feature-descriptions)
 
+Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance as in the following.
 
 ## Create an Azure Search Service in the Portal
 
@@ -67,9 +68,9 @@ View the full Azure Cognitive Search Feature list here:
 
 1. First, create a `Azure Search` instance in the Azure Portal
 
-1. For our purposes, the `Free Tier` is sufficient
+1. For our purposes, the `Standard Tier` is sufficient
 
-However, the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index larger documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above).
+> As a side note the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index larger documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above).
 
 ![Create Azure Search](./img/AzureSearchCreate.png)
 
@@ -94,7 +95,7 @@ Azure Search [can index](https://docs.microsoft.com/en-us/azure/search/search-in
 
 REST calls require the service URL and an access key on every request. A search service is created with both, so if you added Azure Cognitive Search to your subscription, follow these steps to get the necessary information:
 
-1. [Sign in to the Azure portal](https://portal.azure.com/), and in your search service **Overview** page, get the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
+1. [Sign in to the Azure portal](https://portal.azure.com/), and in your search service **Overview** page, get the URL (example endpoint `https://xxxxxxx.search.windows.net`).
 
 2. In **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
 
@@ -102,9 +103,9 @@ All requests require an api-key on every request sent to your service. Having a 
 
 ## Connect to Azure Cognitive Search
 
-In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service. On Windows with Anaconda3, you can use Anaconda Navigator to launch a notebook.
+In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service.
 
-1. We reuse the `Compute VM` from the Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveSearch.ipynb`.
+1. We reuse the `Compute Instance (VM)` from the Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveSearch.ipynb`.
 
 2. In the first cell, load the libraries used for working with JSON and formulating HTTP requests.
 
@@ -123,8 +124,6 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
            'api-key': '<YOUR-ADMIN-API-KEY>' }
    ```
 
-   If you get ConnectionError `"Failed to establish a new connection"`, verify that the api-key is a primary or secondary admin key, and that all leading and trailing characters (`?` and `/`) are in place.
-
 4. In the third cell, formulate the request. This GET request targets the indexes collection of your search service and selects the name property of existing indexes.
 
    ```python
@@ -133,10 +132,23 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
    index_list = response.json()
    pprint(index_list)
    ```
+ If you get ConnectionError `"Failed to establish a new connection"`, verify that the api-key is a primary or secondary admin key, and that all leading and trailing characters (`?` and `/`) are in place.
 
-5. Run each step. If indexes exist, the response contains a list of index names. In the screenshot below, the service already has an azureblob-index and a realestate-us-sample index.
+5. Run each step. If indexes exist, the response contains a list of index names. In contrast, an empty index collection returns this response: 
 
-   In contrast, an empty index collection returns this response: `{'@odata.context': 'https://mydemo.search.windows.net/$metadata#indexes(name)', 'value': []}`
+```json
+{
+  "@odata.context": "https://mydemo.search.windows.net/$metadata#indexes(name)", "value": []
+}
+```
+Once we have completed the next **Create an Index Task** it will look like this:
+
+```json
+{
+  "@odata.context": "https://devcollege.search.windows.net/$metadata#indexes(name)",
+  "value": [{"name": "hotels-quickstart"}]
+}
+```
 
 ### 1 - Create an index
 
@@ -297,23 +309,23 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
 This step shows you how to query an index using the [Search Documents REST API](https://docs.microsoft.com/rest/api/searchservice/search-documents).
 
-1. In a cell, provide a query expression that executes an empty search (search=*), returning an unranked list (search score  = 1.0) of arbitrary documents. By default, Azure Cognitive Search returns 50 matches at a time. As structured, this query returns an entire document structure and values. Add $count=true to get a count of all documents in the results.
+1. **Option 1:** In a cell, provide a query expression that executes an empty search (search=*), returning an unranked list (search score  = 1.0) of arbitrary documents. By default, Azure Cognitive Search returns 50 matches at a time. As structured, this query returns an entire document structure and values. Add $count=true to get a count of all documents in the results.
 
    ```python
-   searchstring = '&search=*&$count=true'
+   search_string_option1 = '&search=*&$count=true'
    ```
 
-2. In a new cell, provide the following example to search on the terms "hotels" and "wifi". Add $select to specify which fields to include in the search results.
+2. **Option 2:** In a new cell, provide the following example to search on the terms "hotels" and "wifi". Add $select to specify which fields to include in the search results.
 
    ```python
-   searchstring = '&search=hotels wifi&$count=true&$select=HotelId,HotelName'
+   search_string_option2 = '&search=hotels wifi&$count=true&$select=HotelId,HotelName'
    ```
 
-3. In another cell, formulate a request. This GET request targets the docs collection of the hotels-quickstart index, and attaches the query you specified in the previous step.
+3. In another cell, formulate a request. This GET request targets the docs collection of the hotels-quickstart index, and attaches the query you specified in the previous step, please  choose the first Option and afterwards the second Option to execute the different queries: `search_string_option<fill In: 1 or 2>`
 
    ```python
-   url = endpoint + "indexes/hotels-quickstart/docs" + api_version + searchstring
-   response  = requests.get(url, headers=headers, json=searchstring)
+   url = endpoint + "indexes/hotels-quickstart/docs" + api_version + search_string_option1
+   response  = requests.get(url, headers=headers, json=search_string_option1)
    query = response.json()
    pprint(query)
    ```
@@ -327,44 +339,60 @@ This step shows you how to query an index using the [Search Documents REST API](
    Apply a filter: 
 
    ```python
-   searchstring = '&search=*&$filter=Rating gt 4&$select=HotelId,HotelName,Description,Rating'
+   search_string_option3 = '&search=*&$filter=Rating gt 4&$select=HotelId,HotelName,Description,Rating'
    ```
 
    Take the top two results:
 
    ```python
-   searchstring = '&search=boutique&$top=2&$select=HotelId,HotelName,Description,Category'
+   search_string_option4 = '&search=boutique&$top=2&$select=HotelId,HotelName,Description,Category'
    ```
 
     Order by a specific field:
 
    ```python
-   searchstring = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
+   search_string_option5 = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
    ```
 
-## Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set
+## Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set
 
-:triangular_flag_on_post: **Goal:** Deploy an Azure Search instance and index a PDF-based data set 
+:triangular_flag_on_post: **Goal:** Reuse the Azure Search instance and index a PDF-based data set 
 
-1. Deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance
-1. Index the unstructured PDF data set from [here](./data/search-dataset-pdf.zip) - which document contains the term `Content Moderator`?
+We want to index the unstructured PDF data set from [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip).
 
 ### Indexing PDF data
 
-First, create a `Azure Search` instance in the Azure Portal as
+Please reuse the Azure Search instance which you initially created.
 
-![alt text](./img/azure_search_service.png "Azure Search")
+Here we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal (**as described below**), use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
 
+**See the upload to the Storage Account below:**
 
-However, the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index longer documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above - as of November 2018).
+Let's create a **Storage Account** in the **Azure Portal**:
 
-Once provisioned, our service will be reachable via `https://xxxxxxx.search.windows.net`
+![Create Storage](./img/CreateStorage1.png)
 
-Azure Search [can index](https://docs.microsoft.com/en-us/azure/search/search-indexer-overview) data from a variety of sources as described above:
+Fill in a *unique name* and choose the region *west europe*:
 
-In our case, we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](../data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal, use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
+![Create Storage](./img/CreateStorage2.png)
 
-Once we have uploaded the PDF files, we can go into our Azure Search instance and goto `Import Data`:
+Then create a Container with the **Public Access Level *Private** (See Screenshot below):
+The Public Access Level specifies whether data in the container may be accessed publicly. By default, container data is private to the account owner. Use 'Blob' to allow public read access for blobs. Use 'Container' to allow public read and list access to the entire container.
+
+![Create Container](./img/CreateContainer.png)
+
+Now we can upload the **unzipped** data to the created Storage Account:
+
+> ⚠ Caution:
+> Please be aware to first **unzip** the folder and upload the **unzipped** content of the folder.
+
+![Upload Storage Account](./img/UploadStorageAccount.png)
+
+You can conveniently **select and upload all files at once**:
+
+![DataImport](./img/DataImport.png)
+
+Once we have uploaded the PDF files, we can go into our Azure Search instance and go to `Import Data`:
 
 ![alt text](./img/azure_search_import_data.png "Azure Search Import Data")
 
@@ -375,8 +403,6 @@ Next, we need to define the `Data Source`:
 We'll skip `Cognitive Search` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
 
 ![alt text](./img/azure_search_create_index.png "Azure Search Index Setting")
-
-:question: Question: Does it make sense to have any of the fields `Filterable`, `Sortable`, or `Facetable`?
 
 Lastly, we need to give our Indexer a name and also set the schedule. In our case, we'll only run it once, but in a real world scenario, we might want to keep it running to index new, incoming data:
 
@@ -414,11 +440,7 @@ Using double-quotes `"..."` will search for the whole string, rather than each s
 
 If we want to figure out the original file, we can look at: `metadata_storage_path`. Since it is **base64-encoded**, we need to decode it, either via command line or by using e.g., [www.base64decode.org](https://www.base64decode.org/):
 
-```
-https://bootcamps.blob.core.windows.net/datasets/What%20are%20Azure%20Cognitive%20Services.pdf
-```
-
-Perfect, now we know which document contained the term `Content Moderator`.
+Perfect, now we know which [document](https://bootcamps.blob.core.windows.net/datasets/What%20are%20Azure%20Cognitive%20Services.pdf) contained the term `Content Moderator`.
 
 ## Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)
 
@@ -426,13 +448,13 @@ Perfect, now we know which document contained the term `Content Moderator`.
 :triangular_flag_on_post: **Goal:** Index an unstructured data set with Cognitive Search
 
 1. Add another index to the Azure Search instance, but this time enable Cognitive Search
-1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](data/search-dataset-cognitive.zip))
+1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip))
 
 In the first part, we've seen that Azure Search can index data like PDFs, PowerPoints, etc., as long as the documents are easily machine readable (=text). [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro) allows us to also index unstructured data. More precisely, it add capabilities for data extraction, natural language processing (NLP), and image processing to Azure Search indexing pipeline (for more see [here](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro#key-features-and-concepts)). In Azure Cognitive Search, a skillset responsible for the pipeline of the data and consists of multiple skills. Some skills have been pre-included, but it is also possible for us to write our own skills.
 
 [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-quickstart-blob)
 
-As before, let's upload our data to Blob Storage and let Azure Search index it from there - in a separate index obviously. In our existing Storage Account, we'll create a new `Blob container`, where we'll upload our [dataset](../data/search-dataset-cognitive.zip) to.
+As before, let's **unzip and upload the unzipped data** to Blob Storage and let Azure Search index it from there - in a separate index obviously. In our existing Storage Account, we'll create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip) to.
 
 Once we're done, we'll repeat the steps from before, `Import Dataset`, walk through the wizard, but this time, we'll configure the `Cognitive Search` part in the second tab.
 
@@ -472,11 +494,14 @@ Now let's jump into code. We will create a Node.js application that that creates
 
 ### Set up your environment
 
-Begin by opening the Cloud Shell in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js.
+Begin by opening the **Cloud Shell** (next to the search field) in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js:
+
+![Cloud Shell](./img/CloudShell.png)
 
 1. Create a development directory, giving it the name `adv-search` :
 
     ```bash
+    cd adv-search
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples.git
     cd azure-search-javascript-samples/quickstart/REST
     code .
@@ -646,18 +671,17 @@ Now, have a look at the file **AzureSearchClient.js** and take your time to unde
 
 ### Prepare and run the sample
 
-Use a terminal window for the following commands.
+Use the **Cloud Shell** in the **Azure Portal** window for the following commands.
 
-1. Navigate to the source code folder *azure-search-javascript-samples/quickstart*.
+1. Navigate `cd` to the source code folder `adv-search/azure-search-javascript-samples/quickstart/REST`.
 1. Install the packages for the sample with `npm install`.  This command will download the packages upon which the code depends.
+1. Run `node index.js` and examine the results
 
-Now back in Visual Studio Code, set a breakpoint in method ```doQueriesAsync``` (in **index.js** - the place where queries are sent to Azure Search and the corresponding response will be readable) and hit **F5** (if VS Code asks you, select *Node.JS App* as your environment).
+You should see a series of messages describing the actions being taken by the program. Have a look at OData response from Azure Search.
 
-You should see a series of messages describing the actions being taken by the program and after some time, your breakpoint will be hit. Have a look at the ```body``` property in the method mentioned above...there you see the OData response from Azure Search. 
+![Run the node.js App with Azure Search](./img/AzureSearchAppSample.png)
 
-If you want to see more detail of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js**.
-
-![Run the node.js App with Azure Search](./img/resultappnodejsazuresearch.png)
+> *Optional*: For more details of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js** to see additional logs.
 
 ## Using the API
 
