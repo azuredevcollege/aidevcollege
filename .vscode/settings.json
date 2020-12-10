@@ -1,0 +1,4 @@
+{
+    "ai.azureml.defaultWorkspaceId": "/subscriptions/3fae8928-4c01-40a9-bcdd-b0b8e4e026c5/resourceGroups/aidevcollege/providers/Microsoft.MachineLearningServices/workspaces/aidevcollege",
+    "jupyter.jupyterServerType": "remote"
+}

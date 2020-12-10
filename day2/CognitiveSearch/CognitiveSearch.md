@@ -366,7 +366,6 @@ Please reuse the Azure Search instance which you initially created.
 
 Here we'll upload our data to Blob Storage and let Azure Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-pdf.zip) to. We can do this completely through the Azure Portal (**as described below**), use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
 
-
 **See the upload to the Storage Account below:**
 
 Let's create a **Storage Account** in the **Azure Portal**:
@@ -376,6 +375,11 @@ Let's create a **Storage Account** in the **Azure Portal**:
 Fill in a *unique name* and choose the region *west europe*:
 
 ![Create Storage](./img/CreateStorage2.png)
+
+Then create a Container with the **Public Access Level *Private** (See Screenshot below):
+The Public Access Level specifies whether data in the container may be accessed publicly. By default, container data is private to the account owner. Use 'Blob' to allow public read access for blobs. Use 'Container' to allow public read and list access to the entire container.
+
+![Create Container](./img/CreateContainer.png)
 
 Now we can upload the **unzipped** data to the created Storage Account:
 
@@ -436,11 +440,7 @@ Using double-quotes `"..."` will search for the whole string, rather than each s
 
 If we want to figure out the original file, we can look at: `metadata_storage_path`. Since it is **base64-encoded**, we need to decode it, either via command line or by using e.g., [www.base64decode.org](https://www.base64decode.org/):
 
-```
-https://bootcamps.blob.core.windows.net/datasets/What%20are%20Azure%20Cognitive%20Services.pdf
-```
-
-Perfect, now we know which document contained the term `Content Moderator`.
+Perfect, now we know which [document](https://bootcamps.blob.core.windows.net/datasets/What%20are%20Azure%20Cognitive%20Services.pdf) contained the term `Content Moderator`.
 
 ## Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)
 
