@@ -360,12 +360,7 @@ Enter `traces` in the query text field and hit run:
 
 From here, we can start building more complex queries, set alarms or start exploring what is happening with our models.
 
-Lastly, we can delete our API service and also the AKS cluster:
-
-```python
-aks_service.delete()
-aks_target.delete()
-```
+⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
 
 At this point:
 

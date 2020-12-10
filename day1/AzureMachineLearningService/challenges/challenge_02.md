@@ -385,12 +385,6 @@ model = run.register_model(model_name='keras-tf-mnist-model', model_path='output
 print(model.name, model.id, model.version, sep = '\t')
 ```
 
-If we want, we can also delete our Azure Machine Learning Compute cluster (we will need it again in challenge 3, but re-creation only takes 2 minutes):
-
-```python
-compute_target.delete()
-```
-
 At this point (in addition to the results from challenge 1):
 
 - We used the Azure Machine Learning SDK with Azure Machine Learning Compute in the background to train a Convolutional Neural Network (CNN)
