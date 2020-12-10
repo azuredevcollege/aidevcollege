@@ -890,7 +890,7 @@ Example User Inputs:
 (None) Wie ist das Wetter in Berlin?
 (None) Bitte Termin fuer Montag einstellen
 (None) Wieviel Grad ist es heute?
-(None) Wie ist das Wetter in Mpnchen?
+(None) Wie ist das Wetter in München?
 (None) Wann kommt der Weihnachtsmann?
 (None) Wann ist Weihnachten?
 (None) Wie ist das Wetter in Frankfurt?
