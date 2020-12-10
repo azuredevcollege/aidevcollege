@@ -633,15 +633,27 @@ Now let's create our own Custom Vision Service.
 
 1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
 
-First, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
+First we deploy the **Azure Custom Vision** Service in the **Azure Portal**:
+
+![Azure Portal](./images/CustomVision1.png)
+
+The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. Fill in the *name* and the *location* as well as the *pricing tier* for the training and the prediction resource:
+
+![Azure Portal](./images/CustomVision2.png)
+
+Then, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
 Create a new project of type `Object detection`:
 
-![alt text](./images/customvision_project.png "Custom Vision Project")
+![alt text](./images/CustomVision4.png "Custom Vision Project")
 
-Next, add all the **training images** from the **unzipped** [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip) within the **beer_glasses_train**. Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+Next, add all the **training images** from the **unzipped** [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip) within the **beer_glasses_train**. 
 
-![alt text](./images/customvision_tagging.png "Tagging the training images")
+![alt text](./images/CustomVision6.png "Tagging the training images")
+
+Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+
+![alt text](./images/CustomVision8.png "Tagging the training images")
 
 Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
 
