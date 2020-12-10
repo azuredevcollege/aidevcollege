@@ -1,6 +1,8 @@
-# MLOps on Azure
+# AI Developer College Day 1 - MLOps
 
-In the last tasks we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. But to operationalize the model we need DevOps. Thus our code from e.g. Jupyter Notebook could be saved in .py files (see for example the train_diabetes.py). In this task we have prepared a `.yaml` file which automatically deploys a Workspace, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up everything we have done manually will be done automatically now.
+In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. To operationalize the model we need automation called machine learning operations (MLOps). For example to switch from Jupyter Notebook to a plain Python file you can simply copy the code cells into a `.py` file. (see for example the train_diabetes.py). In this challenge we have prepared a `.yaml` file which automatically deploys a Azure Machine Learning Workspace, deploys a Compute Cluster, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service like we did before in the Jupyter Noteboook manually. To sum it up everything we have done manually will be automated now.
+
+# MLOps on Azure
 
 This repository contains examples of how to implement [MLOps](https://en.wikipedia.org/wiki/MLOps) using [Azure ML Services](https://azure.microsoft.com/en-us/services/machine-learning-service/) and [Azure DevOps](https://azure.microsoft.com/en-us/services/devops/).
 
