@@ -823,7 +823,7 @@ Then you select `Create new authoring resource`, choose your `Azure subscription
 
 ![LUIS Migration](./images/LUIS03.png)
 
-Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture English* as default and give it the name `OrderApp`. Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
+Once the Resource is deployed you can go ahead and create the LUIS app. Select `New app`, keep the default *Culture German* as default and give it the name `OrderApp`. Let's use an example where we want to detect a Pizza order from the user. We also want to detect if the user wants to cancel an order.
 
 > **Note:** Culture is the language that your app understands, not the interface language.
 > **Quick explanation on how LUIS works: **
@@ -836,42 +836,77 @@ Now let's go into the LUIS Portal and **create three new intents** and give them
 
 * `CreateOrder`
 * `CancelOrder`
-* `None    `
+* `None` (might be already there)
 
-For this challenge we are **copying the following LUIS phrases as shown below** into the specific intents 3 Intents: "CreateOrder", "CancelOrder", "None". Then, add the user input examples (our training examples) from the main page of this repository to the three intents. Example User input are just examples that we'll use to train LUIS.
+For this challenge we are **copying the following LUIS phrases as shown below** into the specific 3 Intents: **"CreateOrder", "CancelOrder", "None"**. Then, add the user input examples (our training examples below) to the three intents, **navigate to each intent and add the Example User inputs**. Example User input are just examples that we'll use to train LUIS. *Go ahead and add 5-10 other user input examples yourself to increase the quality of the model as there is a high correlation between quality of the model and number of training data*.
 
 ```
 3 Intents: "CreateOrder", "CancelOrder", "None"
 
-User Input Examples:
+Example User Inputs:
 
 (CreateOrder) Ich moechte eine Pizza Salami bestellen 
-(CreateOrder) Vier Pizza Hawaii bitte 
+(CreateOrder) Vier Pizza Hawaii bitte
+(CreateOrder) Ich moechte eine Pizza Tonno bestellen 
+(CreateOrder) Vier Pizza Magaritha bitte 
+(CreateOrder) Ich moechte eine Pizza Calzone bestellen 
+(CreateOrder) Vier Pizza Marinara bitte
+(CreateOrder) Ich moechte eine Pizza Fungi bestellen 
+(CreateOrder) Vier Pizza Quattro Formaggi bitte
+(CreateOrder) Ich moechte eine Pizza Pepperoni bestellen 
+(CreateOrder) 6 Pizza Schinken und 3 Mozzarella bitte 
+(CreateOrder) Ich moechte eine Pizza Mozzarella bestellen 
+(CreateOrder) 6 Pizza Tonno und 3 Calzone bitte 
 
 (CancelOrder) Bitte Bestellung 123 stornieren
-(CancelOrder) Cancel bitte Bestellung 42
+(CancelOrder) Cancel bitte Bestellung 12
 (CancelOrder) Ich will Order 933 nicht mehr
+(CancelOrder) Bitte Bestellung 23 stornieren
+(CancelOrder) Cancel bitte Bestellung 42
+(CancelOrder) Ich will Order 33 nicht mehr
+(CancelOrder) Bitte Bestellung 11 stornieren
+(CancelOrder) Cancel bitte Bestellung 10
+(CancelOrder) Ich will Order 9 nicht mehr
+(CancelOrder) Bitte Bestellung 8 stornieren
+(CancelOrder) Cancel bitte Bestellung 600
+(CancelOrder) Ich will Order 800 nicht mehr
+
+
 
 (None) Wieviel Uhr ist heute?
 (None) Wie ist das Wetter in Berlin?
 (None) Bitte Termin fuer Montag einstellen
+(None) Wieviel Grad ist es heute?
+(None) Wie ist das Wetter in Mpnchen?
+(None) Wann kommt der Weihnachtsmann?
+(None) Wann ist Weihnachten?
+(None) Wie ist das Wetter in Frankfurt?
+(None) Wann ist der Kuchen fertig?
+(None) Was ist im Weihnachtsurlaub geplant?
+(None) Kann man in den Bergen noch ohne Winterausrüstung wandern gehen?
+(None) Bitte Termin fuers Laufen einstellen
 ```
+
+Now we will have to create entities to extract key data from user input examples in Language Understanding (LUIS) apps. Extracted entity data is used by your client application to fullfil customer requests. The entity represents a word or phrase inside the user input example that you want extracted. Entities describe information relevant to the intent, and sometimes they are essential for your app to perform its task. You can create entities when you add an user input example to an intent or apart from (before or after) adding an user input example to an intent.
 
 **Entities:** There are five different options for choosing entities:
 
 ![kind of entities](./images/KindOfIntents.png)
 
-In this scenario we are using **`Prebuilt Entity`** and the **`Machine Learned Entity`**. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User.
+In this scenario we are using **`Prebuilt Entity`** and the **`Machine Learned Entity`**. We could also use the `List Entity` for the `PizzaType`, but as it has to be exactly the synonym we will prefer [Machine Learned Entity](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-entity-types) instead to [*learn*](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-concept-feature) new PizzaTypes ordered by the User (for more details read the attached links).
 
 Next, we **will try to detect `Entities`** in our text inputs. 
 Go ahead and **create 3 new entities** in the LUIS Portal. 
 
-1. Firstly for that, go to Entities and **add an Entity `Number`** with **entity type `Prebuilt Entity`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text.
-1. Secondly, **add an Entity `PizzaType`** with **entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell). 
-1. Lastly, **add an Entity `PizzaOrder`** with **entity type `Machine learned`** 
+1. Firstly for that, go to Entities and **Add a *prebuilt* Entity `Number`** with **entity type `Prebuilt Entity`**. This will automatically detect all numbers (e.g. the order number or amount of pizzas) in our text.
+
+![Prebuilt Number](./images/PrebuiltNumber.png)
+
+2. Secondly, **create** (not prebuilt) an **Entity `PizzaType`** with **entity type `Machine learned`** (ideally we could also use an entity and specify all possible Pizzas we sell).
+3. Lastly, **create** (not prebuilt) an **Entity `PizzaOrder`** with **entity type `Machine learned`** 
 ![alt text](./images/entities_luis.png "LUIS Entities")
 
-In the Entity `PizzaOrder`, go ahead and **add `Number` and `PizzaType` as Machine Learning features in this Entity**.
+After creating the Entity `PizzaOrder`, select this Entity and **add `Number` and `PizzaType` as Machine Learning features in this Entity**.
 
 ![Pizza Order](./images/MachineLearningFeatures.png)
 
@@ -879,7 +914,7 @@ Now let's go to the **`PizzaType` Entity** and **add a Machine Learning feature*
 
 ![CreateNewPhraseList](./images/CreateNewPhraseList.png)
 
-Further we will **add values to the `PizzaPhraseList`** with some **Pizza Type Samples e.g. Tonno, Salami, Pepperoni, Mozarella, Hawaii, Magaritha** as shown in the Screenshot below:
+Further we will **add values to the `PizzaPhraseList`** with some **Pizza Type Samples e.g. Tonno, Salami, Pepperoni, Mozarella, Hawaii, Magaritha** as shown in the Screenshot below. (*Go ahead and add in addition to that 5-10 other Pizza Types yourself*):
 
 ![alt text](./images/PizzaPhraseList.png)
 
@@ -889,10 +924,15 @@ Thus we connected the `PizzaPhraseList` to the `PizzaType`:
 
 As we can see, LUIS supports a range of entity types, like regex, lists, etc.
 
-Finally, **we will annotate our training examples**. Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what `PizzaOrder` is. This is a bit tricky:
+Now we will navigate to the **Intents** and will tell the algorithm what part of our user example inputs are a `Pizza Type` and what is the entire `PizzaOrder`. For this **we will annotate our training examples** under **Intents** Numbers will automatically be detected (as it is a prebuilt type), but we need to tell LUIS, what a `PizzaOrder` is.This is a bit tricky:
 1. First **click the beginning of the entity** (= the detected number) and
 1. Then directly **click the last part of the entity** (= the pizza type) and 
-1. Then **select `PizzaOrder`**. 
+1. Then **select `PizzaOrder`**.
+
+See the Screenshot below:
+
+![Annotations](./images/LUISAnnotation.png)
+
 1. Then **tag all pizza types inside the `PizzaOrder` as `Pizza Type`**. 
 1. The final tagging should look something like this (See Screenshot below):
 
@@ -919,7 +959,7 @@ response = requests.get(url + query)
 print(json.dumps(response.json(), indent=2))
 ```
 
-The output should look something like this:
+The output should look *something* like this:
 
 ```json
 
