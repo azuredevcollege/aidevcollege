@@ -1,4 +1,4 @@
-# AI Developer College Day2 - Custom Vision
+# AI Developer College Day2 - Custom Vision Application
 
 As we have looked at Azure Machine Learning Service, MLOps, Cognitive Search, Cognitive Services so far and saw how we can enrich our applications with machine learning. As a developer I can use those REST APIs and enrich my applications without having deep data scientist knowledge. As final challenge we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
 

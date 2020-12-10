@@ -1058,6 +1058,7 @@ warum ist rauchen cool
 
 People search for weird stuff... :flushed: :satisfied:
 
+:zap: Let's go to **[AI Developer College Day2 - Custom Vision Application](../../CustomVisionApp/CustomVisionApp.md)**!
 
 ## House Keeping: Lab Cleanup
 

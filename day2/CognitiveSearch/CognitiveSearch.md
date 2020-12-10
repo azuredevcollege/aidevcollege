@@ -698,6 +698,8 @@ We've been lazy and did everything through the portal - obviously not the way we
 
 For sake of time today we won't be able to go into more detail here, but feel free to have a look at it.
 
+:zap: Let's go to **[AI Developer College Day2 - Cognitive Services](../CognitiveServices/Challenge/CognitiveServices.md)**!
+
 ## House Keeping: Lab Cleanup
 
 Remove the sample resource group.
