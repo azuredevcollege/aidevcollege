@@ -653,7 +653,7 @@ Next, add all the **training images** from the **unzipped** [dataset](https://bo
 
 Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
 
-![alt text](./images/CustomVision8.png "Tagging the training images")
+![alt text](./images/customvision_tagging.png "Tagging the training images")
 
 Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
 
