@@ -95,7 +95,7 @@ Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search
 
 View the Details of Creating an Azure Search Service in the Portal:
 
-![Create Azure Search Details](./img/AzureSearchCreateDetails.png)
+![Create Azure Search Details](./img/AzureSearchCreateDetails1.png)
 
 Once provisioned, our service will be reachable via `https://xxxxxxx.search.windows.net`
 
