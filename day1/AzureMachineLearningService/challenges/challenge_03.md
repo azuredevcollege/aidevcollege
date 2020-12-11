@@ -138,17 +138,17 @@ The prediction results contain the probabilities for the image being a 0, 1, 2, 
 
 ![alt text](../images/03-api_results.png "Our prediction results")
 
-Here are some more hand-drawn test images for you to copy into the `image_url`:
+Here are some more hand-drawn test images for you to copy into the `image_url`: <br>
 
-[image_0](https://bootcamps.blob.core.windows.net/ml-test-images/0.png) <br>
-[image_1](https://bootcamps.blob.core.windows.net/ml-test-images/1.png) <br>
-[image_2](https://bootcamps.blob.core.windows.net/ml-test-images/2.png) <br>
-[image_3](https://bootcamps.blob.core.windows.net/ml-test-images/3.png) <br>
-[image_4](https://bootcamps.blob.core.windows.net/ml-test-images/4.png) <br>
-[image_5](https://bootcamps.blob.core.windows.net/ml-test-images/5.png) <br>
-[image_6](https://bootcamps.blob.core.windows.net/ml-test-images/6.png) <br>
-[image_7](https://bootcamps.blob.core.windows.net/ml-test-images/7.png) <br>
-[image_8](https://bootcamps.blob.core.windows.net/ml-test-images/8.png) <br>
+[image_0](https://bootcamps.blob.core.windows.net/ml-test-images/0.png), 
+[image_1](https://bootcamps.blob.core.windows.net/ml-test-images/1.png), 
+[image_2](https://bootcamps.blob.core.windows.net/ml-test-images/2.png), 
+[image_3](https://bootcamps.blob.core.windows.net/ml-test-images/3.png), 
+[image_4](https://bootcamps.blob.core.windows.net/ml-test-images/4.png), 
+[image_5](https://bootcamps.blob.core.windows.net/ml-test-images/5.png), 
+[image_6](https://bootcamps.blob.core.windows.net/ml-test-images/6.png), 
+[image_7](https://bootcamps.blob.core.windows.net/ml-test-images/7.png), 
+[image_8](https://bootcamps.blob.core.windows.net/ml-test-images/8.png), 
 [image_9](https://bootcamps.blob.core.windows.net/ml-test-images/9.png) <br>
 
 At this point:
