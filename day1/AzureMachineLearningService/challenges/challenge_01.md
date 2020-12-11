@@ -2,12 +2,16 @@
 
 ## Setup part
 
-In the Azure Portal, create a new `Machine Learning` resource:
+In the Azure Portal, first we create a `Resource Group`:
 
-![alt text](../images/01-aml_workspace.png "Azure Machine Learning Workspace")
+![Azure Portal](../images/CreateResourceGroup.png)
 
-* Workspace name: `azure-ai-dev-college`
-* Resource Group: `azure-ai-dev-college`
+Once the Resource Group is created, select `add` and create a new `Machine Learning` resource:
+
+![alt text](../images/CreateMachineLearning.png "Azure Machine Learning Workspace")
+
+* Workspace name: `aidevcollege`
+* Resource Group: `aidevcollege`
 * Location: `West Europe`
 * Leave the rest at default and create the service.
 
@@ -63,8 +67,8 @@ Next, create a text file called `config.json` (also via the `New` button) and re
  # Ignore this block, unless you run Jupyer directly on e.g., your laptop
  {
     "subscription_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx",
-    "resource_group": "azure-ai-dev-college",
-    "workspace_name": "azure-ai-dev-college"
+    "resource_group": "aidevcollege",
+    "workspace_name": "aidevcollege"
  }
  ```
 

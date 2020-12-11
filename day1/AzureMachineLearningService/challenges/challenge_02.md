@@ -130,8 +130,7 @@ from tensorflow.keras.callbacks import EarlyStopping, Callback
 
 from azureml.core import Run
 
-# load compressed MNIST gz files we just downloaded and return numpy arrays # Preprocessing of the Images for training
-# Formats of the Images are complex
+# load compressed MNIST gz files we just downloaded and return numpy arrays
 def load_data(filename, label=False):
     with gzip.open(filename) as gz:
         struct.unpack('I', gz.read(4))
@@ -146,7 +145,7 @@ def load_data(filename, label=False):
             res = res.reshape(n_items[0], 1)
     return res
 
-# Helper class for real-time logging # Logs every epoch and the Training accuracy
+# Helper class for real-time logging
 class CheckpointCallback(Callback):
     def __init__(self, run):
         self.run = run
@@ -188,15 +187,15 @@ data_folder = os.path.join(args.data_folder, 'mnist')
 
 print('Data folder:', data_folder)
 
-# load train and test set into numpy arrays and scale # Normalize images to have the columns with the same number range (scala)
+# load train and test set into numpy arrays and scale
 x_train = load_data(os.path.join(data_folder, 'train-images.gz'), False) / 255.0
 x_test = load_data(os.path.join(data_folder, 'test-images.gz'), False) / 255.0
-y_train = load_data(os.path.join(data_folder, 'train-labels.gz'), True).reshape(-1) #Reverting
+y_train = load_data(os.path.join(data_folder, 'train-labels.gz'), True).reshape(-1)
 y_test = load_data(os.path.join(data_folder, 'test-labels.gz'), True).reshape(-1)
 
 if K.image_data_format() == 'channels_first':
-    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols) # Reshaping images to unify the formats
-    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols) # Some formats need different kind of reshaping
+    x_train = x_train.reshape(x_train.shape[0], 1, img_rows, img_cols) 
+    x_test = x_test.reshape(x_test.shape[0], 1, img_rows, img_cols)
     input_shape = (1, img_rows, img_cols)
 else:
     x_train = x_train.reshape(x_train.shape[0], img_rows, img_cols, 1)
@@ -204,9 +203,8 @@ else:
     input_shape = (img_rows, img_cols, 1)
 
 # convert class vectors to binary class matrices
-y_train = tf.keras.utils.to_categorical(y_train, num_classes) # Labels 0-9 but we want to predict classes
-y_test = tf.keras.utils.to_categorical(y_test, num_classes) # Softmax calculates probability of each class (multi classifcation)
-# We train the ideal case
+y_train = tf.keras.utils.to_categorical(y_train, num_classes)
+y_test = tf.keras.utils.to_categorical(y_test, num_classes)
 
 print(x_train.shape)
 print(y_train.shape)
@@ -217,35 +215,35 @@ print(y_test.shape)
 run = Run.get_submitted_run()
 
 # Design our Convolutional Neural Network
-model = Sequential() #stacking layers on top of each other
-model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu", input_shape=input_shape)) #Feature detection within a tensor (multidimensional array) relu y=max(0,x)
-model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu")) #kernel_size -> filter which is 3x3 pixel big -> depth = 64
-model.add(MaxPooling2D(pool_size=(2,2))) #Max Pooling 2x2 max value of 4 pixel and compress the image
-model.add(BatchNormalization()) # Normalize the image
+model = Sequential()
+model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu", input_shape=input_shape))
+model.add(Conv2D(filters=64, kernel_size = (3,3), activation="relu"))
+model.add(MaxPooling2D(pool_size=(2,2)))
+model.add(BatchNormalization())
 model.add(Conv2D(filters=128, kernel_size = (3,3), activation="relu"))
 model.add(Conv2D(filters=128, kernel_size = (3,3), activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
 model.add(BatchNormalization())
 model.add(Conv2D(filters=256, kernel_size = (3,3), activation="relu"))
 model.add(MaxPooling2D(pool_size=(2,2)))
-model.add(Flatten()) # Flattening the tensor from a x*y tensor -> reshaping to x
+model.add(Flatten())
 model.add(BatchNormalization())
-model.add(Dense(512,activation="relu")) #fully connected layer -> every input value will be calculated with the relu function and returns the output
-model.add(Dense(num_classes, activation='softmax')) # 10 classes and get the probability of 10 classes for each image
+model.add(Dense(512,activation="relu"))
+model.add(Dense(num_classes, activation='softmax'))
 
-model.compile(loss=tf.keras.losses.categorical_crossentropy, # loss -> (um welchen Wert x lag das Modell falsch) to which value the model predicted incorrectly - logarithm (Cross Entropy)
-              optimizer=tf.keras.optimizers.Adam(), #an algorithm to calculate the minimal loss function
-              metrics=['acc']) #accuracy - in how many cases did the model incorrectly predict the images
+model.compile(loss=tf.keras.losses.categorical_crossentropy,
+              optimizer=tf.keras.optimizers.Adam(),
+              metrics=['acc'])
 
 # Train our model and use callback to log every epoch to AML
-checkpoints = CheckpointCallback(run) # save the model
-stop_training = [EarlyStopping(monitor='val_acc', patience=5, mode='max')] # stop training once the validation accuracy isn't improving significantly every 5 epochs
-train_score = model.fit(x_train, y_train, # use train datasets - x (Images) - y (Labels)
-                        batch_size=batch_size, # use batch size - how many train data are saved in memory - the higher the more RAM is used
-                        epochs=epochs, # Forward Propagation - Backward Propagation - how often the 60.000 images are shown to the image
-                        verbose=1, # log settings - how informative is the training process via logging
-                        validation_data=(x_test, y_test), # Use Test Data to test the model
-                        callbacks=[checkpoints, stop_training]) #save model and stop training
+checkpoints = CheckpointCallback(run)
+stop_training = [EarlyStopping(monitor='val_acc', patience=5, mode='max')]
+train_score = model.fit(x_train, y_train,
+                        batch_size=batch_size,
+                        epochs=epochs,
+                        verbose=1,
+                        validation_data=(x_test, y_test),
+                        callbacks=[checkpoints, stop_training])
 
 test_score = model.evaluate(x_test, y_test, verbose=0)
 
@@ -267,7 +265,7 @@ This looks a little bit more complex than our last example! Let's walk through w
 1. We load the data from our Azure Blob share
 1. We transform the data to the format that [`Keras`](https://www.tensorflow.org/api_docs/python/tf/keras) expects
 1. We get hold of the current run (`Run.get_submitted_run()`) - the SDK will manage the run this time
-1. We build a Convolution Neural Network with two convolutional layers with ReLu as the activation function, followed by a dense 128 neuron large fully connected layer
+1. We build a Convolution Neural Network with convolutional layers with ReLu as the activation function, followed by a dense 128 neuron large fully connected layer
 1. We let `Keras` assemble and train the model
 1. We run our test data through it and get the predictions
 1. We log the final train and test accuracies to our experiment
@@ -304,7 +302,6 @@ Then we "send" them to Azure Machine Learning Compute. Azure ML uses the `Script
 Which is a configuration for the `Runs` of the `Experiments`.
 
 ```python
-from azureml.train.estimator import Estimator
 from azureml.core import ScriptRunConfig
 
 ds = ws.get_default_datastore()
