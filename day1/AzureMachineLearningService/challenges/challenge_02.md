@@ -84,7 +84,7 @@ else:
     print(compute_target.status.serialize())
 ```
 
-The cluster VM(s) will take around 2-4 minutes to spin up (looks like this got a lot faster as of May 2019 :clap:).
+The cluster VM(s) will take around 2-4 minutes to spin up :clap:.
 
 As we can see, we can configure our minimum and maximum cluster size and
 the VM size. In our example, we'll stick with a medium VM
