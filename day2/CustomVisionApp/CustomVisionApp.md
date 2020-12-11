@@ -2,6 +2,8 @@
 
 As we have looked at Azure Machine Learning Service, MLOps, Cognitive Search, Cognitive Services so far and saw how we can enrich our applications with machine learning. As a developer I can use those REST APIs and enrich my applications without having deep data scientist knowledge. As final challenge we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
 
+## Focus of Today:
+
 ![Focus of Today](./images/Overview.png)
 
 # Using an Azure Custom Vision Object Detection model to detect Logos in a web browser (using TensorFlow)

@@ -2,6 +2,8 @@
 
 As we have looked at Cognitive Search so far and saw how we can enrich our search service with the Azure Cognitive Services we will now go into detail of some of those services. Yesterday we have trained and registered a model and deployed it as an endpoint. Microsoft is offering such services for developers to be able to make your applications smarter by enriching those with intelligence.
 
+## Focus of Today:
+
 ![Focus of today](./images/Overview.png)
 
 # Cognitive Services

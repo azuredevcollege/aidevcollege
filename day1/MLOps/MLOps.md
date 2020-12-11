@@ -2,6 +2,8 @@
 
 In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. To operationalize the model we need automation called machine learning operations (MLOps). For example to switch from Jupyter Notebook to a plain Python file you can simply copy the code cells into a `.py` file. (see for example the train_diabetes.py). In this challenge we have prepared a `.yaml` file which automatically deploys a Azure Machine Learning Workspace, deploys a Compute Cluster, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service like we did before in the Jupyter Noteboook manually. To sum it up everything we have done manually will be automated now.
 
+## Focus of Today:
+
 ![Focus of today](./images/Overview.png)
 
 # MLOps on Azure

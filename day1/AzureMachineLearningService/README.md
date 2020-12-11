@@ -4,6 +4,8 @@ Today we will use Azure Machine Learning Workspace. Here we will start by traini
 
 Once we have seen the data scientist/ml expert view we will switch to the Developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
 
+## Focus of Today:
+
 ![Focus of today](./images/Overview.png)
 
 # Azure Machine Learning Workspace

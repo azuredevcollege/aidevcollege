@@ -3,6 +3,8 @@
 Today we will stay in the developer view by using existing endpoints with pre-trained machine models behind the scenes. For this we will focus on our managed services like Azure Cognitive Search and later on Azure Cognitive Services and explore some of our convenient tools to create custom machine learning models like LUIS and Custom Vision. As a developer I can use those REST APIs and enrich my applications without having deep data scientist knowledge.
 As final task we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
 
+## Focus of Today:
+
 ![Focus of today](./img/Overview.png)
 
 # Azure (Cognitive) Search
