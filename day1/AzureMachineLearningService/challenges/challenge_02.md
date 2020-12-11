@@ -58,7 +58,7 @@ import os
 
 # Configure our cluster details
 compute_name = "cpucluster"
-compute_min_nodes = 1
+compute_min_nodes = 0
 compute_max_nodes = 1
 vm_size = "Standard_F16s_v2"
 
