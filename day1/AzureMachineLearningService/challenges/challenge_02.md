@@ -1,6 +1,6 @@
 # Challenge 2
 
-In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a Deep Convolutional Neural Network in this challenge. For training this more powerful and complex model, we'll need more compute power. Therefore, instead of training a model on our Compute Instance, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. Luckily the interaction with Azure Machine Learning won't change.
+In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a [Deep Convolutional Neural Network](en.wikipedia.org/wiki/Convolutional_neural_network) in this challenge. For training this more powerful and complex model, we'll need more compute power. Therefore, instead of training a model on our Compute Instance, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. Luckily the interaction with Azure Machine Learning won't change.
 
 **Note:** Obviously we do not really need a Compute Cluster for such a simple task, a single Compute Instance (VM) (probably even without GPU) would be absolutely sufficient. However - for sake of education - we'll be using Compute Cluster in this challenge.
 
@@ -333,7 +333,7 @@ run = experiment.submit(config=estimator)
 run
 ```
 
-The link `Link to Azure Portal` will bring us directly into our workspace:
+The `Link to Azure Portal` will bring us directly into our workspace:
 
 ![alt text](../images/02-run_link.png "Our training run is starting")
 
@@ -363,7 +363,7 @@ We can see the status of the training run by checking our experiment:
 
 ![alt text](../images/02-training_progress.png "Making training progress")
 
-The first run takes around ~10-12 minutes. Subsequent runs will be significantly faster (~5 minutes) as the base Docker image will be re-used. By using a more powerful VM, a single run can probably be executed in less than a minute (in case if you use a GPU-equipped instance, but then you might need to tell your framework to use it).
+The first run takes around ~10-12 minutes. Subsequent runs will be significantly faster (~5 minutes) as the base Docker image will be re-used. By using a more powerful VM, a single run can be executed in less than a minute (in case you use a GPU-equipped instance, but then you might need to tell your framework to use it).
 
 With the same code as before (this is the strength of Azure ML), we can retrieve the results of our training run:
 
@@ -391,7 +391,7 @@ At this point (in addition to the results from challenge 1):
 - We switched our training framework from scikit-learn to Keras with TensorFlow in the backend (without changing any Azure ML SDK code!)
 - We registered our new model (>`99%` accuracy) in our Azure ML Workspace
 
-Great, now we have a well performing model. Obviously, we want other people, maybe some developers, make use of it. Therefore, we'll deploy it as an API to an Azure Container Instance in the [next challenge](challenge_03.md).
+Great, now we have a well performing model. Obviously, we want to enable other people, maybe some developers, to use it. Therefore, we'll deploy it as an API to an Azure Container Instance in the [next challenge](challenge_03.md).
 
 ## Optional: Retrieving the Data from Web Paths as a second Option for this challenge
 
