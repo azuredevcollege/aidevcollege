@@ -22,7 +22,7 @@ Let's have a look at our Resource Group:
 * Key vault - stores our secrets
 * Machine Learning service workspace - the center point for Machine Learning on Azure
 
-Now we can either launch the `Machine Learning service workspace` in the Resource Group or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
+Now we can either launch the `Machine Learning service workspace` from the portal or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
 
 
 ## Creating a Compute Instance
@@ -54,7 +54,7 @@ Inside the newly created Compute Instance, first create a new folder via the `Ne
 
 ![alt text](../images/01-new_folder.png "New folder")
 
-> **Note:** The next block is **not** needed anymore, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
+> **Note:** The next block is **not** needed, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
 
 <details>
 Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):
@@ -90,23 +90,23 @@ ws = Workspace.from_config()
 
 You can run or re-run any cell by hitting `Run` or pressing `Shift+Enter` or `Ctrl+Enter`. Code cells have brackets left to them. If the brackets are empty `[ ]`, the code has not been run. While the code is running, you will see an asterisk `[*]`. After the code completes, a number `[1]` appears. The number tells you in which order the cells ran. You can always re-run arbitrary cells, in case something didn't work on the first try. To add another cell above and below hit `a` or `b` once you click on the cell and a blue color appears ([here are some shortcuts](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/#:~:text=%2028%20Jupyter%20Notebook%20Tips%2C%20Tricks%2C%20and%20Shortcuts,Help%20menu%20you%E2%80%99ll%20find%20handy%20links...%20More%20)).
 
-This first cell imports the relevant libraries from the Azure Machine Learning SDK and connects the notebook to our Machine Learning Workspace in Azure. You will need to authenticate to your Azure subscription:
+This first cell imports the relevant libraries from the Azure Machine Learning SDK and connects the notebook to our Machine Learning Workspace in Azure. You might need to authenticate to your Azure subscription:
 
 ![alt text](../images/01-authenticate.png "Authenticate to our workspace")
 
-Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using a `Azure Compute Instance`):
+Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using an `Azure Compute Instance`):
 
 <details>
 If you are using multiple subscriptions or tenants, it might be required to tell the Jupyter Notebook, which one it should use. Hence, create a new cell and adapt the following code to use your subscription id (the one you have used in `config.json`):
 
 ```
-!az account set -s "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx"
+az account set -s "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx"
 ```
 
-Once you have ran the cell, restart the Notebook kernel (`Kernel` --> `Restart & Clear Output`) and wait a few seconds until it has restarted.
+Once you ran the cell, restart the Notebook kernel (`Kernel` --> `Restart & Clear Output`) and wait a few seconds until it has restarted.
 </details>
 
-Next, let's create a new experiment (this will later show up in our Workspace after you've ran the first experiment) in a second cell. This is where all our experiment runs will be logged to:
+Next, let's create a new [experiment](https://docs.microsoft.com/en-us/python/api/azureml-core/azureml.core.experiment.experiment?view=azure-ml-py) (this will later show up in our Workspace after you've run the first experiment) in a second cell. This is where all our experiment runs will be logged to:
 
 ```python
 experiment = Experiment(workspace = ws, name = "scikit-learn-mnist")
@@ -207,7 +207,7 @@ If we click the run number, we can see its details:
 We can [track more values or even time series](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-track-experiments), which would directly show up as diagrams. However, as we want to keep the code short, we'll skip this part for now (more on that in challenge 2).
 
 Finally, we can export our model and upload it to our Azure ML Workspace in the `outputs` directory.
-Go ahead and copy the code below in a new cell in your `aidevcollege` notebook.
+Go ahead and copy the code below in a new cell in your `aidevcollege` Jupyter notebook.
 
 ```python
 import joblib
@@ -223,7 +223,7 @@ In the portal, we can now see the output of our run:
 
 ![alt text](../images/01-run_model.png "Our model output in our ML Workspace")
 
-We can also query our tracked metrics and outputs for our current run:
+We can also query our tracked metrics and outputs for the current run:
 
 ```python
 print("Run metrics:", run.get_metrics())
@@ -250,7 +250,7 @@ Our model has been stored in the Storage Account that has been created initially
 At this point:
 
 * We've trained a Machine Learning model using scikit-learn inside a `Compute Instance` running `Jupyter`
-* We achieved `92%` accuracy (not very good for this data set)
+* We achieved `~92%` accuracy (not very good for this data set)
 * Azure ML knows about our experiment and our initial run and tracked metrics
 * Azure ML saved our model file (`scikit-learn-mnist.pkl`) in a Blob storage
 * We have registered our initial model as a Azure ML Model in our Workspace
