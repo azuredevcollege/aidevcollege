@@ -1,6 +1,6 @@
 # AI Developer College Day 1 - MLOps
 
-In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. As we have seen the data scientist/ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). As we consider this a topic which should be considered by both parties ml experts as well as developers.
+In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. As we have seen the ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). As we consider this a topic which should be considered by both parties ml experts as well as developers.
 
 ## Focus of Today:
 
@@ -20,7 +20,7 @@ Today will be only a very brief and high level overview of MLOps, as you will le
 - Create a Service Connection
 - Work with Build and Release Pipelines
 
-But as our goal is to bring both worlds from the data scientists/ml experts and the developers together, that is why we consider the operationalization part as important to be (also briefly) emphasized.
+But as our goal is to bring both worlds from the ml experts and the developers together, that is why we consider the operationalization part as important to be (also briefly) emphasized.
 
 Thus we will cover the following topics in several sections:
 
@@ -40,7 +40,7 @@ This repository contains examples of how to implement [MLOps](https://en.wikiped
 
 ## What is MLOps?
 
-**MLOps** (a compound of "[machine learning](https://en.wikipedia.org/wiki/Machine_learning)" and "operations") is a practice for collaboration and communication between [data scientists](https://en.wikipedia.org/wiki/Data_scientists) and operations professionals to help manage production ML lifecycle.
+**MLOps** (a compound of "[machine learning](https://en.wikipedia.org/wiki/Machine_learning)" and "operations") is a practice for collaboration and communication between ml experts or [data scientists](https://en.wikipedia.org/wiki/Data_scientists) and operations professionals to help manage production ML lifecycle.
 Similar to the [DevOps](https://en.wikipedia.org/wiki/DevOps) or [DataOps](https://en.wikipedia.org/wiki/DataOps) approaches, MLOps looks to increase automation and improve the quality of production ML while also focusing on business and regulatory requirements.
 
 ### How does Azure ML help with MLOps?

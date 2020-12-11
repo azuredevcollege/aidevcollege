@@ -8,7 +8,7 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 ## Here is what you will learn
 
-Today will be an overview of Azure Cognitive Search, as you will learn:
+Today will be an overview of Azure Cognitive Services, as you will learn:
 
 - How to deploy Cognitive Services from the area Decision, Vision, Language, Speech and Web Search
 - How to use those Cognitive Services using Python
@@ -32,7 +32,7 @@ Thus we will cover the following topics in several sections:
 ## What are Azure Cognitive Services?
 
 Azure Cognitive Services: 
-- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), data science skills or knowledge. 
+- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), ml expert skills or knowledge. 
 - enable developers to easily add cognitive features into their applications. 
 - The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
 - The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language*, *Web Search*, and *Decision*.
@@ -95,7 +95,7 @@ headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 ```
 
 In the following copy the code into new Cells in your Jupyter Notebook.
-In general we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Services, by sending some data to the Service and let the **pre-trained Machine Learning Model** behind the scences give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+In general we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Services, by sending some data to the Service and let the **pre-trained Machine Learning Model** behind the scenes give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
 
 ### Detect Language
 
