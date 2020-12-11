@@ -1,8 +1,8 @@
 # AI Developer College Day 1 - Azure Machine Learning Service
 
-Today we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using Jupyter Notebook a popular tool for prototyping highly used by data scientists. In this case our goal as a data scientist is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
+Today we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using [Jupyter Notebooks](https://jupyter.org/documentation), a popular tool for prototyping highly used by data scientists. In this case our goal as a data scientist is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
 
-Once we have seen the data scientist view we will switch to the Developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
+Once we have seen the data scientists view we will switch to the Developer or DevOps side of things. For operationalization of the model we need DevOps in this case Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
 
 # Azure Machine Learning Workspace
 
@@ -31,21 +31,21 @@ Here are some examples:
 The goal is to build a machine learning model, that
 
 - takes an unseen image as an input (28x28 pixels) and
-- outputs if there was a 0, 1, 2, 3, 4, 5, 6, 7, 8 or 9 on the image
+- outputs if there was a 0, 1, 2, 3, 4, 5, 6, 7, 8 or 9 in the image
 
 Guidance:
 
 - Deploy from Azure Portal: `Machine Learning service workspace`
 - Write your code in a Jupyter Notebook in a [Compute VM](https://docs.microsoft.com/en-us/azure/machine-learning/service/quickstart-run-cloud-notebook) and use the [new Azure ML UI](https://ml.azure.com)
-- Use `Python 3.6 - AzureML` as the Notebook type in Jupyter (create a new folder before starting)
-- We'll be using `scikit-learn` to train a simple `LogisticRegression` classifier
+- Use `Python 3.6 - AzureML` as the Notebook type in Jupyter 
+- We'll be using [scikit-learn](https://scikit-learn.org/stable/index.html) to train a simple `LogisticRegression` classifier
 - Target accuracy of our model on the test data set: `>92%`
 
 ## Challenge 2 - Advanced model training on Azure
 
 :zap: Let's go to **[challenge 2](challenges/challenge_02.md)**!
 
-In this challenge, you'll be training a more advanced machine learning model on Azure (in fact, you'll be training a Deep Convolution Neural Network). We'll be using the same data set, but this time, we'll use Azure Machine Learning Compute for speeding up and scaling our training.
+In this challenge, you'll be training a more advanced machine learning model on Azure (in fact, you'll be training a [Deep Convolution Neural Network](https://en.wikipedia.org/wiki/Convolutional_neural_network)). We'll be using the same data set, but this time, we'll use Azure Machine Learning Compute for speeding up and scaling our training.
 
 Guidance:
 
@@ -65,7 +65,7 @@ Guidance:
 
 ## Challenge 4 - Automated Machine Learning
 
-:zap: Let's got to **[challenge 4](challenges/challenge_04.md)**!
+:zap: Let's go to **[challenge 4](challenges/challenge_04.md)**!
 
 In this challenge, you'll be using Automated Machine Learning to let Azure figure out which Machine Learning algorithm performs best on our dataset. We'll fully leverage the Azure Portal for that, hence no coding needed!
 
