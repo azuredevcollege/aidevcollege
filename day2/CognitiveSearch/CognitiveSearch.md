@@ -7,7 +7,19 @@ As final task we have prepared a small application which adopts a pre-trained ob
 
 ![Focus of today](./img/Overview.png)
 
-# Azure (Cognitive) Search
+As Azure Cognitive Search can be enriched by the Azure Cognitive Services with pre-trained machine learning models behind the scenes and it makes data searchable in an intelligent manner this service is included in our AI Developer College as well as in the Azure AI Stack.
+
+## Here is what you will learn
+
+Today will be an overview of Azure Cognitive Search, as you will learn:
+
+- Create an Azure Search Service in the Portal
+- Add Cognitive Skills to Azure Search
+- Deploy an Azure Search instance and index a PDF-based data set
+- Use Azure Search & Cognitive Services to index unstructured content
+- Integrate Azure Search in an Node JS application
+
+Today we will cover the following topics in several sections:
 
 |Topic|Section|
 |---|---|
@@ -15,24 +27,22 @@ As final task we have prepared a small application which adopts a pre-trained ob
 |Create Azure Cognitive Search in the Portal|[Create an Azure Search Service in the Portal](#create-an-azure-search-service-in-the-portal)|
 |Connect to Azure Cognitive Search|[Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)|
 |Deploy an Azure Search instance and index a PDF-based data set|[Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set](#azure-search--cognitive-search---deploy-an-azure-search-instance-and-index-a-pdf-based-data-set)|
-|Indexing unstructured content|[Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#azure-search--cognitive-search-indexing-unstructured-content-eg-images-audio-etc)|
+|Azure Search & Cognitive Search Indexing unstructured content|[Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#azure-search--cognitive-search-indexing-unstructured-content-eg-images-audio-etc)|
 |Integrate Azure Search in an Node JS Application|[Integrate Azure Search in an Node JS Application](#integrate-azure-search-in-an-node-js-application)|
 
+## Azure Cognitive Search
 
-## Here is what you will learn
-
-- Create an Azure Search Service in the Portal
-- Add Cognitive Skills to Azure Search
-- Integrate Azure Search in an Node JS application
-- Optional: Create an Azure Cognitive Search index in Python using Jupyter notebooks
-
-## What is Azure Cognitive Search?
+### What is Azure Cognitive Search?
 
 Azure Cognitive Search is a search-as-a-service cloud solution that gives developers APIs and tools for adding a rich search experience over private, heterogeneous content in web, mobile and enterprise applications. Your code or a tool invokes data ingestion (indexing) to create and load an index. Optionally, you can add cognitive skills to apply Artificial Intelligence processes during indexing. Doing so, you can add new information and structures useful for search and other scenarios.
 
 Regarding your application, your code issues query requests and handles responses from Azure Search. The search experience is defined in your client using functionality from Azure Cognitive Search, with query execution over a persisted index that you create, own, and store in your service.
 
 ![Azure Cognitive Search Architecture](./img/AzureSearchArchitecture.png)
+
+If you are interested in getting to know features of Azure Search and the query syntax we have listed some examples for you in the **`Details`** section below. Otherwise you can go ahead and start with the challenge. <br>
+
+<details>
 
 ### What are the Features of Azure Cognitive Search?
 
@@ -71,6 +81,8 @@ View the full Azure Cognitive Search Feature list here:
 
 Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search/search-create-service-portal) instance as in the following.
 
+</details>
+
 ## Create an Azure Search Service in the Portal
 
 1. Create a new resource group, e.g. **adc-azsearch-db-rg** and add a service of type **Azure Cognitive Search**
@@ -78,8 +90,6 @@ Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search
 1. First, create a `Azure Search` instance in the Azure Portal
 
 1. For our purposes, the `Standard Tier` is sufficient
-
-> As a side note the `Free Tier` does not support additional replicas, scaling and is only able to index documents with up to 32000 characters/document. If we want to index larger documents, we need to go to a bigger tier (64000 for `Basic`, 4m for `Standard` and above).
 
 ![Create Azure Search](./img/AzureSearchCreate.png)
 
@@ -343,6 +353,10 @@ This step shows you how to query an index using the [Search Documents REST API](
 
     ![Search an Index](./img/SearchString.png)
 
+If you are interested in querying with different `searchstrings` we have listed some samples in the **`Details`** section for you:
+
+<details>
+
 5. Try a few other query examples to get a feel for the syntax. You can replace the `searchstring` with the following examples and then rerun the search request. 
 
    Apply a filter: 
@@ -362,6 +376,7 @@ This step shows you how to query an index using the [Search Documents REST API](
    ```python
    search_string_option5 = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
    ```
+</details>
 
 ## Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set
 
@@ -453,7 +468,6 @@ Perfect, now we know which [document](https://bootcamps.blob.core.windows.net/da
 
 ## Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)
 
-
 :triangular_flag_on_post: **Goal:** Index an unstructured data set with Cognitive Search
 
 1. Add another index to the Azure Search instance, but this time enable Cognitive Search
@@ -475,16 +489,7 @@ Next, we need to define the skillset. In our case, we'll enable all features:
 
 We might not want to make our `content` field retrievable, as it does not necessarily provide a lot of value - however, we want to keep it `searchable`, so that Azure Search can do its job. Since we have the original files in Blob and the location stored in `metadata_storage_path`, we can always just retrieve the original file.
 
-Once we finished the next two tabs, Azure Cognitive Search will start indexing our data (this will take a bit longer, as it needs to run image recognition, OCR, etc. on the files). We might see some error, which should be expected:
-
-```json
-{
-  "key": "https://xxxxxxx.blob.core.windows.net/dataset-cognitive/10-K-FY16.html",
-  "message": "Truncated extracted text to 32768 characters."
-}
-```
-
-Thank you `Free Tier` for only allowing 32768 characters per document...
+Once we finished the next two tabs, Azure Cognitive Search will start indexing our data (this will take a bit longer, as it needs to run image recognition, Object Character Recognition Cognitive Services, etc. on the files).
 
 Let's try some search queries:
 
@@ -496,6 +501,8 @@ Good, so looks like our skillset worked. Please note that ideally we'd query thr
 * [Simple Query Syntax](https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search)
 * [Lucene Query Syntax](https://docs.microsoft.com/en-us/rest/api/searchservice/lucene-query-syntax-in-azure-search)
 
+
+As we have now seen how to use the Azure Cognitive Search service we still want to combine the ml expert view with the developer view. Thus we will show a quick example how to integrate Azure Cognitive Search in a simple Node.js application.
 
 ## Integrate Azure Search in an Node JS Application
 
@@ -536,7 +543,7 @@ Begin by opening the **Cloud Shell** (next to the search field) in the Browser, 
 
     ⚠ Get the query key as well. It's a best practice to issue query requests with read-only access. Use the **key** underneath the *Manage query keys* (e.g. *C4DD...*)
 
-### Important Parts of the Quickstart Application
+### Important Parts of the simple Node.js Application
 
 Find the file **hotels_quickstart_index.json**. This file defines how Azure Cognitive Search works with the documents you'll be loading in the next step. Each field will be identified by a `name` and has a specified `type`. Each field also has a series of index attributes that specify whether Azure Cognitive Search can *search*, *filter*, *sort*, and *facet* upon the field. 
 
@@ -690,11 +697,13 @@ You should see a series of messages describing the actions being taken by the pr
 
 ![Run the node.js App with Azure Search](./img/AzureSearchAppSample.png)
 
-> *Optional*: For more details of the requests, you can uncomment the [lines at the beginning of the `AzureSearchClient.request()` method](https://github.com/Azure-Samples/azure-search-javascript-samples/blob/master/quickstart/REST/AzureSearchClient.js#L21-L27) in **AzureSearchClient.js** to see additional logs.
+If you are interested in how you can use everything via the REST API and use some fun demos we have added a section with some necessary links in the **`Details`** section below.
+
+<details>
 
 ## Using the API
 
-We've been lazy and did everything through the portal - obviously not the way we want to work in the real world. Especially data ingestion and search should (and most likely needs) to be performed through the API. Luckily, the API is pretty easy to use (even using `curl` for it is easy):
+As we've have been lazy and did some parts through the portal - obviously not the way we want to work in the real world. Especially data ingestion and search should (and most likely needs) to be performed through the API. Luckily, the API is pretty easy to use (even using `curl` for it is easy):
 
 * [Create an index](https://docs.microsoft.com/en-us/azure/search/search-create-index-rest-api)
 * [Import Data](https://docs.microsoft.com/en-us/azure/search/search-import-data-rest-api)
@@ -702,7 +711,25 @@ We've been lazy and did everything through the portal - obviously not the way we
 
 For sake of time today we won't be able to go into more detail here, but feel free to have a look at it.
 
+## Optional: Play around a bit with Azure Search 
+
+- https://azjobsdemo.azurewebsites.net/
+- https://docs.microsoft.com/en-us/samples/azure-samples/search-dotnet-asp-net-mvc-jobs/search-dotnet-asp-net-mvc-jobs/
+
+</details>
+
+## What we have done so far:
+
+- We created an Azure Search Service in the Portal
+- Added Cognitive Skills to Azure Search
+- Used an Azure Search instance to index a PDF-based data set
+- Used Azure Search & Cognitive Services to index unstructured content
+- Integrated Azure Search in an Node JS application
+
+As we used **Cognitive Services** behind the scenes of Azure Cognitive Search and as we now want to continue the path of combining the ml expert view and the developer view we will jump into our Cognitive Services challenge next:
+
 :zap: Let's go to **[AI Developer College Day2 - Cognitive Services](../CognitiveServices/Challenge/CognitiveServices.md)**!
+
 
 ## House Keeping: Lab Cleanup
 
@@ -712,7 +739,3 @@ Remove the sample resource group.
 $ az group delete -n adc-azsearch-db-rg
 ```
 
-## Optional: Play around a bit with Azure Search 
-
-- https://azjobsdemo.azurewebsites.net/
-- https://docs.microsoft.com/en-us/samples/azure-samples/search-dotnet-asp-net-mvc-jobs/search-dotnet-asp-net-mvc-jobs/
