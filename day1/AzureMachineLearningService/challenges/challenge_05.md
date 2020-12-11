@@ -362,6 +362,8 @@ From here, we can start building more complex queries, set alarms or start explo
 
 ⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
 
+:zap: Let's go to **[AI Developer College Day 1 - MLOps](../../MLOps/MLOps.md)**!
+
 At this point:
 
 * We've deployed our model from AutoML to Azure Kubernetes Service

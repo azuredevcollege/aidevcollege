@@ -1,8 +1,10 @@
 # AI Developer College Day 1 - Azure Machine Learning Service
 
-Today we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using Jupyter Notebook a popular tool for prototyping highly used by data scientists. In this case our goal as a data scientist is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
+Today we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using Jupyter Notebook a popular tool for prototyping highly used by data scientists or ml expert. In this case our goal as a data scientist/ml expert is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
 
-Once we have seen the data scientist view we will switch to the Developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
+Once we have seen the data scientist/ml expert view we will switch to the Developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
+
+![Focus of today](./images/Overview.png)
 
 # Azure Machine Learning Workspace
 

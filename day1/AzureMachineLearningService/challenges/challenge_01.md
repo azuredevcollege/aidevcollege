@@ -88,7 +88,7 @@ from azureml.core import Workspace, Experiment, Run
 ws = Workspace.from_config()
 ```
 
-You can run or re-run any cell by hitting `Run` or pressing `Shift+Enter` or `Ctrl+Enter`. Code cells have brackets left to them. If the brackets are empty `[ ]`, the code has not been run. While the code is running, you will see an asterisk `[*]`. After the code completes, a number `[1]` appears. The number tells you in which order the cells ran. You can always re-run arbitrary cells, in case something didn't work on the first try.
+You can run or re-run any cell by hitting `Run` or pressing `Shift+Enter` or `Ctrl+Enter`. Code cells have brackets left to them. If the brackets are empty `[ ]`, the code has not been run. While the code is running, you will see an asterisk `[*]`. After the code completes, a number `[1]` appears. The number tells you in which order the cells ran. You can always re-run arbitrary cells, in case something didn't work on the first try. To add another cell above and below hit `a` or `b` once you click on the cell and a blue color appears ([here are some shortcuts](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/#:~:text=%2028%20Jupyter%20Notebook%20Tips%2C%20Tricks%2C%20and%20Shortcuts,Help%20menu%20you%E2%80%99ll%20find%20handy%20links...%20More%20)).
 
 This first cell imports the relevant libraries from the Azure Machine Learning SDK and connects the notebook to our Machine Learning Workspace in Azure. You will need to authenticate to your Azure subscription:
 
