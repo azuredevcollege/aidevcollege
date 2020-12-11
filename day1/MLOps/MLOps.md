@@ -22,7 +22,7 @@ Today will be only a very brief and high level overview of MLOps, as you will le
 
 But as our goal is to bring both worlds from the data scientists/ml experts and the developers together, that is why we consider the operationalization part as important to be (also briefly) emphasized.
 
-Today we will cover the following topics in several sections:
+Thus we will cover the following topics in several sections:
 
 |Topic|Section|
 |---|---|

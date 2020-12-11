@@ -15,18 +15,18 @@ Today will be an overview of Azure Cognitive Search, as you will learn:
 
 - Create an Azure Search Service in the Portal
 - Add Cognitive Skills to Azure Search
-- Deploy an Azure Search instance and index a PDF-based data set
+- Reuse Azure Search and index a PDF-based data set
 - Use Azure Search & Cognitive Services to index unstructured content
 - Integrate Azure Search in an Node JS application
 
-Today we will cover the following topics in several sections:
+Thus we will cover the following topics in several sections:
 
 |Topic|Section|
 |---|---|
 |Getting familiar with Cognitive Search|[What is Azure Cognitive Search?](#what-is-azure-cognitive-search)|
 |Create Azure Cognitive Search in the Portal|[Create an Azure Search Service in the Portal](#create-an-azure-search-service-in-the-portal)|
 |Connect to Azure Cognitive Search|[Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)|
-|Deploy an Azure Search instance and index a PDF-based data set|[Azure Search & Cognitive Search - Deploy an Azure Search instance and index a PDF-based data set](#azure-search--cognitive-search---deploy-an-azure-search-instance-and-index-a-pdf-based-data-set)|
+|Reuse the Azure Search instance and index a PDF-based data set|[Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set](#azure-search--cognitive-search---reuse-the-azure-search-instance-and-index-a-pdf-based-data-set)|
 |Azure Search & Cognitive Search Indexing unstructured content|[Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#azure-search--cognitive-search-indexing-unstructured-content-eg-images-audio-etc)|
 |Integrate Azure Search in an Node JS Application|[Integrate Azure Search in an Node JS Application](#integrate-azure-search-in-an-node-js-application)|
 

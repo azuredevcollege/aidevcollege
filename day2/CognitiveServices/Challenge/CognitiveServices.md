@@ -6,8 +6,40 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 ![Focus of today](./images/Overview.png)
 
-# Cognitive Services
+## Here is what you will learn
 
+Today will be an overview of Azure Cognitive Search, as you will learn:
+
+- How to deploy Cognitive Services from the area Decision, Vision, Language, Speech and Web Search
+- How to use those Cognitive Services using Python
+- How to train and use custom models (e.g. Custom Vision and Language Understanding) yourself
+
+Thus we will cover the following topics in several sections:
+
+|Topic|Section|
+|---|---|
+|Text Analytics |[Azure Cognitive Services - Text Analytics](#azure-cognitive-services---text-analytics)|
+|Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
+|Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
+|Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
+|Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
+|Speech|[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
+|Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
+|Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
+
+# Azure Cognitive Services
+
+## What are Azure Cognitive Services?
+
+Azure Cognitive Services: 
+- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), data science skills or knowledge. 
+- enable developers to easily add cognitive features into their applications. 
+- The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
+- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language*, *Web Search*, and *Decision*.
+
+If you are interested to read more about each service we have added a list of valuable links in the **`Details`** section below.
+
+<details>
 We'll touch on the following services:
 
 |Service|Where?|
@@ -21,30 +53,11 @@ We'll touch on the following services:
 |Language Understanding|[Language Understanding](https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/)|
 |Bing Search API|[Bing Search API](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource)|
 
-# What are Azure Cognitive Services?
-
-Azure Cognitive Services: 
-- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), data science skills or knowledge. 
-- enable developers to easily add cognitive features into their applications. 
-- The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
-- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language*, *Web Search*, and *Decision*.
-
-# Challenges
+</details>
 
 You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute Instance (VM) from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. Especially Azure Search features an easy-to-use `.NET SDK`. You can find code examples in the Azure documentation for the associated services.
 
-Today we will cover the following topics in several sections:
-
-|Topic|Section|
-|---|---|
-|Text Analytics |[Azure Cognitive Services - Text Analytics](#azure-cognitive-services---text-analytics)|
-|Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
-|Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
-|Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
-|Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
-|Speech|[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
-|Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
-|Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
+For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added`and deployed in this Resource Group.
 
 Now let's start with the **Text Analytics Cognitive Service**. The Text Analytics API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including: sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.
 
@@ -1074,27 +1087,23 @@ warum ist rauchen cool
 
 People search for weird stuff... :flushed: :satisfied:
 
+## What we have done so far:
+
+- We deployed several Cognitive Services using the Azure Portal
+- We called those Cognitive Service REST APIs by using Python
+- We trained custom machine learning models (e.g. Custom Vision and Language Understanding) using an UI
+
+As we have seen the Cognitive Services one by one, we want to still continue to combine the ml expert view with the developer view. Thus we will take the Custom Vision Service which we have learned about and will integrate it into a small application. So let's continue to the next challenge.
+
 :zap: Let's go to **[AI Developer College Day2 - Custom Vision Application](../../CustomVisionApp/CustomVisionApp.md)**!
 
 ## House Keeping: Lab Cleanup
 
-### Use Azure CLI to Delete Resource Group
+Remove the sample resource group.
 
-1. In the **Cloud Shell** command prompt at the bottom of the portal, type in the following command and press **Enter** to list all resource groups in the subscription:
-
-    ```sh
-    az group list
-    ```
-
-2. Type in the following command and press **Enter** to delete the **yourResourceGroup** *Resource Group*:
-
-    ```sh
-    az group delete --name "yourResourceGroup" --no-wait --yes
-    ```
-
-3. Close the **Cloud Shell** prompt at the bottom of the portal.
-
-4. Close your browser application.
+```shell
+$ az group delete -n <yourResourceGroup>
+```
 
 ## Optional: Play around with the: Intelligent Kiosk 
 
