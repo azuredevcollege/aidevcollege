@@ -24,12 +24,17 @@ The goal is to show developers the tools of machine learning (ml) experts and vi
 
 On Day 1 we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using Jupyter Notebook a popular tool for prototyping highly used by ml experts. In this case our goal as a ml expert is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
 
-Once we have seen the ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a `.yaml` file which automatically deploys a Workspace, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
+Once we have seen the ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). For this challenge we have prepared a configuration file which automatically deploys a Workspace, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service. To sum it up, everything we have done manually will be automated for us later today.
 
 On Day 2 we will stay in the developer view by using existing endpoints with pre-trained machine models behind the scenes. For this we will focus on our managed services like Azure Cognitive Search and Azure Cognitive Services and explore some of our convenient tools to create custom machine learning models like LUIS and Custom Vision. As a developer I can use those REST APIs and enrich my applications without having deep ml expert knowledge.
 As final challenge we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
+<div align="center">
+  <p> ML Experts ❤︎ Developers</p>
+</div>
 
-![Stretch](./images/Topics.png)
+<br>
+
+![Topics for the 2 days](./images/Topics.png)
 
 This workshop consists of multiple challenges, you have to complete. Your trainers will guide you through the workshop by giving you introduction talks to each of the topics/challenges you have to complete.
 
