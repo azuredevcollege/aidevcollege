@@ -148,6 +148,7 @@ Begin by opening a **Terminal** (a Bash console, Powershell console or other env
     code .
     ```
 
+1. Open up a Terminal in Visual Studio Code and make sure to be in the correct directory: `aicollege/aidevcollege/day2/CustomVisionApp`
 1. Install the packages for the sample with `npm install`.  This command will download the packages upon which the code depends.
 1. Run the local web server script: `node server.js` and examine the results
 
@@ -188,15 +189,19 @@ If you have chosen Option 2 and want to run the application as a Github Pages or
 **What are Github Actions?**
 GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want. If you want more detail you can read the following [documentation](https://github.com/features/actions)
 
-In this repository there is a github action included. You can run the `Github Action` on the root level manually using the Github User Interface.
+In this repository there is a github action included. You can run the `Github Action` on the root level manually using the Github User Interface. For this you need to `fork` the aidevcollege repository: https://github.com/aidevcollege/aidevcollege to your Github Account.
 
-![GithubActionsPages](./images/GithubActionsPages.png)
+> If you don't have an account yet sign up [here](https://github.com/join).
 
 Be sure to enable and **save** `Github Pages` underneath the `Settings`, beneath `Options` and select **Branch:** `gh-pages:`
 
 ![EnableGithubPages](./images/EnableGithubPages.png)
 
-Finally this application is hosted by Github Pages:
+Then go to `Actions`, enable the Workflows, select the workflow: `pages` and hit `Run workflow` as shown below:
+
+![GithubActionsPages](./images/GithubActionsPages.png)
+
+Finally this application is hosted by Github Pages it should have a url like `https://<YourGithubUsername>.github.io/aidevcollege/` which you can find on your main page of your forked repository underneath `Environments`:
 
 ![FinalResultCustomVisionGithubPages](./images/FinalResultCustomVisionGithubPages.png)
 
