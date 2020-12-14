@@ -1,9 +1,9 @@
 # Challenge 3
 
 After challenge 2, we finally have a model that has an accuracy of more than 99% - time to deploy it as an API!
-Hence, we'll be taking the model and we will deploy it to an [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/).
+Hence, we'll be taking the model and we will deploy it to an [Azure Container Instances (ACI)](https://azure.microsoft.com/en-us/services/container-instances/).
 
-**We'll reuse the same notebook as in challenge 2!**
+**We'll reuse the notebook from challenge 2!**
 
 As before, let's import all necessary libraries and connect to our Workspace (we're probably already connected, but better safe than sorry):
 
@@ -37,12 +37,14 @@ from keras.models import load_model
 from azureml.core.model import Model
 
 def init():
+    # The init functions load and prepares the model for scoring.
     global model
     # retreive the path to the model file using the model name
     model_path = Model.get_model_path('keras-tf-mnist-model')
     model = load_model(model_path)
 
 def run(raw_data):
+    # The run function takes raw data and passes it to the model for evaluation.
     image_url = json.loads(raw_data)['image_url']    
     image = Image.open(BytesIO(requests.get(image_url).content))
     img = 1 - (np.array(image.convert('L'), dtype=np.float32).reshape(1, 28, 28, 1) / 255.0)
@@ -153,8 +155,8 @@ Here are some more hand-drawn test images for you to copy into the `image_url`: 
 
 At this point:
 
-* We took our high-accuracy model from challenge 2 and deployed it on Azure Container Instances as a web service
+* We took our high-accuracy model from challenge 2 and deployed it on Azure Container Instances (ACI) as a web service
 * We can do simple RESTful API calls to our endpoint for scoring 28x28 pixel sized images
-* Please note that deploying models to ACI is currently not suited for production workloads - instead, it is recommended to deploy to AKS (we'll get to that soon)
+* Please note that deploying models to ACI is currently not suited for production workloads - instead, it is recommended to deploy to Azure Kubernetes Service (AKS) - we'll get to that soon.
 
 Often, we have a simpler data set and want to figure out how we can best classify or predict certain data points - without trying out a lot of Machine Learning algorithms ourselves. Hence, we'll look at Automated Machine Learning in the [fourth challenge](challenge_04.md).
