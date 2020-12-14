@@ -971,8 +971,11 @@ See the Screenshot below:
 Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
 
 ```
-https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q=
+https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/<xxxxxx-xxxx-xxFill INxx-xxxx-xxxxxxxx>?subscription-key=<xxxFILL INxxxx>&timezoneOffset=-360&q=
 ```
+Take **this URL** and **fill in the missing ids** from **your resource**. 
+
+> Copy both Urls into a Notepad to extract the ids.
 
 With a bit of Python, we can now get the intent through the API. <br>
 **Go ahead and copy the code into a new cell in your Notebook:**
@@ -980,8 +983,9 @@ With a bit of Python, we can now get the intent through the API. <br>
 ```python
 import requests, json
 
-# Paste your Endpoint URL here
-url = "https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxx?subscription-key=xxxxxxx&timezoneOffset=-360&q="
+# Fill in your ids in this endpoint url 
+# (if you choose your entire url you need to adapt the query parameter as shown below)
+url = "https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/<xxxxxx-xxxx-xxFill INxx-xxxx-xxxxxxxx>?subscription-key=<xxxFILL INxxxx>&timezoneOffset=-360&q="
 
 query = "ich hätte gerne 9 pizza calzone"
 
