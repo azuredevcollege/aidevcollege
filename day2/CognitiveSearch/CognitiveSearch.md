@@ -517,6 +517,7 @@ Begin by opening the **Cloud Shell** (next to the search field) in the Browser, 
 1. Create a development directory, giving it the name `adv-search` :
 
     ```bash
+    mkdir adv-search
     cd adv-search
     git clone https://github.com/Azure-Samples/azure-search-javascript-samples.git
     cd azure-search-javascript-samples/quickstart/REST
