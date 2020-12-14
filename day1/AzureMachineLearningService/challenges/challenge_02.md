@@ -271,6 +271,8 @@ This looks a little bit more complex than our last example! Let's walk through w
 1. We log the final train and test accuracies to our experiment
 1. We save the model to the `outputs/` folder (Azure Machine Learning Compute will automatically upload that folder to the experiment afterwards)
 
+This [visualization](https://miro.medium.com/max/3200/1*-xPK2X22QAU7ssU8ErD0pw.jpeg) show's a bit more in detail what our model does.
+
 To get the training working, we need to create an environment and package the scripts:
 
 ```python
