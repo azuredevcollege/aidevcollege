@@ -144,7 +144,7 @@ Begin by opening a **Terminal** (a Bash console, Powershell console or other env
     mkdir aicollege
     cd aicollege
     git clone https://github.com/aidevcollege/aidevcollege.git
-    cd day2/CustomVisionApp # Navigate `cd` to the source code folder
+    cd aidevcollege/day2/CustomVisionApp # Navigate `cd` to the source code folder
     code .
     ```
 
