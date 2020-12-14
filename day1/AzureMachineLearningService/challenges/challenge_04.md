@@ -78,7 +78,7 @@ Classification is a common machine learning task. Classification is a type of su
 
 ![alt text](../images/04-automl_select_task_type.png "Select task type")
 
-**Under `View additional configuration settings`, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set `Training job time (hours)` to `0.25`. This means our training will terminate after a maximum of 15 minutes.**
+Under **`View additional configuration settings`**, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set **`Training job time (hours)` to `0.25`**. This means our training job will terminate after a maximum of 15 minutes. **The entire AutoML Run can take about 25-30 min**. *Time to grab a coffee or continue to the next challenge and come back later! ☕
 
 ![Exit criteria](../images/04_automl_exit_criteria.png)
 
