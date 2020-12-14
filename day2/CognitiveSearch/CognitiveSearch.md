@@ -343,7 +343,7 @@ This step shows you how to query an index using the [Search Documents REST API](
 3. In another cell, formulate a request. This GET request targets the docs collection of the hotels-quickstart index, and attaches the query you specified in the previous step, please  choose the first Option and afterwards the second Option to execute the different queries: `search_string_option<fill In: 1 or 2>`
 
    ```python
-   url = endpoint + "indexes/hotels-quickstart/docs" + api_version + search_string_option1
+   url = endpoint + "indexes/hotels-quickstart/docs" + api_version + search_string_option2
    response  = requests.get(url, headers=headers, json=search_string_option1)
    query = response.json()
    pprint(query)
