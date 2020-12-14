@@ -16,7 +16,7 @@
 
 ## Goal of the AI Developer College 
 
-The goal is to show developers the tools of machine learning (ml) experts and vice versa. We want to connect both worlds. Since we noticed that there is a huge gap between both sides. To close the gap we will start with the ml experts view and switch then to the developer view.
+The goal is to show developers the tools of machine learning (ml) experts and vice versa. We want to connect both worlds. Since we noticed that there is a huge gap between both sides. As ml experts deliver pre-trained machine learning models as restful endpoints to the business or developers and developers use REST APIs to integrate them in their application it is essential that both sides understand both worlds. To close the gap we will start with the ml experts view and switch then to the developer view.
 
 ![Goal of the AI Developer College](./images/Goal.png)
 
