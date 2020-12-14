@@ -1,8 +1,8 @@
 # Challenge 2
 
-In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a [Deep Convolutional Neural Network](en.wikipedia.org/wiki/Convolutional_neural_network) in this challenge. For training this more powerful and complex model, we'll need more compute power. Therefore, instead of training a model on our Compute Instance, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. Luckily the interaction with Azure Machine Learning won't change.
+In challenge 1, our model achieved an accuracy of `~92%`. For the MNIST data set, this is not very good. For improving model accuracy, we'll be training a [Deep Convolutional Neural Network](en.wikipedia.org/wiki/Convolutional_neural_network) in this challenge. For training this more powerful and complex model, we'll need more compute power. Therefore, instead of training a model on our Compute Instance, we'll be using [Azure Machine Learning Compute](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-set-up-training-targets) to train our model on a dedicated compute cluster. As a Machine Learning framework, we'll be using Keras with a TensorFlow backend. The interaction with Azure Machine Learning won't change.
 
-**Note:** Obviously we do not really need a Compute Cluster for such a simple task, a single Compute Instance (VM) (probably even without GPU) would be absolutely sufficient. However - for sake of education - we'll be using Compute Cluster in this challenge.
+**Note:** Obviously we do not really need a Compute Cluster for such a simple task, a single Compute Instance (VM) (even without GPU) would be absolutely sufficient. However - for sake of education - we'll be using Compute Cluster in this challenge.
 
 First, let's create a new notebook `challenge02.ipynb` for this challenge.
 
@@ -44,7 +44,7 @@ print("Blob Container Name:", ds.container_name)
 ds.upload(src_dir='./data', target_path='mnist', overwrite=True, show_progress=True)
 ```
 
-Let's have a look at the files in the respective Storage Account. For this you will go into the `Azure Portal` and select the default Storage Account that the Azure ML Workspace created for us. Select this `Storage Account` and then select `Containers` on the left tile. Then you select `azureml-blobstore-[...]` and the `mnist` folder within. We can see that the dataset has been uploaded:
+Let's have a look at the files in the respective Storage Account. For this you will go into the `Azure Portal` and select the default `Storage` Account that the Azure ML Workspace created for us. Select `Containers` on the left tile. Then you select `azureml-blobstore-[...]` and the `mnist` folder within. We can see that the dataset has been uploaded:
 
 ![alt text](../images/MNISTdatasetinBlob.png "MNIST dataset in Azure Blob")
 
@@ -86,7 +86,7 @@ else:
 
 The cluster VM(s) will take around 2-4 minutes to spin up :clap:.
 
-As we can see, we can configure our minimum and maximum cluster size and
+We can configure our minimum and maximum cluster size and
 the VM size. In our example, we'll stick with a medium VM
 without GPU for saving cost. If you want, you can try out a more powerful VM,
 or even a `NC` instance with dedicated GPU. More details on further configuration parameters can
@@ -321,7 +321,7 @@ estimator = ScriptRunConfig(source_directory=script_folder,
 estimator.run_config.data_references = {ds.as_mount().data_reference_name: ds.as_mount().to_config()}
 ```
 
-As you can see, we define where our scripts are, what the compute target should be, and the dependencies (`keras` in this case). Lastly, we also give in the script some static parameters, but ideally we would [automatically try out different hyperparameters](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters) to get superior accuracy (not covered here).
+As you can see, we define where our scripts are, what the compute target should be, and the dependencies (`keras` in this case). Lastly, we also give some static parameters in the script, but ideally we would [automatically try out different hyperparameters](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters) to get superior accuracy (not covered here).
 
 **Note**: There is also a separate `TensorFlow` Estimator for just TensorFlow, see [here](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-tensorflow). Since we want to keep it generic in this challenge, we'll rely on the standard `Estimator`.
 
@@ -390,7 +390,7 @@ At this point (in addition to the results from challenge 1):
 - We switched our training framework from scikit-learn to Keras with TensorFlow in the backend (without changing any Azure ML SDK code!)
 - We registered our new model (>`99%` accuracy) in our Azure ML Workspace
 
-Great, now we have a well performing model. Obviously, we want to enable other people, maybe some developers, to use it. Therefore, we'll deploy it as an API to an Azure Container Instance in the [next challenge](challenge_03.md).
+Great, now we have a well performing model. Obviously, we want to enable other people, maybe developers, to use it. Therefore, we'll deploy it as an API to an Azure Container Instance in the [next challenge](challenge_03.md).
 
 ## Optional: Retrieving the Data from Web Paths as a second Option for this challenge
 

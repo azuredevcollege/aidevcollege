@@ -1,18 +1,18 @@
 # AI Developer College Day 1 - MLOps
 
-In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model on an Azure Container Instance and Azure Kubernetes. As we have seen the ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). As we consider this a topic which should be considered by both parties ml experts as well as developers.
+In the last challenges we have trained our own model and used `Jupyter Notebook` to deploy the trained model to an Azure Container Instance and Azure Kubernetes. As we have seen the ml experts view we will switch to the developer or DevOps side of things. For operationalization of the model we need DevOps in this case called Machine Learning Operations (MLOps). We consider this a topic for both parties - ml experts as well as developers.
 
 ## Focus of Today:
 
 ![Focus of today](./images/Overview.png)
 
-For example to switch from Jupyter Notebook to a plain Python file you can simply copy the code cells into a `.py` file. (see for example the train_diabetes.py). In this challenge we have prepared a [`.yaml`](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) file which automatically deploys a Azure Machine Learning Workspace, deploys a Compute Cluster, trains and register a model and deploys it to Azure Container Instance and Azure Kubernetes Service like we did before in the Jupyter Notebook manually. To sum it up everything we have done manually will be automated now.
+For example to switch from Jupyter Notebook to a plain Python file you can simply copy the code cells into a `.py` file. (see for example the train_diabetes.py). In this challenge we have prepared a [`.yaml`](https://docs.microsoft.com/en-us/azure/devops/pipelines/yaml-schema?view=azure-devops&tabs=schema%2Cparameter-schema) file which automatically deploys a Azure Machine Learning Workspace, deploys a Compute Cluster, trains and registers a model and deploys it to Azure Container Instance and Azure Kubernetes Service like we did manually in the Jupyter Notebook. To sum it up everything we have done manually will be automated now.
 
 > YAML - “YAML Ain’t Markup Language,” is a human-readable data serialization standard that can be used in conjunction with all programming languages and is often used to write configuration files.
 
 ### Here is what you will learn
 
-Today will be only a very brief and high level overview of MLOps, as you will learn:
+Today will only be a very brief and high level overview of MLOps. You will learn the following:
 
 - Create an Azure DevOps account for your organization
 - Create a Team Project with an Agile Process Template
@@ -20,7 +20,7 @@ Today will be only a very brief and high level overview of MLOps, as you will le
 - Create a Service Connection
 - Work with Build and Release Pipelines
 
-But as our goal is to bring both worlds from the ml experts and the developers together, that is why we consider the operationalization part as important to be (also briefly) emphasized.
+As our goal is to bring both worlds from the ml experts and the developers together, the operationalization part is very important.
 
 Thus we will cover the following topics in several sections:
 
@@ -69,8 +69,8 @@ To get started with Azure DevOps navigate to the [Azure DevOps overview page](ht
 
 > [!IMPORTANT]
 > Before we can create an Azure DevOps account we need to understand which Identity Providers are supported by Azure DevOps.
-> Azure AD, MSA (Microsoft account) and a GitHub account is supported if you want to use cloud authentication. 
-> It is recommended to use Azure AD when a large group of users must be managed or if you want to integrate Azure DevOps to your organisation's Azure AD, otherwise use your Microsoft account or a GitHub account.
+> Azure AD, MSA (Microsoft accounts) and GitHub accounts are supported if you want to use cloud authentication. 
+> It is recommended to use Azure AD when a large group of users must be managed or if you want to integrate Azure DevOps into your organisation's Azure AD, otherwise use your Microsoft account or a GitHub account.
 > For on-premises deployments Active Directory is recommended. <br>
 > **Note:** If you want to integrate Azure DevOps into your organization's Azure AD make sure that you have the needed permission to create a ServicePrincipal in your Azure AD. We will create a ServicePrincipal in further challenges to authorize Azure DevOps to access your Azure Subscription in order to deploy Azure resources.
 
@@ -83,7 +83,7 @@ To get started with Azure DevOps navigate to the [Azure DevOps overview page](ht
 
 ## Create a new project
 
-Create a new project, name it "AIDevCollege" and use the "Agile" process template and leave the version control selection to **Git**.
+Create a new project, name it "AIDevCollege" and use the **Agile** process template and leave the version control selection to **Git**.
 Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/organizations/projects/create-project?view=azure-devops).
 
 ![Create a project](./images/AIDevCollegeProject.png)
@@ -94,7 +94,7 @@ Instructions can be found [here](https://docs.microsoft.com/en-us/azure/devops/o
 
 ### Import the AI Developer College GitHub repository to your Azure Repo
 
-Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the https url. Make sure to **use GIT** in the Azure Repos as **Repository Type**, it should be the current default.
+Open your browser and navigate to the [AI Developer College Training Days on GitHub](https://github.com/aidevcollege/aidevcollege.git). Click the green "Code" button and copy the https url. Make sure to **use GIT** in the Azure Repos as **Repository Type** - it should be the current default.
 
 ![Clone GitHub](./images/clone-adc-github.png)
 
@@ -114,16 +114,16 @@ Go to the settings of your project, `Service Connections` and click on `New Serv
 
 <p align="left"><img width="50%" src="images/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
 
-First you select `Azure Resource Manager` in the first screen:
+Select `Azure Resource Manager` in the first screen:
 
 ![Create Service Connection](./images/serviceconnection.png)
 
-In the next screen you select `service principal (automatic)`
+In the next screen select `service principal (automatic)`
 
 ![Create Service Connection](./images/serviceconnection2.png)
 
 > **Important:**
-> In the next screen you select your _Subscription_ and fill in **`MyAzureSubscription`** in the _Service connection name_.
+> In the next screen select your _Subscription_ and fill in **`MyAzureSubscription`** in the _Service connection name_.
 
 ![Service Connection Result](./images/serviceconnectionresult.png)
 
@@ -134,7 +134,7 @@ In the next screen you select `service principal (automatic)`
 **What are Azure Pipelines?**
 Azure Pipelines is a cloud service that you can use to automatically build and test your code project and make it available to other users. It works with just about any language or project type. Azure Pipelines combines continuous integration (CI) and continuous delivery (CD) to constantly and consistently test and build your code and ship it to any target.
 
-In the following we will explain the terms continuous integration (CI) and continuous delivery (CD), Azure Pipelines, as well as the key concepts of pipelines which are included also in the `.yaml` file which you will use in this challenge. **If you have no or little knowledge about DevOps go ahead and read this introduction in the `Details` section otherwise you can jump to the challenge right away.**
+In the following we will explain the terms continuous integration (CI) and continuous delivery (CD), as well as the key concepts of pipelines which are included also in the `.yaml` file which you will use in this challenge. **If you have no or little knowledge about DevOps go ahead and read this introduction in the `Details` section otherwise you can jump to the challenge right away.**
 
 <details>
 
@@ -171,7 +171,7 @@ Implementing CI and CD pipelines helps to ensure consistent and quality code tha
 When your build or deployment runs, the system begins one or more jobs. An agent is computing infrastructure with installed agent software that runs one job at a time. For more in-depth information about the different types of agents and how to use them, see [Build and release agents](https://github.com/MicrosoftDocs/azure-devops-docs/blob/master/docs/pipelines/agents/agents.md).
 
 **Artifact** <br>
-An artifact is a collection of files or packages published by a run. Artifacts are made available to subsequent tasks, such as distribution or deployment. For more information, see Artifacts in Azure Pipelines. In our case this is usually the trained machine learning model
+An artifact is a collection of files or packages published by a run. Artifacts are made available to subsequent tasks, such as distribution or deployment. For more information, see Artifacts in Azure Pipelines. In our case this is usually the trained machine learning model.
 
 **Environment** <br>
 An environment is a collection of resources, where you deploy your application. It can contain one or more virtual machines, containers, web apps, or any service that's used to host the application being developed. A pipeline might deploy the app to one or more environments after build is completed and tests are run.
@@ -240,6 +240,7 @@ Let's look at the pipeline:
         amlcompute.vmSize: STANDARD_DS2_V2
 ```
 
+The run will take up to ~40 minutes. You can monitor it under Pipelines. There select the current Run.
 This should be the result when the pipeline was executed successfully.
 
 ![Pipeline was successful](./images/finalresult.png)
@@ -289,7 +290,7 @@ You can see `jobs`, `steps` and `tasks` in the **azure-pipelines.yml** file:
 
 ![Yaml File](./images/ProductionYAMLFILE.png)
 
-Finally, check your Resource Group within the **Azure Portal**, if everything has been deployed and check your **Machine Learning Workspace** to see the **trained model** and the **endpoints**.
+Finally, check your Resource Group within the **Azure Portal**, check if everything has been deployed and check your **Machine Learning Workspace** to see the **trained model** and the **endpoints**.
 
 Here you can see the final results within the **Azure Portal**:
 
@@ -307,7 +308,7 @@ Here you can see the overall `variables`, `stages`, `jobs`, `steps` and `tasks` 
 ![Stages Jobs, Steps, Tasks](./images/azure_pipelines_explain.png).
 
 >> [!IMPORTANT]
-> Now as we are still in the ml expert view combined with the developer view, we still want to retrain our model and register a new version of the model. But as we did everything manually using Jupyter Notebooks earlier today we still want to use this convenient automatic MLOps approach.
+> Now as we are still in the ml expert view combined with the developer view, we still want to retrain our model and register a new version of the model. We did everything manually using Jupyter Notebooks earlier today, now we will to use this convenient automatic MLOps approach.
 
 Thus we will change our trainings script and trigger a new run of our pipeline. In the end we will have a new registered model as an outcome. 
 
