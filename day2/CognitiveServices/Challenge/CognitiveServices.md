@@ -258,7 +258,7 @@ subscription_key = "xxx" # Paste your API key here
 assert subscription_key
 
 # replace <My Endpoint String> with the string from your endpoint URL
-face_api_url = 'https://<My Endpoint String>.com/face/v1.0/detect'
+face_api_url = 'https://<My Endpoint String>.cognitiveservices.com/face/v1.0/detect'
 
 image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
 
