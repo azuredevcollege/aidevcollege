@@ -9,7 +9,7 @@ In this challenge we will be training a model to showcase how you can use AutoML
 
 For this challenge, we'll use the `associated credit card dataset` dataset: The credit card dataset is containing both training features and labels. The features are inputs to the model, while the training labels represent the expected output of the model. Before getting started, have a look at the data set: [`creditcard.csv`](../data/creditcard.csv).
 
-Sounds good? Let's get started (we'll be done after this)!
+Sounds good? Let's get started!
 
 Back to Jupyter now, and let's create a notebook called `challenge05.ipynb`. First, we'll import the necessary packages and connect to our workspace:
 
@@ -342,7 +342,7 @@ So let's start looking at Application Insights first.
 
 ### Monitoring with Application Insights
 
-Navigate to your original resource group and select your Application Insights instance:
+Navigate to your original resource group in the azure portal and select your Application Insights instance:
 
 ![alt text](../images/appinsights.png "Application Insights")
 

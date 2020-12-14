@@ -2,7 +2,7 @@
 
 ## Setup part
 
-In the Azure Portal, first we create a `Resource Group`:
+In the Azure Portal, first we create a `Resource Group` and name it `aidevcollege`:
 
 ![Azure Portal](../images/CreateResourceGroup.png)
 
@@ -34,7 +34,7 @@ Now we can either launch the `Machine Learning service workspace` from the porta
 Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute Instance.`
 A compute instance can be used as fully configured and managed development environment in the cloud for machine learning.
 The Compute Instance actually sits inside this `Machine Learning service workspace`. It is just a **regular Azure Virtual Machine**.
-**Azure Machine Learning Service Workspace is the "umbrella" that groups all you machine learning resources**
+**Azure Machine Learning Service Workspace is the "umbrella" that groups all your machine learning resources**
 
 ![alt text](../images/ComputeOverview.png "Compute Instance")
 
@@ -42,9 +42,9 @@ Hit `Create`, select `STANDARD_D3_V2` and give it a unique name:
 
 ![alt text](../images/Compute.png "Creating the Compute Instance for the college")
 
-It'll take a few minutes until the Compute Instance has been created. The primary use for this Compute Instance is that we all have the same Jupyter environment. In this exercise, we'll use this Compute Instance to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
+It'll take a few minutes until the Compute Instance has been created. This Compute Instance provides us with the same Jupyter environment. In this exercise, we'll use this Compute Instance to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
 
-> Behind the scenes a regular Azure Virtual Machine will be deployed:
+> Behind the scenes a Azure Virtual Machine will be deployed:
 ![alt text](../images/behindTheScences.png)
 > For more Details check out the following [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-instance)
 
@@ -92,7 +92,7 @@ from azureml.core import Workspace, Experiment, Run
 ws = Workspace.from_config()
 ```
 
-You can run or re-run any cell by hitting `Run` or pressing `Shift+Enter` or `Ctrl+Enter`. Code cells have brackets left to them. If the brackets are empty `[ ]`, the code has not been run. While the code is running, you will see an asterisk `[*]`. After the code completes, a number `[1]` appears. The number tells you in which order the cells ran. You can always re-run arbitrary cells, in case something didn't work on the first try. To add another cell above and below hit `a` or `b` once you click on the cell and a blue color appears ([here are some shortcuts](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/#:~:text=%2028%20Jupyter%20Notebook%20Tips%2C%20Tricks%2C%20and%20Shortcuts,Help%20menu%20you%E2%80%99ll%20find%20handy%20links...%20More%20)).
+You can run or re-run any cell by hitting `Run` or pressing `Shift+Enter` or `Ctrl+Enter`. Code cells have brackets left to them. If the brackets are empty `[ ]`, the code has not been run. While the code is running, you will see an asterisk `[*]`. After the code completes, a number `[1]` appears. The number tells you in which order the cells ran. You can always re-run arbitrary cells, in case something didn't work on the first try. To add another cell above or below hit `a` or `b` once you click on the cell and a blue color appears ([here are some shortcuts](https://www.dataquest.io/blog/jupyter-notebook-tips-tricks-shortcuts/#:~:text=%2028%20Jupyter%20Notebook%20Tips%2C%20Tricks%2C%20and%20Shortcuts,Help%20menu%20you%E2%80%99ll%20find%20handy%20links...%20More%20)).
 
 This first cell imports the relevant libraries from the Azure Machine Learning SDK and connects the notebook to our Machine Learning Workspace in Azure. You might need to authenticate to your Azure subscription:
 
@@ -181,7 +181,7 @@ run.log('accuracy', acc)
 run.complete()
 ```
 
-On our `STANARD_D3_V2` instance, the code should take around ~1 minutes to run (any warnings you get can be ignored).
+On our `STANARD_D3_V2` instance, the code should take around ~1 minute to run (any warnings you get can be ignored).
 
 In summary, the code does the following things:
 
@@ -241,7 +241,7 @@ model = run.register_model(model_name='scikit-learn-mnist-model', model_path='ou
 print(model.name, model.id, model.version, sep = '\t')
 ```
 
-We probably would not do this for every model we train, but for those that we want to promote to the next stage and potentially consider for deployment.
+We would not do this for every model we train, but for those that we want to promote to the next stage and potentially consider for deployment.
 
 Under the `Models` tab, we can now see that our model has been registered:
 
