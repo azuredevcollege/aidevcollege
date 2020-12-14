@@ -102,7 +102,7 @@ deployment_config = AciWebservice.deploy_configuration(
 # Define the model, inference, & deployment configuration and web service name and location to deploy
 service = Model.deploy(
     workspace = ws,
-    name = "keras-service4",
+    name = "aci-keras-service",
     models = [model],
     inference_config = inference_config,
     deployment_config = deployment_config)
