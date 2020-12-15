@@ -1,6 +1,6 @@
 # AI Developer College Day 2 - Cognitive Search
 
-Today we will stay in the developer view by using existing endpoints with pre-trained machine models behind the scenes. For this we will focus on our managed services like Azure Cognitive Search and later on Azure Cognitive Services and explore some of our convenient tools to create custom machine learning models like LUIS and Custom Vision. As a developer I can use those REST APIs and enrich my applications without having deep ml expert knowledge.
+Today we will stay in the developer view by using existing endpoints with pre-trained machine models behind the scenes. For this we will focus on our managed services like Azure Cognitive Search and later on Azure Cognitive Services and explore some of the convenient tools to create custom machine learning models like LUIS and Custom Vision. As a developer we can use those REST APIs and enrich our applications without having deep ml expert knowledge.
 As final task we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
 
 ## Focus of Today:
@@ -17,7 +17,7 @@ Today will be an overview of Azure Cognitive Search, as you will learn:
 - Add Cognitive Skills to Azure Search
 - Reuse Azure Search and index a PDF-based data set
 - Use Azure Search & Cognitive Services to index unstructured content
-- Integrate Azure Search in an Node JS application
+- Integrate Azure Search in a Node JS application
 
 Thus we will cover the following topics in several sections:
 
@@ -85,9 +85,9 @@ Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search
 
 ## Create an Azure Search Service in the Portal
 
-1. Create a new resource group, e.g. **adc-azsearch-db-rg** and add a service of type **Azure Cognitive Search**
+1. Navigate to the azure portal and create a new resource group, e.g. **adc-azsearch-db-rg**
 
-1. First, create a `Azure Search` instance in the Azure Portal
+1. First, create a `Azure Search` instance
 
 1. For our purposes, the `Standard Tier` is sufficient
 
@@ -114,7 +114,7 @@ Azure Search [can index](https://docs.microsoft.com/en-us/azure/search/search-in
 
 REST calls require the service URL and an access key on every request. A search service is created with both, so if you added Azure Cognitive Search to your subscription, follow these steps to get the necessary information:
 
-1. [Sign in to the Azure portal](https://portal.azure.com/), and in your search service **Overview** page, get the URL (example endpoint `https://xxxxxxx.search.windows.net`).
+1. Navigate to the Azure Cognitive Search service in the azure portal, and in the **Overview** page, get the URL (example endpoint `https://xxxxxxx.search.windows.net`).
 
 2. In **Settings** > **Keys**, get an admin key for full rights on the service. There are two interchangeable admin keys, provided for business continuity in case you need to roll one over. You can use either the primary or secondary key on requests for adding, modifying, and deleting objects.
 
@@ -134,7 +134,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
    from pprint import pprint
    ```
 
-3. In the second cell, input the request elements that will be constants on every request. Replace the search service name (YOUR-SEARCH-SERVICE-NAME) and admin API key (YOUR-ADMIN-API-KEY) with valid values. 
+3. In the second cell, input the request elements that will be constants on every request. Replace the search service name `(YOUR-SEARCH-SERVICE-NAME)` and admin API key `(YOUR-ADMIN-API-KEY)` with valid values. 
 
    ```python
    endpoint = 'https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/'
@@ -151,7 +151,7 @@ In this task, start a Jupyter notebook and verify that you can connect to Azure 
    index_list = response.json()
    pprint(index_list)
    ```
- If you get ConnectionError `"Failed to establish a new connection"`, verify that the api-key is a primary or secondary admin key, and that all leading and trailing characters (`?` and `/`) are in place.
+ >If you get ConnectionError `"Failed to establish a new connection"`, verify that the api-key is a primary or secondary admin key, and that all leading and trailing characters (`?` and `/`) are in place.
 
 5. Run each step. If indexes exist, the response contains a list of index names. In contrast, an empty index collection returns this response: 
 
@@ -224,7 +224,7 @@ This index is named "hotels-quickstart" and has the field definitions you see be
 
 ### 2 - Load documents
 
-To push documents, use an HTTP POST request to your index's URL endpoint. The REST API is [Add, Update, or Delete Documents](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents). Documents originate from [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/hotels/HotelsData_toAzureSearch.JSON) on GitHub.
+To push documents, use an HTTP POST request to your index's URL endpoint. The REST API enables you to [Add, Update, or Delete Documents](https://docs.microsoft.com/rest/api/searchservice/addupdate-or-delete-documents). Documents originate from [HotelsData](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/hotels/HotelsData_toAzureSearch.JSON) on GitHub.
 
 1. In a new cell, provide four documents that conform to the index schema. Specify an upload action for each document.
 
@@ -328,7 +328,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
 This step shows you how to query an index using the [Search Documents REST API](https://docs.microsoft.com/rest/api/searchservice/search-documents).
 
-1. **Option 1:** In a cell, provide a query expression that executes an empty search (search=*), returning an unranked list (search score  = 1.0) of arbitrary documents. By default, Azure Cognitive Search returns 50 matches at a time. As structured, this query returns an entire document structure and values. Add $count=true to get a count of all documents in the results.
+1. **Option 1:** In a cell, provide a query expression that executes an empty search (search=*), returning an unranked list ([search score](https://docs.microsoft.com/en-us/azure/search/index-similarity-and-scoring)  = 1.0) of arbitrary documents. By default, Azure Cognitive Search returns 50 matches at a time. As structured, this query returns an entire document structure and values. Add $count=true to get a count of all documents in the results.
 
    ```python
    search_string_option1 = '&search=*&$count=true'
@@ -446,7 +446,7 @@ Azure Search now indexed all our PDFs via the `pdf-blob-indexer` into the `pdf-i
 
 ![alt text](./img/azure_search_explorer_example.png "Azure Search Query Example")
 
-Using double-quotes `"..."` will search for the whole string, rather than each substring. If we want to make a search term mandatory, we need to prefix a `+`. There is a billion more things we can do, but for now, we'll see that we get one document back, as one only one PDF contained the term `Content Moderator`:
+Using double-quotes `"..."` will search for the whole string, rather than each substring. If we want to make a search term mandatory, we need to prefix a `+`. There are a billion more things we can do, but for now, we'll see that we get one document back, as only one PDF contains the term `Content Moderator`:
 
 ```json
 {
@@ -473,11 +473,11 @@ Perfect, now we know which [document](https://bootcamps.blob.core.windows.net/da
 1. Add another index to the Azure Search instance, but this time enable Cognitive Search
 1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip))
 
-In the first part, we've seen that Azure Search can index data like PDFs, PowerPoints, etc., as long as the documents are easily machine readable (=text). [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro) allows us to also index unstructured data. More precisely, it add capabilities for data extraction, natural language processing (NLP), and image processing to Azure Search indexing pipeline (for more see [here](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro#key-features-and-concepts)). In Azure Cognitive Search, a skillset responsible for the pipeline of the data and consists of multiple skills. Some skills have been pre-included, but it is also possible for us to write our own skills.
+In the first part, we've seen that Azure Search can index data like PDFs, PowerPoints, etc., as long as the documents are easily machine readable (=text). [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro) allows us to also index unstructured data. More precisely, it adds capabilities for data extraction, natural language processing (NLP), and image processing to Azure Search indexing pipeline (for more see [here](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro#key-features-and-concepts)). In Azure Cognitive Search, a skillset is responsible for the pipeline of the data and consists of multiple skills. Some skills have been pre-included, but it is also possible for us to write our own skills.
 
 [Azure Cognitive Search](https://docs.microsoft.com/en-us/azure/search/cognitive-search-quickstart-blob)
 
-As before, let's **unzip and upload the unzipped data** to Blob Storage and let Azure Search index it from there - in a separate index obviously. In our existing Storage Account, we'll create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip) to.
+As before, let's **unzip and upload the unzipped data** to Blob Storage and let Azure Search index it from there - in a separate index obviously. In our existing Storage Account, we'll create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip).
 
 Once we're done, we'll repeat the steps from before, `Import Dataset`, walk through the wizard, but this time, we'll configure the `Cognitive Search` part in the second tab.
 
@@ -496,7 +496,7 @@ Let's try some search queries:
 * `"Pin to Dashboard"` --> returns `create-search-service.png` (text was recognized via OCR)
 * `"Los Angeles"` --> returns `MSFT_cloud_architecture_contoso.pdf` (location was recognized via OCR in image)
 
-Good, so looks like our skillset worked. Please note that ideally we'd query through the API an directly specify the relevant fields, e.g., `location:Los Angeles` in the second example:
+Good, so looks like our skillset worked. Please note that ideally we'd query through the API and directly specify the relevant fields, e.g., `location:Los Angeles` in the second example:
 
 * [Simple Query Syntax](https://docs.microsoft.com/en-us/rest/api/searchservice/simple-query-syntax-in-azure-search)
 * [Lucene Query Syntax](https://docs.microsoft.com/en-us/rest/api/searchservice/lucene-query-syntax-in-azure-search)
@@ -506,11 +506,11 @@ As we have now seen how to use the Azure Cognitive Search service we still want 
 
 ## Integrate Azure Search in an Node JS Application
 
-Now let's jump into code. We will create a Node.js application that that creates, loads, and queries an Azure Cognitive Search index. This article demonstrates how to create the application step-by-step. 
+Now let's jump into code. We will create a Node.js application that creates, loads, and queries an Azure Cognitive Search index. This article demonstrates how to create the application step-by-step. 
 
 ### Set up your environment
 
-Begin by opening the **Cloud Shell** (next to the search field) in the Browser, a Bash console, Powershell console or other environment in which you've installed Node.js:
+Begin by opening the **Cloud Shell** (next to the search field) in the Browser - a Bash console, Powershell console or other environment in which you've installed Node.js:
 
 ![Cloud Shell](./img/CloudShell.png)
 
@@ -542,7 +542,7 @@ Begin by opening the **Cloud Shell** (next to the search field) in the Browser, 
     
     ![Search Key](./img/SearchKey.png)
 
-    ⚠ Get the query key as well. It's a best practice to issue query requests with read-only access. Use the **key** underneath the *Manage query keys* (e.g. *C4DD...*)
+    ⚠ Get the query key as well. It's a best practice to issue query requests with read-only access. Use the **key** underneath the *Manage query keys* (e.g. *C4DD...*).
 
 ### Important Parts of the simple Node.js Application
 
@@ -694,11 +694,11 @@ Use the **Cloud Shell** in the **Azure Portal** window for the following command
 1. Install the packages for the sample with `npm install`.  This command will download the packages upon which the code depends.
 1. Run `node index.js` and examine the results
 
-You should see a series of messages describing the actions being taken by the program. Have a look at OData response from Azure Search.
+You should see a series of messages describing the actions being taken by the program. Have a look at the OData response from Azure Search.
 
 ![Run the node.js App with Azure Search](./img/AzureSearchAppSample.png)
 
-If you are interested in how you can use everything via the REST API and use some fun demos we have added a section with some necessary links in the **`Details`** section below.
+If you are interested in how you can use everything via the REST API and show some fun demos we have added a section with some necessary links in the **`Details`** section below.
 
 <details>
 
