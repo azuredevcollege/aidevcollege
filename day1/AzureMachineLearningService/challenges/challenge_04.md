@@ -1,8 +1,8 @@
 # Challenge 4
 
-By now, we have a good understanding how Azure Machine Learning works. In this  challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
+By now, we have a good understanding how Azure Machine Learning works. In this challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
 
-**Automated machine learning**, also referred to as automated machine learning (AutoML), is the process of automating the time consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Traditional machine learning model development is resource-intensive, requiring significant domain knowledge and time to produce and compare dozens of models. With automated machine learning, you'll accelerate the time it takes to get production-ready ML models with great ease and efficiency.
+**Automated machine learning**, also referred to as AutoML, is the process of automating the time consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Traditional machine learning model development is resource-intensive, requiring significant domain knowledge and time to produce and compare dozens of models. With automated machine learning, you'll accelerate the time it takes to get production-ready ML models with great ease and efficiency.
 
 **When to use it?**
 Apply automated ML when you want Azure Machine Learning to train and tune a model for you using the target metric you specify. Automated ML democratizes the machine learning model development process, and empowers its users, no matter their data science expertise, to identify an end-to-end machine learning pipeline for any problem. You can use the automated ML feature to:
@@ -40,7 +40,7 @@ The process includes creating or selecting `a dataset`, `Configuring the run` an
 
 ![alt text](../images/04-automl-process.png "AutoML Process")
 
-Give our new dataset a name and select the `pima-indians-diabetes.csv` select it from **`aidevcollege/day1/AzureMachienLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
+Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachienLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
 
 ![alt text](../images/04-automl_dataset.png "AutoML Dataset")
 
@@ -94,7 +94,7 @@ If we click one of the iterations, we'll get plenty of metrics for the evaluated
 
 ![Run details](../images/04-automl_run_details.png)
 
-Without doubt, it is important to understand what those metrics actually mean, since this will allow us to judge if the generated model(s) are useful or not. [This link](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-understand-automated-ml) will help you understanding the metrics of Automated Machine Learning.
+Without doubt, it is important to understand what those metrics actually mean, since this will allow us to judge if the generated model(s) are useful or not. [This link](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-understand-automated-ml) will help you to understand the metrics of Automated Machine Learning.
 
 Next, we can deploy one of the iterations to ACI.
 
@@ -112,7 +112,7 @@ Once the deployment has finished (~7 minutes), we can find the scoring URI in ou
 
 ![alt text](../images/04-automl_deployment_details.png "Deployment details")
 
- Finally we can score one or more data samples using the following Python code (just run the code in one of the former notebooks and replace `url`):
+ Finally we can score one or more data samples using the following Python code (just run the code in one of the former notebooks and replace the `url` with the REST Endpoint):
 
 ```python
 import requests

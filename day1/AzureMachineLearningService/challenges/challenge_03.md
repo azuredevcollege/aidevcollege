@@ -112,7 +112,7 @@ service.wait_for_deployment(show_output=True)
 
 The first deployment should take around 5-8 minutes.
 
-Shortly after, we should see our ACI service coming up under the `Endpoints` tab:
+Shortly after, we see our ACI service coming up under the `Endpoints` tab:
 
 ![alt text](../images/kerasacideploy.png "Our ACI is deploying")
 
