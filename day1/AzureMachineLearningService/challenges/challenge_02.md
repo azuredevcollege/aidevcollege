@@ -60,7 +60,7 @@ import os
 compute_name = "cpucluster"
 compute_min_nodes = 0
 compute_max_nodes = 4
-vm_size = "Standard_F16s_v2"
+vm_size = "Standard_F4s_v2"
 
 # Check if a cluster with the same name already exists # Behind the scenes VM-Scale-Set running Docker on it
 compute_targets = ws.compute_targets
