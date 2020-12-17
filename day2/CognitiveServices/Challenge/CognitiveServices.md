@@ -968,12 +968,14 @@ See the Screenshot below:
 
 ![alt text](./images/entity_luis_taged_utterances.png "LUIS Intents")
 
-Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
+Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under **`Manage`** --> **`Azure Resources`**). It should look something like this:
+
+Take **this URL** and **delete** in **YOUR_QUERY_HERE** as shown below. 
 
 ```
 https://westeurope.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/slots/production/predict?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx&verbose=true&show-all-intents=true&log=true&query=
 ```
-Take **this URL** and **fill** in **YOUR_QUERY_HERE** with **query**. 
+
 
 With a bit of Python, we can now get the intent through the API. <br>
 **Go ahead and copy the code into a new cell in your Notebook:**
