@@ -153,6 +153,14 @@ Here are some more hand-drawn test images for you to copy into the `image_url`: 
 [image_8](https://bootcamps.blob.core.windows.net/ml-test-images/8.png), 
 [image_9](https://bootcamps.blob.core.windows.net/ml-test-images/9.png) <br>
 
+To test the above images you can copy the below script:
+```python
+for i in range(0, 10):
+    data = f'{{"image_url": "https://bootcamps.blob.core.windows.net/ml-test-images/{i}.png"}}'
+    resp = requests.post(service.scoring_uri, data=data, headers=headers)
+    print(f"Prediction Results for {i}:", resp.json())
+```
+
 At this point:
 
 * We took our high-accuracy model from challenge 2 and deployed it on Azure Container Instances (ACI) as a web service
