@@ -981,8 +981,7 @@ With a bit of Python, we can now get the intent through the API. <br>
 ```python
 import requests, json
 
-# Fill in your ids in this endpoint url 
-# (if you choose your entire url you need to adapt the query parameter as shown below)
+# Fill in your Endpoint
 url = "<Fill in your Endpoint>"
 
 query = "ich hätte gerne 9 pizza calzone"
