@@ -26,7 +26,7 @@
 
 # CreateOrder
 - {@PizzaOrder=6 pizza {@PizzaType=schinken}} und {@PizzaOrder=3 {@PizzaType=mozzarella}} bitte
-- 6 pizza tonno und {@PizzaOrder=3 {@PizzaType=calzone} bitte}
+- {@PizzaOrder=6 pizza {@PizzaType=tonno}} und {@PizzaOrder=3 {@PizzaType=calzone} bitte}
 - ich moechte {@PizzaOrder=eine pizza {@PizzaType=calzone}} bestellen
 - ich moechte {@PizzaOrder=eine pizza {@PizzaType=fungi}} bestellen
 - ich moechte {@PizzaOrder=eine pizza {@PizzaType=mozzarella}} bestellen
