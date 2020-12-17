@@ -995,18 +995,18 @@ The output should look *something* like this:
 ```json
 
 {
-  "query": "queryich h\u00e4tte gerne 9 pizza calzone",
+  "query": "ich h\u00e4tte gerne 9 pizza calzone",
   "prediction": {
-    "topIntent": "None",
+    "topIntent": "CreateOrder",
     "intents": {
-      "None": {
-        "score": 0.3864804
-      },
       "CreateOrder": {
-        "score": 0.213685676
+        "score": 0.4941804
+      },
+      "None": {
+        "score": 0.122900672
       },
       "CancelOrder": {
-        "score": 0.0217423961
+        "score": 0.045574408
       }
     },
     "entities": {
@@ -1024,7 +1024,7 @@ The output should look *something* like this:
           {
             "type": "builtin.number",
             "text": "9",
-            "startIndex": 21,
+            "startIndex": 16,
             "length": 1,
             "modelTypeId": 2,
             "modelType": "Prebuilt Entity Extractor",
@@ -1037,9 +1037,9 @@ The output should look *something* like this:
           {
             "type": "PizzaOrder",
             "text": "9 pizza calzone",
-            "startIndex": 21,
+            "startIndex": 16,
             "length": 15,
-            "score": 0.6866486,
+            "score": 0.566134334,
             "modelTypeId": 1,
             "modelType": "Entity Extractor",
             "recognitionSources": [
@@ -1051,9 +1051,9 @@ The output should look *something* like this:
           {
             "type": "PizzaType",
             "text": "calzone",
-            "startIndex": 29,
+            "startIndex": 24,
             "length": 7,
-            "score": 0.8007584,
+            "score": 0.80077827,
             "modelTypeId": 1,
             "modelType": "Entity Extractor",
             "recognitionSources": [
@@ -1065,7 +1065,6 @@ The output should look *something* like this:
     }
   }
 }
-​
 ​
 ```
 
