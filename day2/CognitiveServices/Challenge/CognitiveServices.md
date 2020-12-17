@@ -971,11 +971,9 @@ See the Screenshot below:
 Hit `Train` to give it a training. Lastly, hit `Publish` and publish it to `Production`. Review the endpoints and copy the endpoint URL (can be found under `Manage` --> `Azure Resources`). It should look something like this:
 
 ```
-https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/<xxxxxx-xxxx-xxFill INxx-xxxx-xxxxxxxx>?subscription-key=<xxxFILL INxxxx>&timezoneOffset=-360&q=
+https://westeurope.api.cognitive.microsoft.com/luis/prediction/v3.0/apps/xxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx/slots/production/predict?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxx&verbose=true&show-all-intents=true&log=true&query=query
 ```
-Take **this URL** and **fill in the missing ids** from **your resource**. 
-
-> Copy both Urls into a Notepad to extract the ids.
+Take **this URL** and **fill** in **YOUR_QUERY_HERE** with **query**. 
 
 With a bit of Python, we can now get the intent through the API. <br>
 **Go ahead and copy the code into a new cell in your Notebook:**
@@ -985,7 +983,7 @@ import requests, json
 
 # Fill in your ids in this endpoint url 
 # (if you choose your entire url you need to adapt the query parameter as shown below)
-url = "https://westeurope.api.cognitive.microsoft.com/luis/v2.0/apps/<xxxxxx-xxxx-xxFill INxx-xxxx-xxxxxxxx>?subscription-key=<xxxFILL INxxxx>&timezoneOffset=-360&q="
+url = "<Fill in your Endpoint>"
 
 query = "ich hätte gerne 9 pizza calzone"
 
@@ -998,37 +996,75 @@ The output should look *something* like this:
 ```json
 
 {
-  "query": "ich h\u00e4tte gerne 9 pizza calzone",
-  "topScoringIntent": {
-    "intent": "CreateOrder",
-    "score": 0.4941804
-  },
-  "entities": [
-    {
-      "entity": "calzone",
-      "type": "PizzaType",
-      "startIndex": 24,
-      "endIndex": 30,
-      "score": 0.80077827
+  "query": "queryich h\u00e4tte gerne 9 pizza calzone",
+  "prediction": {
+    "topIntent": "None",
+    "intents": {
+      "None": {
+        "score": 0.3864804
+      },
+      "CreateOrder": {
+        "score": 0.213685676
+      },
+      "CancelOrder": {
+        "score": 0.0217423961
+      }
     },
-    {
-      "entity": "9 pizza calzone",
-      "type": "PizzaOrder",
-      "startIndex": 16,
-      "endIndex": 30,
-      "score": 0.566134334
-    },
-    {
-      "entity": "9",
-      "type": "builtin.number",
-      "startIndex": 16,
-      "endIndex": 16,
-      "resolution": {
-        "subtype": "integer",
-        "value": "9"
+    "entities": {
+      "number": [
+        9
+      ],
+      "PizzaOrder": [
+        "9 pizza calzone"
+      ],
+      "PizzaType": [
+        "calzone"
+      ],
+      "$instance": {
+        "number": [
+          {
+            "type": "builtin.number",
+            "text": "9",
+            "startIndex": 21,
+            "length": 1,
+            "modelTypeId": 2,
+            "modelType": "Prebuilt Entity Extractor",
+            "recognitionSources": [
+              "model"
+            ]
+          }
+        ],
+        "PizzaOrder": [
+          {
+            "type": "PizzaOrder",
+            "text": "9 pizza calzone",
+            "startIndex": 21,
+            "length": 15,
+            "score": 0.6866486,
+            "modelTypeId": 1,
+            "modelType": "Entity Extractor",
+            "recognitionSources": [
+              "model"
+            ]
+          }
+        ],
+        "PizzaType": [
+          {
+            "type": "PizzaType",
+            "text": "calzone",
+            "startIndex": 29,
+            "length": 7,
+            "score": 0.8007584,
+            "modelTypeId": 1,
+            "modelType": "Entity Extractor",
+            "recognitionSources": [
+              "model"
+            ]
+          }
+        ]
       }
     }
-  ]
+  }
 }
 ​
 ​
