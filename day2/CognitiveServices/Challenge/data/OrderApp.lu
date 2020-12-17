@@ -1,0 +1,79 @@
+
+> LUIS application information
+> !# @app.name = OrderApp
+> !# @app.versionId = 0.1
+> !# @app.culture = de-de
+> !# @app.luis_schema_version = 7.0.0
+> !# @app.tokenizerVersion = 1.0.2
+
+
+> # Intent definitions
+
+# CancelOrder
+- bitte bestellung 11 stornieren
+- bitte bestellung 123 stornieren
+- bitte bestellung 23 stornieren
+- bitte bestellung 8 stornieren
+- cancel bitte bestellung 10
+- cancel bitte bestellung 12
+- cancel bitte bestellung 42
+- cancel bitte bestellung 600
+- ich will order 33 nicht mehr
+- ich will order 800 nicht mehr
+- ich will order 9 nicht mehr
+- ich will order 933 nicht mehr
+
+
+# CreateOrder
+- {@PizzaOrder=6 pizza {@PizzaType=schinken}} und {@PizzaOrder=3 {@PizzaType=mozzarella}} bitte
+- 6 pizza tonno und {@PizzaOrder=3 {@PizzaType=calzone} bitte}
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=calzone}} bestellen
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=fungi}} bestellen
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=mozzarella}} bestellen
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=pepperoni}} bestellen
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=salami}} bestellen
+- ich moechte {@PizzaOrder=eine pizza {@PizzaType=tonno}} bestellen
+- {@PizzaOrder=vier pizza {@PizzaType=hawaii}} bitte
+- {@PizzaOrder=vier pizza {@PizzaType=magaritha}} bitte
+- {@PizzaOrder=vier pizza {@PizzaType=marinara}} bitte
+- {@PizzaOrder=vier pizza {@PizzaType=quattro formaggi}} bitte
+
+
+# None
+- bitte termin fuer montag einstellen
+- bitte termin fuers laufen einstellen
+- kann man in den bergen noch ohne winterausrüstung wandern gehen?
+- wann ist der kuchen fertig?
+- wann ist weihnachten?
+- wann kommt der weihnachtsmann?
+- was ist im weihnachtsurlaub geplant?
+- wie ist das wetter in berlin?
+- wie ist das wetter in frankfurt?
+- wie ist das wetter in münchen?
+- wieviel grad ist es heute?
+- wieviel uhr ist heute?
+
+
+> # Entity definitions
+
+@ ml PizzaOrder usesFeatures number,PizzaType
+
+@ ml PizzaType usesFeature PizzaPhraseList
+
+
+> # PREBUILT Entity definitions
+
+@ prebuilt number
+
+
+> # Phrase list definitions
+
+@ phraselist PizzaPhraseList(interchangeable) disabledForAllModels = 
+	- Tonno,Salami,Pepperino,Mozarella,Hawaii,Magaritha
+
+
+> # List entities
+
+> # RegEx entities
+
+
