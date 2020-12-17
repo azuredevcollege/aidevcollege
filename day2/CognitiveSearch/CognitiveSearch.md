@@ -344,7 +344,7 @@ This step shows you how to query an index using the [Search Documents REST API](
 
    ```python
    url = endpoint + "indexes/hotels-quickstart/docs" + api_version + search_string_option2
-   response  = requests.get(url, headers=headers, json=search_string_option1)
+   response  = requests.get(url, headers=headers)
    query = response.json()
    pprint(query)
    ```
