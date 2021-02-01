@@ -870,6 +870,8 @@ Now let's go into the LUIS Portal and **create three new intents** and give them
 
 For this challenge we are **copying the following LUIS phrases as shown below** into the specific 3 Intents: **"CreateOrder", "CancelOrder", "None"**. Then, add the user input examples (our training examples below) to the three intents, **navigate to each intent and add the Example User inputs**. Example User input are just examples that we'll use to train LUIS. *Go ahead and add 5-10 other user input examples yourself to increase the quality of the model as there is a high correlation between quality of the model and number of training data*.
 
+![LUIS Application File](./data/OrderApp.lu)
+
 ```
 3 Intents: "CreateOrder", "CancelOrder", "None"
 
