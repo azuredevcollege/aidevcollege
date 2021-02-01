@@ -362,7 +362,7 @@ We can see the status of the training run by checking our experiment:
 
 ![alt text](../images/02-training_progress.png "Making training progress")
 
-The first run takes around ~10-12 minutes. Subsequent runs will be significantly faster (~5 minutes) as the base Docker image will be re-used. By using a more powerful VM, a single run can be executed in less than a minute (in case you use a GPU-equipped instance, but then you might need to tell your framework to use it).
+The first run takes around ~25-30 minutes. Subsequent runs will be significantly faster (~5 minutes) as the base Docker image will be re-used. By using a more powerful VM, a single run can be executed in less than a minute (in case you use a GPU-equipped instance, but then you might need to tell your framework to use it).
 
 With the same code as before (this is the strength of Azure ML), we can retrieve the results of our training run:
 
