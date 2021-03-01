@@ -89,7 +89,11 @@ Now let's deploy an [Azure Search](https://docs.microsoft.com/en-us/azure/search
 
 1. First, create a `Azure Search` instance
 
+1. Choose a Location - if there are delays switch the azure region to e.g. *north europe*
+
 1. For our purposes, the `Standard Tier` is sufficient
+
+1. Leave the other settings as predefined
 
 ![Create Azure Search](./img/AzureSearchCreate.png)
 
@@ -396,7 +400,7 @@ Let's create a **Storage Account** in the **Azure Portal**:
 
 ![Create Storage](./img/CreateStorage1.png)
 
-Fill in a *unique name* and choose the region *west europe* (if there are delays switch the azure region to e.g. *north europe*):
+Fill in a *unique name* and choose the region *west europe*:
 
 ![Create Storage](./img/CreateStorage2.png)
 
