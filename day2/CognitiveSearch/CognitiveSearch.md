@@ -396,7 +396,7 @@ Let's create a **Storage Account** in the **Azure Portal**:
 
 ![Create Storage](./img/CreateStorage1.png)
 
-Fill in a *unique name* and choose the region *west europe*:
+Fill in a *unique name* and choose the region *west europe* (if there are delays switch the azure region to e.g. *north europe*):
 
 ![Create Storage](./img/CreateStorage2.png)
 
