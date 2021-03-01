@@ -111,6 +111,7 @@ Go to the settings of your project, `Service Connections` and click on `New Serv
 - Create one Service Connection of type `Azure Resource Manager`.
 - Create a service principle of the type `Service Principle (automatic)`.
 - Select your `Subscription` and name it **`MyAzureSubscription`** in the _Service connection name_.
+- Make sure to leave the `Resouce group` field **empty**.
 
 <p align="left"><img width="50%" src="images/ado_settings.png" alt="Settings to add a new Service Connection"/></p>
 
@@ -123,7 +124,7 @@ In the next screen select `service principal (automatic)`
 ![Create Service Connection](./images/serviceconnection2.png)
 
 > **Important:**
-> In the next screen select your _Subscription_ and fill in **`MyAzureSubscription`** in the _Service connection name_.
+> In the next screen select your _Subscription_ and fill in **`MyAzureSubscription`** in the _Service connection name_. Make sure to leave the `Resouce group` field **empty**.
 
 ![Service Connection Result](./images/serviceconnectionresult.png)
 
