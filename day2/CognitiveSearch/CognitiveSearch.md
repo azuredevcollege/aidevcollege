@@ -428,7 +428,7 @@ Next, we need to define the `Data Source`:
 
 ![alt text](./img/azure_search_new_datasource.png "Azure Search Existing Data Source")
 
-We'll skip `Cognitive Search` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
+We'll skip `Cognitive Skills` for this example (we'll get back to it soon). Azure Search automatically looks at the Blob container and will now extract the content and the metadata from all the PDFs. Let's give our Index a better name:
 
 ![alt text](./img/azure_search_create_index.png "Azure Search Index Setting")
 
