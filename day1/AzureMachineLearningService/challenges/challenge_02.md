@@ -23,10 +23,21 @@ import urllib.request
 
 os.makedirs('./data', exist_ok = True)
 
-urllib.request.urlretrieve('http://yann.lecun.com/exdb/mnist/train-images-idx3-ubyte.gz', filename='./data/train-images.gz')
-urllib.request.urlretrieve('http://yann.lecun.com/exdb/mnist/train-labels-idx1-ubyte.gz', filename='./data/train-labels.gz')
-urllib.request.urlretrieve('http://yann.lecun.com/exdb/mnist/t10k-images-idx3-ubyte.gz', filename='./data/test-images.gz')
-urllib.request.urlretrieve('http://yann.lecun.com/exdb/mnist/t10k-labels-idx1-ubyte.gz', filename='./data/test-labels.gz')
+urllib.request.urlretrieve(
+    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/train-images-idx3-ubyte.gz', 
+    filename='./data/train-images.gz')
+
+urllib.request.urlretrieve(
+    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/train-labels-idx1-ubyte.gz', 
+    filename='./data/train-labels.gz')
+
+urllib.request.urlretrieve(
+    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/t10k-images-idx3-ubyte.gz', 
+    filename='./data/test-images.gz')
+
+urllib.request.urlretrieve(
+    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/t10k-labels-idx1-ubyte.gz', 
+    filename='./data/test-labels.gz')
 ```
 
 In this challenge, we'll be training remotely. Therefore, we'll need to be able to access the MNIST dataset from our compute cluster.
@@ -278,14 +289,16 @@ To get the training working, we need to create an environment and package the sc
 ```python
 from azureml.core import Environment
 from azureml.core.conda_dependencies import CondaDependencies
+from azureml.core.runconfig import DockerConfiguration
 
 # Create a Python environment for the experiment
 # Let Azure ML manage dependencies by setting user_managed_dependencies to False
 # Use docker containers by setting docker.enabled to True
 # Our workspace needs to know what environment to use
 env = Environment("aidevcollege-env")
-env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
-env.docker.enabled = True # Use a docker container
+env.python.user_managed_dependencies = False  # Let Azure ML manage dependencies
+
+docker_conf = DockerConfiguration(use_docker=True)  # Use a docker container
 
 # Create a the pip and conda package dependencies
 packages = CondaDependencies.create(pip_packages=["tensorflow","keras", "astor", 'azureml-sdk',
@@ -316,7 +329,8 @@ estimator = ScriptRunConfig(source_directory=script_folder,
                 arguments=script_params,
                 compute_target = compute_target,
                 environment=registered_env,
-                script='train.py')
+                script='train.py',
+                docker_runtime_config=docker_conf)
 
 estimator.run_config.data_references = {ds.as_mount().data_reference_name: ds.as_mount().to_config()}
 ```
