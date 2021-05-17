@@ -459,5 +459,6 @@ estimator2 = ScriptRunConfig(source_directory=script_folder,
                 arguments=script_params,
                 compute_target = compute_target,
                 environment=registered_env,
-                script='train2.py')
+                script='train2.py',
+                docker_runtime_config=docker_conf)
 ```
