@@ -98,13 +98,16 @@ This first cell imports the relevant libraries from the Azure Machine Learning S
 
 ![alt text](../images/01-authenticate.png "Authenticate to our workspace")
 
-Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using an `Azure Compute Instance`):
+Have a look at the following note when experiencing subscription ID errors (this should not happen any more when using an `Azure Compute Instance`) or the authentication was not triggered correctly:
 
 <details>
-If you are using multiple subscriptions or tenants, it might be required to tell the Jupyter Notebook, which one it should use. Hence, create a new cell and adapt the following code to use your subscription id (the one you have used in `config.json`):
+If you are using multiple subscriptions or tenants, it might be required to tell the Jupyter Notebook, which one it should use. Hence, create a new cell and adapt the following code to use your subscription id (you can find this id in the overview of your Machine Learning Service in the azure portal):
 
 ```
-az account set -s "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx"
+!az login
+```
+```
+!az account set -s "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx"
 ```
 
 Once you ran the cell, restart the Notebook kernel (`Kernel` --> `Restart & Clear Output`) and wait a few seconds until it has restarted.
