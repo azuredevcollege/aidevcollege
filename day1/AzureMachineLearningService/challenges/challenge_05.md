@@ -259,7 +259,7 @@ if aks_name in cts and cts[aks_name].type == 'AKS':
     aks_target = cts[aks_name]
 else:
     print('Creating a new AKS cluster...')
-    prov_config = AksCompute.provisioning_configuration(vm_size="Standard_B2s")
+    prov_config = AksCompute.provisioning_configuration()
     aks_target = ComputeTarget.create(workspace = ws, 
                                   name = aks_name, 
                                   provisioning_configuration = prov_config)
