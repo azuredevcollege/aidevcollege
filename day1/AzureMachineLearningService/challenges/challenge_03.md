@@ -74,7 +74,7 @@ env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
 docker_conf = DockerConfiguration(use_docker=True)  # Use a docker container
 
 # Create a the pip and conda package dependencies
-packages = CondaDependencies.create(pip_packages=["tensorflow","keras", "astor", 'azureml-sdk', 
+packages = CondaDependencies.create(pip_packages=["tensorflow==2.3.1","keras", "astor", 'azureml-sdk', 
                                                   'pynacl==1.2.1', 'azureml-dataprep', "pillow==5.3.0",
                                                   "azureml-defaults"])
 
