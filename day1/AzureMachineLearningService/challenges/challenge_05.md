@@ -15,7 +15,7 @@ Back to Jupyter now, and let's create a notebook called `challenge05.ipynb`. Fir
 
 ## Update dependencies
 ```
-!pip install azureml-sdk[automl,mlflow]==1.23 PyXGBoost xgboost==0.90 azureml-widgets==1.19.0
+!pip install azureml-sdk[automl,mlflow]==1.27 PyXGBoost xgboost==0.90 azureml-widgets==1.19.0
 ```
 
 ## Connect to Workspace
