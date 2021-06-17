@@ -128,19 +128,19 @@ import urllib.request
 os.makedirs('./data', exist_ok = True)
 
 urllib.request.urlretrieve(
-    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/train-images-idx3-ubyte.gz', 
+    'https://appdevcollege.blob.core.windows.net/aidevcollege/test-images.gz', 
     filename='./data/train-images.gz')
 
 urllib.request.urlretrieve(
-    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/train-labels-idx1-ubyte.gz', 
+    'https://appdevcollege.blob.core.windows.net/aidevcollege/test-labels.gz', 
     filename='./data/train-labels.gz')
 
 urllib.request.urlretrieve(
-    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/t10k-images-idx3-ubyte.gz', 
+    'https://appdevcollege.blob.core.windows.net/aidevcollege/train-images.gz', 
     filename='./data/test-images.gz')
 
 urllib.request.urlretrieve(
-    'https://aicollegefiles.blob.core.windows.net/aicollegefiles/challenge1/t10k-labels-idx1-ubyte.gz', 
+    'https://appdevcollege.blob.core.windows.net/aidevcollege/train-labels.gz', 
     filename='./data/test-labels.gz')
 
 ```
