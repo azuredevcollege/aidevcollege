@@ -73,7 +73,7 @@ Now let's start with the **Text Analytics Cognitive Service**. The Text Analytic
 
 First we deploy the **Azure Text Analytics** Service in the **Azure Portal**:
 
-![Azure Portal](./images/New_CreateTextAnalytics.png)
+![Azure Portal](./images/New_CreateTextAnalytics.PNG)
 
 Fill in the *name* and hit *create*:
 
