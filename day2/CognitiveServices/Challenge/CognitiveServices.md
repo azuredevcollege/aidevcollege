@@ -192,7 +192,7 @@ As the world gets more and more connected we'd like to translate some languages 
 
 First, create a `Translator Text` API Key in the Azure Portal:
 
-![Translator Text API](./images/TTCreate.png)
+![Translator Text API](./images/New_CreateTranslator.PNG.png)
 
 ![Translator Text API Details](./images/TTCreateDetails.png)
 
@@ -236,7 +236,7 @@ Again we conduct a REST Call and send an image of a face to the *Face Cognitive 
 
 0. Deploy a Face Api Service in the Portal
 
-![Deploy Face API](./images/deployface.png)
+![Deploy Face API](./images/New_CreateFace.PNG)
 
 ![Details of Deploy Face API](./images/deployfacedetails.png)
 
