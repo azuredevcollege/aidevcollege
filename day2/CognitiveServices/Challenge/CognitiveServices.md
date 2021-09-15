@@ -192,7 +192,7 @@ As the world gets more and more connected we'd like to translate some languages 
 
 First, create a `Translator Text` API Key in the Azure Portal:
 
-![Translator Text API](./images/New_CreateTranslator.PNG.png)
+![Translator Text API](./images/New_CreateTranslator.PNG)
 
 ![Translator Text API Details](./images/TTCreateDetails.png)
 
