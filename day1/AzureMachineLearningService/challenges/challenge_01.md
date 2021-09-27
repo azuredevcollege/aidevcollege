@@ -128,19 +128,19 @@ import urllib.request
 os.makedirs('./data', exist_ok = True)
 
 urllib.request.urlretrieve(
-    'https://appdevcollege.blob.core.windows.net/aidevcollege/test-images.gz', 
+    'https://github.com/aidevcollege/aidevcollege/raw/master/day1/AzureMachineLearningService/data/train-images.gz', 
     filename='./data/train-images.gz')
 
 urllib.request.urlretrieve(
-    'https://appdevcollege.blob.core.windows.net/aidevcollege/test-labels.gz', 
+    'https://github.com/aidevcollege/aidevcollege/raw/master/day1/AzureMachineLearningService/data/train-labels.gz', 
     filename='./data/train-labels.gz')
 
 urllib.request.urlretrieve(
-    'https://appdevcollege.blob.core.windows.net/aidevcollege/train-images.gz', 
+    'https://github.com/aidevcollege/aidevcollege/raw/master/day1/AzureMachineLearningService/data/test-images.gz', 
     filename='./data/test-images.gz')
 
 urllib.request.urlretrieve(
-    'https://appdevcollege.blob.core.windows.net/aidevcollege/train-labels.gz', 
+    'https://github.com/aidevcollege/aidevcollege/raw/master/day1/AzureMachineLearningService/data/test-labels.gz', 
     filename='./data/test-labels.gz')
 
 ```
