@@ -13,11 +13,6 @@ Sounds good? Let's get started!
 
 Back to Jupyter now, and let's create a notebook called `challenge05.ipynb`. First, we'll import the necessary packages and connect to our workspace:
 
-## Update dependencies
-```
-!pip install azureml-sdk[automl,mlflow]==1.27 PyXGBoost xgboost==0.90 azureml-widgets==1.19.0
-```
-
 ## Connect to Workspace
 
 ```python
@@ -154,16 +149,6 @@ After training we can see the following:
 remote_run.wait_for_completion(show_output=True)
 ```
 ![alt text](../images/05-remote_run_result.png "Show remote_run results")
-
-## AutoMLRun and fill in your ID
-
-Make sure to **fill** in your **```AutoML_<FILL-IN-YOUR-ID>```**:
-
-```python
-from azureml.train.automl.run import AutoMLRun
-automl_model_id = 'AutoML_<FILL-IN-YOUR-ID>'
-remote_run = AutoMLRun(experiment, automl_model_id)
-```
 
 Now we can show the results of our training run:
 We'll retrieve the best model by selecting the best pipeline from our iterations. The `get_output` method on automl_classifier returns the `best run` and the `fitted model` for the last invocation. Overloads on `get_output` allow you to retrieve the best run and fitted model for any logged metric or for a particular iteration.
