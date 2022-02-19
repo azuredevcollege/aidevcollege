@@ -59,9 +59,9 @@ You can solve these tasks in a programming language of your choice. For sake of 
 
 For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-Now let's start with the **Text Analytics Cognitive Service**. The Text Analytics API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including: sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.
+Now let's start with the **Cognitive Service for Language**. The Cognitive Service for Language API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
-## Azure Cognitive Services - Text Analytics
+## Azure Cognitive Services - Language Service
 
 |Azure Cognitive Services|Information|
 |---|---|
@@ -71,19 +71,23 @@ Now let's start with the **Text Analytics Cognitive Service**. The Text Analytic
 
 1. In the following tasks we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
-First we deploy the **Azure Text Analytics** Service in the **Azure Portal**:
+First we deploy the **Language** Service in the **Azure Portal**:
 
-![Azure Portal](./images/New_CreateTextAnalytics.PNG)
+![Azure Portal](./images/CreateLanguageService.png)
 
-Fill in the *name* and hit *create*:
+By default, the service comes with several pre-built capabilities like sentiment analysis, key phrase extraction or question answering. It is possible to add customizable features. However, for this exercise we will stick with the pre-built capabilities:
 
-![Azure Portal](./images/CreateTA.png)
+![Azure Portal](./images/CreateLanguageService2.png)
 
-Get the Key and the URL under the section *keys* from the Azure portal:
+Fill in the *name*, agree to the *Legal Terms* and *terms of Responsible AI* and hit *create*:
 
-![Azure Portal: Key and URL](./images/keyendpointta.png)
+![Azure Portal](./images/CreateLanguageService3.png)
 
-Let's start with connecting to your Text Analytics Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
+Get the Key and the URL (endpoint) under the section *keys* from the Azure portal:
+
+![Azure Portal: Key and URL](./images/keyendpoint.png)
+
+Let's start with connecting to your Language Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
 import requests
