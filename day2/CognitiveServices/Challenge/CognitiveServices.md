@@ -114,7 +114,7 @@ For each of the following features, copy the code blocks into new cells of your 
 Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
-language_api_url = text_analytics_base_url + "/text/analytics/v2.1/languages"
+language_detection_api_url = endpoint + "/text/analytics/v3.1/languages"
 
 documents = { "documents": [
     { "id": "1", "text": "This is a document written in English." },
@@ -122,7 +122,7 @@ documents = { "documents": [
     { "id": "3", "text": "这是一个用中文写的文件" }
 ]}
 
-response  = requests.post(language_api_url, headers=headers, json=documents)
+response  = requests.post(language_detection_api_url, headers=headers, json=documents)
 languages = response.json()
 pprint(languages)
 ```
