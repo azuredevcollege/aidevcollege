@@ -98,10 +98,10 @@ text_analytics_base_url = "xxx" # Paste your URL in here
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 ```
 
-In the following copy the code into new Cells in your Jupyter Notebook.
-In general we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Services, by sending some data to the Service and let the **pre-trained Machine Learning Model** behind the scenes give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+In the following, copy the code into new Cells in your Jupyter Notebook.
+In general, we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
 
-### Detect Language
+### Language Detection
 
 Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
 
