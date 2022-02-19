@@ -131,12 +131,12 @@ Your result should look like this:
 
 ![Detect Language](./images/TAlanguages.png)
 
-### Detect Sentiment
+### Sentiment Analysis
 
-Secondly, we can detect the sentiment of a given phrase, go ahead and copy the Code into your `CognitiveServices.ipynb` notebook:
+Secondly, we can analyse the sentiment of a given phrase, go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-sentiment_url = text_analytics_base_url + "/text/analytics/v2.1/sentiment"
+sentiment_api_url = endpoint + "/text/analytics/v3.2-preview.1/sentiment"
 
 documents = {"documents" : [
   {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
@@ -145,7 +145,7 @@ documents = {"documents" : [
   {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
 ]}
 
-response  = requests.post(sentiment_url, headers=headers, json=documents)
+response  = requests.post(sentiment_api_url, headers=headers, json=documents)
 sentiments = response.json()
 pprint(sentiments)
 ```
