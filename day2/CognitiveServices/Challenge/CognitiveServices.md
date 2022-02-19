@@ -98,8 +98,16 @@ text_analytics_base_url = "xxx" # Paste your URL in here
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 ```
 
-In the following, copy the code into new Cells in your Jupyter Notebook.
-In general, we will conduct a [REST](https://restfulapi.net/) Call to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give a response in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+Azure Cognitive Service for Language provides several features. In the following, we will try out only a few of the available features:
+- Language Detection ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/overview))
+- Sentiment Analysis ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/overview))
+- Key Phrase Extraction ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/key-phrase-extraction/overview))
+- Entity Linking ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/entity-linking/overview))
+
+
+In general, we will conduct [REST](https://restfulapi.net/) Calls to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give responses in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+
+For each of the following features, copy the code blocks into new cells of your Jupyter Notebook.
 
 ### Language Detection
 
