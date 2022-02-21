@@ -467,7 +467,7 @@ This should be the result:
 ]
 ```
 
-As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a **Face Cognitive Service** for that.
+So far we have focused on text. Now we want to jump to analysing images. Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that.
 
 The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
 
