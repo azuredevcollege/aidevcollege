@@ -389,7 +389,7 @@ First, create a `Translator` API Key in the Azure Portal:
 
 The Translator API allows to directly access the service by specifying the API key. As with other services, you can find the key under "Keys and Endpoint".
 
-Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes.
+Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
 
 ```python
 import requests, json
@@ -409,7 +409,34 @@ print(json.dumps(response.json(), indent=2))
 ```
 Example Result: 
 
-![Translator Text API Result](./images/TTResult.png)
+```json
+[
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1.0
+    },
+    "translations": [
+      {
+        "text": "Ich m\u00f6chte 4 Pizza Magarita und 8 Bier bestellen!",
+        "to": "de"
+      }
+    ]
+  },
+  {
+    "detectedLanguage": {
+      "language": "en",
+      "score": 1.0
+    },
+    "translations": [
+      {
+        "text": "Bitte f\u00fcgen Sie der Bestellung 42 Salate hinzu!",
+        "to": "de"
+      }
+    ]
+  }
+]
+```
 
 As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
 
