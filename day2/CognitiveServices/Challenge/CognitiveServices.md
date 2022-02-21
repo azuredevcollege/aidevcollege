@@ -438,7 +438,24 @@ Example Result:
 ]
 ```
 
-As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently.
+As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently. It is possible to add optional parameters such as a profanity filter and more. The Translator Service does not only translate text, but also has the capability of transliterating text from one type of script to another (and much more). You can try it out with the code below:
+
+```python
+api_key = "xxx" # Paste your API key here
+region = "<paste-your-text-translator-service-region here>" # Paste your region here
+url = "https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0"
+headers = {'Ocp-Apim-Subscription-Key': api_key, 'Ocp-Apim-Subscription-Region': region, 'Content-type': 'application/json'}
+
+params = {
+    'language': 'ja',
+    'fromScript': 'jpan',
+    'toScript': 'latn'
+    }
+
+body = [{'text' : 'こんにちは'}]
+response = requests.post(url, headers=headers, params=params, json=body)
+print(json.dumps(response.json(), indent=2))
+```
 
 As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a **Face Cognitive Service** for that.
 
