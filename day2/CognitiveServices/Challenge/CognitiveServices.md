@@ -252,9 +252,9 @@ Your result should look like this:
  'modelVersion': '2020-04-01'}
 ```
 
-### Detect Key Phrases
+### Key Phrase Extraction
 
-Thirdly, we can easily detect key phrases from text, copy the Code into your `CognitiveServices.ipynb` notebook:
+Thirdly, we can easily extract key phrases from text. In order to do so, copy the Code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 keyphrase_url = text_analytics_base_url + "/text/analytics/v2.1/keyphrases"
