@@ -499,8 +499,7 @@ import json
 # set to your own api key value
 api_key = "xxx" # Paste your API key here
 
-# replace <My Endpoint String> with the string from your endpoint URL
-face_api_url = '<My Endpoint String>face/v1.0/detect'
+face_api_url = '<My Endpoint String>face/v1.0/detect' # Replace with endpoint
 
 image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
 
