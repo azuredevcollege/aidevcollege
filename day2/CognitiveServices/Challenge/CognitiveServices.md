@@ -483,7 +483,9 @@ Again we conduct a REST Call and send an image of a face to the *Face Cognitive 
 
 ![Details of Deploy Face API](./images/deployfacedetails.png)
 
-1. Copy the following code into a new Cell into the `CognitiveServices.ipynb` Notebook.
+To use **Face API**, perform the following steps:
+
+1. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
 2. Make the following changes in code where needed:
     1. Replace the value of `subscription_key` with your subscription key.
     2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
