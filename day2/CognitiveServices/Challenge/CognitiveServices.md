@@ -289,9 +289,9 @@ Example Result:
  'modelVersion': '2021-06-01'}
 ```
 
-### Entity Detection
+### Entity Linking
 
-And last but not least, we can detect entities in text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
+And last but not least, we can detect and link entities in text. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "We went to Seattle last week.", the word "Seattle" would be identified, with a link to more information on Wikipedia. In order to try it out, copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 entities_url = endpoint + "/text/analytics/v3.1/entities/linking"
