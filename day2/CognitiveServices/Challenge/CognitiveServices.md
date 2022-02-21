@@ -457,6 +457,16 @@ response = requests.post(url, headers=headers, params=params, json=body)
 print(json.dumps(response.json(), indent=2))
 ```
 
+This should be the result:
+```json
+[
+  {
+    "text": "Kon'nichiwa",
+    "script": "latn"
+  }
+]
+```
+
 As we focused on text now, we want to jump to images. As more and more apps recognize faces there is also a **Face Cognitive Service** for that.
 
 The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
