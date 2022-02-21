@@ -518,7 +518,7 @@ print(json.dumps(response.json(), indent = 2))
 
 ### Examine the response
 
-A successful response is returned in JSON.
+A successful response is returned in JSON:
 
 ```json
 [
@@ -698,7 +698,10 @@ A successful response is returned in JSON.
   }
 ]
 ```
-As we already started to investigate images we will now look at a different service the **Computer Vision Cognitive Service** to analyze text on an image.
+
+As you can see in the image yourself and from the JSON-response, the image shows a male 37-year old with a moustache. He is not wearing glasses and shows a neutral emotion. The image also shows a 56-year old female person without glasses.
+
+As we have already started to investigate images, we will now look at a different service the **Computer Vision Cognitive Service** to analyze text on an image.
 
 Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
 
