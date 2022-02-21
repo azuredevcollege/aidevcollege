@@ -254,7 +254,7 @@ Your result should look like this:
 
 ### Key Phrase Extraction
 
-Thirdly, we can easily extract key phrases from text. In order to do so, copy the Code into your `CognitiveServices.ipynb` notebook:
+Thirdly, we can easily extract key phrases from text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 keyphrase_url = endpoint + "/text/analytics/v3.1/keyphrases"
@@ -289,9 +289,9 @@ Example Result:
  'modelVersion': '2021-06-01'}
 ```
 
-### Detect Entities
+### Entity Detection
 
-And last but not least, we can detect the entities in text, copy the Code into your `CognitiveServices.ipynb` notebook:
+And last but not least, we can detect entities in text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 entities_url = text_analytics_base_url + "/text/analytics/v2.1/entities"
