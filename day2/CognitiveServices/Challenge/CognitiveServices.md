@@ -272,7 +272,22 @@ pprint(key_phrases)
 ```
 Example Result: 
 
-![Detect Key Phrases](./images/TAkeyphrase.png)
+```json
+{'documents': [{'id': '1',
+                'keyPhrases': ['wonderful experience', 'rooms', 'staff'],
+                'warnings': []},
+               {'id': '2',
+                'keyPhrases': ['terrible time', 'hotel', 'staff', 'food'],
+                'warnings': []},
+               {'id': '3',
+                'keyPhrases': ['Monte Rainier', 'caminos'],
+                'warnings': []},
+               {'id': '4',
+                'keyPhrases': ['mucho tráfico', 'día', 'carretera', 'ayer'],
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2021-06-01'}
+```
 
 ### Detect Entities
 
