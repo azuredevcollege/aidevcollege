@@ -492,22 +492,19 @@ To use **Face API**, perform the following steps:
     3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
 3. Run the Cell and examine the response.
 
-![Keys and Url of Face API](./images/KeyUrlFace.png)
-
 ```python
 import requests
 import json
 
-# set to your own subscription key value
-subscription_key = "xxx" # Paste your API key here
-assert subscription_key
+# set to your own api key value
+api_key = "xxx" # Paste your API key here
 
 # replace <My Endpoint String> with the string from your endpoint URL
-face_api_url = '<My Endpoint String>/face/v1.0/detect'
+face_api_url = '<My Endpoint String>face/v1.0/detect'
 
 image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
 
-headers = {'Ocp-Apim-Subscription-Key': subscription_key}
+headers = {'Ocp-Apim-Subscription-Key': api_key}
 
 params = {
     'returnFaceId': 'true',
