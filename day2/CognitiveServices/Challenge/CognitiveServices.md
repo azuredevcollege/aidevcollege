@@ -130,19 +130,23 @@ pprint(languages)
 Your result should look like this:
 
 ```json
-{'documents': [{'detectedLanguages': [{'iso6391Name': 'en',
-                                       'name': 'English',
-                                       'score': 1.0}],
-                'id': '1'},
-               {'detectedLanguages': [{'iso6391Name': 'es',
-                                       'name': 'Spanish',
-                                       'score': 1.0}],
-                'id': '2'},
-               {'detectedLanguages': [{'iso6391Name': 'zh_chs',
-                                       'name': 'Chinese_Simplified',
-                                       'score': 1.0}],
-                'id': '3'}],
- 'errors': []}
+{'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
+                                     'iso6391Name': 'en',
+                                     'name': 'English'},
+                'id': '1',
+                'warnings': []},
+               {'detectedLanguage': {'confidenceScore': 0.75,
+                                     'iso6391Name': 'es',
+                                     'name': 'Spanish'},
+                'id': '2',
+                'warnings': []},
+               {'detectedLanguage': {'confidenceScore': 1.0,
+                                     'iso6391Name': 'zh_chs',
+                                     'name': 'Chinese_Simplified'},
+                'id': '3',
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2021-11-20'}
 ```
 
 ### Sentiment Analysis
