@@ -257,7 +257,7 @@ Your result should look like this:
 Thirdly, we can easily extract key phrases from text. In order to do so, copy the Code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-keyphrase_url = endpoint + "/text/analytics/v2.1/keyphrases"
+keyphrase_url = endpoint + "/text/analytics/v3.1/keyphrases"
 
 documents = {"documents" : [
   {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
