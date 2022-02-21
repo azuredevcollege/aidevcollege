@@ -127,9 +127,23 @@ languages = response.json()
 pprint(languages)
 ```
 
-Your result should look like this: 
+Your result should look like this:
 
-![Detect Language](./images/TAlanguages.png)
+```json
+{'documents': [{'detectedLanguages': [{'iso6391Name': 'en',
+                                       'name': 'English',
+                                       'score': 1.0}],
+                'id': '1'},
+               {'detectedLanguages': [{'iso6391Name': 'es',
+                                       'name': 'Spanish',
+                                       'score': 1.0}],
+                'id': '2'},
+               {'detectedLanguages': [{'iso6391Name': 'zh_chs',
+                                       'name': 'Chinese_Simplified',
+                                       'score': 1.0}],
+                'id': '3'}],
+ 'errors': []}
+```
 
 ### Sentiment Analysis
 
