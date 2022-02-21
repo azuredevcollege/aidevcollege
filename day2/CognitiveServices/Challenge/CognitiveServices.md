@@ -294,7 +294,7 @@ Example Result:
 And last but not least, we can detect entities in text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-entities_url = text_analytics_base_url + "/text/analytics/v2.1/entities"
+entities_url = endpoint + "/text/analytics/v3.1/entities/linking"
 
 documents = {"documents" : [
   {"id": "1", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800."}
