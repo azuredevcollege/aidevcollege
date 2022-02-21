@@ -381,17 +381,15 @@ As the world gets more and more connected we'd like to translate some languages 
 
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
-First, create a `Translator Text` API Key in the Azure Portal:
+First, create a `Translator` API Key in the Azure Portal:
 
 ![Translator Text API](./images/New_CreateTranslator.PNG)
 
 ![Translator Text API Details](./images/TTCreateDetails.png)
 
-The Translator API  allows to directly access the service by specifying the API key:
+The Translator API allows to directly access the service by specifying the API key. As with other services, you can find the key under "Keys and Endpoint".
 
-![Translator Text API Key and URL](./images/TTKeyUrl.png)
-
-Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again we conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes.
+Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes.
 
 ```python
 import requests, json
