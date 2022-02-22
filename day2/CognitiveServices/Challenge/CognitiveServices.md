@@ -776,17 +776,254 @@ while (poll):
     time.sleep(1)
     if ("analyzeResult" in recognition):
         poll = False 
-    if ("status" in recognition and recognition['status'] == 'Failed'):
+    if ("status" in recognition and recognition['status'] == 'failed'):
         poll = False
 
 print(json.dumps(recognition, indent=2))
 ```
 
-**Example Notebook and Result:**
+The result should look like this:
 
-![Python Code in Azure Notebook](./images/CVCode1.png)
-
-![Result](./images/CVPartResult.png)
+````json
+{
+  "status": "succeeded",
+  "createdDateTime": "2022-02-22T10:47:47Z",
+  "lastUpdatedDateTime": "2022-02-22T10:47:48Z",
+  "analyzeResult": {
+    "version": "3.2.0",
+    "modelVersion": "2021-04-12",
+    "readResults": [
+      {
+        "page": 1,
+        "angle": 4.7589,
+        "width": 1000,
+        "height": 978,
+        "unit": "pixel",
+        "lines": [
+          {
+            "boundingBox": [
+              272,
+              260,
+              858,
+              286,
+              856,
+              389,
+              266,
+              366
+            ],
+            "text": "Shopping list :",
+            "appearance": {
+              "style": {
+                "name": "handwriting",
+                "confidence": 0.785
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  279,
+                  260,
+                  653,
+                  284,
+                  649,
+                  389,
+                  267,
+                  348
+                ],
+                "text": "Shopping",
+                "confidence": 0.994
+              },
+              {
+                "boundingBox": [
+                  676,
+                  285,
+                  803,
+                  286,
+                  803,
+                  388,
+                  673,
+                  389
+                ],
+                "text": "list",
+                "confidence": 0.92
+              },
+              {
+                "boundingBox": [
+                  821,
+                  286,
+                  857,
+                  286,
+                  858,
+                  386,
+                  821,
+                  388
+                ],
+                "text": ":",
+                "confidence": 0.914
+              }
+            ]
+          },
+          {
+            "boundingBox": [
+              145,
+              422,
+              448,
+              460,
+              439,
+              532,
+              136,
+              500
+            ],
+            "text": "Bananas",
+            "appearance": {
+              "style": {
+                "name": "handwriting",
+                "confidence": 0.909
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  145,
+                  423,
+                  448,
+                  467,
+                  442,
+                  532,
+                  137,
+                  501
+                ],
+                "text": "Bananas",
+                "confidence": 0.345
+              }
+            ]
+          },
+          {
+            "boundingBox": [
+              122,
+              543,
+              304,
+              554,
+              295,
+              637,
+              116,
+              618
+            ],
+            "text": "Milk",
+            "appearance": {
+              "style": {
+                "name": "handwriting",
+                "confidence": 0.772
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  122,
+                  543,
+                  292,
+                  553,
+                  285,
+                  636,
+                  116,
+                  622
+                ],
+                "text": "Milk",
+                "confidence": 0.958
+              }
+            ]
+          },
+          {
+            "boundingBox": [
+              99,
+              653,
+              291,
+              671,
+              284,
+              761,
+              90,
+              742
+            ],
+            "text": "Rice",
+            "appearance": {
+              "style": {
+                "name": "handwriting",
+                "confidence": 0.676
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  98,
+                  653,
+                  282,
+                  670,
+                  273,
+                  760,
+                  90,
+                  742
+                ],
+                "text": "Rice",
+                "confidence": 0.994
+              }
+            ]
+          },
+          {
+            "boundingBox": [
+              64,
+              800,
+              870,
+              855,
+              863,
+              967,
+              59,
+              897
+            ],
+            "text": "Azure Subscription",
+            "appearance": {
+              "style": {
+                "name": "other",
+                "confidence": 1
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  63,
+                  800,
+                  293,
+                  810,
+                  289,
+                  903,
+                  60,
+                  891
+                ],
+                "text": "Azure",
+                "confidence": 0.435
+              },
+              {
+                "boundingBox": [
+                  353,
+                  814,
+                  862,
+                  858,
+                  856,
+                  968,
+                  348,
+                  908
+                ],
+                "text": "Subscription",
+                "confidence": 0.095
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+​
+```
 
 Ok, looks like it recognized something. Let's visualize it:
 
