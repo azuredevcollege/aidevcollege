@@ -723,7 +723,7 @@ The Computer Vision API offers several services for processing images:
 - Image Analysis
 - Spatial Analysis
 
- In this section, we will concentrate on the service's OCR capabilities. I can extract information from printed text (in several languages), handwritten text (English only + Chinese, French, German and Italian in preview), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
+ In this section, we will concentrate on the service's OCR capabilities. It can extract information from printed text (in several languages), handwritten text (English only + Chinese, French, German and Italian in preview), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
 
 ### Optical Character Recognition - Images to Text - Handwritten content
 
@@ -734,8 +734,6 @@ First, create a `Computer Vision` API Key in the Azure Portal
 ![Create Computer Vision](./images/ComputerVisionCreate.png)
 
 ![Create Computer Vision Details](./images/ComputerVisionCreateDetails.png)
-
-![Receive Computer Vision URL and Key](./images/CVKeyURL.png)
 
 As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
@@ -754,12 +752,12 @@ Ok, now we can start recognizing some text. With the Computer Vision API, this i
 1. Query if the image has been processed
 
 ```python
-key = "xxxx" # Paste your API Key here!
+api_key = "97ef2b12fb064bfa893617c67ed83662" # Paste your API Key here!
 
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/recognizeText"
-image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Cursive_Writing_on_Notebook_paper.jpg/800px-Cursive_Writing_on_Notebook_paper.jpg"
+url = "https://westeurope.api.cognitive.microsoft.com/vision/v3.2/read/analyze"
+image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
 
-headers = {'Ocp-Apim-Subscription-Key': key}
+headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
 params  = {'mode': 'Handwritten'}
 data    = {'url': image_url}
 
@@ -776,10 +774,10 @@ while (poll):
     response_final = requests.get(operation_url, headers=headers)
     recognition = response_final.json()
     time.sleep(1)
-    if ("recognitionResult" in recognition):
-        poll= False 
+    if ("analyzeResult" in recognition):
+        poll = False 
     if ("status" in recognition and recognition['status'] == 'Failed'):
-        poll= False
+        poll = False
 
 print(json.dumps(recognition, indent=2))
 ```
