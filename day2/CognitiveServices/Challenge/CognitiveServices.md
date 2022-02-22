@@ -784,7 +784,7 @@ print(json.dumps(recognition, indent=2))
 
 The result should look like this:
 
-````json
+```json
 {
   "status": "succeeded",
   "createdDateTime": "2022-02-22T10:47:47Z",
@@ -1022,7 +1022,6 @@ The result should look like this:
     ]
   }
 }
-​
 ```
 
 Ok, looks like it recognized something. Let's visualize it:
