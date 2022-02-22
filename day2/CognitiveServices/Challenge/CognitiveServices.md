@@ -752,9 +752,9 @@ Ok, now we can start recognizing some text. With the Computer Vision API, this i
 1. Query if the image has been processed
 
 ```python
-api_key = "97ef2b12fb064bfa893617c67ed83662" # Paste your API Key here!
+api_key = "xxx" # Paste your API Key here!
 
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v3.2/read/analyze"
+url = "https://<YOUR ENDPOINT>.api.cognitive.microsoft.com/vision/v3.2/read/analyze" # Paste your Endpoint here
 image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
 
 headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
