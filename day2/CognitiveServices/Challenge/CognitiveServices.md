@@ -1090,9 +1090,20 @@ for line in line_infos:
 word_infos
 ```
 
-**Example Notebook:**
+**Example JSON response (just a snippet):**
 
-![Azure Notebook](./images/OcrCode.png)
+````json
+[{'boundingBox': '31,50,817,70', 'text': 'LUFTPOLSTERTASCHEN'},
+ {'boundingBox': '30,219,23,24', 'text': 'u'},
+ {'boundingBox': '68,216,168,27', 'text': 'Fensterlose'},
+ {'boundingBox': '247,216,263,37', 'text': 'Schutzumschläge'},
+ {'boundingBox': '522,221,47,26', 'text': 'mit'},
+ {'boundingBox': '580,221,182,37', 'text': 'Haftklebung'},
+ {'boundingBox': '66,276,149,34', 'text': 'Optimaler'},
+ {'boundingBox': '225,276,99,27', 'text': 'Schutz'},
+ {'boundingBox': '334,277,84,26', 'text': 'durch'},
+ {'boundingBox': '432,277,227,35', 'text': 'Luftpolsterfolie'}]
+```
 
 **Visualization:**
 
