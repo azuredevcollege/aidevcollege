@@ -1107,7 +1107,7 @@ for word in word_infos:
     origin = (bbox[0], bbox[1])
     patch  = Rectangle(origin, bbox[2], bbox[3], fill=False, linewidth=2, color='y')
     ax.axes.add_patch(patch)
-    plt.text(origin[0], origin[1], text, fontsize=12, weight="bold", va="top")
+    plt.text(origin[0], origin[1], text, fontsize=11, va="top")
 plt.axis("off")
 ```
 
