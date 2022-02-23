@@ -758,7 +758,6 @@ url = "https://<YOUR ENDPOINT>.api.cognitive.microsoft.com/vision/v3.2/read/anal
 image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
 
 headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
-params  = {'mode': 'Handwritten'}
 data    = {'url': image_url}
 
 # Post image URL to the API
