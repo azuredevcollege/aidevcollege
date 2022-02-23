@@ -1310,7 +1310,7 @@ For recognizing longer text with multiple sentences, you can follow the [followi
 
 ***Note:***
 
-Compressed audio is supported (e.g., MP3s), see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-codec-compressed-audio-input-streams),
+Compressed audio is also supported (e.g., MP3s), see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-codec-compressed-audio-input-streams),
 
 Besides that, the speech-to-text API expects audio with the following specifics:
 * 16-bit WAV format with PCM or OGG format with OPUS
