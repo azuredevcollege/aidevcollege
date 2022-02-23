@@ -1194,6 +1194,10 @@ In the following sample, you learn about the benefits and capabilities of the **
 
 ## Azure Cognitive Services - Speech
 
+|Azure Cognitive Services|Information|
+|---|---|
+|[Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/
+
 :triangular_flag_on_post: **Goal:** Leverage Speech-to-Text and Text-to-Speech
 
 In the language of your choice (Python solution is provided), write two small scripts or apps that
