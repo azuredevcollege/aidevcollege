@@ -1053,7 +1053,7 @@ _ = plt.axis("off")
 
 **Visualization:**
 
-![Result](./images/CVPartResult2.png)
+![Result](./images/ComputerVisionBoxes.png)
 
 **Here are two more images we can test with:**
 
