@@ -1060,7 +1060,7 @@ _ = plt.axis("off")
 > [Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 
 
-Now we use the same service by just extracting text from printed text in images. 
+In a next step, we will use the same service by just extracting text from printed text in images. 
 
 ### Optical Character Recognition - Images to Text - Printed content
 
