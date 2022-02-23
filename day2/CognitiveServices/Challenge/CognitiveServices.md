@@ -1070,7 +1070,7 @@ It is very similar as the previous example- except that is a synchronous call, h
 ```python
 key = "xxxx" # Paste your API Key here or comment this line to use the key from above
 
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v2.0/ocr"
+url = "https://westeurope.api.cognitive.microsoft.com/vision/v3.2/ocr"
 image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
 
 headers = {'Ocp-Apim-Subscription-Key': key}
