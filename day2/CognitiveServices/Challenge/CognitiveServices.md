@@ -748,8 +748,8 @@ from io import BytesIO
 
 Ok, now we can start recognizing some text. With the Computer Vision API, this is a two-step process:
 
-1. Submit the image
-1. Query if the image has been processed
+1. Submit the image (Post-request)
+1. Query if the image has been processed (Get-request)
 
 ```python
 api_key = "xxx" # Paste your API Key here!
