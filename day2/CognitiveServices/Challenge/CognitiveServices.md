@@ -1055,10 +1055,8 @@ _ = plt.axis("off")
 
 ![Result](./images/ComputerVisionBoxes.png)
 
-**Here are two more images we can test with:**
+**Here is another image we can test with:**
 
-
-> [Shopping List Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg) <br>
 > [Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 
 
