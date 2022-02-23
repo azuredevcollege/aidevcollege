@@ -1030,10 +1030,13 @@ Ok, looks like it recognized something. Let's visualize it:
 polygons = []
 
 # Get bounding boxes of the text 
-if ("recognitionResult" in recognition):
-    polygons = [(line["boundingBox"], line["text"])
-        for line in recognition["recognitionResult"]["lines"]]
-
+if ("analyzeResult" in recognition):
+    analyzeResult = recognition["analyzeResult"]
+    readResults = analyzeResult["readResults"]
+   # print(json.dumps(r, indent=2))
+    for line in readResults[0]["lines"]:
+        polygons += [(line["boundingBox"], line["text"])]
+        
 # Display image and overlay text
 plt.figure(figsize=(15, 15))
 image = Image.open(BytesIO(requests.get(image_url).content))
