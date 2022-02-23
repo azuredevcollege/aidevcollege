@@ -1139,6 +1139,10 @@ Now let's create our own Custom Vision Service.
 
 ## Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images
 
+|Azure Cognitive Services|Information|
+|---|---|
+|[Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
+
 :triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
 1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
