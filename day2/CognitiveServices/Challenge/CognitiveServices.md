@@ -1190,7 +1190,7 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 So far we have covered a lot of Text Recognition, Translation, Face Recognition and Image Recognition, so now we will look at *Speech Recognition*.
 
-In the following sample, you learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
+In the following sample, you learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive Service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
 
 ## Azure Cognitive Services - Speech
 
@@ -1248,7 +1248,7 @@ headers = {'Authorization': token,
            'X-Microsoft-OutputFormat': 'riff-16khz-16bit-mono-pcm'}
 
 data = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
-<voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaRUS)'> \
+<voice name='en-US-JennyNeural'> \
     Hello, welcome to the AI Developer College!  \
 </voice></speak>"
 
