@@ -1092,7 +1092,7 @@ word_infos
 
 **Example JSON response (just a snippet):**
 
-````json
+```json
 [{'boundingBox': '31,50,817,70', 'text': 'LUFTPOLSTERTASCHEN'},
  {'boundingBox': '30,219,23,24', 'text': 'u'},
  {'boundingBox': '68,216,168,27', 'text': 'Fensterlose'},
