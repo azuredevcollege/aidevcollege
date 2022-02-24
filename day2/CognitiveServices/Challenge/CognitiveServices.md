@@ -171,7 +171,7 @@ To use **Face API**, perform the following steps:
 
 1. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
 2. Make the following changes in code where needed:
-    1. Replace the value of `subscription_key` with your subscription key.
+    1. Replace the value of `api_key` with your api key.
     2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
     3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
 3. Run the Cell and examine the response.
@@ -878,7 +878,7 @@ pprint(entities)
 Example Result (snippet): 
 
 ```json
-[{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
+{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
                               'dataSource': 'Wikipedia',
                               'id': 'Microsoft',
                               'language': 'en',
@@ -921,7 +921,7 @@ Since we looked at *Entity Linking* in the last paragraph, let's check out the S
 1. Go to the [Language Studio](https://aka.ms/languageStudio)
 2. Log in using your Azure account.
 3. A window will pop up prompting you to choose a language resource. Choose the one you created previously.
-4. Choose *Find linked entities*
+4. Choose the feature *Find linked entities*.
 5. Paste the same text as before (Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800.) into the box and hit *Run*.
 6. Examine the results.
 
