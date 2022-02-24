@@ -201,7 +201,7 @@ print(json.dumps(response.json(), indent = 2))
 
 ### Examine the response
 
-A successful response is returned in JSON:
+A successful response is returned in JSON (snippet):
 
 ```json
 [
@@ -237,149 +237,7 @@ A successful response is returned in JSON:
         "neutral": 0.999,
         "sadness": 0.001,
         "surprise": 0
-      },
-      "blur": {
-        "blurLevel": "high",
-        "value": 0.89
-      },
-      "exposure": {
-        "exposureLevel": "goodExposure",
-        "value": 0.51
-      },
-      "noise": {
-        "noiseLevel": "medium",
-        "value": 0.59
-      },
-      "makeup": {
-        "eyeMakeup": true,
-        "lipMakeup": false
-      },
-      "accessories": [],
-      "occlusion": {
-        "foreheadOccluded": false,
-        "eyeOccluded": false,
-        "mouthOccluded": false
-      },
-      "hair": {
-        "bald": 0.04,
-        "invisible": false,
-        "hairColor": [
-          {
-            "color": "black",
-            "confidence": 0.98
-          },
-          {
-            "color": "brown",
-            "confidence": 0.87
-          },
-          {
-            "color": "gray",
-            "confidence": 0.85
-          },
-          {
-            "color": "other",
-            "confidence": 0.25
-          },
-          {
-            "color": "blond",
-            "confidence": 0.07
-          },
-          {
-            "color": "red",
-            "confidence": 0.02
-          }
-        ]
       }
-    }
-  },
-  {
-    "faceId": "37c7c4bc-fda3-4d8d-94e8-b85b8deaf878",
-    "faceRectangle": {
-      "top": 693,
-      "left": 1503,
-      "width": 180,
-      "height": 180
-    },
-    "faceAttributes": {
-      "smile": 0.003,
-      "headPose": {
-        "pitch": 0,
-        "roll": 2,
-        "yaw": -2.2
-      },
-      "gender": "female",
-      "age": 56,
-      "facialHair": {
-        "moustache": 0,
-        "beard": 0,
-        "sideburns": 0
-      },
-      "glasses": "NoGlasses",
-      "emotion": {
-        "anger": 0,
-        "contempt": 0.001,
-        "disgust": 0,
-        "fear": 0,
-        "happiness": 0.003,
-        "neutral": 0.984,
-        "sadness": 0.011,
-        "surprise": 0
-      },
-      "blur": {
-        "blurLevel": "high",
-        "value": 0.83
-      },
-      "exposure": {
-        "exposureLevel": "goodExposure",
-        "value": 0.41
-      },
-      "noise": {
-        "noiseLevel": "high",
-        "value": 0.76
-      },
-      "makeup": {
-        "eyeMakeup": false,
-        "lipMakeup": false
-      },
-      "accessories": [],
-      "occlusion": {
-        "foreheadOccluded": false,
-        "eyeOccluded": false,
-        "mouthOccluded": false
-      },
-      "hair": {
-        "bald": 0.06,
-        "invisible": false,
-        "hairColor": [
-          {
-            "color": "black",
-            "confidence": 0.99
-          },
-          {
-            "color": "gray",
-            "confidence": 0.89
-          },
-          {
-            "color": "other",
-            "confidence": 0.64
-          },
-          {
-            "color": "brown",
-            "confidence": 0.34
-          },
-          {
-            "color": "blond",
-            "confidence": 0.07
-          },
-          {
-            "color": "red",
-            "confidence": 0.03
-          }
-        ]
-      }
-    }
-  }
-]
 ```
 
 As you can see in the image yourself and from the JSON-response, the image shows a male 37-year old with a moustache. He is not wearing glasses and shows a neutral emotion. The image also shows a 56-year old female person without glasses.
@@ -826,12 +684,9 @@ Besides that, the speech-to-text API expects audio with the following specifics:
 
 More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-audio-input-streams).
 
-Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
-**Language Understanding (LUIS)** is a cloud-based conversational AI service that applies custom machine-learning intelligence to a user's conversational, natural language text to predict overall meaning, and pull out relevant, detailed information.
-
 Now let's start with the **Cognitive Service for Language**. The Cognitive Service for Language API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
-## Azure Cognitive Services - Language Service
+### Azure Cognitive Services - Language Service
 
 |Azure Cognitive Services|Information|
 |---|---|
