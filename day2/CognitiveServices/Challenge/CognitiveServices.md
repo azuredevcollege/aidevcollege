@@ -755,7 +755,7 @@ pprint(languages)
 
 Your result should look like this:
 
-```json
+```
 {'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
                                      'iso6391Name': 'en',
                                      'name': 'English'},
