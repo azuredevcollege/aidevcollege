@@ -10,9 +10,9 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
-- How to deploy Cognitive Services from the area Decision, Vision, Language, Speech and Web Search
+- How to deploy Cognitive Services from the area Decision, Vision, Language, Speech
 - How to use those Cognitive Services using Python
-- How to train and use custom models (e.g. Custom Vision and Language Understanding) yourself
+- How to train and use custom models (e.g. Custom Vision) yourself
 
 Thus we will cover the following topics in several sections:
 
@@ -25,7 +25,6 @@ Thus we will cover the following topics in several sections:
 |Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
 |Speech|[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
 |Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
-|Search|[Azure Cognitive Services - Search](#azure-cognitive-services---search)|
 
 # Azure Cognitive Services
 
@@ -755,7 +754,7 @@ pprint(languages)
 
 Your result should look like this:
 
-```
+```json
 {'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
                                      'iso6391Name': 'en',
                                      'name': 'English'},
