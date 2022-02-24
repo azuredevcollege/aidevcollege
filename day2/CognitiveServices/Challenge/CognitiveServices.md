@@ -34,7 +34,7 @@ Azure Cognitive Services:
 - are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), ml expert skills or knowledge. 
 - enable developers to easily add cognitive features into their applications. 
 - The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
-- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language*, *Web Search*, and *Decision*.
+- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language* and *Decision*.
 
 If you are interested to read more about each service we have added a list of valuable links in the **`Details`** section below.
 
@@ -49,8 +49,6 @@ We'll touch on the following services:
 |Computer Vision|[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)|
 |Custom Vision|[Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/overview)|
 |Speech|[Speech Services](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)|
-|Language Understanding|[Language Understanding](https://azure.microsoft.com/en-us/services/cognitive-services/language-understanding-intelligent-service/)|
-|Bing Search API|[Bing Search API](https://docs.microsoft.com/en-us/bing/search-apis/bing-web-search/create-bing-search-service-resource)|
 
 </details>
 
