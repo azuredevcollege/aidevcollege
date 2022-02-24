@@ -925,6 +925,8 @@ Since we looked at *Entity Linking* in the last paragraph, let's check out the S
 5. Paste the same text as before (Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800.) into the box and hit *Run*.
 6. Examine the results.
 
+Feel free to try out the Language Studio for some of the other features.
+
 ## What we have done so far:
 
 - We deployed several Cognitive Services using the Azure Portal
