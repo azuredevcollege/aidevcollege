@@ -1074,10 +1074,10 @@ response  = requests.post(entities_url, headers=headers, json=documents)
 entities = response.json()
 pprint(entities)
 ```
-Example Result: 
+Example Result (snippet): 
 
 ```json
-{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
+[{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
                               'dataSource': 'Wikipedia',
                               'id': 'Microsoft',
                               'language': 'en',
@@ -1104,43 +1104,7 @@ Example Result:
                               'matches': [{'confidenceScore': 0.56,
                                            'length': 10,
                                            'offset': 40,
-                                           'text': 'Paul Allen'}],
-                              'name': 'Paul Allen',
-                              'url': 'https://en.wikipedia.org/wiki/Paul_Allen'},
-                             {'bingId': '52535f87-235e-b513-54fe-c03e4233ac6e',
-                              'dataSource': 'Wikipedia',
-                              'id': 'April 4',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.35,
-                                           'length': 7,
-                                           'offset': 54,
-                                           'text': 'April 4'}],
-                              'name': 'April 4',
-                              'url': 'https://en.wikipedia.org/wiki/April_4'},
-                             {'bingId': '5b16443d-501c-58f3-352e-611bbe75aa6e',
-                              'dataSource': 'Wikipedia',
-                              'id': 'BASIC',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.31,
-                                           'length': 5,
-                                           'offset': 89,
-                                           'text': 'BASIC'}],
-                              'name': 'BASIC',
-                              'url': 'https://en.wikipedia.org/wiki/BASIC'},
-                             {'bingId': '7216c654-3779-68a2-c7b7-12ff3dad5606',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Altair 8800',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.87,
-                                           'length': 11,
-                                           'offset': 116,
-                                           'text': 'Altair 8800'}],
-                              'name': 'Altair 8800',
-                              'url': 'https://en.wikipedia.org/wiki/Altair_8800'}],
-                'id': '1',
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-06-01'}
+                                           'text': 'Paul Allen'}]
 ```
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
