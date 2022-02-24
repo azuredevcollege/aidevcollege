@@ -154,6 +154,10 @@ The Azure Face service provides AI algorithms that detect, recognize, and analyz
 
 ## Azure Cognitive Services - Face
 
+|Azure Cognitive Services|Information|
+|---|---|
+|[Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/)|https://docs.microsoft.com/en-us/azure/cognitive-services/face/
+
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
 Again we conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g.  `faceAttributes`.
