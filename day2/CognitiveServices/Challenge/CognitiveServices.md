@@ -156,7 +156,7 @@ The Azure Face service provides AI algorithms that detect, recognize, and analyz
 
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
-This time we will use the Python SDK and send an image of a face to the *Face Cognitive Service* and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`. The SDKs usually offer more capabilities than doing simpley REST calls.
+Again we conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g.  `faceAttributes`.
 
 1. Deploy a Face API Service in the Portal
 
