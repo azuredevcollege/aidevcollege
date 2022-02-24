@@ -1040,7 +1040,7 @@ Fill in a *unique name* and select *create*:
 
 ![Azure Portal](./images/CreateSpeech.png)
 
-As region, we'll be using `West Europe` in this example. You can find your API key under the service, then `Keys`.
+As region, we'll be using the region `West Europe` in this example. You can find your API key under the service, then `Keys`.
 
 You can use this file [`test.wav`](../data/test.wav) for testing.
 
