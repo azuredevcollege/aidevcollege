@@ -917,56 +917,7 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 Last but not least as Searching is essential these days we will look at the **Bing Search Cognitive Service**. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
 
-## Azure Cognitive Services - Bing Search
 
-:triangular_flag_on_post: **Goal:** Write a script for auto-suggestion of text
-
-1. Leverage Bing Search to make predictions on how a user might wants to continue an half-written sentence
-
-First, create a `Bing Search v7` API Key in the Azure Portal:
-
-![alt text](./images/bing_searchv7.png "Bing Search v7")
-
-As in the previous tasks, we can either create a token for our requests, or directly access the service by specifying the API key we've just created:
-
-```python
-import requests, json
-
-key = "xxx" # Paste your API key here
-url = "https://api.bing.microsoft.com/v7.0/Suggestions"
-
-search_term = "warum ist"
-
-headers = {"Ocp-Apim-Subscription-Key" : key}
-params  = {"q": search_term}
-
-response = requests.get(url, headers=headers, params=params)
-print(json.dumps(response.json(), indent=2))
-```
-
-Let's print it a bit nicer:
-
-```python
-suggestions = response.json()['suggestionGroups'][0]['searchSuggestions']
-
-for s in suggestions:
-    print(s['displayText'])
-```
-
-Output:
-
-```json
-warum ist
-warum ist das
-warum ist es so
-warum ist blut rot
-warum ist messi klein
-warum ist stuhl braun
-warum ist diamant hart
-warum ist rauchen cool
-```
-
-People search for weird stuff... :flushed: :satisfied:
 
 ## What we have done so far:
 
