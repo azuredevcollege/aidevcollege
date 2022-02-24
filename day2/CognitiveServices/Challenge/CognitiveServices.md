@@ -916,11 +916,12 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 Each of the features of the Cognitive Service for Language has a demo-like experience inside Language Studio that lets you input text, and presents the response both visually, and in JSON. These demos help you quickly test these prebuilt features without using code.
 
-Since we looked at *Entity Linking* in the last paragraph, let's see the Studio's capabilities for this feature.
+Since we looked at *Entity Linking* in the last paragraph, let's check out the Studio's capabilities for this feature.
 
 1. Go to the [Language Studio](https://aka.ms/languageStudio)
 2. Log in using your Azure account.
 3. A window will pop up prompting you to choose a language resource. Choose the one you created previously.
+4. Choose *Find linked entities*
 
 ## What we have done so far:
 
