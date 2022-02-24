@@ -59,323 +59,6 @@ You can solve these tasks in a programming language of your choice. For sake of 
 
 For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-Now let's start with the **Cognitive Service for Language**. The Cognitive Service for Language API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text.
-
-## Azure Cognitive Services - Language Service
-
-|Azure Cognitive Services|Information|
-|---|---|
-|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/python|
-
-:triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
-
-1. In the following tasks we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
-
-First we deploy the **Language** Service in the **Azure Portal**:
-
-![Azure Portal](./images/CreateLanguageService.png)
-
-By default, the service comes with several pre-built capabilities like sentiment analysis, key phrase extraction or question answering. It is possible to add customizable features. However, for this exercise we will stick with the pre-built capabilities:
-
-![Azure Portal](./images/CreateLanguageService2.png)
-
-Fill in the *name*, agree to the *Legal Terms* and *terms of Responsible AI* and hit *create*:
-
-![Azure Portal](./images/CreateLanguageService3.png)
-
-Get the Key and the URL (endpoint) under the section *keys* from the Azure portal:
-
-![Azure Portal: Key and URL](./images/keyendpoint.png)
-
-Let's start with connecting to your Language Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
-
-```python
-import requests
-from pprint import pprint
-
-subscription_key = "xxx" # Paste your API key here
-text_analytics_base_url = "xxx" # Paste your URL in here
-headers = {"Ocp-Apim-Subscription-Key": subscription_key}
-```
-
-Azure Cognitive Service for Language provides several features. In the following, we will try out only a few of the available features:
-- Language Detection ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/overview))
-- Sentiment Analysis ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/overview))
-- Key Phrase Extraction ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/key-phrase-extraction/overview))
-- Entity Linking ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/entity-linking/overview))
-
-
-In general, we will conduct [REST](https://restfulapi.net/) Calls to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give responses in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
-
-For each of the following features, copy the code blocks into new cells of your Jupyter Notebook.
-
-### Language Detection
-
-Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
-
-```python
-language_detection_api_url = endpoint + "/text/analytics/v3.1/languages"
-
-documents = { "documents": [
-    { "id": "1", "text": "This is a document written in English." },
-    { "id": "2", "text": "Este es un document escrito en Español." },
-    { "id": "3", "text": "这是一个用中文写的文件" }
-]}
-
-response  = requests.post(language_detection_api_url, headers=headers, json=documents)
-languages = response.json()
-pprint(languages)
-```
-
-Your result should look like this:
-
-```json
-{'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
-                                     'iso6391Name': 'en',
-                                     'name': 'English'},
-                'id': '1',
-                'warnings': []},
-               {'detectedLanguage': {'confidenceScore': 0.75,
-                                     'iso6391Name': 'es',
-                                     'name': 'Spanish'},
-                'id': '2',
-                'warnings': []},
-               {'detectedLanguage': {'confidenceScore': 1.0,
-                                     'iso6391Name': 'zh_chs',
-                                     'name': 'Chinese_Simplified'},
-                'id': '3',
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-11-20'}
-```
-
-### Sentiment Analysis
-
-Secondly, we can analyse the sentiment of a given phrase, go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
-
-```python
-sentiment_api_url = endpoint + "/text/analytics/v3.2-preview.1/sentiment"
-
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had not a great time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
-
-response  = requests.post(sentiment_api_url, headers=headers, json=documents)
-sentiments = response.json()
-pprint(sentiments)
-```
-
-Your result should look like this:
-
-```json
-{'documents': [{'confidenceScores': {'negative': 0.0,
-                                     'neutral': 0.0,
-                                     'positive': 1.0},
-                'id': '1',
-                'sentences': [{'confidenceScores': {'negative': 0.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 1.0},
-                               'length': 29,
-                               'offset': 0,
-                               'sentiment': 'positive',
-                               'text': 'I had a wonderful experience!'},
-                              {'confidenceScores': {'negative': 0.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 1.0},
-                               'length': 51,
-                               'offset': 30,
-                               'sentiment': 'positive',
-                               'text': 'The rooms were wonderful and the staff '
-                                       'was helpful.'}],
-                'sentiment': 'positive',
-                'warnings': []},
-               {'confidenceScores': {'negative': 1.0,
-                                     'neutral': 0.0,
-                                     'positive': 0.0},
-                'id': '2',
-                'sentences': [{'confidenceScores': {'negative': 1.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 0.0},
-                               'length': 36,
-                               'offset': 0,
-                               'sentiment': 'negative',
-                               'text': 'I had not a great time at the hotel.'},
-                              {'confidenceScores': {'negative': 1.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 0.0},
-                               'length': 42,
-                               'offset': 37,
-                               'sentiment': 'negative',
-                               'text': 'The staff was rude and the food was '
-                                       'awful.'}],
-                'sentiment': 'negative',
-                'warnings': []},
-               {'confidenceScores': {'negative': 0.03,
-                                     'neutral': 0.08,
-                                     'positive': 0.89},
-                'id': '3',
-                'sentences': [{'confidenceScores': {'negative': 0.03,
-                                                    'neutral': 0.08,
-                                                    'positive': 0.89},
-                               'length': 73,
-                               'offset': 0,
-                               'sentiment': 'positive',
-                               'text': 'Los caminos que llevan hasta Monte '
-                                       'Rainier son espectaculares y '
-                                       'hermosos.'}],
-                'sentiment': 'positive',
-                'warnings': []},
-               {'confidenceScores': {'negative': 0.6,
-                                     'neutral': 0.29,
-                                     'positive': 0.11},
-                'id': '4',
-                'sentences': [{'confidenceScores': {'negative': 0.6,
-                                                    'neutral': 0.29,
-                                                    'positive': 0.11},
-                               'length': 29,
-                               'offset': 0,
-                               'sentiment': 'negative',
-                               'text': 'La carretera estaba atascada.'},
-                              {'confidenceScores': {'negative': 0.33,
-                                                    'neutral': 0.58,
-                                                    'positive': 0.09},
-                               'length': 35,
-                               'offset': 30,
-                               'sentiment': 'neutral',
-                               'text': 'Había mucho tráfico el día de ayer.'}],
-                'sentiment': 'negative',
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2020-04-01'}
-```
-
-### Key Phrase Extraction
-
-Thirdly, we can easily extract key phrases from text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
-
-```python
-keyphrase_url = endpoint + "/text/analytics/v3.1/keyphrases"
-
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had a terrible time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
-
-response  = requests.post(keyphrase_url, headers=headers, json=documents)
-key_phrases = response.json()
-pprint(key_phrases)
-```
-Example Result: 
-
-```json
-{'documents': [{'id': '1',
-                'keyPhrases': ['wonderful experience', 'rooms', 'staff'],
-                'warnings': []},
-               {'id': '2',
-                'keyPhrases': ['terrible time', 'hotel', 'staff', 'food'],
-                'warnings': []},
-               {'id': '3',
-                'keyPhrases': ['Monte Rainier', 'caminos'],
-                'warnings': []},
-               {'id': '4',
-                'keyPhrases': ['mucho tráfico', 'día', 'carretera', 'ayer'],
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-06-01'}
-```
-
-### Entity Linking
-
-And last but not least, we can detect and link entities in text. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "We went to Seattle last week.", the word "Seattle" would be identified, with a link to more information on Wikipedia. In order to try it out, copy the code into your `CognitiveServices.ipynb` notebook:
-
-```python
-entities_url = endpoint + "/text/analytics/v3.1/entities/linking"
-
-documents = {"documents" : [
-  {"id": "1", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800."}
-]}
-
-response  = requests.post(entities_url, headers=headers, json=documents)
-entities = response.json()
-pprint(entities)
-```
-Example Result: 
-
-```json
-{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Microsoft',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.51,
-                                           'length': 9,
-                                           'offset': 0,
-                                           'text': 'Microsoft'}],
-                              'name': 'Microsoft',
-                              'url': 'https://en.wikipedia.org/wiki/Microsoft'},
-                             {'bingId': '0d47c987-0042-5576-15e8-97af601614fa',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Bill Gates',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.56,
-                                           'length': 10,
-                                           'offset': 25,
-                                           'text': 'Bill Gates'}],
-                              'name': 'Bill Gates',
-                              'url': 'https://en.wikipedia.org/wiki/Bill_Gates'},
-                             {'bingId': 'df2c4376-9923-6a54-893f-2ee5a5badbc7',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Paul Allen',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.56,
-                                           'length': 10,
-                                           'offset': 40,
-                                           'text': 'Paul Allen'}],
-                              'name': 'Paul Allen',
-                              'url': 'https://en.wikipedia.org/wiki/Paul_Allen'},
-                             {'bingId': '52535f87-235e-b513-54fe-c03e4233ac6e',
-                              'dataSource': 'Wikipedia',
-                              'id': 'April 4',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.35,
-                                           'length': 7,
-                                           'offset': 54,
-                                           'text': 'April 4'}],
-                              'name': 'April 4',
-                              'url': 'https://en.wikipedia.org/wiki/April_4'},
-                             {'bingId': '5b16443d-501c-58f3-352e-611bbe75aa6e',
-                              'dataSource': 'Wikipedia',
-                              'id': 'BASIC',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.31,
-                                           'length': 5,
-                                           'offset': 89,
-                                           'text': 'BASIC'}],
-                              'name': 'BASIC',
-                              'url': 'https://en.wikipedia.org/wiki/BASIC'},
-                             {'bingId': '7216c654-3779-68a2-c7b7-12ff3dad5606',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Altair 8800',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.87,
-                                           'length': 11,
-                                           'offset': 116,
-                                           'text': 'Altair 8800'}],
-                              'name': 'Altair 8800',
-                              'url': 'https://en.wikipedia.org/wiki/Altair_8800'}],
-                'id': '1',
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-06-01'}
-```
-
-If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
-
-As the world gets more and more connected we'd like to translate some languages in the following. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
 
 ## Azure Cognitive Services - Translator
 
@@ -1146,7 +829,323 @@ More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-servic
 Now that we've converted the user's speech into text, we can detect the intent of the text in the next challenge!
 **Language Understanding (LUIS)** is a cloud-based conversational AI service that applies custom machine-learning intelligence to a user's conversational, natural language text to predict overall meaning, and pull out relevant, detailed information.
 
-A client application for LUIS is any conversational application that communicates with a user in natural language to complete a task. Examples of client applications include social media apps, AI chatbots, and speech-enabled desktop applications.
+Now let's start with the **Cognitive Service for Language**. The Cognitive Service for Language API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text.
+
+## Azure Cognitive Services - Language Service
+
+|Azure Cognitive Services|Information|
+|---|---|
+|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/python|
+
+:triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
+
+1. In the following tasks we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+
+First we deploy the **Language** Service in the **Azure Portal**:
+
+![Azure Portal](./images/CreateLanguageService.png)
+
+By default, the service comes with several pre-built capabilities like sentiment analysis, key phrase extraction or question answering. It is possible to add customizable features. However, for this exercise we will stick with the pre-built capabilities:
+
+![Azure Portal](./images/CreateLanguageService2.png)
+
+Fill in the *name*, agree to the *Legal Terms* and *terms of Responsible AI* and hit *create*:
+
+![Azure Portal](./images/CreateLanguageService3.png)
+
+Get the Key and the URL (endpoint) under the section *keys* from the Azure portal:
+
+![Azure Portal: Key and URL](./images/keyendpoint.png)
+
+Let's start with connecting to your Language Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
+
+```python
+import requests
+from pprint import pprint
+
+subscription_key = "xxx" # Paste your API key here
+text_analytics_base_url = "xxx" # Paste your URL in here
+headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+```
+
+Azure Cognitive Service for Language provides several features. In the following, we will try out only a few of the available features:
+- Language Detection ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/overview))
+- Sentiment Analysis ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/overview))
+- Key Phrase Extraction ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/key-phrase-extraction/overview))
+- Entity Linking ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/entity-linking/overview))
+
+
+In general, we will conduct [REST](https://restfulapi.net/) Calls to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give responses in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+
+For each of the following features, copy the code blocks into new cells of your Jupyter Notebook.
+
+### Language Detection
+
+Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
+
+```python
+language_detection_api_url = endpoint + "/text/analytics/v3.1/languages"
+
+documents = { "documents": [
+    { "id": "1", "text": "This is a document written in English." },
+    { "id": "2", "text": "Este es un document escrito en Español." },
+    { "id": "3", "text": "这是一个用中文写的文件" }
+]}
+
+response  = requests.post(language_detection_api_url, headers=headers, json=documents)
+languages = response.json()
+pprint(languages)
+```
+
+Your result should look like this:
+
+```json
+{'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
+                                     'iso6391Name': 'en',
+                                     'name': 'English'},
+                'id': '1',
+                'warnings': []},
+               {'detectedLanguage': {'confidenceScore': 0.75,
+                                     'iso6391Name': 'es',
+                                     'name': 'Spanish'},
+                'id': '2',
+                'warnings': []},
+               {'detectedLanguage': {'confidenceScore': 1.0,
+                                     'iso6391Name': 'zh_chs',
+                                     'name': 'Chinese_Simplified'},
+                'id': '3',
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2021-11-20'}
+```
+
+### Sentiment Analysis
+
+Secondly, we can analyse the sentiment of a given phrase, go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
+
+```python
+sentiment_api_url = endpoint + "/text/analytics/v3.2-preview.1/sentiment"
+
+documents = {"documents" : [
+  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
+  {"id": "2", "language": "en", "text": "I had not a great time at the hotel. The staff was rude and the food was awful."},  
+  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
+  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
+]}
+
+response  = requests.post(sentiment_api_url, headers=headers, json=documents)
+sentiments = response.json()
+pprint(sentiments)
+```
+
+Your result should look like this:
+
+```json
+{'documents': [{'confidenceScores': {'negative': 0.0,
+                                     'neutral': 0.0,
+                                     'positive': 1.0},
+                'id': '1',
+                'sentences': [{'confidenceScores': {'negative': 0.0,
+                                                    'neutral': 0.0,
+                                                    'positive': 1.0},
+                               'length': 29,
+                               'offset': 0,
+                               'sentiment': 'positive',
+                               'text': 'I had a wonderful experience!'},
+                              {'confidenceScores': {'negative': 0.0,
+                                                    'neutral': 0.0,
+                                                    'positive': 1.0},
+                               'length': 51,
+                               'offset': 30,
+                               'sentiment': 'positive',
+                               'text': 'The rooms were wonderful and the staff '
+                                       'was helpful.'}],
+                'sentiment': 'positive',
+                'warnings': []},
+               {'confidenceScores': {'negative': 1.0,
+                                     'neutral': 0.0,
+                                     'positive': 0.0},
+                'id': '2',
+                'sentences': [{'confidenceScores': {'negative': 1.0,
+                                                    'neutral': 0.0,
+                                                    'positive': 0.0},
+                               'length': 36,
+                               'offset': 0,
+                               'sentiment': 'negative',
+                               'text': 'I had not a great time at the hotel.'},
+                              {'confidenceScores': {'negative': 1.0,
+                                                    'neutral': 0.0,
+                                                    'positive': 0.0},
+                               'length': 42,
+                               'offset': 37,
+                               'sentiment': 'negative',
+                               'text': 'The staff was rude and the food was '
+                                       'awful.'}],
+                'sentiment': 'negative',
+                'warnings': []},
+               {'confidenceScores': {'negative': 0.03,
+                                     'neutral': 0.08,
+                                     'positive': 0.89},
+                'id': '3',
+                'sentences': [{'confidenceScores': {'negative': 0.03,
+                                                    'neutral': 0.08,
+                                                    'positive': 0.89},
+                               'length': 73,
+                               'offset': 0,
+                               'sentiment': 'positive',
+                               'text': 'Los caminos que llevan hasta Monte '
+                                       'Rainier son espectaculares y '
+                                       'hermosos.'}],
+                'sentiment': 'positive',
+                'warnings': []},
+               {'confidenceScores': {'negative': 0.6,
+                                     'neutral': 0.29,
+                                     'positive': 0.11},
+                'id': '4',
+                'sentences': [{'confidenceScores': {'negative': 0.6,
+                                                    'neutral': 0.29,
+                                                    'positive': 0.11},
+                               'length': 29,
+                               'offset': 0,
+                               'sentiment': 'negative',
+                               'text': 'La carretera estaba atascada.'},
+                              {'confidenceScores': {'negative': 0.33,
+                                                    'neutral': 0.58,
+                                                    'positive': 0.09},
+                               'length': 35,
+                               'offset': 30,
+                               'sentiment': 'neutral',
+                               'text': 'Había mucho tráfico el día de ayer.'}],
+                'sentiment': 'negative',
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2020-04-01'}
+```
+
+### Key Phrase Extraction
+
+Thirdly, we can easily extract key phrases from text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
+
+```python
+keyphrase_url = endpoint + "/text/analytics/v3.1/keyphrases"
+
+documents = {"documents" : [
+  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
+  {"id": "2", "language": "en", "text": "I had a terrible time at the hotel. The staff was rude and the food was awful."},  
+  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
+  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
+]}
+
+response  = requests.post(keyphrase_url, headers=headers, json=documents)
+key_phrases = response.json()
+pprint(key_phrases)
+```
+Example Result: 
+
+```json
+{'documents': [{'id': '1',
+                'keyPhrases': ['wonderful experience', 'rooms', 'staff'],
+                'warnings': []},
+               {'id': '2',
+                'keyPhrases': ['terrible time', 'hotel', 'staff', 'food'],
+                'warnings': []},
+               {'id': '3',
+                'keyPhrases': ['Monte Rainier', 'caminos'],
+                'warnings': []},
+               {'id': '4',
+                'keyPhrases': ['mucho tráfico', 'día', 'carretera', 'ayer'],
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2021-06-01'}
+```
+
+### Entity Linking
+
+And last but not least, we can detect and link entities in text. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "We went to Seattle last week.", the word "Seattle" would be identified, with a link to more information on Wikipedia. In order to try it out, copy the code into your `CognitiveServices.ipynb` notebook:
+
+```python
+entities_url = endpoint + "/text/analytics/v3.1/entities/linking"
+
+documents = {"documents" : [
+  {"id": "1", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800."}
+]}
+
+response  = requests.post(entities_url, headers=headers, json=documents)
+entities = response.json()
+pprint(entities)
+```
+Example Result: 
+
+```json
+{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
+                              'dataSource': 'Wikipedia',
+                              'id': 'Microsoft',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.51,
+                                           'length': 9,
+                                           'offset': 0,
+                                           'text': 'Microsoft'}],
+                              'name': 'Microsoft',
+                              'url': 'https://en.wikipedia.org/wiki/Microsoft'},
+                             {'bingId': '0d47c987-0042-5576-15e8-97af601614fa',
+                              'dataSource': 'Wikipedia',
+                              'id': 'Bill Gates',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.56,
+                                           'length': 10,
+                                           'offset': 25,
+                                           'text': 'Bill Gates'}],
+                              'name': 'Bill Gates',
+                              'url': 'https://en.wikipedia.org/wiki/Bill_Gates'},
+                             {'bingId': 'df2c4376-9923-6a54-893f-2ee5a5badbc7',
+                              'dataSource': 'Wikipedia',
+                              'id': 'Paul Allen',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.56,
+                                           'length': 10,
+                                           'offset': 40,
+                                           'text': 'Paul Allen'}],
+                              'name': 'Paul Allen',
+                              'url': 'https://en.wikipedia.org/wiki/Paul_Allen'},
+                             {'bingId': '52535f87-235e-b513-54fe-c03e4233ac6e',
+                              'dataSource': 'Wikipedia',
+                              'id': 'April 4',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.35,
+                                           'length': 7,
+                                           'offset': 54,
+                                           'text': 'April 4'}],
+                              'name': 'April 4',
+                              'url': 'https://en.wikipedia.org/wiki/April_4'},
+                             {'bingId': '5b16443d-501c-58f3-352e-611bbe75aa6e',
+                              'dataSource': 'Wikipedia',
+                              'id': 'BASIC',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.31,
+                                           'length': 5,
+                                           'offset': 89,
+                                           'text': 'BASIC'}],
+                              'name': 'BASIC',
+                              'url': 'https://en.wikipedia.org/wiki/BASIC'},
+                             {'bingId': '7216c654-3779-68a2-c7b7-12ff3dad5606',
+                              'dataSource': 'Wikipedia',
+                              'id': 'Altair 8800',
+                              'language': 'en',
+                              'matches': [{'confidenceScore': 0.87,
+                                           'length': 11,
+                                           'offset': 116,
+                                           'text': 'Altair 8800'}],
+                              'name': 'Altair 8800',
+                              'url': 'https://en.wikipedia.org/wiki/Altair_8800'}],
+                'id': '1',
+                'warnings': []}],
+ 'errors': [],
+ 'modelVersion': '2021-06-01'}
+```
+
+If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
+
+As the world gets more and more connected we'd like to translate some languages in the following. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
 
 ## Azure Cognitive Services - Language - Reveal the intention of the text
 
