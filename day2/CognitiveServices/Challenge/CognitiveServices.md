@@ -56,7 +56,7 @@ You can solve these tasks in a programming language of your choice. For sake of 
 
 For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-As the world gets more and more connected we'd like to translate some languages in the following. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services family of cognitive APIs used to build intelligent apps. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
+As the world gets more and more connected, we are firstly going to look at Azure Translator API. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
 
 ## Azure Cognitive Services - Translator
 
@@ -158,7 +158,7 @@ The Azure Face service provides AI algorithms that detect, recognize, and analyz
 
 Again we conduct a REST Call and send an image of a face to the *Face Cognitive Service* and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`
 
-0. Deploy a Face Api Service in the Portal
+1. Deploy a Face API Service in the Portal
 
 ![Deploy Face API](./images/New_CreateFace.PNG)
 
@@ -166,12 +166,12 @@ Again we conduct a REST Call and send an image of a face to the *Face Cognitive 
 
 To use **Face API**, perform the following steps:
 
-1. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
-2. Make the following changes in code where needed:
+2. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
+3. Make the following changes in code where needed:
     1. Replace the value of `api_key` with your api key.
     2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
     3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
-3. Run the Cell and examine the response.
+4. Run the Cell and examine the response.
 
 ```python
 import requests
