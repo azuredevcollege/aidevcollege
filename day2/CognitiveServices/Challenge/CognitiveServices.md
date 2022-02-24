@@ -914,10 +914,9 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 [Language Studio](https://aka.ms/languageStudio) is a set of UI-based tools that lets you explore, build, and integrate features from Azure Cognitive Service for Language into your applications. Using the Studio, you can get started without needing to write code, and then use the available client libraries and REST APIs in your application.
 
+Each of the features of the Cognitive Service for Language has a demo-like experience inside Language Studio that lets you input text, and presents the response both visually, and in JSON. These demos help you quickly test these prebuilt features without using code.
 
-Last but not least as Searching is essential these days we will look at the **Bing Search Cognitive Service**. The Bing Search APIs add intelligent search to your app, combing hundreds of billions of webpages, images, videos, and news to provide relevant results with no ads. The results can be automatically customized to your users' locations or markets, increasing relevancy by staying local.
-
-
+Since we looked at *Entity Linking* in the last paragraph, let's see the Studio's capabilities for this feature.
 
 ## What we have done so far:
 
