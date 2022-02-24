@@ -918,6 +918,10 @@ Each of the features of the Cognitive Service for Language has a demo-like exper
 
 Since we looked at *Entity Linking* in the last paragraph, let's see the Studio's capabilities for this feature.
 
+1. Go to the [Language Studio](https://aka.ms/languageStudio)
+2. Log in using your Azure account.
+3. A window will pop up prompting you to choose a language resource. Choose the one you created previously.
+
 ## What we have done so far:
 
 - We deployed several Cognitive Services using the Azure Portal
