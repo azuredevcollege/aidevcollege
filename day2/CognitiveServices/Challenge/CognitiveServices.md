@@ -922,6 +922,8 @@ Since we looked at *Entity Linking* in the last paragraph, let's check out the S
 2. Log in using your Azure account.
 3. A window will pop up prompting you to choose a language resource. Choose the one you created previously.
 4. Choose *Find linked entities*
+5. Paste the same text as before (Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800.) into the box and hit *Run*.
+6. Examine the results.
 
 ## What we have done so far:
 
