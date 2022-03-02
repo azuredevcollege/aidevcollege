@@ -637,6 +637,8 @@ ipd.Audio('test.wav')
 
 There are [many different voices](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech) available to choose from. By updating the [XML request](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-text-to-speech#specify-a-voice), we can easily specify a different voice or language. From here on, it should be easy to generate German speech. Try it out!
 
+Alternatively, for quick tests you can use the [Speech Studio](https://speech.microsoft.com/portal) to convert text to speech. Click on [**Audio Content Creation**](https://speech.microsoft.com/portal/aab611a164ba4b0dbf7c4987375fa1cc/audiocontentcreation) and create a new text file or upload one. Try out different voices and export the audio file.
+
 ### Speech-to-Text
 
 Let's take the generated or provided `test.wav` from the example before and convert it back to text. Again, copy the code and let's first create a token:
