@@ -309,103 +309,52 @@ computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredenti
 Ok, now we can start recognizing some text. With the Computer Vision API, this is a two-step process:
 
 1. Submit the image (Call the Read API)
-1. Query if the image has been processed (Get Read results)
+2. Query if the image has been processed (Get Read results)
 
 ```python
-api_key = "xxx" # Paste your API Key here!
+# Get an image with text (handwritten or printed)
+read_image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
 
-url = "https://<YOUR ENDPOINT>.api.cognitive.microsoft.com/vision/v3.2/read/analyze" # Paste your Endpoint here
-image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
-
-headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
-data    = {'url': image_url}
+# Call API with URL and raw response (allows you to get the operation location)
+read_response = computervision_client.read(read_image_url,  raw=True)
 
 # Post image URL to the API
 response = requests.post(url, headers=headers, params=params, json=data)
 
-# Return query URL for getting the status
-operation_url = response.headers["Operation-Location"]
+# Get the operation location (URL with an ID at the end) from the response
+read_operation_location = read_response.headers["Operation-Location"]
+# Grab the ID from the URL
+operation_id = read_operation_location.split("/")[-1]
 
-# Poll until we get a result (...or something failed)
-recognition = {}
-poll = True
-while (poll):
-    response_final = requests.get(operation_url, headers=headers)
-    recognition = response_final.json()
+# Call the "GET" API and wait for it to retrieve the results 
+while True:
+    read_result = computervision_client.get_read_result(operation_id)
+    if read_result.status not in ['notStarted', 'running']:
+        break
     time.sleep(1)
-    if ("analyzeResult" in recognition):
-        poll = False 
-    if ("status" in recognition and recognition['status'] == 'failed'):
-        poll = False
 
-print(json.dumps(recognition, indent=2))
+# Print the detected text, line by line
+if read_result.status == OperationStatusCodes.succeeded:
+    for text_result in read_result.analyze_result.read_results:
+        for line in text_result.lines:
+            print(line.text)
+            print(line.bounding_box)
+print()
 ```
 
-The result should look like this (just a snippet):
+The result should look like this:
 
 ```json
-{
-  "status": "succeeded",
-  "createdDateTime": "2022-02-22T10:47:47Z",
-  "lastUpdatedDateTime": "2022-02-22T10:47:48Z",
-  "analyzeResult": {
-    "version": "3.2.0",
-    "modelVersion": "2021-04-12",
-    "readResults": [
-      {
-        "page": 1,
-        "angle": 4.7589,
-        "width": 1000,
-        "height": 978,
-        "unit": "pixel",
-        "lines": [
-          {
-            "boundingBox": [
-              272,
-              260,
-              858,
-              286,
-              856,
-              389,
-              266,
-              366
-            ],
-            "text": "Shopping list :",
-            "appearance": {
-              "style": {
-                "name": "handwriting",
-                "confidence": 0.785
-              }
-            },
-            "words": [
-              {
-                "boundingBox": [
-                  279,
-                  260,
-                  653,
-                  284,
-                  649,
-                  389,
-                  267,
-                  348
-                ],
-                "text": "Shopping",
-                "confidence": 0.994
-              },
-              {
-                "boundingBox": [
-                  676,
-                  285,
-                  803,
-                  286,
-                  803,
-                  388,
-                  673,
-                  389
-                ],
-                "text": "list",
-                "confidence": 0.92
-              }
+Shopping list :
+[272.0, 260.0, 858.0, 286.0, 856.0, 389.0, 266.0, 366.0]
+Bananas
+[145.0, 422.0, 448.0, 460.0, 439.0, 532.0, 136.0, 500.0]
+Milk
+[122.0, 543.0, 304.0, 554.0, 295.0, 637.0, 116.0, 618.0]
+Rice
+[99.0, 653.0, 291.0, 671.0, 284.0, 761.0, 90.0, 742.0]
+Azure Subscription
+[64.0, 800.0, 870.0, 855.0, 863.0, 967.0, 59.0, 897.0]
 ```
 
 Ok, looks like it recognized something. Let's visualize it:
