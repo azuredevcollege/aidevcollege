@@ -692,7 +692,7 @@ Now let's start with the **Cognitive Service for Language**. The Cognitive Servi
 
 |Azure Cognitive Services|Information|
 |---|---|
-|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/quickstarts/python|
+|[Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview)|https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview|
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
 
