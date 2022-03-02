@@ -259,7 +259,7 @@ In the language of your choice (Python solution is provided), write two small sc
 1. Convert hand-written text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 1. Convert printed text from an image into text - Test data: [1](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg), [2](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_2.jpg)
 
-This time, we will use th Computer Vision Cognitive Service using the Python Software Development Kit (SDK).
+Once again we will conduct REST Calls to the Computer Vision Cognitive Service and get a JSON in response.
 
 The Computer Vision API offers several services for processing images:
 - Optical Character Recognition (OCR)
@@ -268,9 +268,9 @@ The Computer Vision API offers several services for processing images:
 
  In this section, we will concentrate on the service's OCR capabilities. It can extract information from printed text (in several languages), handwritten text (English only + Chinese, French, German and Italian in preview), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
 
-### Optical Character Recognition - Images to Text - Handwritten and printed content
+### Optical Character Recognition - Images to Text - Handwritten content
 
-:triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written and printed text document in images machine-readable
+:triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written text document in images machine-readable
 
 First, create a `Computer Vision` API Key in the Azure Portal
 
@@ -278,83 +278,117 @@ First, create a `Computer Vision` API Key in the Azure Portal
 
 ![Create Computer Vision Details](./images/ComputerVisionCreateDetails.png)
 
-Before we start, we need a few packages to help with this. Go ahead and copy the code into a new cell in your `CognitiveServices.ipynb` Notebook.
+As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
 ```python
-pip install pillow # install PIL
-pip install --upgrade azure-cognitiveservices-vision-computervision # install Computer Vision SDK
-```
-
-```python
-from azure.cognitiveservices.vision.computervision import ComputerVisionClient
-from azure.cognitiveservices.vision.computervision.models import OperationStatusCodes
-from azure.cognitiveservices.vision.computervision.models import VisualFeatureTypes
-from msrest.authentication import CognitiveServicesCredentials
-
-from array import array
-import os
+import requests, json, time
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+from matplotlib.patches import Polygon
 from PIL import Image
-import sys
-import time
-
-subscription_key = "PASTE_YOUR_COMPUTER_VISION_SUBSCRIPTION_KEY_HERE"
-endpoint = "PASTE_YOUR_COMPUTER_VISION_ENDPOINT_HERE"
-```
-
-In a next step, you need to authenticate your client:
-```python
-computervision_client = ComputerVisionClient(endpoint, CognitiveServicesCredentials(subscription_key))
+from io import BytesIO
 ```
 
 Ok, now we can start recognizing some text. With the Computer Vision API, this is a two-step process:
 
-1. Submit the image (Call the Read API)
-2. Query if the image has been processed (Get Read results)
+1. Submit the image (Post-request)
+1. Query if the image has been processed (Get-request)
 
 ```python
-# Get an image with text (handwritten or printed)
-read_image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
+api_key = "xxx" # Paste your API Key here!
 
-# Call API with URL and raw response (allows you to get the operation location)
-read_response = computervision_client.read(read_image_url,  raw=True)
+url = "https://<YOUR ENDPOINT>.api.cognitive.microsoft.com/vision/v3.2/read/analyze" # Paste your Endpoint here
+image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
+
+headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
+data    = {'url': image_url}
 
 # Post image URL to the API
 response = requests.post(url, headers=headers, params=params, json=data)
 
-# Get the operation location (URL with an ID at the end) from the response
-read_operation_location = read_response.headers["Operation-Location"]
-# Grab the ID from the URL
-operation_id = read_operation_location.split("/")[-1]
+# Return query URL for getting the status
+operation_url = response.headers["Operation-Location"]
 
-# Call the "GET" API and wait for it to retrieve the results 
-while True:
-    read_result = computervision_client.get_read_result(operation_id)
-    if read_result.status not in ['notStarted', 'running']:
-        break
+# Poll until we get a result (...or something failed)
+recognition = {}
+poll = True
+while (poll):
+    response_final = requests.get(operation_url, headers=headers)
+    recognition = response_final.json()
     time.sleep(1)
+    if ("analyzeResult" in recognition):
+        poll = False 
+    if ("status" in recognition and recognition['status'] == 'failed'):
+        poll = False
 
-# Print the detected text, line by line
-if read_result.status == OperationStatusCodes.succeeded:
-    for text_result in read_result.analyze_result.read_results:
-        for line in text_result.lines:
-            print(line.text)
-            print(line.bounding_box)
-print()
+print(json.dumps(recognition, indent=2))
 ```
 
-The result should look like this:
+The result should look like this (just a snippet):
 
 ```json
-Shopping list :
-[272.0, 260.0, 858.0, 286.0, 856.0, 389.0, 266.0, 366.0]
-Bananas
-[145.0, 422.0, 448.0, 460.0, 439.0, 532.0, 136.0, 500.0]
-Milk
-[122.0, 543.0, 304.0, 554.0, 295.0, 637.0, 116.0, 618.0]
-Rice
-[99.0, 653.0, 291.0, 671.0, 284.0, 761.0, 90.0, 742.0]
-Azure Subscription
-[64.0, 800.0, 870.0, 855.0, 863.0, 967.0, 59.0, 897.0]
+{
+  "status": "succeeded",
+  "createdDateTime": "2022-02-22T10:47:47Z",
+  "lastUpdatedDateTime": "2022-02-22T10:47:48Z",
+  "analyzeResult": {
+    "version": "3.2.0",
+    "modelVersion": "2021-04-12",
+    "readResults": [
+      {
+        "page": 1,
+        "angle": 4.7589,
+        "width": 1000,
+        "height": 978,
+        "unit": "pixel",
+        "lines": [
+          {
+            "boundingBox": [
+              272,
+              260,
+              858,
+              286,
+              856,
+              389,
+              266,
+              366
+            ],
+            "text": "Shopping list :",
+            "appearance": {
+              "style": {
+                "name": "handwriting",
+                "confidence": 0.785
+              }
+            },
+            "words": [
+              {
+                "boundingBox": [
+                  279,
+                  260,
+                  653,
+                  284,
+                  649,
+                  389,
+                  267,
+                  348
+                ],
+                "text": "Shopping",
+                "confidence": 0.994
+              },
+              {
+                "boundingBox": [
+                  676,
+                  285,
+                  803,
+                  286,
+                  803,
+                  388,
+                  673,
+                  389
+                ],
+                "text": "list",
+                "confidence": 0.92
+              }
 ```
 
 Ok, looks like it recognized something. Let's visualize it:
