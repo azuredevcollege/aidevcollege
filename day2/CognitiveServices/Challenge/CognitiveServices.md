@@ -10,7 +10,7 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
-- How to deploy Cognitive Services from the area Decision, Vision, Language, Speech
+- How to deploy Cognitive Services from the areas *Language*, *Speech*, *Vision* and *Decision*
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
 
