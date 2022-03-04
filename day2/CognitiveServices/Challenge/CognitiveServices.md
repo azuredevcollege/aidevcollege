@@ -123,6 +123,10 @@ Example Result:
       {
         "text": "Ich m\u00f6chte 4 Pizza Magarita und 8 Bier bestellen!",
         "to": "de"
+      },
+      {
+        "text": "Voglio ordinare 4 pizza Magarita e 8 birre!",
+        "to": "it"
       }
     ]
   },
@@ -135,6 +139,10 @@ Example Result:
       {
         "text": "Bitte f\u00fcgen Sie der Bestellung 42 Salate hinzu!",
         "to": "de"
+      },
+      {
+        "text": "Si prega di aggiungere 42 insalate all'ordine!",
+        "to": "it"
       }
     ]
   }
