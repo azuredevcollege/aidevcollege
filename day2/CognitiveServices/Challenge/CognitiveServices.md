@@ -81,17 +81,31 @@ The Translator API allows to directly access the service by specifying the API k
 Use the `CognitiveServices.ipynb` Notebook which you just created and copy the following code in a cell. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
 
 ```python
-import requests, json
+import requests, uuid, json
 
-api_key = "xxx" # Paste your API key here
-region = "<paste-your-text-translator-service-region here>" # Paste your region here
-url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0"
-headers = {'Ocp-Apim-Subscription-Key': api_key, 'Ocp-Apim-Subscription-Region': region, 'Content-type': 'application/json'}
+subscription_key = "YOUR_SUBSCRIPTION_KEY"
+location = "YOUR_RESOURCE_LOCATION"
+endpoint = "https://api.cognitive.microsofttranslator.com"
+path = '/translate'
+url = endpoint + path
 
-params = {'to': 'de'}
+headers = {
+  'Ocp-Apim-Subscription-Key': subscription_key,
+  'Ocp-Apim-Subscription-Region': location,
+  'Content-type': 'application/json',
+  'X-ClientTraceId': str(uuid.uuid4())
+}
 
-body = [{'text' : 'I want to order 4 pizza Magarita and 8 beer!'},
-        {'text' : 'Please add 42 salads to the order!'}]
+params = {
+  'api-version': '3.0',
+  # 'from': 'en',
+  'to': ['de', 'it']
+}
+
+body = [
+  {'text' : 'I want to order 4 pizza Magarita and 8 beer!'},
+  {'text' : 'Please add 42 salads to the order!'}
+]
 
 response = requests.post(url, headers=headers, params=params, json=body)
 print(json.dumps(response.json(), indent=2))
