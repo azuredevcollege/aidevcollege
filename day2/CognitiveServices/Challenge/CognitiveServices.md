@@ -115,10 +115,6 @@ Example Result:
 ```json
 [
   {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1.0
-    },
     "translations": [
       {
         "text": "Ich m\u00f6chte 4 Pizza Magarita und 8 Bier bestellen!",
@@ -131,10 +127,6 @@ Example Result:
     ]
   },
   {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1.0
-    },
     "translations": [
       {
         "text": "Bitte f\u00fcgen Sie der Bestellung 42 Salate hinzu!",
