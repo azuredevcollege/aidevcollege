@@ -1,6 +1,6 @@
 # AI Developer College Day2 - Cognitive Services
 
-As we have looked at Cognitive Search so far and saw how we can enrich our search service with the Azure Cognitive Services we will now go into detail of some of those services. Yesterday we have trained and registered a model and deployed it as an endpoint. Microsoft is offering such services for developers to be able to make your applications smarter by enriching those with intelligence.
+As we have looked at Cognitive Search so far and saw how we can enrich our search service with the Azure Cognitive Services, we will now go into detail of some of those services. Yesterday we trained and registered a model and deployed it as an endpoint. Microsoft offers these services for developers to be able to make your applications smarter by enriching them with intelligence.
 
 ## Focus of Today:
 
@@ -31,12 +31,12 @@ Thus we will cover the following topics in several sections:
 ## What are Azure Cognitive Services?
 
 Azure Cognitive Services: 
-- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), ml expert skills or knowledge. 
+- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), Machine Learning expert skills. 
 - enable developers to easily add cognitive features into their applications. 
-- The goal of Azure Cognitive Services is to help developers create applications that can see, hear, speak, understand and even begin to reason. 
-- The catalog of services within Azure Cognitive Services can be categorized into five main pillars - *Vision*, *Speech*, *Language* and *Decision*.
+- help developers create applications that can see, hear, speak, understand and even begin to reason. 
+- The catalcan be categorized into five main pillars - *Language*, *Speech*, *Vision* and *Decision*.
 
-If you are interested to read more about each service we have added a list of valuable links in the **`Details`** section below.
+If you are interested to read more about each service, we have added a list of valuable links in the **`Details`** section below.
 
 <details>
 We'll touch on the following services:
