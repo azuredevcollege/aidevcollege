@@ -56,9 +56,13 @@ You can solve these tasks in a programming language of your choice. For sake of 
 
 For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-As the world gets more and more connected, we are firstly going to look at Azure Translator API. **Translator Cognitive Service** is a cloud-based machine translation service and is part of the Azure Cognitive Services. Translator is easy to integrate in your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in more than [70 languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support), and can be used on any hardware platform with any operating system for text translation.
+Let's look at the first pillar of Cognitive Services - Language.
 
-## Azure Cognitive Services - Translator
+# Language
+
+The world is getting more and more connected and therefore, translation services are gaining more significance. The **Azure Translator Cognitive Service** is a cloud-based machine translation service. It is easy to integrate into your applications, websites, tools, and solutions. It allows you to add multi-language user experiences in various [languages](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/language-support) and can be used on any hardware platform with any operating system for text translation.
+
+## Translator
 
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
