@@ -56,6 +56,8 @@ You can solve these tasks in a programming language of your choice. For sake of 
 
 For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
+In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+
 Let's look at the first pillar of Cognitive Services - Language.
 
 # Language
@@ -165,7 +167,7 @@ Now let's start with the **Cognitive Service for Language**. The Cognitive Servi
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
 
-1. In the following tasks we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+
 
 First we deploy the **Language** Service in the **Azure Portal**:
 
