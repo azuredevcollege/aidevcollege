@@ -98,7 +98,7 @@ headers = {
 
 params = {
   'api-version': '3.0',
-  # 'from': 'en',
+   'from': 'en',
   'to': ['de', 'it']
 }
 
@@ -141,7 +141,7 @@ Example Result:
 ]
 ```
 
-As we can see, we can translate multiple sentences within one API call. The service also automatically detects the input language. If desired, we can even directly translate the input to several output languages concurrently. It is possible to add optional parameters such as a profanity filter and more. The Translator Service does not only translate text, but also has the capability of transliterating text from one type of script to another (and much more). You can try it out with the code below:
+As we can see, we can translate multiple sentences to multiple languages within one API call. The service also automatically detects the input language. (*Optional*: Try deleting the 'from': 'en' from the params section of the code and see how the json response changes.) If desired, we can even directly translate the input to several output languages concurrently. It is possible to add optional parameters such as a profanity filter and more. The Translator Service does not only translate text, but also has the capability of transliterating text from one type of script to another (and much more). You can try it out with the code below:
 
 ```python
 api_key = "xxx" # Paste your API key here
