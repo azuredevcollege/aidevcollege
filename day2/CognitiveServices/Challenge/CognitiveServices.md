@@ -174,18 +174,15 @@ This should be the result:
 ]
 ```
 
+Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
-Now let's start with the **Cognitive Service for Language**. The Cognitive Service for Language API (Application Programming Interface) is a cloud-based service that provides Natural Language Processing (NLP) features for understanding and analyzing text.
-
-### Azure Cognitive Services - Language Service
+## Language Service
 
 |Azure Cognitive Services|Information|
 |---|---|
 |[Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview)|https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview|
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
-
-
 
 First we deploy the **Language** Service in the **Azure Portal**:
 
