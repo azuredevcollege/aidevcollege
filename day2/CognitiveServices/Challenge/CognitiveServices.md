@@ -66,6 +66,8 @@ The world is getting more and more connected and therefore, translation services
 
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
+Let's get started with using the translator service!
+
 First, create a `Translator` API Key in the Azure Portal:
 
 ![Translator Text API](./images/New_CreateTranslator.PNG)
