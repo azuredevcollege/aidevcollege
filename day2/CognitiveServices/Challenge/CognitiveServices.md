@@ -78,7 +78,7 @@ First, create a `Translator` API Key in the Azure Portal:
 
 The Translator API allows to directly access the service by specifying the API key. As with other services, you can find the key under "Keys and Endpoint".
 
-Use the same `CognitiveServices.ipynb` Notebook as before and copy the following code in a cell below the earlier code in the Notebook. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
+Use the `CognitiveServices.ipynb` Notebook which you just created and copy the following code in a cell. Again, we will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
 
 ```python
 import requests, json
