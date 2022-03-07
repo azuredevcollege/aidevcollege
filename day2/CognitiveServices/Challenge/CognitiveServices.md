@@ -617,7 +617,7 @@ As we have already started to investigate images, we will now look at a differen
 
 Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
 
-## Azure Cognitive Services - Computer Vision Service
+## Computer Vision
 
 |Azure Cognitive Services|Information|
 |---|---|
