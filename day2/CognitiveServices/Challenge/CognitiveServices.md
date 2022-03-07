@@ -451,19 +451,19 @@ You can use this file [`test.wav`](../data/test.wav) for testing.
 
 ### Text-to-Speech
 
-To use any SDK, you need to first install it. In this case we will install the Python Speech SDK. Paste the following code in your terminal:
+To use any SDK, you need to first install it. In this case we will install the Python Speech SDK. Paste the following code in your jupyter notebook:
 
 ```python
 pip install azure-cognitiveservices-speech
 ```
 
-If you are using a Mac, you might need to run this command first:
+If you are using a Mac, you might need to run this first:
 
 ```python
 python3 -m pip install --upgrade pip
 ```
 
-Once the SDK is instally, we can write our code. Firstly, create a speech configuration instance:
+Once the SDK is installed, we can write our code. Firstly, create a speech configuration instance and import the necessary libraries:
 
 ```python
 import azure.cognitiveservices.speech as speechsdk # import the speech sdk
