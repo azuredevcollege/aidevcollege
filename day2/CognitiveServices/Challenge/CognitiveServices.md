@@ -269,7 +269,7 @@ Your result should look like this:
 Secondly, we can analyse the sentiment of a given phrase. Go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-sentiment_api_url = endpoint + "/text/analytics/v3.2-preview.1/sentiment"
+sentiment_api_url = endpoint + "text/analytics/v3.2-preview.1/sentiment"
 
 documents = {"documents" : [
   {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
@@ -314,10 +314,10 @@ Your result should look like this:
 
 ### Key Phrase Extraction
 
-Thirdly, we can easily extract key phrases from text. In order to do so, copy the code into your `CognitiveServices.ipynb` notebook:
+Thirdly, we can extract key phrases from text. In order to do so, copy the following code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-keyphrase_url = endpoint + "/text/analytics/v3.1/keyphrases"
+keyphrase_url = endpoint + "text/analytics/v3.1/keyphrases"
 
 documents = {"documents" : [
   {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
@@ -364,7 +364,7 @@ response  = requests.post(entities_url, headers=headers, json=documents)
 entities = response.json()
 pprint(entities)
 ```
-Example Result (snippet): 
+Example result: 
 
 ```json
 {'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
