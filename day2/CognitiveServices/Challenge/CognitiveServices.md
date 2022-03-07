@@ -418,7 +418,7 @@ Feel free to try out the Language Studio for some of the other features.
 
 So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar *Speech*.
 
-## Azure Cognitive Services - Speech
+# Speech
 
 |Azure Cognitive Services|Information|
 |---|---|
@@ -514,11 +514,13 @@ Besides that, the speech-to-text API expects audio with the following specifics:
 
 More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-audio-input-streams).
 
-So far we have focused on the two pillars *Language* and *Speech*. Now we want to jump to the pillar *Vision* by analysing images. Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that.
+So far we have focused on the two pillars *Language* and *Speech*. Now we want to jump to the pillar *Vision* by analysing images.
 
-The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
+# Vision
 
-## Azure Cognitive Services - Face
+ Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that. The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
+
+## Face
 
 |Azure Cognitive Services|Information|
 |---|---|
