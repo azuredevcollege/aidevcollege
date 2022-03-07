@@ -526,7 +526,7 @@ The Azure Face service provides AI algorithms that detect, recognize, and analyz
 
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
-Again we conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g.  `faceAttributes`.
+This time we will conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g.  `faceAttributes`.
 
 1. Deploy a Face API Service in the Portal
 
@@ -548,13 +548,14 @@ import requests
 import json
 
 # set to your own api key value
-api_key = "xxx" # Paste your API key here
+subscription_key = "YOUR_SUBSCRIPTION_KEY" # Paste your API key here
+endpoint = "YOUR_RESOURCE_ENDPOINT"
 
-face_api_url = '<My Endpoint String>face/v1.0/detect' # Replace with endpoint
+face_api_url = endpoint + 'face/v1.0/detect' # Replace with endpoint
 
 image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
 
-headers = {'Ocp-Apim-Subscription-Key': api_key}
+headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 
 params = {
     'returnFaceId': 'true',
