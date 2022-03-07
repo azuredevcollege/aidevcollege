@@ -471,22 +471,20 @@ import IPython.display as ipd # import IPython.display to display the audio outp
 speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
 ```
 
+Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little:
+
 ```python
-url = "https://westeurope.tts.speech.microsoft.com/cognitiveservices/v1"
-headers = {'Authorization': token,
-           'Content-Type': 'application/ssml+xml',
-           'User-Agent': 'Test',
-           'X-Microsoft-OutputFormat': 'riff-16khz-16bit-mono-pcm'}
+speech_config.speech_synthesis_language = "en-US"
+speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
+```
 
-data = "<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='en-US'> \
-<voice name='en-US-JennyNeural'> \
-    Hello, welcome to the AI Developer College!  \
-</voice></speak>"
+The following code, first creates an `AudioOutputConfig` instance, which writes the audio output to a .wav file. Furthermore, the speech synthesis and writing to the .wav file is executed. Lastly, the audio output is displayed.
 
-response = requests.post(url, headers=headers, data=data)
-audio_data = response.content
-
-print(response.headers)
+```python
+audio_config = speechsdk.audio.AudioOutputConfig(filename="welcome.wav")
+synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+synthesizer.speak_text_async("Hello, welcome to the AI Developer College!")
+ipd.Audio('welcome.wav')
 ```
 
 We can just write it out to a `*.wav` file and then download or play it:
