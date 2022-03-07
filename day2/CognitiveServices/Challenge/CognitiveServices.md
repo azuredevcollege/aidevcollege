@@ -664,16 +664,17 @@ Ok, now we can start recognizing some text. With the Computer Vision API, this i
 1. Query if the image has been processed (Get-request)
 
 ```python
-api_key = "xxx" # Paste your API Key here!
+subscription_key = "YOUR_SUBSCRIPTION_KEY"
+location = "YOUR_RESOURCE_REGION"
 
-url = "https://<YOUR ENDPOINT>.api.cognitive.microsoft.com/vision/v3.2/read/analyze" # Paste your Endpoint here
+url = "https://" + location + ".api.cognitive.microsoft.com/vision/v3.2/read/analyze"
 image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_1.jpg"
 
-headers = {'Ocp-Apim-Subscription-Key': api_key, 'Content-type': 'application/json'}
+headers = {'Ocp-Apim-Subscription-Key': subscription_key, 'Content-type': 'application/json'}
 data    = {'url': image_url}
 
 # Post image URL to the API
-response = requests.post(url, headers=headers, params=params, json=data)
+response = requests.post(url, headers=headers, json=data)
 
 # Return query URL for getting the status
 operation_url = response.headers["Operation-Location"]
