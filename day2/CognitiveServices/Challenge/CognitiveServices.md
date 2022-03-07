@@ -416,7 +416,7 @@ Since we looked at *Entity Linking* in the last paragraph, let's check out the S
 
 Feel free to try out the Language Studio for some of the other features.
 
-So far we have covered a lot of Text Recognition, Translation, Face Recognition and Image Recognition, so now we will look at *Speech Recognition*.
+So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar *Speech*.
 
 In the following sample, you learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive Service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
 
