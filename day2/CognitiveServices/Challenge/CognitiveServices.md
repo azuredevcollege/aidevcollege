@@ -435,7 +435,7 @@ In the language of your choice (Python solution is provided), write two small sc
 
 You can use can use this file: [`data/test.wav`](data/test.wav) (English).
 
-Let's deploy a Speech service:
+First, we need to deploy a Speech service:
 
 ![alt text](./images/speech_api_service.png "Speech API Service")
 
@@ -449,13 +449,13 @@ You can use this file [`test.wav`](../data/test.wav) for testing.
 
 ### Text-to-Speech
 
-First, we need to request a token from the `Issue Token endpoint` of the Speech API. Each token is valid for 10 minutes, hence we can either reuse it multiple times (to minimize network traffic and latency), or request a new one for each call:
+First, we need to request a token from the `Issue Token endpoint` of the Speech API. Each token is valid for 10 minutes. Hence, we can either reuse it multiple times (to minimize network traffic and latency), or request a new one for each call:
 
 ```python
 import requests, json
 import IPython.display as ipd
 
-api_key = "xxxx" # Enter your API key here
+subscription_key = "YOUR_SUBSCRIPTION_KEY" # Enter your API key here
 
 token_url = "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
 headers = {'Ocp-Apim-Subscription-Key': api_key}
