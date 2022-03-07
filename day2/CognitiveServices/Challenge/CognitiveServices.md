@@ -428,10 +428,12 @@ So far, we have covered the Language pillar of the Cognitive Services such as Tr
 
 In this section, you will learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive Service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text. These are two among many more capabilities of the Speech service.
 
-In the language of your choice (Python solution is provided), write two small scripts or apps that
+In the language of your choice write two small scripts or apps that:
 
 1. Convert written text into speech (German or English)
 1. Convert speech into written text (German or English)
+
+This time, we will use the Python SDK for using the service.
 
 You can use can use this file: [`data/test.wav`](data/test.wav) (English).
 
@@ -443,30 +445,31 @@ Fill in a *unique name* and select *create*:
 
 ![Azure Portal](./images/CreateSpeech.png)
 
-As region, we'll be using the region `West Europe` in this example. You can find your API key under the service, then `Keys`.
+You can find your API key under the service, then `Keys`.
 
 You can use this file [`test.wav`](../data/test.wav) for testing.
 
 ### Text-to-Speech
 
-First, we need to request a token from the `Issue Token endpoint` of the Speech API. Each token is valid for 10 minutes. Hence, we can either reuse it multiple times (to minimize network traffic and latency), or request a new one for each call:
+To use any SDK, you need to first install it. In this case we will install the Python Speech SDK. Paste the following code in your terminal:
 
 ```python
-import requests, json
-import IPython.display as ipd
-
-subscription_key = "YOUR_SUBSCRIPTION_KEY" # Enter your API key here
-
-token_url = "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
-headers = {'Ocp-Apim-Subscription-Key': api_key}
-
-response = requests.post(token_url, headers=headers)
-token = response.text
-
-print("Token: " + token)
+pip install azure-cognitiveservices-speech
 ```
 
-Once we have the token, we can form our request for generating speech:
+If you are using a Mac, you might need to run this command first:
+
+```python
+python3 -m pip install --upgrade pip
+```
+
+Once the SDK is instally, we can write our code. Firstly, create a speech configuration instance:
+
+```python
+import azure.cognitiveservices.speech as speechsdk # import the speech sdk
+import IPython.display as ipd # import IPython.display to display the audio output
+speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
+```
 
 ```python
 url = "https://westeurope.tts.speech.microsoft.com/cognitiveservices/v1"
