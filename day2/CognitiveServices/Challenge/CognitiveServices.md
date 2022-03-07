@@ -796,7 +796,6 @@ _ = plt.axis("off")
 
 > [Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 
-
 In a next step, we will use the same service by just extracting text from printed text in images. 
 
 ### Optical Character Recognition - Images to Text - Printed content
@@ -806,12 +805,10 @@ In a next step, we will use the same service by just extracting text from printe
 It is very similar as the previous example- except that is a synchronous call, hence we directly get back the recognition result. Go ahead and copy the Code into a new Cell into your `CognitiveServices.ipynb` Notebook:
 
 ```python
-key = "xxxx" # Paste your API Key here or comment this line to use the key from above
-
-url = "https://westeurope.api.cognitive.microsoft.com/vision/v3.2/ocr"
+url = "https://" + location + ".api.cognitive.microsoft.com/vision/v3.2/ocr"
 image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_1.jpg"
 
-headers = {'Ocp-Apim-Subscription-Key': key}
+headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 params  = {'language': 'unk', 'detectOrientation': 'true'}
 data    = {'url': image_url}
 
@@ -857,7 +854,7 @@ for word in word_infos:
     patch  = Rectangle(origin, bbox[2], bbox[3], fill=False, linewidth=2, color='y')
     ax.axes.add_patch(patch)
     plt.text(origin[0], origin[1], text, fontsize=11, va="top")
-plt.axis("off")
+_ = plt.axis("off")
 ```
 
 **Example Result:**
