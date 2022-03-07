@@ -463,27 +463,22 @@ If you are using a Mac, you might need to run this first:
 python3 -m pip install --upgrade pip
 ```
 
-Once the SDK is installed, we can write our code. Firstly, create a speech configuration instance and import the necessary libraries:
+Once the SDK is installed, we can write our code. Firstly, create a speech configuration instance and import the necessary libraries. Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little. Then creates an `AudioOutputConfig` instance, which writes the audio output to a .wav file. Furthermore, execute the speech synthesis and writing to the .wav file. Lastly, display the audio output.
 
 ```python
 import azure.cognitiveservices.speech as speechsdk # import the speech sdk
 import IPython.display as ipd # import IPython.display to display the audio output
-speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
-```
 
-Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little:
+def to_file():
+  speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
+  speech_config.speech_synthesis_language = "en-US"
+  speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
+  audio_config = speechsdk.audio.AudioOutputConfig(filename="welcome.wav")
+  synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
+  synthesizer.speak_text_async("Hello, welcome to the AI Developer College!")
 
-```python
-speech_config.speech_synthesis_language = "en-US"
-speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
-```
+to_file()
 
-The following code, first creates an `AudioOutputConfig` instance, which writes the audio output to a .wav file. Furthermore, the speech synthesis and writing to the .wav file is executed. Lastly, the audio output is displayed.
-
-```python
-audio_config = speechsdk.audio.AudioOutputConfig(filename="welcome.wav")
-synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
-synthesizer.speak_text_async("Hello, welcome to the AI Developer College!")
 ipd.Audio('welcome.wav')
 ```
 
@@ -493,39 +488,18 @@ Alternatively, for quick tests you can use the [Speech Studio](https://speech.mi
 
 ### Speech-to-Text
 
-Let's take the generated or provided `test.wav` from the example before and convert it back to text. Again, copy the code and let's first create a token:
+Let's take the generated or provided `welcome.wav` from the example before and convert it back to text.
+
+Paste the following code in the notebooke you used before.
 
 ```python
-import requests, json
+def from_file():
+    audio_input = speechsdk.AudioConfig(filename="welcome.wav")
+    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_input)
+    result = speech_recognizer.recognize_once_async().get()
+    print(result.text)
 
-api_key = "xxx" # Enter your API key here
-
-token_url = "https://westeurope.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
-headers = {'Ocp-Apim-Subscription-Key': api_key}
-
-response = requests.post(token_url, headers=headers)
-token = response.text
-
-print("Token: " + token)
-```
-
-Now that we have a token, we can call the speech-to-text endpoint and include the `wav` data:
-
-```python
-url = "https://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1"
-
-headers = {'Authorization': 'Bearer ' + token,
-           'Accept': 'application/json',
-           'Ocp-Apim-Subscription-Key': api_key,
-           'Content-Type': 'audio/wav; codec=audio/pcm; samplerate=16000'}
-
-params = {'language': 'en-US', 'format': 'detailed'}
-
-with open("test.wav", 'rb') as f:
-    data = f.read()
-
-response = requests.post(url, headers=headers, params=params, data=data)
-print(json.dumps(response.json(), indent=2))
+from_file()
 ```
 
 For recognizing longer text with multiple sentences, you can follow the [following tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
