@@ -174,6 +174,8 @@ This should be the result:
 ]
 ```
 
+**Optional**:
+
 Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
 ## Language Service
@@ -184,7 +186,7 @@ Now let's continue with some of the remaining **Cognitive Services for Language*
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
 
-First we deploy the **Language** Service in the **Azure Portal**:
+First we deploy the **Language** service in the **Azure Portal**:
 
 ![Azure Portal](./images/CreateLanguageService.png)
 
@@ -196,11 +198,11 @@ Fill in the *name*, agree to the *Legal Terms* and *terms of Responsible AI* and
 
 ![Azure Portal](./images/CreateLanguageService3.png)
 
-Get the Key and the URL (endpoint) under the section *keys* from the Azure portal:
+Get the key and the endpoint under the section *keys* from the Azure portal:
 
 ![Azure Portal: Key and URL](./images/keyendpoint.png)
 
-Let's start with connecting to your Language Service by copying the Code with the **filled in key and endpoint** as shown above into a new Cell in your `CognitiveServices.ipynb` notebook:
+Let's start with connecting to your Language service by copying the code with the **filled in key and endpoint** as shown above into a new cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
 import requests
