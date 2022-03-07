@@ -208,8 +208,8 @@ Let's start with connecting to your Language service by copying the code with th
 import requests
 from pprint import pprint
 
-subscription_key = "xxx" # Paste your API key here
-text_analytics_base_url = "xxx" # Paste your URL in here
+subscription_key = "YOUR_SUBSCRIPTION_KEY"
+endpoint = "YOUR_ENDPOINT" # Paste your URL in here
 headers = {"Ocp-Apim-Subscription-Key": subscription_key}
 ```
 
@@ -229,7 +229,7 @@ For each of the following features, copy the code blocks into new cells of your 
 Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
-language_detection_api_url = endpoint + "/text/analytics/v3.1/languages"
+language_detection_api_url = endpoint + "text/analytics/v3.1/languages"
 
 documents = { "documents": [
     { "id": "1", "text": "This is a document written in English." },
@@ -266,7 +266,7 @@ Your result should look like this:
 
 ### Sentiment Analysis
 
-Secondly, we can analyse the sentiment of a given phrase, go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
+Secondly, we can analyse the sentiment of a given phrase. Go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
 sentiment_api_url = endpoint + "/text/analytics/v3.2-preview.1/sentiment"
