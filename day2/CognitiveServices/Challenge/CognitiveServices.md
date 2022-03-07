@@ -418,8 +418,6 @@ Feel free to try out the Language Studio for some of the other features.
 
 So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar *Speech*.
 
-In the following sample, you learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive Service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text.
-
 ## Azure Cognitive Services - Speech
 
 |Azure Cognitive Services|Information|
@@ -427,6 +425,8 @@ In the following sample, you learn about the benefits and capabilities of the **
 |[Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/
 
 :triangular_flag_on_post: **Goal:** Leverage Speech-to-Text and Text-to-Speech
+
+In the section, you will learn about the benefits and capabilities of the **Text-to-speech Cognitive Service**, which enables your applications, tools, or devices to convert text into human-like synthesized speech and the **Speech-to-text Cognitive Service** which enables your application, tools, or devices to convert real-time transcription of audio streams into text. These are two among many more capabilities of the Speech service.
 
 In the language of your choice (Python solution is provided), write two small scripts or apps that
 
