@@ -551,7 +551,7 @@ import json
 subscription_key = "YOUR_SUBSCRIPTION_KEY" # Paste your API key here
 endpoint = "YOUR_RESOURCE_ENDPOINT"
 
-face_api_url = endpoint + 'face/v1.0/detect' # Replace with endpoint
+face_api_url = endpoint + 'face/v1.0/detect'
 
 image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
 
