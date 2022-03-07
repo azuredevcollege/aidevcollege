@@ -880,7 +880,7 @@ Now let's create our own Custom Vision Service.
 
 :triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
-1. Use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
+In this chapter, we will use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
 
 First we deploy the **Azure Custom Vision** Service in the **Azure Portal**:
 
