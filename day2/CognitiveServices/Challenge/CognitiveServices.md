@@ -16,15 +16,14 @@ Today will be an overview of Azure Cognitive Services, as you will learn:
 
 We will cover the following topics in several sections:
 
-|Pillar|API Service|Section|
+|Pillar|API Service (section)|Documentation|
 |---|---|---|
-|Language|Translator|[Language - Translator](#translator)|
-|Language|[Language Service](#language-service)|[Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking)|
-|Speech|[Speech](#speech|[Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)|
-|Vision|Face|[Vision- Face](#face)|
-|Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
-|Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
-
+|[Language](#language)|[Translator](#translator)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/)|
+|[Language](#language)|[Language Service](#language-service): [Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/)|
+|[Speech](#speech)|[Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)|
+|[Vision](#vision)|[Face](#face)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)|
+|[Vision](#vision)|[Computer Vision](#computer-vision)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)|
+|[Vision](#vision)|[Custom Vision](#custom-vision)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/)
 
 # Azure Cognitive Services
 
@@ -36,25 +35,9 @@ Azure Cognitive Services:
 - help developers create applications that can see, hear, speak, understand and even begin to reason. 
 - The catalcan be categorized into five main pillars - *Language*, *Speech*, *Vision* and *Decision*.
 
-If you are interested to read more about each service, we have added a list of valuable links in the **`Details`** section below.
+You can solve the tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute Instance (VM) from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. You can find code examples in the Azure documentation for the associated services.
 
-<details>
-We'll touch on the following services:
-
-|Service|Where?|
-|---|---|
-|Text Analytics|[Text Analytics API](https://azure.microsoft.com/en-us/services/cognitive-services/text-analytics/)|
-|Translate Text|[Translate Text](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/translator-info-overview)|
-|Face Recognition|[Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/overview)|
-|Computer Vision|[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision/)|
-|Custom Vision|[Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/overview)|
-|Speech|[Speech Services](https://azure.microsoft.com/en-us/services/cognitive-services/speech-services/)|
-
-</details>
-
-You can solve these tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute Instance (VM) from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. You can find code examples in the Azure documentation for the associated services.
-
-For this entire challenge we can create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
+For this entire challenge we will create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
 In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
