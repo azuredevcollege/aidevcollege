@@ -449,7 +449,7 @@ You can find your API key under the service, then `Keys`.
 
 You can use this file [`test.wav`](../data/test.wav) for testing.
 
-### Text-to-Speech
+## Text-to-Speech
 
 To use any SDK, you need to first install it. In this case we will install the Python Speech SDK. Paste the following code in your jupyter notebook:
 
@@ -484,9 +484,7 @@ ipd.Audio('welcome.wav')
 
 As mentioned earlier, there are [many different voices](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech) available to choose from. By updating `speech_config.speech_synthesis_voice_name` and `speech_config.speech_synthesis_voice_name` we can easily specify a different language or voice. From here on, it should be easy to generate German speech. Try it out!
 
-Alternatively, for quick tests you can use the [Speech Studio](https://speech.microsoft.com/portal) to convert text to speech. Click on [**Audio Content Creation**](https://speech.microsoft.com/portal/aab611a164ba4b0dbf7c4987375fa1cc/audiocontentcreation) and create a new text file or upload one. Try out different voices and export the audio file.
-
-### Speech-to-Text
+## Speech-to-Text
 
 Let's take the generated or provided `welcome.wav` from the example before and convert it back to text.
 
@@ -513,6 +511,20 @@ Besides that, the speech-to-text API expects audio with the following specifics:
 * Single channel (mono) at 8 or 16 KHz
 
 More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-audio-input-streams).
+
+## Optional: Speech Studio
+
+[Speech Studio](https://speech.microsoft.com/portal) is a set of UI-based tools for building and integrating features from Azure Cognitive Services Speech service in your applications. You create projects in Speech Studio by using a no-code approach, and then reference those assets in your applications by using the Speech SDK, the Speech CLI, or the REST APIs. This is especially useful if you want to run quick tests.
+
+Try performing text-to-speech and speech-to-text with the Speech Studio.
+
+1. Go to the [Speech Studio](https://speech.microsoft.com/portal)
+2. Click on **Real-time Speech-to-text**
+- Try out the different features
+3. Click on **Audio Content Creation**
+- Create a new text file or upload one
+- Try out different voices
+- Export the audio file
 
 So far we have focused on the two pillars *Language* and *Speech*. Now we want to jump to the pillar *Vision* by analysing images.
 
