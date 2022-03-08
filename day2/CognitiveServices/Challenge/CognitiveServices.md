@@ -245,23 +245,23 @@ pprint(languages)
 Your result should look like this:
 
 ```json
-{'documents': [{'detectedLanguage': {'confidenceScore': 1.0,
-                                     'iso6391Name': 'en',
-                                     'name': 'English'},
-                'id': '1',
-                'warnings': []},
-               {'detectedLanguage': {'confidenceScore': 0.75,
-                                     'iso6391Name': 'es',
-                                     'name': 'Spanish'},
-                'id': '2',
-                'warnings': []},
-               {'detectedLanguage': {'confidenceScore': 1.0,
-                                     'iso6391Name': 'zh_chs',
-                                     'name': 'Chinese_Simplified'},
-                'id': '3',
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-11-20'}
+{"documents": [{"detectedLanguage": {"confidenceScore": 1.0,
+                                     "iso6391Name": "en",
+                                     "name": "English"},
+                "id": "1",
+                "warnings": []},
+               {"detectedLanguage": {"confidenceScore": 0.75,
+                                     "iso6391Name": "es",
+                                     "name": "Spanish"},
+                "id": "2",
+                "warnings": []},
+               {"detectedLanguage": {"confidenceScore": 1.0,
+                                     "iso6391Name": "zh_chs",
+                                     "name": "Chinese_Simplified"},
+                "id": "3",
+                "warnings": []}],
+ "errors": [],
+ "modelVersion": "2021-11-20"}
 ```
 
 ### Sentiment Analysis
@@ -286,30 +286,30 @@ pprint(sentiments)
 Your result should look like this:
 
 ```json
-{'documents': [{'confidenceScores': {'negative': 0.0,
-                                     'neutral': 0.0,
-                                     'positive': 1.0},
-                'id': '1',
-                'sentences': [{'confidenceScores': {'negative': 0.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 1.0},
-                               'length': 29,
-                               'offset': 0,
-                               'sentiment': 'positive',
-                               'text': 'I had a wonderful experience!'},
-                              {'confidenceScores': {'negative': 0.0,
-                                                    'neutral': 0.0,
-                                                    'positive': 1.0},
-                               'length': 51,
-                               'offset': 30,
-                               'sentiment': 'positive',
-                               'text': 'The rooms were wonderful and the staff '
-                                       'was helpful.'}],
-                'sentiment': 'positive',
-                'warnings': []},
-               {'confidenceScores': {'negative': 1.0,
-                                     'neutral': 0.0,
-                                     'positive': 0.0},
+{"documents": [{"confidenceScores": {"negative": 0.0,
+                                     "neutral": 0.0,
+                                     "positive": 1.0},
+                "id": "1",
+                "sentences": [{"confidenceScores": {"negative": 0.0,
+                                                    "neutral": 0.0,
+                                                    "positive": 1.0},
+                               "length": 29,
+                               "offset": 0,
+                               "sentiment": "positive",
+                               "text": "I had a wonderful experience!"},
+                              {"confidenceScores": {"negative": 0.0,
+                                                    "neutral": 0.0,
+                                                    "positive": 1.0},
+                               "length": 51,
+                               "offset": 30,
+                               "sentiment": "positive",
+                               "text": "The rooms were wonderful and the staff "
+                                       "was helpful."}],
+                "sentiment": "positive",
+                "warnings": []},
+               {"confidenceScores": {"negative": 1.0,
+                                     "neutral": 0.0,
+                                     "positive": 0.0},
 ```
 
 ### Key Phrase Extraction
@@ -333,20 +333,20 @@ pprint(key_phrases)
 Example Result: 
 
 ```json
-{'documents': [{'id': '1',
-                'keyPhrases': ['wonderful experience', 'rooms', 'staff'],
-                'warnings': []},
-               {'id': '2',
-                'keyPhrases': ['terrible time', 'hotel', 'staff', 'food'],
-                'warnings': []},
-               {'id': '3',
-                'keyPhrases': ['Monte Rainier', 'caminos'],
-                'warnings': []},
-               {'id': '4',
-                'keyPhrases': ['mucho tráfico', 'día', 'carretera', 'ayer'],
-                'warnings': []}],
- 'errors': [],
- 'modelVersion': '2021-06-01'}
+{"documents": [{"id": "1",
+                "keyPhrases": ["wonderful experience", "rooms", "staff"],
+                "warnings": []},
+               {"id": "2",
+                "keyPhrases": ["terrible time", "hotel", "staff", "food"],
+                "warnings": []},
+               {"id": "3",
+                "keyPhrases": ["Monte Rainier", "caminos"],
+                "warnings": []},
+               {"id": "4",
+                "keyPhrases": ["mucho tráfico", "día", "carretera", "ayer"],
+                "warnings": []}],
+ "errors": [],
+ "modelVersion": "2021-06-01"}
 ```
 
 ### Entity Linking
@@ -367,34 +367,34 @@ pprint(entities)
 Example result: 
 
 ```json
-{'documents': [{'entities': [{'bingId': 'a093e9b9-90f5-a3d5-c4b8-5855e1b01f85',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Microsoft',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.51,
-                                           'length': 9,
-                                           'offset': 0,
-                                           'text': 'Microsoft'}],
-                              'name': 'Microsoft',
-                              'url': 'https://en.wikipedia.org/wiki/Microsoft'},
-                             {'bingId': '0d47c987-0042-5576-15e8-97af601614fa',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Bill Gates',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.56,
-                                           'length': 10,
-                                           'offset': 25,
-                                           'text': 'Bill Gates'}],
-                              'name': 'Bill Gates',
-                              'url': 'https://en.wikipedia.org/wiki/Bill_Gates'},
-                             {'bingId': 'df2c4376-9923-6a54-893f-2ee5a5badbc7',
-                              'dataSource': 'Wikipedia',
-                              'id': 'Paul Allen',
-                              'language': 'en',
-                              'matches': [{'confidenceScore': 0.56,
-                                           'length': 10,
-                                           'offset': 40,
-                                           'text': 'Paul Allen'}]
+{"documents": [{"entities": [{"bingId": "a093e9b9-90f5-a3d5-c4b8-5855e1b01f85",
+                              "dataSource": "Wikipedia",
+                              "id": "Microsoft",
+                              "language": "en",
+                              "matches": [{"confidenceScore": 0.51,
+                                           "length": 9,
+                                           "offset": 0,
+                                           "text": "Microsoft"}],
+                              "name": "Microsoft",
+                              "url": "https://en.wikipedia.org/wiki/Microsoft"},
+                             {"bingId": "0d47c987-0042-5576-15e8-97af601614fa",
+                              "dataSource": "Wikipedia",
+                              "id": "Bill Gates",
+                              "language": "en",
+                              "matches": [{"confidenceScore": 0.56,
+                                           "length": 10,
+                                           "offset": 25,
+                                           "text": "Bill Gates"}],
+                              "name": "Bill Gates",
+                              "url": "https://en.wikipedia.org/wiki/Bill_Gates"},
+                             {"bingId": "df2c4376-9923-6a54-893f-2ee5a5badbc7",
+                              "dataSource": "Wikipedia",
+                              "id": "Paul Allen",
+                              "language": "en",
+                              "matches": [{"confidenceScore": 0.56,
+                                           "length": 10,
+                                           "offset": 40,
+                                           "text": "Paul Allen"}]
 ```
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
@@ -822,7 +822,7 @@ image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_
 
 headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 params  = {'language': 'unk', 'detectOrientation': 'true'}
-data    = {'url': image_url}
+data    = {'url": image_url}
 
 response = requests.post(url, headers=headers, params=params, json=data)
 recognition_result = response.json()
@@ -840,16 +840,16 @@ word_infos
 **Example JSON response (just a snippet):**
 
 ```json
-[{'boundingBox': '31,50,817,70', 'text': 'LUFTPOLSTERTASCHEN'},
- {'boundingBox': '30,219,23,24', 'text': 'u'},
- {'boundingBox': '68,216,168,27', 'text': 'Fensterlose'},
- {'boundingBox': '247,216,263,37', 'text': 'Schutzumschläge'},
- {'boundingBox': '522,221,47,26', 'text': 'mit'},
- {'boundingBox': '580,221,182,37', 'text': 'Haftklebung'},
- {'boundingBox': '66,276,149,34', 'text': 'Optimaler'},
- {'boundingBox': '225,276,99,27', 'text': 'Schutz'},
- {'boundingBox': '334,277,84,26', 'text': 'durch'},
- {'boundingBox': '432,277,227,35', 'text': 'Luftpolsterfolie'}]
+[{"boundingBox": "31,50,817,70", "text": "LUFTPOLSTERTASCHEN"},
+ {"boundingBox": "30,219,23,24", "text": "u"},
+ {"boundingBox": "68,216,168,27", "text": "Fensterlose"},
+ {"boundingBox": "247,216,263,37", "text": "Schutzumschläge"},
+ {"boundingBox": "522,221,47,26", "text": "mit"},
+ {"boundingBox": "580,221,182,37", "text": "Haftklebung"},
+ {"boundingBox": "66,276,149,34", "text": "Optimaler"},
+ {"boundingBox": "225,276,99,27", "text": "Schutz"},
+ {"boundingBox": "334,277,84,26", "text": "durch"},
+ {"boundingBox": "432,277,227,35", "text": "Luftpolsterfolie"}]
 ```
 
 **Visualization:**
