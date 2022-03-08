@@ -916,13 +916,6 @@ Under `Quick Test`, we can briefly upload our testing images and see what the se
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
 
-# Decision
-
-The pillar **Decision** supports you with building apps that surface recommendations for informed and efficient decision-making. It can be divided into the following services:
-- *Anomaly Detector*: Detects anomalies with collected data over time using machine learning
-- *Personalizer*: Chooses the best content (e.g. product in an online store) to show users
-- *Content Moderator*: Checks text, image, and video content for material that is potentially offensive, risky, or otherwise undesirable
-
 ## What we have done so far:
 
 - We deployed several Cognitive Services using the Azure Portal
@@ -938,7 +931,7 @@ As we have seen the Cognitive Services one by one, we want to still continue to 
 Remove the sample resource group.
 
 ```shell
-$ az group delete -n <yourResourceGroup>
+$ az group delete -n <yourResourceGroupName>
 ```
 
 ## Optional: Play around with the: Intelligent Kiosk 
