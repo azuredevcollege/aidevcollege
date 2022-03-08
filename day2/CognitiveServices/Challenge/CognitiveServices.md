@@ -14,11 +14,11 @@ Today will be an overview of Azure Cognitive Services, as you will learn:
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
 
-Thus we will cover the following topics in several sections:
+We will cover the following topics in several sections:
 
-|Topic|Section|
-|---|---|
-|Text Analytics |[Azure Cognitive Services - Text Analytics](#azure-cognitive-services---text-analytics)|
+|Pillar|API Service|Section|
+|---|---|---|
+|Language|Translator|[Language - Translator](#language---translator)|
 |Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
 |Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
 |Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
