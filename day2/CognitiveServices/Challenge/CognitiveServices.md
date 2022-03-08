@@ -939,9 +939,9 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 - We deployed several Cognitive Services using the Azure Portal
 - We called those Cognitive Service REST APIs by using Python
-- We trained custom machine learning models (e.g. Custom Vision and Language Understanding) using an UI
+- We trained custom machine learning models (e.g. Custom Vision) using an UI
 
-As we have seen the Cognitive Services one by one, we want to still continue to combine the ml expert view with the developer view. Thus we will take the Custom Vision Service which we have learned about and will integrate it into a small application. So let's continue to the next challenge.
+As we have seen the Cognitive Services one by one, we want to still continue to combine the ml expert view with the developer view. Thus, we will take the Custom Vision Service which we have already tried out and will integrate it into a small application. Let's move onto the next challenge.
 
 :zap: Let's go to **[AI Developer College Day2 - Custom Vision Application](../../CustomVisionApp/CustomVisionApp.md)**!
 
