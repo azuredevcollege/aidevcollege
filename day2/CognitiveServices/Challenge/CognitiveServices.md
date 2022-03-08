@@ -884,7 +884,7 @@ The Custom Vision service uses a machine learning algorithm to analyze images. Y
 
 Now let's create our own Custom Vision Service.
 
-# Custom Vision
+## Custom Vision
 
 |Azure Cognitive Services|Information|
 |---|---|
