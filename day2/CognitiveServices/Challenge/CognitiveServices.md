@@ -18,13 +18,13 @@ We will cover the following topics in several sections:
 
 |Pillar|API Service|Section|
 |---|---|---|
-|Language|Translator|[Language - Translator](#language---translator)|
-|Translate Text|[Azure Cognitive Services - Translate Text](#azure-cognitive-services---translate-text)|
-|Face|[Azure Cognitive Services - Face](#azure-cognitive-services---face)|
+|Language|Translator|[Language - Translator](#translator)|
+|Language|[Language Service](#language-service)|[Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking)|
+|Speech|[Speech](#speech|[Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)|
+|Vision|Face|[Vision- Face](#face)|
 |Computer Vision|[Azure Cognitive Services - Computer Vision Service](#azure-cognitive-services---computer-vision-service)|
 |Custom Vision|[Azure Cognitive Services - Custom Vision Service for Detecting Objects in Images](#azure-cognitive-services---custom-vision-service-for-detecting-objects-in-images)|
-|Speech|[Azure Cognitive Services - Speech](#azure-cognitive-services---speech)|
-|Language|[Azure Cognitive Services - Language - Reveal the intention of the text](#azure-cognitive-services---language---reveal-the-intention-of-the-text)|
+
 
 # Azure Cognitive Services
 
