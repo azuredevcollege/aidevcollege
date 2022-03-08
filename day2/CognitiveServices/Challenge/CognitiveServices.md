@@ -879,7 +879,7 @@ First we deploy the **Azure Custom Vision** Service in the **Azure Portal**:
 
 ![Azure Portal](./images/CustomVision1.png)
 
-The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. Fill in the *name* and the *location* as well as the *pricing tier* for the training and the prediction resource:
+The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. For this example, we will use both. Therfore, select *both*. Fill in the *name* and the *location* as well as the *pricing tier* for the training and the prediction resource:
 
 ![Azure Portal](./images/CustomVision2.png)
 
