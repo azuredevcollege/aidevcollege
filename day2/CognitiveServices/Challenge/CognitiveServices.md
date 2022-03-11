@@ -33,7 +33,7 @@ Azure Cognitive Services:
 - are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), Machine Learning expert skills. 
 - enable developers to easily add cognitive features into their applications. 
 - help developers create applications that can see, hear, speak, understand and even begin to reason. 
-- The catalcan be categorized into five main pillars - *Language*, *Speech*, *Vision* and *Decision*.
+- can be categorized into five main pillars - *Language*, *Speech*, *Vision* and *Decision*.
 
 You can solve the tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute Instance (VM) from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. You can find code examples in the Azure documentation for the associated services.
 
@@ -62,6 +62,7 @@ First, create a `Translator` API Key in the Azure Portal:
 The Translator API allows to directly access the service by specifying the API key. As with other services, you can find the key under "Keys and Endpoint".
 
 Use the `CognitiveServices.ipynb` Notebook which you just created and copy the following code in a cell. We will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
+Replace `YOUR_SUBSCRIPTION_KEY` and `YOUR_RESOURCE_LOCATION` with the information from your Azure Translator Service as described above and run the cell.
 
 ```python
 import requests, uuid, json
@@ -157,9 +158,6 @@ This should be the result:
 ]
 ```
 
-**Optional**:
-
-Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
 ## Language Service
 
@@ -168,6 +166,8 @@ Now let's continue with some of the remaining **Cognitive Services for Language*
 |[Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview)|https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview|
 
 :triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
+
+Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
 First we deploy the **Language** service in the **Azure Portal**:
 
@@ -418,8 +418,6 @@ In the language of your choice write two small scripts or apps that:
 
 This time, we will use the Python SDK for using the service.
 
-You can use can use this file: [`data/test.wav`](data/test.wav) (English).
-
 First, we need to deploy a Speech service:
 
 ![alt text](./images/speech_api_service.png "Speech API Service")
@@ -429,8 +427,6 @@ Fill in a *unique name* and select *create*:
 ![Azure Portal](./images/CreateSpeech.png)
 
 You can find your API key under the service, then `Keys`.
-
-You can use this file [`test.wav`](../data/test.wav) for testing.
 
 ## Text-to-Speech
 
@@ -471,14 +467,17 @@ As mentioned earlier, there are [many different voices](https://docs.microsoft.c
 
 Let's take the generated or provided `welcome.wav` from the example before and convert it back to text.
 
-Paste the following code in the notebooke you used before.
+Paste the following code in the notebook you used before.
 
 ```python
 def from_file():
-    audio_input = speechsdk.AudioConfig(filename="welcome.wav")
-    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_input)
-    result = speech_recognizer.recognize_once_async().get()
-    print(result.text)
+  speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
+  speech_config.speech_synthesis_language = "en-US"
+  speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
+  audio_input = speechsdk.AudioConfig(filename="welcome.wav")
+  speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_input)
+  result = speech_recognizer.recognize_once_async().get()
+  print(result.text)
 
 from_file()
 ```
@@ -503,11 +502,11 @@ Try performing text-to-speech and speech-to-text with the Speech Studio.
 
 1. Go to the [Speech Studio](https://speech.microsoft.com/portal)
 2. Click on **Real-time Speech-to-text**
-- Try out the different features
+  - Try out the different features
 3. Click on **Audio Content Creation**
-- Create a new text file or upload one
-- Try out different voices
-- Export the audio file
+  - Create a new text file or upload one
+  - Try out different voices
+  - Export the audio file
 
 So far we have focused on the two pillars *Language* and *Speech*. Now we want to jump to the pillar *Vision* by analysing images.
 
@@ -805,7 +804,7 @@ image_url = "https://bootcamps.blob.core.windows.net/ml-test-images/ocr_printed_
 
 headers = {'Ocp-Apim-Subscription-Key': subscription_key}
 params  = {'language': 'unk', 'detectOrientation': 'true'}
-data    = {'url": image_url}
+data    = {'url': image_url}
 
 response = requests.post(url, headers=headers, params=params, json=data)
 recognition_result = response.json()
