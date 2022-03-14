@@ -26,7 +26,7 @@ Thus we will cover the following topics in several sections:
 
 
 ## Summary of the Custom Vision Application
-
+<details><summary>For a detailed description of the Custom Vision Application, look here. Otherwise, please directly move onto the challenge below.</summary>
 Using an Azure Custom Vision Object Detection model to detect Logos in a web browser (using TensorFlow)
 
 This application is able to detect a logo on an image and labels it as a result. This shows how an ml expert who trained a model can then integrate this in an application as a developer would proceed. This challenge is divided into two parts, first the explanation and second the actual hands-on part. The model was trained with the [Microsoft Azure Custom Vision](https://azure.microsoft.com/en-us/services/cognitive-services/custom-vision-service/) service which we learned about in the Cognitive Services section earlier. For the training we used the [Azure Logo images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet). To be transparent of the origin of the data, it is used from the AI Vision Provision demo shown at the Microsoft Connect() event in 2018.
@@ -117,6 +117,7 @@ Further we receive the `target classes` structured in indexes and labels. Those 
 ![Indexes Labels](./images/IndexesLabels.png)
 
 To sum it up images are annotated by boxes, labeled with classes and receive a score to what percentage an object was detected.
+</details>
 
 ## Start the Challenge: Run the Application
 
