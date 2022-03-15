@@ -165,7 +165,7 @@ This should be the result:
 |---|---|
 |[Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview)|https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview|
 
-:triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
+:triangular_flag_on_post: **Goal:** Leverage the Cognitive Service for Language for extracting language, sentiment, key phrases, and entities from text
 
 Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
