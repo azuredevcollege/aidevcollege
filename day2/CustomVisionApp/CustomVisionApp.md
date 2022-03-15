@@ -34,6 +34,7 @@ This application is able to detect a logo on an image and labels it as a result.
 In this challenge we will use a pre-trained model which is already downloaded and run the sample code to detect logos on an uploaded image. For explanation purposes the `Training, Testing & Downloading Model part` is explained. Afterwards you will open [Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview) using [Node.js](https://nodejs.org/en/download/) and run `npm install` as well as `node server.js` to start the project. At `http://localhost:3000` you can then test the model by uploading some of the [Azure Logo images](https://github.com/microsoft/AIVisualProvision/tree/master/Documents/Images/Training_DataSet).
 
 ## Explanation: Training, Testing and Downloading the Model
+<details><summary>If you want to train the model by yourself using Custom Vision, expand this section (Alert: This is time consuming). If you'd rather look into how to use a trained Custom Vision object detection model, you can skip this section.</summary>
 
 There are two options, either to choose the __Classification__ or the __Object Detection__ model. <br>
 In this case to detect the objects on an image the `Object Detection Model` was chosen. For downloading purposes we chose the `General (Compact)` domain which is slightly less accurate than a standard domain with the same amount of training data.
@@ -117,6 +118,7 @@ Further we receive the `target classes` structured in indexes and labels. Those 
 ![Indexes Labels](./images/IndexesLabels.png)
 
 To sum it up images are annotated by boxes, labeled with classes and receive a score to what percentage an object was detected.
+</details>
 
 ## Start the Challenge: Run the Application
 
