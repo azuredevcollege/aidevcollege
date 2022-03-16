@@ -25,7 +25,7 @@ For this challenge, we'll use the `Pima Indians Diabetes` dataset: The Pima Indi
 
 > *"This is where “eternal” medical consent enters the equation: no researcher can realistically inform a study participant of what their medical data will be used for 40 years in the future."*
 > To make this sensitive topic aware we added this dataset as well as our Microsoft AI principles. 
-> **Please be responsible and follow the:** [Microsoft AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
+> **Please be responsible and follow the:** [Microsoft responsible AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
 
 **Note:**
 You can find more datasets for trying out AutoML on [this website](https://machinelearningmastery.com/standard-machine-learning-datasets/) or obviously on [Kaggle](https://www.kaggle.com/) - by the way, the [`Wine Quality Dataset`](../data/winequality-white.csv) also makes a great use case for a nice demo.
