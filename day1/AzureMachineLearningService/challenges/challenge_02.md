@@ -301,7 +301,7 @@ env.python.user_managed_dependencies = False  # Let Azure ML manage dependencies
 docker_conf = DockerConfiguration(use_docker=True)  # Use a docker container
 
 # Create a the pip and conda package dependencies
-packages = CondaDependencies.create(pip_packages=["tensorflow","keras", "astor", 'azureml-sdk',
+packages = CondaDependencies.create(pip_packages=["tensorflow","keras==2.6.0", "astor", 'azureml-sdk',
                                                   'pynacl==1.2.1', 'azureml-dataprep'])
 
 # Add the package dependencies to the Python environment for the experiment
@@ -346,7 +346,7 @@ run = experiment.submit(config=estimator)
 run
 ```
 
-The `Link to Azure Portal` will bring us directly into our workspace:
+The `Link to Azure Machine Learning studio` will bring us directly into our workspace:
 
 ![alt text](../images/02-run_link.png "Our training run is starting")
 
@@ -462,3 +462,5 @@ estimator2 = ScriptRunConfig(source_directory=script_folder,
                 script='train2.py',
                 docker_runtime_config=docker_conf)
 ```
+
+In the [challenge 3](challenge_03.md), we'll deploy the model as an API.
