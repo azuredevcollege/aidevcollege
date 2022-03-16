@@ -462,3 +462,5 @@ estimator2 = ScriptRunConfig(source_directory=script_folder,
                 script='train2.py',
                 docker_runtime_config=docker_conf)
 ```
+
+In the [challenge 3](challenge_03.md), we'll deploy the model as an API.
