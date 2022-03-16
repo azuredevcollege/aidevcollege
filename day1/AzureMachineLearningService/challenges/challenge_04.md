@@ -19,13 +19,13 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
 
 ## Dataset
 
-> All the mentioned datasets in challenge 4 and challenge 5 can be found in your locally cloned repository **`aidevcollege/day1/AzureMachienLearningService/data`**. 
+> All the mentioned datasets in challenge 4 and challenge 5 can be found in your locally cloned repository **`aidevcollege/day1/AzureMachineLearningService/data`**. 
 
 For this challenge, we'll use the `Pima Indians Diabetes` dataset: The Pima Indians Diabetes Dataset involves predicting the onset of diabetes within 5 years in Pima Indians given medical details. Before getting started, have a look at the data set: [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv). As this dataset is controversially discussed we have added the following two documents: [blog](https://researchblog.duke.edu/2016/10/24/diabetes-and-privacy-meet-big-data/#:~:text=Generations%27%20worth%20of%20data%20on,pregnancies%20of%20Pima%20Native%20Americans.) and [paper](https://www.journals.uchicago.edu/doi/full/10.1086/693853?mobileUi=0&).
 
 > *"This is where “eternal” medical consent enters the equation: no researcher can realistically inform a study participant of what their medical data will be used for 40 years in the future."*
 > To make this sensitive topic aware we added this dataset as well as our Microsoft AI principles. 
-> **Please be responsible and follow the:** [Microsoft AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
+> **Please be responsible and follow the:** [Microsoft responsible AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
 
 **Note:**
 You can find more datasets for trying out AutoML on [this website](https://machinelearningmastery.com/standard-machine-learning-datasets/) or obviously on [Kaggle](https://www.kaggle.com/) - by the way, the [`Wine Quality Dataset`](../data/winequality-white.csv) also makes a great use case for a nice demo.
@@ -40,7 +40,7 @@ The process includes creating or selecting `a dataset`, `Configuring the run` an
 
 ![alt text](../images/04-automl-process.png "AutoML Process")
 
-Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachienLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
+Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachineLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
 
 ![alt text](../images/04-automl_dataset.png "AutoML Dataset")
 
@@ -78,7 +78,7 @@ Classification is a common machine learning task. Classification is a type of su
 
 ![alt text](../images/04-automl_select_task_type.png "Select task type")
 
-Under **`View additional configuration settings`**, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set **`Training job time (hours)` to `0.25`**. This means our training job will terminate after a maximum of 15 minutes. **The entire AutoML Run can take about 25-30 min**. *Time to grab a coffee or continue to the next challenge and come back later!* ☕
+Under **`View additional configuration settings`**, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set **`Training job time (hours)` to `0.5`**. This means our training job will terminate after a maximum of 30 minutes. **The entire AutoML Run can take about 25-30 min**. *Time to grab a coffee or continue to the next challenge and come back later!* ☕
 
 ![Exit criteria](../images/04_automl_exit_criteria.png)
 
@@ -120,7 +120,8 @@ import json
 
 url = 'Replace with your URL'
 headers = {'Content-Type':'application/json'}
-data = {"data": [{
+data = {"Inputs": {
+    "data": [{
     "times_pregnant": 6,
     "glucose": 148,
     "blood_pressure": 72,
@@ -139,8 +140,7 @@ data = {"data": [{
     "bmi": 26.6,
     "diabetes_pedigree": 0.351,
     "age": 31
-    
-}]}
+}]}}
 
 resp = requests.post(url, data=json.dumps(data), headers=headers)
 print("Prediction Results:", resp.json())
