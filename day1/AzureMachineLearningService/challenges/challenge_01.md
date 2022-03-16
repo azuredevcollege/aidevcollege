@@ -262,7 +262,7 @@ Under the `Models` tab, we can now see that our model has been registered:
 
 ![alt text](../images/01-registered_model.png "Our model has been registered")
 
-Our model has been stored in the Storage Account that has been created initially for us:
+Our model has been stored in the Storage Account that has been created initially for us. You should get this view when you go into the Azure Portal:
 
 ![alt text](../images/azurmlblobpkl.png "Our model has been stored in Azure Blob")
 
