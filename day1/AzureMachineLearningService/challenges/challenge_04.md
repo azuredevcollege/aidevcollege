@@ -120,7 +120,8 @@ import json
 
 url = 'Replace with your URL'
 headers = {'Content-Type':'application/json'}
-data = {"data": [{
+data = {"Inputs": {
+    "data": [{
     "times_pregnant": 6,
     "glucose": 148,
     "blood_pressure": 72,
@@ -139,8 +140,7 @@ data = {"data": [{
     "bmi": 26.6,
     "diabetes_pedigree": 0.351,
     "age": 31
-    
-}]}
+}]}}
 
 resp = requests.post(url, data=json.dumps(data), headers=headers)
 print("Prediction Results:", resp.json())
