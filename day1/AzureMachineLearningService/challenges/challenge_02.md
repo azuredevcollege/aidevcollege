@@ -346,7 +346,7 @@ run = experiment.submit(config=estimator)
 run
 ```
 
-The `Link to Azure Portal` will bring us directly into our workspace:
+The `Link to Azure Machine Learning studio` will bring us directly into our workspace:
 
 ![alt text](../images/02-run_link.png "Our training run is starting")
 
