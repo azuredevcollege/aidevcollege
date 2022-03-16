@@ -219,7 +219,7 @@ Inside our experiment, we can see our first run (your view might differ slightly
 
 ![alt text](../images/01-runs.png "Viewing our runs")
 
-If we click the run number, we can see its details:
+If we click the *display name*, we can see its details:
 
 ![alt text](../images/01-run_details.png "Run Details")
 
