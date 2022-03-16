@@ -40,7 +40,7 @@ The process includes creating or selecting `a dataset`, `Configuring the run` an
 
 ![alt text](../images/04-automl-process.png "AutoML Process")
 
-Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachienLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
+Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachineLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
 
 ![alt text](../images/04-automl_dataset.png "AutoML Dataset")
 
