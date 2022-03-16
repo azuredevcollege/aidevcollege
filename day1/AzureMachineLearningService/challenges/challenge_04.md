@@ -19,7 +19,7 @@ During training, Azure Machine Learning creates a number of pipelines in paralle
 
 ## Dataset
 
-> All the mentioned datasets in challenge 4 and challenge 5 can be found in your locally cloned repository **`aidevcollege/day1/AzureMachienLearningService/data`**. 
+> All the mentioned datasets in challenge 4 and challenge 5 can be found in your locally cloned repository **`aidevcollege/day1/AzureMachineLearningService/data`**. 
 
 For this challenge, we'll use the `Pima Indians Diabetes` dataset: The Pima Indians Diabetes Dataset involves predicting the onset of diabetes within 5 years in Pima Indians given medical details. Before getting started, have a look at the data set: [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv). As this dataset is controversially discussed we have added the following two documents: [blog](https://researchblog.duke.edu/2016/10/24/diabetes-and-privacy-meet-big-data/#:~:text=Generations%27%20worth%20of%20data%20on,pregnancies%20of%20Pima%20Native%20Americans.) and [paper](https://www.journals.uchicago.edu/doi/full/10.1086/693853?mobileUi=0&).
 
