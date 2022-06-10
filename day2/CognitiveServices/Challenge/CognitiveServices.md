@@ -1000,7 +1000,7 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 - We called those Cognitive Service REST APIs by using Python
 - We trained custom machine learning models (e.g. Custom Vision) using an UI
 
-As we have seen the Cognitive Services one by one, we want to still continue to combine the ml expert view with the developer view. Thus, we will take the Custom Vision Service which we have already tried out and will integrate it into a small application. Let's move onto the next challenge.
+In a next step, we want to see how the cognitive services can be embedded into an application.
 
 :zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
 
