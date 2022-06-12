@@ -10,36 +10,37 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
-- How to deploy Cognitive Services from the areas *Language*, *Speech*, *Vision* and *Decision*
+- How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
 
 We will cover the following topics in several sections:
 
-|Pillar|API Service (section)|Documentation|
-|---|---|---|
-|[Language](#language)|[Translator](#translator)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/)|
-|[Language](#language)|[Language Service](#language-service): [Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/)|
-|[Speech](#speech)|[Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)|
-|[Vision](#vision)|[Face](#face)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)|
-|[Vision](#vision)|[Computer Vision](#computer-vision)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)|
-|[Vision](#vision)|[Custom Vision](#custom-vision)|[Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/)
+| Pillar                | API Service (section)                                                                                                                                                                                          | Documentation                                                                                     |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [Language](#language) | [Translator](#translator)                                                                                                                                                                                      | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/)            |
+| [Language](#language) | [Language Service](#language-service): [Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking) | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/)      |
+| [Speech](#speech)     | [Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)                                                                                                                                           | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)        |
+| [Vision](#vision)     | [Face](#face)                                                                                                                                                                                                  | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)                  |
+| [Vision](#vision)     | [Computer Vision](#computer-vision)                                                                                                                                                                            | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)       |
+| [Vision](#vision)     | [Custom Vision](#custom-vision)                                                                                                                                                                                | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/) |
 
 # Azure Cognitive Services
 
 ## What are Azure Cognitive Services?
 
-Azure Cognitive Services: 
-- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), Machine Learning expert skills. 
-- enable developers to easily add cognitive features into their applications. 
-- help developers create applications that can see, hear, speak, understand and even begin to reason. 
-- can be categorized into five main pillars - *Language*, *Speech*, *Vision* and *Decision*.
+Azure Cognitive Services:
+
+- are APIs, SDKs and services available to help developers build intelligent applications without having direct Artificial Intelligence (AI), Machine Learning expert skills.
+- enable developers to easily add cognitive features into their applications.
+- help developers create applications that can see, hear, speak, understand and even begin to reason.
+- can be categorized into five main pillars - _Language_, _Speech_, _Vision_ and _Decision_.
 
 You can solve the tasks in a programming language of your choice. For sake of convenience, we are providing hints in `Python`, which you can easily run on the `Compute Instance (VM) from the Azure Machine Learning Service` or in `Visual Studio Code`. SDK Support for `C#`, `Node.js` or `.NET Core` is available for most challenges. You can find code examples in the Azure documentation for the associated services.
 
 For this entire challenge we will create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the __Azure Machine Learning Service__ and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the **Azure Machine Learning Service** and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
 Let's look at the first pillar of Cognitive Services - Language.
 
@@ -61,7 +62,7 @@ First, create a `Translator` API Key in the Azure Portal:
 
 The Translator API allows to directly access the service by specifying the API key. As with other services, you can find the key under "Keys and Endpoint".
 
-Use the `CognitiveServices.ipynb` Notebook which you just created and copy the following code in a cell. We will conduct a REST Call by sending data to the *Translate Cognitive Service* and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
+Use the `CognitiveServices.ipynb` Notebook which you just created and copy the following code in a cell. We will conduct a REST Call by sending data to the _Translate Cognitive Service_ and receiving a response from the pre-trained Machine Learning model behind the scenes. In this case, we are translating text from English to German.
 Replace `YOUR_SUBSCRIPTION_KEY` and `YOUR_RESOURCE_LOCATION` with the information from your Azure Translator Service as described above and run the cell.
 
 ```python
@@ -94,7 +95,8 @@ body = [
 response = requests.post(url, headers=headers, params=params, json=body)
 print(json.dumps(response.json(), indent=2))
 ```
-Example Result: 
+
+Example Result:
 
 ```json
 [
@@ -125,7 +127,7 @@ Example Result:
 ]
 ```
 
-As we can see, we can translate multiple sentences to multiple languages within one API call. The service also automatically detects the input language. (*Optional*: Try deleting the 'from': 'en' from the params section of the code and see how the json response changes.) It is possible to add optional parameters such as a profanity filter and more.
+As we can see, we can translate multiple sentences to multiple languages within one API call. The service also automatically detects the input language. (_Optional_: Try deleting the 'from': 'en' from the params section of the code and see how the json response changes.) It is possible to add optional parameters such as a profanity filter and more.
 
 The Translator Service does not only translate text, but also has the capability of transliterating text from one type of script to another (and much more). You can try it out with the code below:
 
@@ -149,6 +151,7 @@ print(json.dumps(response.json(), indent=2))
 ```
 
 This should be the result:
+
 ```json
 [
   {
@@ -158,16 +161,15 @@ This should be the result:
 ]
 ```
 
-
 ## Language Service
 
-|Azure Cognitive Services|Information|
-|---|---|
-|[Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview)|https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview|
+| Azure Cognitive Services                                                                                              | Information                                                                         |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [Cognitive Service for Language](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview) | https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/overview |
 
-:triangular_flag_on_post: **Goal:** Leverage Text Analytics API for extracting language, sentiment, key phrases, and entities from text
+:triangular_flag_on_post: **Goal:** Leverage the Cognitive Service for Language for extracting language, sentiment, key phrases, and entities from text
 
-Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called *Language Service*. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
+Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called _Language Service_. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
 First we deploy the **Language** service in the **Azure Portal**:
 
@@ -177,122 +179,152 @@ By default, the service comes with several pre-built capabilities like sentiment
 
 ![Azure Portal](./images/CreateLanguageService2.png)
 
-Fill in the *name*, agree to the *Legal Terms* and *terms of Responsible AI* and hit *create*:
+Fill in the _name_, agree to the _Legal Terms_ and _terms of Responsible AI_ and hit _create_:
 
 ![Azure Portal](./images/CreateLanguageService3.png)
 
-Get the key and the endpoint under the section *keys* from the Azure portal:
+This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
+
+```
+pip install azure-ai-textanalytics
+```
+
+Get the key and the region under the section _Keys and Endpoint_ from the Azure portal:
 
 ![Azure Portal: Key and URL](./images/keyendpoint.png)
 
-Let's start with connecting to your Language service by copying the code with the **filled in key and endpoint** as shown above into a new cell in your `CognitiveServices.ipynb` notebook:
+In a next step, we need to create a client object ([TextAnalyticsClient](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-textanalytics/latest/azure.ai.textanalytics.html#azure.ai.textanalytics.TextAnalyticsClient)). Copy the code with the **filled in key and region** into a new cell in your notebook. We will reuse the client object for all following tasks concerning the language service.
 
 ```python
-import requests
-from pprint import pprint
+from azure.core.credentials import AzureKeyCredential
+from azure.ai.textanalytics import TextAnalyticsClient
 
 subscription_key = "YOUR_SUBSCRIPTION_KEY"
-endpoint = "YOUR_ENDPOINT" # Paste your URL in here
-headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+region = "YOUR_SUBSCRIPTION_REGION"
+
+credential = AzureKeyCredential(key)
+endpoint = f"https://{region}.api.cognitive.microsoft.com/"
+
+text_analytics_client = TextAnalyticsClient(endpoint, credential)
 ```
 
 Azure Cognitive Service for Language provides several features. In the following, we will try out only a few of the available features:
+
 - Language Detection ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/overview))
 - Sentiment Analysis ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/sentiment-opinion-mining/overview))
 - Key Phrase Extraction ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/key-phrase-extraction/overview))
 - Entity Linking ([documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/entity-linking/overview))
 
-
-In general, we will conduct [REST](https://restfulapi.net/) Calls to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give responses in [JSON format](https://www.w3schools.com/whatis/whatis_json.asp) regarding the data.
+In general, we will conduct [REST](https://restfulapi.net/) calls using the Python SDK to the Cognitive Service by sending some data to the service and letting the **pre-trained Machine Learning Model** behind the scenes give responses regarding the data.
 
 For each of the following features, copy the code blocks into new cells of your Jupyter Notebook.
 
 ### Language Detection
 
-Firstly, we can extract the language from text. Run this in a new Cell in your `CognitiveServices.ipynb` notebook:
+Firstly, we can extract the language from text. Run this in a new cell in your `CognitiveServices.ipynb` notebook:
 
 ```python
-language_detection_api_url = endpoint + "text/analytics/v3.1/languages"
+documents = [
+    """
+    This whole document is written in English. In order for the whole document to be written
+    in English, every sentence also has to be written in English, which it is.
+    """,
+    "Il documento scritto in italiano.",
+    "Dies ist in deutsche Sprache verfasst.",
+    "这是一个用中文写的文件",
+    "Este es un document escrito en Español.",
+    "আমি প্রতি সপ্তাহে বিএমডাব্লিউ-এর বোর্ড অফ ম্যানেজমেন্টের সাথে ফোনে কথা বলি।"
+]
 
-documents = { "documents": [
-    { "id": "1", "text": "This is a document written in English." },
-    { "id": "2", "text": "Este es un document escrito en Español." },
-    { "id": "3", "text": "这是一个用中文写的文件" }
-]}
+response = text_analytics_client.detect_language(documents)
+result = [doc for doc in response if not doc.is_error]
 
-response  = requests.post(language_detection_api_url, headers=headers, json=documents)
-languages = response.json()
-pprint(languages)
+for doc in result:
+    print("Language detected: {}".format(doc.primary_language.name))
+    print("ISO6391 name: {}".format(doc.primary_language.iso6391_name))
+    print("Confidence score: {}\n".format(doc.primary_language.confidence_score))
 ```
 
 Your result should look like this:
 
-```json
-{"documents": [{"detectedLanguage": {"confidenceScore": 1.0,
-                                     "iso6391Name": "en",
-                                     "name": "English"},
-                "id": "1",
-                "warnings": []},
-               {"detectedLanguage": {"confidenceScore": 0.75,
-                                     "iso6391Name": "es",
-                                     "name": "Spanish"},
-                "id": "2",
-                "warnings": []},
-               {"detectedLanguage": {"confidenceScore": 1.0,
-                                     "iso6391Name": "zh_chs",
-                                     "name": "Chinese_Simplified"},
-                "id": "3",
-                "warnings": []}],
- "errors": [],
- "modelVersion": "2021-11-20"}
 ```
+Language detected: English
+ISO6391 name: en
+Confidence score: 1.0
+
+Language detected: Italian
+ISO6391 name: it
+Confidence score: 0.87
+
+Language detected: German
+ISO6391 name: de
+Confidence score: 1.0
+
+Language detected: Chinese_Simplified
+ISO6391 name: zh_chs
+Confidence score: 1.0
+
+Language detected: English
+ISO6391 name: en
+Confidence score: 1.0
+
+Language detected: Bengali
+ISO6391 name: bn
+Confidence score: 1.0
+```
+
+As you can see, the client can detect a wide range of languages, variants, dialects and some regional languages. If the service cannot detect a language, you will receive the response _unknown_. [Here](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/language-detection/language-support) you can find a list of all supported languages.
 
 ### Sentiment Analysis
 
 Secondly, we can analyse the sentiment of a given phrase. Go ahead and copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-sentiment_api_url = endpoint + "text/analytics/v3.2-preview.1/sentiment"
+documents = [
+    "I did not like the restaurant. The food was somehow both too spicy and underseasoned. Additionally, I thought the location was too far away from the playhouse.",
+    "The restaurant was decorated beautifully. The atmosphere was unlike any other restaurant I've been to.",
+    "The food was yummy. :)",
+    "I had a wonderful experience! The rooms were wonderful and the staff was helpful.",
+    "I had not a great time at the hotel. The staff was rude and the food was awful.",
+    "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos.",
+    "La carretera estaba atascada. Había mucho tráfico el día de ayer."
+]
 
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had not a great time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
+response = text_analytics_client.analyze_sentiment(documents, language="en")
+result = [doc for doc in response if not doc.is_error]
 
-response  = requests.post(sentiment_api_url, headers=headers, json=documents)
-sentiments = response.json()
-pprint(sentiments)
+for doc in result:
+    print("Overall sentiment of sentence {}: {}".format(int(doc.id)+1, doc.sentiment))
+    print("Scores: positive={}; neutral={}; negative={} \n".format(
+        doc.confidence_scores.positive,
+        doc.confidence_scores.neutral,
+        doc.confidence_scores.negative,
+    ))
 ```
 
 Your result should look like this:
 
-```json
-{"documents": [{"confidenceScores": {"negative": 0.0,
-                                     "neutral": 0.0,
-                                     "positive": 1.0},
-                "id": "1",
-                "sentences": [{"confidenceScores": {"negative": 0.0,
-                                                    "neutral": 0.0,
-                                                    "positive": 1.0},
-                               "length": 29,
-                               "offset": 0,
-                               "sentiment": "positive",
-                               "text": "I had a wonderful experience!"},
-                              {"confidenceScores": {"negative": 0.0,
-                                                    "neutral": 0.0,
-                                                    "positive": 1.0},
-                               "length": 51,
-                               "offset": 30,
-                               "sentiment": "positive",
-                               "text": "The rooms were wonderful and the staff "
-                                       "was helpful."}],
-                "sentiment": "positive",
-                "warnings": []},
-               {"confidenceScores": {"negative": 1.0,
-                                     "neutral": 0.0,
-                                     "positive": 0.0},
+```
+Overall sentiment of sentence 1: negative
+Scores: positive=0.01; neutral=0.02; negative=0.98
+
+Overall sentiment of sentence 2: positive
+Scores: positive=0.81; neutral=0.03; negative=0.16
+
+Overall sentiment of sentence 3: positive
+Scores: positive=0.99; neutral=0.0; negative=0.01
+
+Overall sentiment of sentence 4: positive
+Scores: positive=1.0; neutral=0.0; negative=0.0
+
+Overall sentiment of sentence 5: negative
+Scores: positive=0.01; neutral=0.0; negative=0.99
+
+Overall sentiment of sentence 6: positive
+Scores: positive=0.99; neutral=0.01; negative=0.01
+
+Overall sentiment of sentence 7: negative
+Scores: positive=0.07; neutral=0.15; negative=0.78
 ```
 
 ### Key Phrase Extraction
@@ -300,36 +332,28 @@ Your result should look like this:
 Thirdly, we can extract key phrases from text. In order to do so, copy the following code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-keyphrase_url = endpoint + "text/analytics/v3.1/keyphrases"
+documents = [
+    "Redmond is a city in King County, Washington, United States, located 15 miles east of Seattle.",
+    """
+    I need to take my cat to the veterinarian. He has been sick recently, and I need to take him
+    before I travel to South America for the summer.
+    """,
+    "I had a wonderful experience! The rooms were wonderful and the staff was helpful."
+]
 
-documents = {"documents" : [
-  {"id": "1", "language": "en", "text": "I had a wonderful experience! The rooms were wonderful and the staff was helpful."},
-  {"id": "2", "language": "en", "text": "I had a terrible time at the hotel. The staff was rude and the food was awful."},  
-  {"id": "3", "language": "es", "text": "Los caminos que llevan hasta Monte Rainier son espectaculares y hermosos."},  
-  {"id": "4", "language": "es", "text": "La carretera estaba atascada. Había mucho tráfico el día de ayer."}
-]}
+response = text_analytics_client.extract_key_phrases(documents, language="en")
+result = [doc for doc in response if not doc.is_error]
 
-response  = requests.post(keyphrase_url, headers=headers, json=documents)
-key_phrases = response.json()
-pprint(key_phrases)
+for doc in result:
+    print("Key phrases of sentence {}: {}".format(int(doc.id)+1, ', '.join(doc.key_phrases)))
 ```
-Example Result: 
 
-```json
-{"documents": [{"id": "1",
-                "keyPhrases": ["wonderful experience", "rooms", "staff"],
-                "warnings": []},
-               {"id": "2",
-                "keyPhrases": ["terrible time", "hotel", "staff", "food"],
-                "warnings": []},
-               {"id": "3",
-                "keyPhrases": ["Monte Rainier", "caminos"],
-                "warnings": []},
-               {"id": "4",
-                "keyPhrases": ["mucho tráfico", "día", "carretera", "ayer"],
-                "warnings": []}],
- "errors": [],
- "modelVersion": "2021-06-01"}
+Example Result:
+
+```
+Key phrases of sentence 1: King County, United States, Redmond, city, Washington, Seattle
+Key phrases of sentence 2: South America, cat, veterinarian, summer
+Key phrases of sentence 3: wonderful experience, rooms, staff
 ```
 
 ### Entity Linking
@@ -337,47 +361,93 @@ Example Result:
 And last but not least, we can detect and link entities in text. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "We went to Seattle last week.", the word "Seattle" would be identified, with a link to more information on Wikipedia. In order to try it out, copy the code into your `CognitiveServices.ipynb` notebook:
 
 ```python
-entities_url = endpoint + "/text/analytics/v3.1/entities/linking"
+documents = [
+    "Microsoft was founded by Bill Gates and Paul Allen. Its headquarters are located in Redmond.",
+    "Easter Island, a Chilean territory, is a remote volcanic island in Polynesia.",
+    "Angela Merkel war bis 2021 die deutsche Bundeskanzlerin und hatte im Deutschen Reichstagsgebäude ihren Sitz."
+]
 
-documents = {"documents" : [
-  {"id": "1", "text": "Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800."}
-]}
+response = text_analytics_client.recognize_linked_entities(documents, language="en")
+result = [doc for doc in response if not doc.is_error]
 
-response  = requests.post(entities_url, headers=headers, json=documents)
-entities = response.json()
-pprint(entities)
+for doc in result:
+    for entity in doc.entities:
+        print("Entity: {}".format(entity.name))
+        print("\tURL: {}".format(entity.url))
+        print("\tData Source: {}".format(entity.data_source))
+        print("\tEntity matches:")
+        for match in entity.matches:
+            print("\t\tEntity match text: {}".format(match.text))
+            print("\t\tConfidence Score: {}".format(match.confidence_score))
+            print("\t\tOffset: {}".format(match.offset))
 ```
-Example result: 
 
-```json
-{"documents": [{"entities": [{"bingId": "a093e9b9-90f5-a3d5-c4b8-5855e1b01f85",
-                              "dataSource": "Wikipedia",
-                              "id": "Microsoft",
-                              "language": "en",
-                              "matches": [{"confidenceScore": 0.51,
-                                           "length": 9,
-                                           "offset": 0,
-                                           "text": "Microsoft"}],
-                              "name": "Microsoft",
-                              "url": "https://en.wikipedia.org/wiki/Microsoft"},
-                             {"bingId": "0d47c987-0042-5576-15e8-97af601614fa",
-                              "dataSource": "Wikipedia",
-                              "id": "Bill Gates",
-                              "language": "en",
-                              "matches": [{"confidenceScore": 0.56,
-                                           "length": 10,
-                                           "offset": 25,
-                                           "text": "Bill Gates"}],
-                              "name": "Bill Gates",
-                              "url": "https://en.wikipedia.org/wiki/Bill_Gates"},
-                             {"bingId": "df2c4376-9923-6a54-893f-2ee5a5badbc7",
-                              "dataSource": "Wikipedia",
-                              "id": "Paul Allen",
-                              "language": "en",
-                              "matches": [{"confidenceScore": 0.56,
-                                           "length": 10,
-                                           "offset": 40,
-                                           "text": "Paul Allen"}]
+Example result:
+
+```
+Entity: Microsoft
+	URL: https://en.wikipedia.org/wiki/Microsoft
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Microsoft
+		Confidence Score: 0.49
+		Offset: 0
+Entity: Bill Gates
+	URL: https://en.wikipedia.org/wiki/Bill_Gates
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Bill Gates
+		Confidence Score: 0.52
+		Offset: 25
+Entity: Paul Allen
+	URL: https://en.wikipedia.org/wiki/Paul_Allen
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Paul Allen
+		Confidence Score: 0.54
+		Offset: 40
+Entity: Redmond, Washington
+	URL: https://en.wikipedia.org/wiki/Redmond,_Washington
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Redmond
+		Confidence Score: 0.2
+		Offset: 84
+Entity: Easter Island
+	URL: https://en.wikipedia.org/wiki/Easter_Island
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Easter Island
+		Confidence Score: 0.41
+		Offset: 0
+Entity: Chile
+	URL: https://en.wikipedia.org/wiki/Chile
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Chilean
+		Confidence Score: 0.25
+		Offset: 17
+Entity: Polynesia
+	URL: https://en.wikipedia.org/wiki/Polynesia
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Polynesia
+		Confidence Score: 0.25
+		Offset: 67
+Entity: Angela Merkel
+	URL: https://en.wikipedia.org/wiki/Angela_Merkel
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Angela Merkel
+		Confidence Score: 0.83
+		Offset: 0
+Entity: Reichstag building
+	URL: https://en.wikipedia.org/wiki/Reichstag_building
+	Data Source: Wikipedia
+	Entity matches:
+		Entity match text: Reichstagsgebäude
+		Confidence Score: 0.81
+		Offset: 79
 ```
 
 If you want to directly create a dashboard within Power BI from the derived results, have a look at [this tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/text-analytics/tutorials/tutorial-power-bi-key-phrases).
@@ -388,24 +458,24 @@ If you want to directly create a dashboard within Power BI from the derived resu
 
 Each of the features of the Cognitive Service for Language has a demo-like experience inside Language Studio that lets you input text, and presents the response both visually, and in JSON. These demos help you quickly test these prebuilt features without using code.
 
-Since we looked at *Entity Linking* in the last paragraph, let's check out the Studio's capabilities for this feature.
+Since we looked at _Entity Linking_ in the last paragraph, let's check out the Studio's capabilities for this feature.
 
 1. Go to the [Language Studio](https://aka.ms/languageStudio)
 2. Log in using your Azure account.
 3. A window will pop up prompting you to choose a language resource. Choose the one you created previously.
-4. Choose the feature *Find linked entities*.
-5. Paste the same text as before (Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800.) into the box and hit *Run*.
+4. Choose the feature _Find linked entities_.
+5. Paste the same text as before (Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800.) into the box and hit _Run_.
 6. Examine the results.
 
 Feel free to try out the Language Studio for some of the other features.
 
-So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar *Speech*.
+So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar _Speech_.
 
 # Speech
 
-|Azure Cognitive Services|Information|
-|---|---|
-|[Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/
+| Azure Cognitive Services                                                                | Information                                                               |
+| --------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [Speech API](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/) | https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/ |
 
 :triangular_flag_on_post: **Goal:** Leverage Speech-to-Text and Text-to-Speech
 
@@ -422,7 +492,7 @@ First, we need to deploy a Speech service:
 
 ![alt text](./images/speech_api_service.png "Speech API Service")
 
-Fill in a *unique name* and select *create*:
+Fill in a _unique name_ and select _create_:
 
 ![Azure Portal](./images/CreateSpeech.png)
 
@@ -484,13 +554,14 @@ from_file()
 
 For recognizing longer text with multiple sentences, you can follow the [following tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
 
-***Note:***
+**_Note:_**
 
 Compressed audio is also supported (e.g., MP3s), see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-codec-compressed-audio-input-streams),
 
 Besides that, the speech-to-text API expects audio with the following specifics:
-* 16-bit WAV format with PCM or OGG format with OPUS
-* Single channel (mono) at 8 or 16 KHz
+
+- 16-bit WAV format with PCM or OGG format with OPUS
+- Single channel (mono) at 8 or 16 KHz
 
 More details, see [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/how-to-use-audio-input-streams).
 
@@ -502,23 +573,26 @@ Try performing text-to-speech and speech-to-text with the Speech Studio.
 
 1. Go to the [Speech Studio](https://speech.microsoft.com/portal)
 2. Click on **Real-time Speech-to-text**
-  - Try out the different features
-3. Click on **Audio Content Creation**
-  - Create a new text file or upload one
-  - Try out different voices
-  - Export the audio file
 
-So far we have focused on the two pillars *Language* and *Speech*. Now we want to jump to the pillar *Vision* by analysing images.
+- Try out the different features
+
+3. Click on **Audio Content Creation**
+
+- Create a new text file or upload one
+- Try out different voices
+- Export the audio file
+
+So far we have focused on the two pillars _Language_ and _Speech_. Now we want to jump to the pillar _Vision_ by analysing images.
 
 # Vision
 
- Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that. The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
+Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that. The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
 
 ## Face
 
-|Azure Cognitive Services|Information|
-|---|---|
-|[Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/)|https://docs.microsoft.com/en-us/azure/cognitive-services/face/
+| Azure Cognitive Services                                                    | Information                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/) | https://docs.microsoft.com/en-us/azure/cognitive-services/face/ |
 
 :triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
 
@@ -534,9 +608,9 @@ To use **Face API**, perform the following steps:
 
 2. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
 3. Make the following changes in code where needed:
-    1. Replace the value of `api_key` with your api key.
-    2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
-    3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
+   1. Replace the value of `api_key` with your api key.
+   2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
+   3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
 4. Run the Cell and examine the response.
 
 ```python
@@ -613,9 +687,9 @@ Azure's Computer Vision API includes Optical Character Recognition (OCR) capabil
 
 ## Computer Vision
 
-|Azure Cognitive Services|Information|
-|---|---|
-|[Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision)|https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home
+| Azure Cognitive Services                                                                             | Information                                                                    |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [Computer Vision API](https://azure.microsoft.com/en-us/services/cognitive-services/computer-vision) | https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/home |
 
 In the language of your choice (Python solution is provided), write two small scripts that
 
@@ -625,11 +699,12 @@ In the language of your choice (Python solution is provided), write two small sc
 Once again we will conduct REST Calls to the Computer Vision Cognitive Service and get a JSON in response.
 
 The Computer Vision API offers several services for processing images:
+
 - Optical Character Recognition (OCR)
 - Image Analysis
 - Spatial Analysis
 
- In this section, we will concentrate on the service's OCR capabilities. It can extract information from printed text (in several languages), handwritten text (English only + Chinese, French, German and Italian in preview), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
+In this section, we will concentrate on the service's OCR capabilities. It can extract information from printed text (in several languages), handwritten text (English only + Chinese, French, German and Italian in preview), digits, and currency symbols from images and multi-page PDF documents. It's optimized to extract text from text-heavy images and multi-page PDF documents with mixed languages. It supports detecting both printed and handwritten text in the same image or document. You can get more details [here](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/concept-recognizing-text#:~:text=%20Optical%20Character%20Recognition%20%28OCR%29%20%201%20Read,PDF%20document%20as%20the%20input%20and...%20More%20).
 
 ### Optical Character Recognition - Images to Text - Handwritten content
 
@@ -681,7 +756,7 @@ while (poll):
     recognition = response_final.json()
     time.sleep(1)
     if ("analyzeResult" in recognition):
-        poll = False 
+        poll = False
     if ("status" in recognition and recognition['status'] == 'failed'):
         poll = False
 
@@ -760,14 +835,14 @@ Ok, looks like it recognized something. Let's visualize it:
 ```python
 polygons = []
 
-# Get bounding boxes of the text 
+# Get bounding boxes of the text
 if ("analyzeResult" in recognition):
     analyzeResult = recognition["analyzeResult"]
     readResults = analyzeResult["readResults"]
    # print(json.dumps(r, indent=2))
     for line in readResults[0]["lines"]:
         polygons += [(line["boundingBox"], line["text"])]
-        
+
 # Display image and overlay text
 plt.figure(figsize=(15, 15))
 image = Image.open(BytesIO(requests.get(image_url).content))
@@ -790,7 +865,7 @@ _ = plt.axis("off")
 
 > [Calender Motto Test Image](https://bootcamps.blob.core.windows.net/ml-test-images/ocr_handwritten_2.jpg)
 
-In a next step, we will use the same service by just extracting text from printed text in images. 
+In a next step, we will use the same service by just extracting text from printed text in images.
 
 ### Optical Character Recognition - Images to Text - Printed content
 
@@ -822,16 +897,18 @@ word_infos
 **Example JSON response (just a snippet):**
 
 ```json
-[{"boundingBox": "31,50,817,70", "text": "LUFTPOLSTERTASCHEN"},
- {"boundingBox": "30,219,23,24", "text": "u"},
- {"boundingBox": "68,216,168,27", "text": "Fensterlose"},
- {"boundingBox": "247,216,263,37", "text": "Schutzumschläge"},
- {"boundingBox": "522,221,47,26", "text": "mit"},
- {"boundingBox": "580,221,182,37", "text": "Haftklebung"},
- {"boundingBox": "66,276,149,34", "text": "Optimaler"},
- {"boundingBox": "225,276,99,27", "text": "Schutz"},
- {"boundingBox": "334,277,84,26", "text": "durch"},
- {"boundingBox": "432,277,227,35", "text": "Luftpolsterfolie"}]
+[
+  { "boundingBox": "31,50,817,70", "text": "LUFTPOLSTERTASCHEN" },
+  { "boundingBox": "30,219,23,24", "text": "u" },
+  { "boundingBox": "68,216,168,27", "text": "Fensterlose" },
+  { "boundingBox": "247,216,263,37", "text": "Schutzumschläge" },
+  { "boundingBox": "522,221,47,26", "text": "mit" },
+  { "boundingBox": "580,221,182,37", "text": "Haftklebung" },
+  { "boundingBox": "66,276,149,34", "text": "Optimaler" },
+  { "boundingBox": "225,276,99,27", "text": "Schutz" },
+  { "boundingBox": "334,277,84,26", "text": "durch" },
+  { "boundingBox": "432,277,227,35", "text": "Luftpolsterfolie" }
+]
 ```
 
 **Visualization:**
@@ -863,9 +940,9 @@ From recognizing text on images we will now detect objects on images for this we
 
 ## Custom Vision
 
-|Azure Cognitive Services|Information|
-|---|---|
-|[Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/)|https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/
+| Azure Cognitive Services                                                                              | Information                                                                      |
+| ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [Custom Vision API](https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/) | https://docs.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/ |
 
 :triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
@@ -878,7 +955,7 @@ First we deploy the **Azure Custom Vision** Service in the **Azure Portal**:
 
 ![Azure Portal](./images/CustomVision1.png)
 
-The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. For this example, we will use both. Therfore, select *both*. Fill in the *name* and the *region* as well as the *pricing tier* for the training and the prediction resource. Then hit *create*.
+The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. For this example, we will use both. Therfore, select _both_. Fill in the _name_ and the _region_ as well as the _pricing tier_ for the training and the prediction resource. Then hit _create_.
 
 ![Azure Portal](./images/CustomVision2.png)
 
@@ -888,7 +965,7 @@ Create a new project of type `Object detection`:
 
 ![alt text](./images/CustomVision4.png "Custom Vision Project")
 
-Next, add all the **training images** from the **unzipped** [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip) within the **beer_glasses_train**. 
+Next, add all the **training images** from the **unzipped** [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip) within the **beer_glasses_train**.
 
 ![alt text](./images/CustomVision6.png "Tagging the training images")
 
@@ -903,13 +980,15 @@ Once we've tagged all 15 images (that's the minimum), we can hit the `Train` but
 Let's briefly look at the results and make sure we understand them:
 
 Sliders - they set the results given certain thresholds
-* Probability Threshold: 82% - this means we only count detections with over 82% probability as beer glasses
-* Overlap Threshold: 51% - this means we want our detection results overlap at least 51% with the ground truth in the training set
+
+- Probability Threshold: 82% - this means we only count detections with over 82% probability as beer glasses
+- Overlap Threshold: 51% - this means we want our detection results overlap at least 51% with the ground truth in the training set
 
 Results:
-* Precision: 30% - given a detection, it is 30% correct on average (meaning the algorithm will also detect other objects as glasses)
-* Recall: 100% - a recall of 100% means, it will detect all beer glasses (but maybe mistake some other objects as beer glasses too)
-* mAP: 83.3% - mean average precision - the average how well our detection algorithm works 
+
+- Precision: 30% - given a detection, it is 30% correct on average (meaning the algorithm will also detect other objects as glasses)
+- Recall: 100% - a recall of 100% means, it will detect all beer glasses (but maybe mistake some other objects as beer glasses too)
+- mAP: 83.3% - mean average precision - the average how well our detection algorithm works
 
 Under `Quick Test`, we can briefly upload our testing images and see what the service will detect. As we only added 15 training images with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the detection performance significantly.
 
@@ -933,6 +1012,6 @@ Remove the sample resource group.
 $ az group delete -n <yourResourceGroupName>
 ```
 
-## Optional: Play around with the: Intelligent Kiosk 
+## Optional: Play around with the: Intelligent Kiosk
 
 Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)

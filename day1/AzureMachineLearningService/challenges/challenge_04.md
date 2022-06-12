@@ -25,7 +25,7 @@ For this challenge, we'll use the `Pima Indians Diabetes` dataset: The Pima Indi
 
 > *"This is where “eternal” medical consent enters the equation: no researcher can realistically inform a study participant of what their medical data will be used for 40 years in the future."*
 > To make this sensitive topic aware we added this dataset as well as our Microsoft AI principles. 
-> **Please be responsible and follow the:** [Microsoft AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
+> **Please be responsible and follow the:** [Microsoft responsible AI principles](https://www.microsoft.com/en-us/ai/responsible-ai?activetab=pivot1%3aprimaryr6)
 
 **Note:**
 You can find more datasets for trying out AutoML on [this website](https://machinelearningmastery.com/standard-machine-learning-datasets/) or obviously on [Kaggle](https://www.kaggle.com/) - by the way, the [`Wine Quality Dataset`](../data/winequality-white.csv) also makes a great use case for a nice demo.
@@ -78,7 +78,7 @@ Classification is a common machine learning task. Classification is a type of su
 
 ![alt text](../images/04-automl_select_task_type.png "Select task type")
 
-Under **`View additional configuration settings`**, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set **`Training job time (hours)` to `0.25`**. This means our training job will terminate after a maximum of 15 minutes. **The entire AutoML Run can take about 25-30 min**. *Time to grab a coffee or continue to the next challenge and come back later!* ☕
+Under **`View additional configuration settings`**, we can further configure our AutoML job and select our optimization metric, concurrency, etc. Let's set **`Training job time (hours)` to `0.5`**. This means our training job will terminate after a maximum of 30 minutes. **The entire AutoML Run can take about 25-30 min**. *Time to grab a coffee or continue to the next challenge and come back later!* ☕
 
 ![Exit criteria](../images/04_automl_exit_criteria.png)
 
@@ -120,7 +120,8 @@ import json
 
 url = 'Replace with your URL'
 headers = {'Content-Type':'application/json'}
-data = {"data": [{
+data = {"Inputs": {
+    "data": [{
     "times_pregnant": 6,
     "glucose": 148,
     "blood_pressure": 72,
@@ -139,8 +140,7 @@ data = {"data": [{
     "bmi": 26.6,
     "diabetes_pedigree": 0.351,
     "age": 31
-    
-}]}
+}]}}
 
 resp = requests.post(url, data=json.dumps(data), headers=headers)
 print("Prediction Results:", resp.json())

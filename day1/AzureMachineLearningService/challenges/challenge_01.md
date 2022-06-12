@@ -219,7 +219,7 @@ Inside our experiment, we can see our first run (your view might differ slightly
 
 ![alt text](../images/01-runs.png "Viewing our runs")
 
-If we click the run number, we can see its details:
+If we click the *display name*, we can see its details:
 
 ![alt text](../images/01-run_details.png "Run Details")
 
@@ -262,7 +262,7 @@ Under the `Models` tab, we can now see that our model has been registered:
 
 ![alt text](../images/01-registered_model.png "Our model has been registered")
 
-Our model has been stored in the Storage Account that has been created initially for us:
+Our model has been stored in the Storage Account that has been created initially for us. You should get this view when you go into the Azure Portal:
 
 ![alt text](../images/azurmlblobpkl.png "Our model has been stored in Azure Blob")
 

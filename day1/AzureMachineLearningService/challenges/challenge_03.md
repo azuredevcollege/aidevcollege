@@ -72,7 +72,7 @@ env = Environment("aidevcollege-env")
 env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
 
 # Create a the pip and conda package dependencies
-packages = CondaDependencies.create(pip_packages=["tensorflow", "keras", "astor", 'azureml-sdk', 
+packages = CondaDependencies.create(pip_packages=["tensorflow", "keras==2.6.0", "astor", 'azureml-sdk', 
                                                   'pynacl==1.2.1', 'azureml-dataprep', "pillow==5.3.0",
                                                   "azureml-defaults"])
 
