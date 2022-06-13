@@ -4,22 +4,32 @@
 
 In the Azure Portal, first we create a `Resource Group` and name it `aidevcollege`:
 
-![Azure Portal](../images/CreateResourceGroup.png)
+![Azure Portal](../images/01-resource-group-creation.PNG)
 
-Once the Resource Group is created, select `add` and create a new `Machine Learning` resource:
+Once the Resource Group is created, select **+ Create a resource** in the upper-left corner of Azure portal,
 
-![alt text](../images/CreateMachineLearning.png "Azure Machine Learning Workspace")
+Use the search bar to find **Machine Learning**.
+
+Select **Machine Learning**.
+
+In the Machine Learning pane, select **Create** to begin.
+
+![alt text](../images/01-create-workspace.gif "Azure Machine Learning Workspace")
+
+Use the following inputs to create the Azure Machine Learning Workspace:
 
 * Workspace name: `aidevcollege`
 * Resource Group: `aidevcollege`
 * Location: `West Europe`
 * Leave the rest at default and create the service.
 
-![alt text](../images/mlservicecreate.png "Create Machine Learning Workspace")
+It should look like this:
+
+![alt text](../images/01-ml-config.PNG "Create Machine Learning Workspace")
 
 Let's have a look at our Resource Group:
 
-![alt text](../images/resourcegroup.png "Our resource group")
+![alt text](../images/01-resource_group.png "Our resource group")
 
 * Application Insights - used for monitoring our models in production (will be used later)
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
@@ -76,7 +86,7 @@ Next, create a text file called `config.json` (also via the `New` button) and re
 
 </details>
 
-Finally, we can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `challenge01.ipynb`. 
+Finally, we can click the `New` button and create a new Notebook of type: `Python 3.8 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `challenge01.ipynb`. 
 
 > To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue on the left hand side) and type **`b`** it will add another cell *below* the first cell. 
 
