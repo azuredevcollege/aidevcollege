@@ -21,14 +21,13 @@ Today will be an overview of Azure Cognitive Search, as you will learn:
 
 Thus we will cover the following topics in several sections:
 
-| Topic                                                          | Section                                                                                                                                                                                              |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Getting familiar with Cognitive Search                         | [What is Azure Cognitive Search?](#what-is-azure-cognitive-search)                                                                                                                                   |
-| Create Azure Cognitive Search in the Portal                    | [Create an Azure Cognitive Search Service in the Portal](#create-an-azure-search-service-in-the-portal)                                                                                              |
-| Connect to Azure Cognitive Search                              | [Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)                                                                                                                              |
-| Reuse the Azure Search instance and index a PDF-based data set | [Azure Search & Cognitive Search - Reuse the Azure Search instance and index a PDF-based data set](#azure-search--cognitive-search---reuse-the-azure-search-instance-and-index-a-pdf-based-data-set) |
-| Azure Search & Cognitive Search Indexing unstructured content  | [Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#azure-search--cognitive-search-indexing-unstructured-content-eg-images-audio-etc)                        |
-| Integrate Azure Search in an Node JS Application               | [Integrate Azure Search in a Node JS Application](#integrate-azure-search-in-an-node-js-application)                                                                                                 |
+| Topic                                                      | Section                                                                                                                                                |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Getting familiar with Cognitive Search                     | [What is Azure Cognitive Search?](#what-is-azure-cognitive-search)                                                                                     |
+| Create Azure Cognitive Search in the Portal                | [Create an Azure Cognitive Search Service in the Portal](#create-an-azure-search-service-in-the-portal)                                                |
+| Connect to Azure Cognitive Search                          | [Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)                                                                                |
+| Index structured & unstructured content with AI enrichment | [Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#index-structured--unstructured-content-with-ai-enrichment) |
+| Integrate Azure Search in an Node JS Application           | [Integrate Azure Search in a Node JS Application](#integrate-azure-search-in-an-node-js-application)                                                   |
 
 ## Azure Cognitive Search
 
@@ -386,7 +385,7 @@ If you are interested in querying with different `searchstrings` we have listed 
 
     </details>
 
-## Azure Cognitive Search - Indexing structured & unstructured content with AI enrichment
+## Index structured & unstructured content with AI enrichment
 
 :triangular_flag_on_post: **Goal:** Index an unstructured and structured data set with Cognitive Search
 
