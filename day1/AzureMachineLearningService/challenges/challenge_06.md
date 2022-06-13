@@ -226,17 +226,6 @@ The following statistics are shown for your model:
 - Coefficient of Determination: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
 
 For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
-### Clean up resources
-
-In the designer where you created your experiment, delete individual assets by selecting them and then selecting the Delete button.
-
-The compute target that you created here automatically autoscales to zero nodes when it's not being used. This action is taken to minimize charges.
-![alt text](../images/06-delete-asset.png "Deleting assets")
-
-You can unregister datasets from your workspace by selecting each dataset and selecting Unregister.
-![alt text](../images/06-unregister-dataset1225.png "Unregistering Dataset")
-
-To delete a dataset, go to the storage account by using the Azure portal or Azure Storage Explorer and manually delete those assets.
 
 At this point, we learned how to:
 
