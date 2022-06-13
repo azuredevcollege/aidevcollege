@@ -13,11 +13,11 @@ As Azure Cognitive Search can be enriched by the Azure Cognitive Services with p
 
 Today will be an overview of Azure Cognitive Search, as you will learn:
 
-- Create an Azure Search Service in the Portal
-- Add Cognitive Skills to Azure Search
-- Reuse Azure Search and index a PDF-based data set
-- Use Azure Search & Cognitive Services to index unstructured content
-- Integrate Azure Search in a Node JS application
+- Create an Azure Cognitive Search Service in the Portal
+- Create and search an index
+- Add Cognitive Skills to Cognitive Search
+- Use Azure Cognitive Search with AI enrichment to index unstructured content
+- Integrate Cognitive Search in a Node JS application
 
 Thus we will cover the following topics in several sections:
 
@@ -127,7 +127,7 @@ All requests require an api-key on every request sent to your service. Having a 
 
 In this task, start a Jupyter notebook and verify that you can connect to Azure Cognitive Search. You'll do this by requesting a list of indexes from your service.
 
-1. We reuse the `Compute Instance (VM)` from yesterday's Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveSearch.ipynb`.
+1. We reuse the `Compute Instance (VM)` from yesterday's Azure Machine Learning Service and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.8 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveSearch.ipynb`.
 
 2. In the first cell, load the libraries used for working with JSON and formulating HTTP requests.
 
@@ -181,7 +181,7 @@ Unless you are using the portal, an index must exist on the service before you c
 
 Required elements of an index include a name, a fields collection, and a key. The fields collection defines the structure of a _document_. Each field has a name, type, and attributes that determine how the field is used (for example, whether it is full-text searchable, filterable, or retrievable in search results). Within an index, one of the fields of type `Edm.String` must be designated as the _key_ for document identity.
 
-This index is named "hotels-quickstart" and has the field definitions you see below. It's a subset of a larger [Hotels index](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/hotels/Hotels_IndexDefinition.JSON) used in other walkthroughs. We trimmed it in this quickstart for brevity.
+Next, we will create an index named "hotels-quickstart", which has the field definitions you see below. It's a subset of a larger [Hotels index](https://github.com/Azure-Samples/azure-search-sample-data/blob/master/hotels/Hotels_IndexDefinition.JSON) used in other walkthroughs. We trimmed it in this quickstart for brevity.
 
 1. In the next cell, paste the following example into a cell to provide the schema.
 
@@ -211,7 +211,7 @@ This index is named "hotels-quickstart" and has the field definitions you see be
    }
    ```
 
-2. In another cell, formulate the request. This PUT request targets the indexes collection of your search service and creates an index based on the index schema you provided in the previous cell. Check that the indentation is correct as shown below.
+2. In another cell, formulate the request. This POST request targets the indexes collection of your search service and creates an index based on the index schema you provided in the previous cell. Check that the indentation is correct as shown below.
 
    ```python
    url = endpoint + "indexes" + api_version
@@ -224,9 +224,7 @@ This index is named "hotels-quickstart" and has the field definitions you see be
 
    The response includes the JSON representation of the schema.
 
-- Another way to verify index creation is to check the Indexes list in the portal.
-
-<a name="load-documents"></a>
+- Another way to verify index creation is to check the Indexes list in the portal on the overview page under _indexes_.
 
 ### 2 - Load documents
 
@@ -328,7 +326,7 @@ To push documents, use an HTTP POST request to your index's URL endpoint. The RE
 
 3. Run each step to push the documents to an index in your search service. Results should look similar to the following example.
 
-   ![Send documents to an index](./img/indexcontent.png)
+4. You can now see in the portal under overview and _indexes_ that the document count has increased to 4.
 
 ### 3 - Search an index
 
@@ -361,8 +359,6 @@ This step shows you how to query an index using the [Search Documents REST API](
 
 If you are interested in querying with different `searchstrings` we have listed some samples in the **`Details`** section for you:
 
-<details>
-
 5.  Try a few other query examples to get a feel for the syntax. You can replace the `searchstring` with the following examples and then rerun the search request.
 
     Apply a filter:
@@ -383,20 +379,20 @@ If you are interested in querying with different `searchstrings` we have listed 
     search_string_option5 = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
     ```
 
-    </details>
+Now that you have created and searched an index using REST API calls, we will now do the same using the Azure Portal User Interface. Moreover, you will query unstructured data such as images using AI enrichments.
 
 ## Index structured & unstructured content with AI enrichment
 
 :triangular_flag_on_post: **Goal:** Index an unstructured and structured data set with Cognitive Search
 
 1. Add another index to the Cognitive Search instance, but this time enable Cognitive Skills
-1. Index an existing data set coming from `Azure Blob` (data set can be downloaded [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip))
+1. Index an existing data set coming from `Azure Blob Storage` (data set can be downloaded [here](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip))
 
 Cognitive Search can out of the box index structured data like PDFs, PowerPoints, etc., as long as the documents are easily machine readable (=text). Moreover, Azure Cognitive Search allows us to also index unstructured data such as images and audio content using AI enrichment. More precisely, it adds capabilities for data extraction, natural language processing (NLP), and image processing to the Azure Cognitive Search indexing pipeline (for more see [here](https://docs.microsoft.com/en-us/azure/search/cognitive-search-concept-intro#key-features-and-concepts)). In Azure Cognitive Search, a skillset is responsible for the pipeline of the data and consists of multiple skills. Some skills have been pre-included, but it is also possible for us to write our own skills or use third-party products.
 
-Please reuse the Azure Search instance which you initially created.
+Please reuse the Azure Cognitive Search instance which you initially created.
 
-Here we'll upload our data to Blob Storage and let Cognitive Search index it from there. Hence, we need to create an new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip) to. We can do this completely through the Azure Portal (**as described below**), use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
+Here we'll upload our data to Blob Storage and let Cognitive Search index it from there. Hence, we need to create a new `Storage Account` and create a new `Blob container`, where we'll upload our [dataset](https://github.com/aidevcollege/aidevcollege/raw/master/day2/CognitiveSearch/data/search-dataset-cognitive.zip) to. We can do this completely through the Azure Portal (**as described below**), use [Storage Explorer](https://azure.microsoft.com/en-us/features/storage-explorer/) or use the API/CLI.
 
 **See the upload to the Storage Account below:**
 
@@ -432,8 +428,6 @@ Next, we need to define the `Data Source`:
 
 ![alt text](./img/azure_search_new_datasource.png "Azure Search Existing Data Source")
 
-![alt text](./img/cognitive_search_setup.png "Setting up Cognitive Skills")
-
 Next, we need to define the skillset. In our case, we'll enable all features:
 
 ![alt text](./img/cognitive_search_skillset.png "Defining the skillset")
@@ -454,13 +448,13 @@ Once we finished the next two tabs, Azure Cognitive Search will start indexing o
 
 ### Querying Content
 
-Azure Cognitive Search now indexed all our filess via the `indexer` into the `index`. Ideally, we would use the REST API of Cognitive Search to perform sophisticated queries, but in our case, we can use the `Azure Search Explorer`:
+Azure Cognitive Search now indexed all our files via the `indexer` into the `index`. Ideally, we would use the REST API of Cognitive Search to perform sophisticated queries, but for training purpose this time, we can use the `Azure Search Explorer`:
 
 ![alt text](./img/azure_search_explorer.png "Azure Search Explorer")
 
 [Querying data](https://docs.microsoft.com/en-us/azure/search/search-query-overview) in Azure Search can get quite sophisticated, but for our example here, we can just put in a simple query. Let's try some search queries:
 
-- `"Pin to Dashboard"` --> returns `create-search-service.png` (text was recognized via OCR)
+- `"Pin to Dashboard"` --> returns `create-search-service.png` (text was recognized via OCR): It also detects key phrases, locations, personal identifiable information etc.
 - `"Los Angeles"` --> returns `MSFT_cloud_architecture_contoso.pdf` (location was recognized via OCR in image)
 
 Using double-quotes `"..."` will search for the whole string, rather than each substring. If we want to make a search term mandatory, we need to prefix a `+`. Try out some more queries if you like.
@@ -691,11 +685,10 @@ For sake of time today we won't be able to go into more detail here, but feel fr
 
 ## What we have done so far:
 
-- We created an Azure Search Service in the Portal
-- Added Cognitive Skills to Azure Search
-- Used an Azure Search instance to index a PDF-based data set
-- Used Azure Search & Cognitive Services to index unstructured content
-- Integrated Azure Search in an Node JS application
+- We created an Azure Cognitive Search Service in the Portal
+- Added Cognitive Skills to Azure Cognitive Search
+- Used Azure Cognitive Search with cognitive skills to index unstructured and structured content
+- Integrated Azure Search in a Node JS application
 
 As we used **Cognitive Services** behind the scenes of Azure Cognitive Search and as we now want to continue the path of combining the ml expert view and the developer view we will jump into our Cognitive Services challenge next:
 
