@@ -27,7 +27,7 @@ In your Machine Learning workspace, navigate to the `Designer` section and selec
 
 To run our pipeline, we need to define a compute target.
 
-1. Next to the pipeline name, select the Gear icon ![alt text](../images/06-gear-icon.png "Launch Designer") that is in the UI. at the top of the canvas to open the Settings pane.
+1. Next to the pipeline name, select the Gear icon ![alt text](../images/06-gear-icon.png "Launch Designer") that is in the UI at the top of the canvas to open the 'Settings' pane.
 
 2. In the Settings pane to the right of the canvas, select 'Select compute target'.
 
@@ -40,9 +40,9 @@ To run our pipeline, we need to define a compute target.
 
 There are several sample datasets included in the designer for you to experiment with. For this tutorial, use 'Automobile price data (Raw)'.
 
-1. To the left of the pipeline canvas is a palette of datasets and components. Select Sample datasets to view the available sample datasets.
+1. To the left of the pipeline canvas is a palette of datasets and components. Select 'Sample datasets' to view the available sample datasets.
 
-2. Select the dataset Automobile price data (Raw), and drag it onto the canvas.
+2. Select the dataset 'Automobile price data (Raw)', and drag it onto the canvas.
 
 ![alt text](../images/06-drag-data.gif "Drag and Drop Process")
 
@@ -50,9 +50,9 @@ There are several sample datasets included in the designer for you to experiment
 
 When you train a model, you have to do something about the data that's missing. In this dataset, the normalized-losses column is missing many values, so you'll exclude that column from the model altogether.
 
-1. In the component palette to the left of the canvas, expand the Data Transformation section and find the Select Columns in Dataset component.
+1. In the component palette to the left of the canvas, expand the 'Data Transformation' section and find the 'Select Columns in Dataset' component.
 
-2. Drag the Select Columns in Dataset component onto the canvas. Drop the component below the dataset component.
+2. Drag the 'Select Columns in Dataset' component onto the canvas. Drop the component below the dataset component.
 
 3. Connect the Automobile price data (Raw) dataset to the Select Columns in Dataset component. Drag from the dataset's output port, which is the small circle at the bottom of the dataset on the canvas, to the input port of Select Columns in Dataset, which is the small circle at the top of the component.
 
@@ -219,15 +219,11 @@ Use the Evaluate Model to see how well the trained model performed on the test d
 
 The following statistics are shown for your model:
 
--Mean Absolute Error (MAE): The average of absolute errors. An error is the difference between the predicted value and the actual value.
-
--Root Mean Squared Error (RMSE): The square root of the average of squared errors of predictions made on the test dataset.
-
--Relative Absolute Error: The average of absolute errors relative to the absolute difference between actual values and the average of all actual values.
-
--Relative Squared Error: The average of squared errors relative to the squared difference between the actual values and the average of all actual values.
-
--Coefficient of Determination: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
+- Mean Absolute Error (MAE): The average of absolute errors. An error is the difference between the predicted value and the actual value.
+- Root Mean Squared Error (RMSE): The square root of the average of squared errors of predictions made on the test dataset.
+- Relative Absolute Error: The average of absolute errors relative to the absolute difference between actual values and the average of all actual values.
+- Relative Squared Error: The average of squared errors relative to the squared difference between the actual values and the average of all actual values.
+- Coefficient of Determination: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
 
 For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
 ### Clean up resources
