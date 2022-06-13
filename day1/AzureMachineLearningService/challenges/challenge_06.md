@@ -49,7 +49,8 @@ To run our pipeline, we need to define a compute target.
 
 4. Enter a name for the compute resource.
 
-### Data Loading
+### Data Preparation
+#### Data Loading
 
 There are several sample datasets included in the designer for you to experiment with. For this tutorial, use 'Automobile price data (Raw)'.
 
@@ -59,7 +60,7 @@ There are several sample datasets included in the designer for you to experiment
 
 ![alt text](../images/06-drag-data.gif "Drag and Drop Process")
 
-### Data Preparation
+#### Column Selection
 
 When you train a model, you have to do something about the data that's missing. In this dataset, the normalized-losses column is missing many values, so you'll exclude that column from the model altogether.
 
@@ -69,8 +70,153 @@ When you train a model, you have to do something about the data that's missing. 
 
 3. Connect the Automobile price data (Raw) dataset to the Select Columns in Dataset component. Drag from the dataset's output port, which is the small circle at the bottom of the dataset on the canvas, to the input port of Select Columns in Dataset, which is the small circle at the top of the component.
 
+4. Select the Select Columns in Dataset component.
+
+5. In the component details pane to the right of the canvas, select Edit column.
+
+6. Expand the Column names drop down next to Include, and select All columns.
+
+7. Select the + to add a new rule.
+
+8. From the drop-down menus, select Exclude and Column names.
+
+9. Enter normalized-losses in the text box.
+
+10. In the lower right, select Save to close the column selector.
+
+![alt text](../images/06-automl-process.png "AutoML Process")
+
+11. Select the Select Columns in Dataset component.
+
+12. In the component details pane to the right of the canvas, select the Comment text box and enter 'Exclude normalized losses'.
+
+#### Clean missing data
+
+Your dataset still has missing values after you remove the normalized-losses column. You can remove the remaining missing data by using the Clean Missing Data component.
+
+1. In the component palette to the left of the canvas, expand the section Data Transformation, and find the Clean Missing Data component.
+
+2. Drag the Clean Missing Data component to the pipeline canvas. Connect it to the Select Columns in Dataset component.
+
+3. Select the Clean Missing Data component.
+
+4. In the component details pane to the right of the canvas, select Edit Column.
+
+5. In the Columns to be cleaned window that appears, expand the drop-down menu next to Include. Select, All columns
+
+6. Select Save
+
+7. In the component details pane to the right of the canvas, select Remove entire row under Cleaning mode.
+
+8. In the component details pane to the right of the canvas, select the Comment box, and enter 'Remove missing value rows'.
+
+Your pipeline should now look something like this:
+
+![alt text](../images/04-automl-process.png "AutoML Process")
+
+### Train a machine learning model
+
+Now that you have the components in place to process the data, you can set up the training components.
+
+Because you want to predict price, which is a number, you can use a regression algorithm. For this example, you use a linear regression model.
+
+#### Split the data
+
+Splitting data is a common task in machine learning. You'll split your data into two separate datasets. One dataset will train the model and the other will test how well the model performed.
+
+1.In the component palette, expand the section Data Transformation and find the Split Data component.
+
+2. Drag the Split Data component to the pipeline canvas.
+
+3. Connect the left port of the Clean Missing Data component to the Split Data component. Be sure that the left output ports of Clean Missing Data connects to Split Data. The left port contains the cleaned data. The right port contains the discarded data.
+
+4. Select the Split Data component.
+
+5. In the component details pane to the right of the canvas, set the Fraction of rows in the first output dataset to 0.7.
+
+6. This option splits 70 percent of the data to train the model and 30 percent for testing it. The 70 percent dataset will be accessible through the left output port. The remaining data will be available through the right output port.
+
+7. In the component details pane to the right of the canvas, select the Comment box, and enter Split the dataset into training set (0.7) and test set (0.3).
+
+#### Train the model
+
+Train the model by giving it a dataset that includes the price. The algorithm constructs a model that explains the relationship between the features and the price as presented by the training data.
+
+1. In the component palette, expand Machine Learning Algorithms. This option displays several categories of components that you can use to initialize learning algorithms.
+
+2. Select Regression > Linear Regression, and drag it to the pipeline canvas.
+
+3. In the component palette, expand the section Module training, and drag the Train Model component to the canvas.
+
+4. Connect the output of the Linear Regression component to the left input of the Train Model component.
+
+5. Connect the training data output (left port) of the Split Data component to the right input of the Train Model component. Be sure that the left output ports of Split Data connects to Train Model. The left port contains the training set. The right port contains the test set.
+
+![alt text](../images/04-automl-process.png "AutoML Process")
+
+6. Select the Train Model component.
+
+7. In the component details pane to the right of the canvas, select Edit column selector.
+
+8. In the Label column dialog box, expand the drop-down menu and select Column names.
+
+9. In the text box, enter price to specify the value that your model is going to predict. Make sure you enter the column name exactly. Do not capitalize price.
+
+Your pipeline should look like this:
+
+![alt text](../images/04-automl-process.png "AutoML Process")
 
 
+
+
+#### Add the Score Model component
+
+After you train your model by using 70 percent of the data, you can use it to score the other 30 percent to see how well your model functions.
+
+Enter score model in the search box to find the Score Model component. Drag the component to the pipeline canvas.
+
+Connect the output of the Train Model component to the left input port of Score Model. Connect the test data output (right port) of the Split Data component to the right input port of Score Model.
+
+#### Add the Evaluate Model component
+
+### Submit the pipeline
+
+#### View scored labels
+
+#### Evaluate models
+
+Use the Evaluate Model to see how well the trained model performed on the test dataset.
+
+1. Right-click the Evaluate Model component and select Preview data > Evaluation results to view its output.
+
+The following statistics are shown for your model:
+
+-Mean Absolute Error (MAE): The average of absolute errors. An error is the difference between the predicted value and the actual value.
+-Root Mean Squared Error (RMSE): The square root of the average of squared errors of predictions made on the test dataset.
+-Relative Absolute Error: The average of absolute errors relative to the absolute difference between actual values and the average of all actual values.
+-Relative Squared Error: The average of squared errors relative to the squared difference between the actual values and the average of all actual values.
+-Coefficient of Determination: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
+
+For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
+### Clean up resources
+
+In the designer where you created your experiment, delete individual assets by selecting them and then selecting the Delete button.
+
+The compute target that you created here automatically autoscales to zero nodes when it's not being used. This action is taken to minimize charges.
+![alt text](../images/04-automl-process.png "AutoML Process")
+
+You can unregister datasets from your workspace by selecting each dataset and selecting Unregister.
+![alt text](../images/04-automl-process.png "AutoML Process")
+
+To delete a dataset, go to the storage account by using the Azure portal or Azure Storage Explorer and manually delete those assets.
+
+
+
+
+
+
+
+Comments will appear on the graph to help you organize your pipeline
 ![alt text](../images/04-automl-process.png "AutoML Process")
 
 Give our new dataset a name and select the `pima-indians-diabetes.csv` from **`aidevcollege/day1/AzureMachineLearningService/data`**, and upload it into the Azure Machine Learning User Interface. For this challenge we will use a cleansed version of the data set with headers here:  [`pima-indians-diabetes.csv`](../data/pima-indians-diabetes.csv)
