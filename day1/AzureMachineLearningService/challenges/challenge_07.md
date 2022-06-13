@@ -15,7 +15,7 @@ In **[challenge 6](../challenges/challenge_06.md)** you trained a linear regress
 
 To deploy your pipeline, you must first convert the training pipeline into a real-time inference pipeline. This process removes training components and adds web service inputs and outputs to handle requests.
 
-'Create inference pipeline' only supports training pipelines which contain only the designer built-in components and must have a component like **Train Model**  which outputs the trained model.
+ 'Create inference pipeline' only supports training pipelines which contain only the designer built-in components and must have a component like **Train Model**  which outputs the trained model.
 
 ### Create a real-time inference pipeline
 
@@ -23,20 +23,20 @@ To deploy your pipeline, you must first convert the training pipeline into a rea
 
 ![alt text](../images/07-create-real-time-inference.png "Real Time Inference")
 
-    Your new pipeline will now look like this:
+ Your new pipeline will now look like this:
 
-![alt text](../images/07-create-real-time-inference-pipeline.png "Real Time Inference")
+![alt text](../images/07-real-time-inference-pipeline.png "Real Time Inference")
 
-    When you select **Create inference pipeline**, several things happen:
+When you select **Create inference pipeline**, several things happen:
     
-    * The trained model is stored as a **Dataset** component in the component palette. You can find it under **My Datasets**.
-    * Training components like **Train Model** and **Split Data** are removed.
-    * The saved trained model is added back into the pipeline.
-    * **Web Service Input** and **Web Service Output** components are added. These components show where user data enters the pipeline and where data is returned.
+* The trained model is stored as a **Dataset** component in the component palette. You can find it under **My Datasets**.
+* Training components like **Train Model** and **Split Data** are removed.
+* The saved trained model is added back into the pipeline.
+* **Web Service Input** and **Web Service Output** components are added. These components show where user data enters the pipeline and where data is returned.
 
-    > [!NOTE]
-    > By default, the **Web Service Input** will expect the same data schema as the component output data which connects to the same downstream port as it. In this sample, **Web Service Input** and **Automobile price data (Raw)** connect to the same downstream component, hence **Web Service Input** expect the same data schema as **Automobile price data (Raw)** and target variable column `price` is included in the schema.
-    > However, usually When you score the data, you won't know the target variable values. For such case, you can remove the target variable column in the inference pipeline using **Select Columns in Dataset** component. Make sure that the output of **Select Columns in Dataset** removing target variable column is connected to the same port as the output of the **Web Service Input** component.
+By default, the **Web Service Input** will expect the same data schema as the component output data which connects to the same downstream port as it. In this sample, **Web Service Input** and **Automobile price data (Raw)** connect to the same downstream component, hence **Web Service Input** expect the same data schema as **Automobile price data (Raw)** and target variable column `price` is included in the schema.
+
+However, usually When you score the data, you won't know the target variable values. For such case, you can remove the target variable column in the inference pipeline using **Select Columns in Dataset** component. Make sure that the output of **Select Columns in Dataset** removing target variable column is connected to the same port as the output of the **Web Service Input** component.
 
 1. Select **Submit**, and use the same compute target and experiment that you used in part one.
 
@@ -66,8 +66,7 @@ In the dialog box that appears, you can select from any existing Azure Kubernete
 
 1. Select **Create**.
 
-    > [!NOTE]
-    > It takes approximately 15 minutes to create a new AKS service. You can check the provisioning state on the **Inference Clusters** page.
+It takes approximately 15 minutes to create a new AKS service. You can check the provisioning state on the **Inference Clusters** page.
 
 ## Deploy the real-time endpoint
 
@@ -99,9 +98,8 @@ After your AKS service has finished provisioning, return to the real-time infere
     A success notification from the notification center appears after deployment finishes. It might take a few minutes.
  ![alt text](../images/07-deploy-notification.png "Deployment notification")
 
-> [!TIP]
-> You can also deploy to **Azure Container Instance** (ACI) if you select **Azure Container Instance** for **Compute type** in the real-time endpoint setting box.
-> Azure Container Instance is used for testing or development. Use ACI for low-scale CPU-based workloads that require less than 48 GB of RAM.
+You can also deploy to **Azure Container Instance** (ACI) if you select **Azure Container Instance** for **Compute type** in the real-time endpoint setting box.
+Azure Container Instance is used for testing or development. Use ACI for low-scale CPU-based workloads that require less than 48 GB of RAM.
 
 ## Test the real-time endpoint
 
@@ -135,9 +133,9 @@ You can update the online endpoint with new model trained in the designer. On th
 
  ![alt text](../images/07-register-train-model-as-dataset.png "Register trained model")
 
-    Input name and select **File** type.
+Input name and select **File** type.
 
- ![alt text](../images/07-register-train-model-as-dataset2.png "Register trained model")
+ ![alt text](../images/07-register-train-model-as-dataset-2.png "Register trained model")
 
 1. After the dataset registers successfully, open your inference pipeline draft, or clone the previous inference pipeline job into a new draft. In the inference pipeline draft, replace the previous trained model shown as **MD-XXXX** node connected to the **Score Model** component with the newly registered dataset.
 
