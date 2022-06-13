@@ -1,6 +1,35 @@
-# Challenge 4
+# Challenge 1
 
-By now, we have a good understanding how Azure Machine Learning works. In this challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
+## Setup part
+
+In the Azure Portal, first we create a `Resource Group` and name it `aidevcollege`:
+
+![Azure Portal](../images/CreateResourceGroup.png)
+
+Once the Resource Group is created, select `add` and create a new `Machine Learning` resource:
+
+![alt text](../images/CreateMachineLearning.png "Azure Machine Learning Workspace")
+
+* Workspace name: `aidevcollege`
+* Resource Group: `aidevcollege`
+* Location: `West Europe`
+* Leave the rest at default and create the service.
+
+![alt text](../images/mlservicecreate.png "Create Machine Learning Workspace")
+
+Let's have a look at our Resource Group:
+
+![alt text](../images/resourcegroup.png "Our resource group")
+
+* Application Insights - used for monitoring our models in production (will be used later)
+* Storage account - this will store our logs, model outputs, training/testing data, etc.
+* Key vault - stores our secrets
+* Machine Learning service workspace - the center point for Machine Learning on Azure
+
+Now we can either launch the `Machine Learning service workspace` from the portal or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
+
+## Automated Machine Learning
+In this challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
 
 **Automated machine learning**, also referred to as AutoML, is the process of automating the time consuming, iterative tasks of machine learning model development. It allows data scientists, analysts, and developers to build ML models with high scale, efficiency, and productivity all while sustaining model quality. Traditional machine learning model development is resource-intensive, requiring significant domain knowledge and time to produce and compare dozens of models. With automated machine learning, you'll accelerate the time it takes to get production-ready ML models with great ease and efficiency.
 
@@ -157,4 +186,4 @@ At this point:
 * We took the best performing model and deployed it to ACI (similar to challenge 3)
 * If we don't like the model yet, we could start further experimentation by taking the best performing pre-processing & algorithm pipeline and use it as a starting point
 
-So far, we have focused on deploying models to Azure Container Instances, which is great for testing scenarios. For production grade deployments, we want to use Azure Kubernetes Service, which we'll do in the [fifth challenge](challenge_05.md).
+So far, we have focused on deploying models to Azure Container Instances, which is great for testing scenarios. For production grade deployments, we want to use Azure Kubernetes Service, which we'll do in the [second challenge](challenge_05.md).
