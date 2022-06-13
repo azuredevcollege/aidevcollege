@@ -370,7 +370,7 @@ At this point:
 
 ⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
 
-:zap: Let's go to **[challenge 6](challenges/challenge_06.md)**!
+:zap: Let's go to **[challenge 6](../challenges/challenge_06.md)**!
 
 <br>
 
