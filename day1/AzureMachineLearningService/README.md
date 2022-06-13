@@ -19,6 +19,14 @@ Here are the top two resources you'll need today:
 
 # Challenges
 
+## Before we start
+
+The challenges can be grouped into two paths:
+- Challenges 1,2 and 3 have a focus on running custom code on Azure Machine Learning, including experiment tracking and model deployment
+- These challenges are recommended for data scientists with experience using Python and Jupyter Notebooks
+- Challenges 4,5,6 and 7 focus on using AutoML and Designer to quickly develop and deploy machine learning models with as little code as possible
+- These challenges are for machine learning beginners and developers that want to learn more about the basics of machine learning, develop their first model and publish it as an API for further use
+
 ## Challenge 1 - Basic model training on Azure
 
 :zap: Let's go to **[challenge 1](challenges/challenge_01.md)**!
@@ -84,7 +92,7 @@ Guidance:
 
 :zap: Let's go to **[challenge 5](challenges/challenge_05.md)**!
 
-In this last challenge, you'll be training a model and deploying the model to showcase how you can use AutoML for a simple classification problem. This model will predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy the model to Azure Kubernetes Service (AKS). Since this will mimic a production deployment, we want to make sure to enable authentication and telemetry monitoring (using Application Insights) for our model!
+In this challenge, you'll be training a model and deploying the model to showcase how you can use AutoML for a simple classification problem. This model will predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy the model to Azure Kubernetes Service (AKS). Since this will mimic a production deployment, we want to make sure to enable authentication and telemetry monitoring (using Application Insights) for our model!
 
 Guidance:
 
@@ -93,6 +101,23 @@ Guidance:
 - Take the [`creditcard.csv`](data/creditcard.csv) dataset as the input
 - Create a AKS cluster
 - Deploy the model with authentication and [monitoring](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-enable-app-insights)
+
+## Challenge 6 - Azure Machine Learning Designer
+
+:zap: Let's go to **[challenge 6](challenges/challenge_06.md)**!
+
+In this challenge, you'll be using Azure Machine Learning Designer to define a machine learning pipeline using drag-and-drop functionality. No coding required, but this challenge will introduce you to some common concepts that are used to create machine learning pipelines.
+
+The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
+
+## Challenge 6 - Azure Machine Learning Designer
+
+:zap: Let's go to **[challenge 7](challenges/challenge_07.md)**!
+
+In this last challenge, you'll be using Azure Machine Learning Designer to deploy the model you built in challenge 6. 
+
+The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
+
 
 # Recommended Certifications
 
