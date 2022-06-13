@@ -114,10 +114,7 @@ The goal of this challenge is to create a machine learning model based on regres
 
 :zap: Let's go to **[challenge 7](challenges/challenge_07.md)**!
 
-In this last challenge, you'll be using Azure Machine Learning Designer to deploy the model you built in challenge 6. 
-
-The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
-
+In this last challenge, you'll be using Azure Machine Learning Designer to deploy the model you built in challenge 6. Similarly to challenge 5, we'll deploy the model to Azure Kubernetes Service (AKS).
 
 # Recommended Certifications
 
