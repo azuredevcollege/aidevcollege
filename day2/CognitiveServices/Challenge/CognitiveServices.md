@@ -947,52 +947,41 @@ From recognizing text on images we will now detect objects on images for this we
 :triangular_flag_on_post: **Goal:** Detect beer glasses in images
 
 **What it does?**
-The Custom Vision service uses a machine learning algorithm to analyze images. You, the developer, submit groups of images that feature and lack the characteristics in question. You label the images yourself at the time of submission. Then, the algorithm trains to this data and calculates its own accuracy by testing itself on those same images. Once the algorithm is trained, you can test, retrain, and eventually use it in your image recognition app to classify new images. You can also export the model itself for offline use.
+The Custom Vision service uses a machine learning algorithm to analyze images. You, the developer, submits groups of images that feature and lack the characteristics in question. You label the images yourself at the time of submission. Then, the algorithm trains with this data and calculates its own accuracy by testing itself on those same images. Once the algorithm is trained, you can test, retrain, and eventually use it in your image recognition app to classify new images. You can also export the model itself for offline use.
 
-In this chapter, we will use [Custom Vision](https://customvision.ai) to detect beer glasses in images - [Image Dataset for training and testing](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip)
+In this chapter, we will use [Custom Vision](https://customvision.ai) to build a flower image classifier.
 
 First we deploy the **Azure Custom Vision** Service in the **Azure Portal**:
 
 ![Azure Portal](./images/CustomVision1.png)
 
-The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. For this example, we will use both. Therfore, select _both_. Fill in the _name_ and the _region_ as well as the _pricing tier_ for the training and the prediction resource. Then hit _create_.
+The Custom Vision Service has 2 types of endpoints. One for training the model and one for running predictions against the model. For this example, we will use both. Therfore, select _both_. Fill in the _name_ and the _region_ as well as the _pricing tier (F0)_ for the training and the prediction resource. Then hit _create_.
 
 ![Azure Portal](./images/CustomVision2.png)
 
 Then, log in to [Custom Vision](https://www.customvision.ai/) with your Azure credentials.
 
-Create a new project of type `Object detection`:
+Create a new project of type `Classification`, classification type `Multiclass` and Domain `General`:
 
 ![alt text](./images/CustomVision4.png "Custom Vision Project")
 
-Next, add all the **training images** from the **unzipped** [dataset](https://bootcamps.blob.core.windows.net/ml-test-images/beer_glasses.zip) within the **beer_glasses_train**.
+Next, create tags for the different flower types our image classifier will be able to detect - daisy, rose, tulip, water lily and negative (none of the 4 flower types). Then upload minimum 15 **training images** per tag and tag them accordingly. Feel free to develop an image classifier with different images than flowers if this is what you prefer.
 
 ![alt text](./images/CustomVision6.png "Tagging the training images")
 
-Once added, we need to tag all the beer glasses in the images. If there are multiple glasses in one image, tag each one individually:
+Once we've tagged all images, we can hit the `Train` button. For this challenge choose _Quick Training_. After 1-2 minutes, we'll see the training statistics:
 
-![alt text](./images/customvision_tagging.png "Tagging the training images")
-
-Once we've tagged all 15 images (that's the minimum), we can hit the `Train` button. After 1-2 minutes, we'll see the training statistics:
-
-![alt text](./images/customvision_performance.png "Object Detection performance")
+![alt text](./images/customvision_performance.png "Image classification performance")
 
 Let's briefly look at the results and make sure we understand them:
 
-Sliders - they set the results given certain thresholds
+- **Precision** indicates the fraction of identified classifications that were correct. For example, if the classifier detects 10 images as tulips and only 5 images are actual tulips, the precision would be 50%.
+- **Recall** indicates the fraction of actual classifications that were correctly identified. For example, if the classifier detects 10 images as roses and 10 are actual roses, the recall would be 50%.
+- ** - Average Precision** summarises the precision and recall at different thresholds.
 
-- Probability Threshold: 82% - this means we only count detections with over 82% probability as beer glasses
-- Overlap Threshold: 51% - this means we want our detection results overlap at least 51% with the ground truth in the training set
+Under `Quick Test`, we can briefly test images and see what the service will detect. Look for the different flower types online and paste the image URLs in the Quick Test section. We only added a few training images (50 per tag are recommended) with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the performance significantly.
 
-Results:
-
-- Precision: 30% - given a detection, it is 30% correct on average (meaning the algorithm will also detect other objects as glasses)
-- Recall: 100% - a recall of 100% means, it will detect all beer glasses (but maybe mistake some other objects as beer glasses too)
-- mAP: 83.3% - mean average precision - the average how well our detection algorithm works
-
-Under `Quick Test`, we can briefly upload our testing images and see what the service will detect. As we only added 15 training images with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the detection performance significantly.
-
-If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service.
+If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service. We will do this in a later challenge.
 
 ## What we have done so far:
 
@@ -1000,13 +989,13 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 - We called those Cognitive Service REST APIs by using Python
 - We trained custom machine learning models (e.g. Custom Vision) using an UI
 
-As we have seen the Cognitive Services one by one, we want to still continue to combine the ml expert view with the developer view. Thus, we will take the Custom Vision Service which we have already tried out and will integrate it into a small application. Let's move onto the next challenge.
+In a next step, we want to see how the cognitive services can be embedded into an application.
 
-:zap: Let's go to **[AI Developer College Day2 - Custom Vision Application](../../CustomVisionApp/CustomVisionApp.md)**!
+:zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
 
 ## House Keeping: Lab Cleanup
 
-Remove the sample resource group.
+Remove the sample resource group at the end of the day.
 
 ```shell
 $ az group delete -n <yourResourceGroupName>

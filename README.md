@@ -14,13 +14,13 @@
 
 <hr>
 
-## Goal of the AI Developer College 
+## Goal of the AI Developer College
 
-The goal is to show developers the tools of machine learning (ml) experts and vice versa. We want to connect both worlds. Since we noticed that there is a huge gap between both sides. As ml experts deliver pre-trained machine learning  models as restful endpoint to the developers (or to the business) and developers use those REST APIs to integrate them in their applications, it is essential that both sides understand both worlds. To close the gap we will start with the ml experts view and switch then to the developer view.
+The goal is to show developers the tools of machine learning (ml) experts and vice versa. We want to connect both worlds. Since we noticed that there is a huge gap between both sides. As ml experts deliver pre-trained machine learning models as restful endpoint to the developers (or to the business) and developers use those REST APIs to integrate them in their applications, it is essential that both sides understand both worlds. To close the gap we will start with the ml experts view and switch then to the developer view.
 
 ![Goal of the AI Developer College](./images/Goal.png)
 
-## Goal of the AI Developer College Training Days 
+## Goal of the AI Developer College Training Days
 
 On Day 1 we will use Azure Machine Learning Workspace. Here we will start by training our own model, testing and registering it and deploying the model on Azure Container Instance and Azure Kubernetes using Jupyter Notebook a popular tool for prototyping highly used by ml experts. In this case our goal as a ml expert is to provide a REST API with a trained model behind the scenes that can be consumed by an application.
 
@@ -28,6 +28,7 @@ Once we have seen the ml experts view we will switch to the developer or DevOps 
 
 On Day 2 we will stay in the developer view by using existing endpoints with pre-trained machine models behind the scenes. For this we will focus on our managed services like Azure Cognitive Search and Azure Cognitive Services and explore some of our convenient tools to create custom machine learning models like LUIS and Custom Vision. As a developer I can use those REST APIs and enrich my applications without having deep ml expert knowledge.
 As final challenge we have prepared a small application which adopts a pre-trained object detection model. This shows the entire lifecycle and brings together best of both worlds.
+
 <div align="center">
   <p> ML Experts ❤︎ Developers</p>
 </div>
@@ -44,7 +45,7 @@ Here's the overview of the training week. Happy hacking!
 - [Day 1 - Azure Machine Learning Operations - MLOps](day1/MLOps/MLOps.md)
 - [Day 2 - Cognitive Search](day2/CognitiveSearch/CognitiveSearch.md)
 - [Day 2 - Cognitive Services](day2/CognitiveServices/Challenge/CognitiveServices.md)
-- [Day 2 - Custom Vision App](day2/CustomVisionApp/CustomVisionApp.md)
+- [Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)
 
 ## Contributing
 
