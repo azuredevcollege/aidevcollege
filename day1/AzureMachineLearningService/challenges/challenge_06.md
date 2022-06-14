@@ -14,11 +14,12 @@ Use the Designer to use pre-built functions via drag-and-drop for the quick deve
 - Leverage data science best practices
 - Provide agile problem-solving
 
-## Dataset 
+## Dataset
 
 For this challenge, we'll use the **Automobile price data** dataset. It contains data on cars including brand, fuel type, fuel economy, engine power output, body style and the car's price. The goal of this challenge will be to use the cars' technical properties as features to predict a car's price.
 
 ## Azure Machine Learning Designer
+
 ### Setup
 
 In your Machine Learning workspace, navigate to the **Designer** section and select **Easy-to-use prebuilt components**.
@@ -29,9 +30,9 @@ To run our pipeline, we need to define a compute target.
 
 1. Next to the pipeline name, select the Gear icon ![alt text](../images/06-gear-icon.png "Launch Designer") that is in the UI at the top of the canvas to open the 'Settings' pane.
 
-2. In the **Settings** pane to the right of the canvas, select **Select compute target**.
+2. In the **Settings** pane to the right of the canvas, select **Select compute type** and then **Compute Instance**.
 
-  If you already have an available compute target, you can select it to run this pipeline.
+If you already have an available Azure ML compute instance, you can select it to run this pipeline.
 
 1. Enter a name for the compute resource.
 
@@ -57,8 +58,8 @@ You can visualize the data to understand the dataset that you'll use.
 
 1. Select the different columns in the data window to view information about each one.
 
-    Each row represents an automobile, and the variables associated with each automobile appear as columns. There are 205 rows and 26 columns in this dataset.
-    
+   Each row represents an automobile, and the variables associated with each automobile appear as columns. There are 205 rows and 26 columns in this dataset.
+
 #### Column Selection
 
 When you train a model, you have to do something about the data that's missing. In this dataset, the **normalized-losses** column is missing many values, so you'll exclude that column from the model altogether.
@@ -75,13 +76,13 @@ When you train a model, you have to do something about the data that's missing. 
 
 1. In the component details pane to the right of the canvas, select **Edit column**.
 
-1. Expand the **Column names** drop down next to **Include**, and select  **All columns**.
+1. Expand the **Column names** drop down next to **Include**, and select **All columns**.
 
 1. Select the **+** to add a new rule.
 
 1. From the drop-down menus, select **Exclude** and **Column names**.
 
-1. Enter *normalized-losses* in the text box.
+1. Enter _normalized-losses_ in the text box.
 
 1. In the lower right, select **Save** to close the column selector.
 
@@ -89,9 +90,9 @@ When you train a model, you have to do something about the data that's missing. 
 
 1. Select the **Select Columns in Dataset** component.
 
-1. In the component details pane to the right of the canvas, select the **Comment** text box and enter *Exclude normalized losses*.
+1. In the component details pane to the right of the canvas, select the **Comment** text box and enter _Exclude normalized losses_.
 
-    Comments will appear on the graph to help you organize your pipeline.
+   Comments will appear on the graph to help you organize your pipeline.
 
 #### Clean missing data
 
@@ -111,7 +112,7 @@ Your dataset still has missing values after you remove the **normalized-losses**
 
 1. In the component details pane to the right of the canvas, select **Remove entire row** under **Cleaning mode**.
 
-1. In the component details pane to the right of the canvas, select the **Comment** box, and enter *Remove missing value rows*.
+1. In the component details pane to the right of the canvas, select the **Comment** box, and enter _Remove missing value rows_.
 
 Your pipeline should now look something like this:
 
@@ -137,13 +138,14 @@ Splitting data is a common task in machine learning. You'll split your data into
 
 1. In the component details pane to the right of the canvas, set the **Fraction of rows in the first output dataset** to 0.7.
 
-    This option splits 70 percent of the data to train the model and 30 percent for testing it. The 70 percent dataset will be accessible through the left output port. The remaining data will be available through the right output port.
+   This option splits 70 percent of the data to train the model and 30 percent for testing it. The 70 percent dataset will be accessible through the left output port. The remaining data will be available through the right output port.
 
-1. In the component details pane to the right of the canvas, select the **Comment** box, and enter *Split the dataset into training set (0.7) and test set (0.3)*.
+1. In the component details pane to the right of the canvas, select the **Comment** box, and enter _Split the dataset into training set (0.7) and test set (0.3)_.
 
 #### Train the model
 
 Train the model by giving it a dataset that includes the price. The algorithm constructs a **regression** model that explains the relationship between the features and the price as presented by the training data. The main goal of regression models is to predict a numeric output variable for new data based on learnings from its training data. Common regression examples include insurance risk assessment, predicting advertisement impact or modelling the effect of seasonal conditions like weather to predict product sales.
+
 
 
 1. In the component palette, search for **Regression** > **Linear Regression**, and drag it to the pipeline canvas.
@@ -168,14 +170,11 @@ Your pipeline should look like this:
 
 ![alt text](../images/06-pipeline-train-graph.png "Updated Pipeline")
 
-
-
-
 #### Add the Score Model component
 
 After you train your model by using 70 percent of the data, you can use it to score the other 30 percent to see how well your model functions.
 
-1. Enter *score model* in the search box to find the **Score Model** component. Drag the component to the pipeline canvas.
+1. Enter _score model_ in the search box to find the **Score Model** component. Drag the component to the pipeline canvas.
 
 1. Connect the output of the **Train Model** component to the left input port of **Score Model**. Connect the test data output (right port) of the **Split Data** component to the right input port of **Score Model**.
 
@@ -183,14 +182,13 @@ After you train your model by using 70 percent of the data, you can use it to sc
 
 Use the **Evaluate Model** component to evaluate how well your model scored the test dataset.
 
-1. Enter *evaluate* in the search box to find the **Evaluate Model** component. Drag the component to the pipeline canvas.
+1. Enter _evaluate_ in the search box to find the **Evaluate Model** component. Drag the component to the pipeline canvas.
 
 1. Connect the output of the **Score Model** component to the left input of **Evaluate Model**.
 
-    The final pipeline should look something like this:
+   The final pipeline should look something like this:
 
 ![alt text](../images/06-pipeline-final-graph.png "Final pipeline")
-
 
 ### Submit the pipeline
 
@@ -200,7 +198,7 @@ Now that your pipeline is all setup, you can submit a pipeline run to train your
 
 1. In the **Set up pipeline job** dialog box, select **Create new**.
 
-    > Experiments group similar pipeline runs together. If you run a pipeline multiple times, you can select the same experiment for successive runs.
+   > Experiments group similar pipeline runs together. If you run a pipeline multiple times, you can select the same experiment for successive runs.
 
 1. For **New experiment Name**, enter **Tutorial-CarPrices**.
 
@@ -222,7 +220,8 @@ After the run completes, you can view the results of the pipeline run. First, lo
 
 1. Right-click the **Score Model** component, and select **Preview data** > **Scored dataset** to view its output.
 
-    Here you can see the predicted prices and the actual prices from the testing data. Select the **Scored Labels** to get this view:
+   Here you can see the predicted prices and the actual prices from the testing data. Select the **Scored Labels** to get this view:
+
 
 ![alt text](../images/06-score-result-2.png "Score Result")
 
@@ -234,20 +233,20 @@ Use the **Evaluate Model** to see how well the trained model performed on the te
 
 The following statistics are shown for your model:
 
-* **Mean Absolute Error (MAE)**: The average of absolute errors. An error is the difference between the predicted value and the actual value.
-* **Root Mean Squared Error (RMSE)**: The square root of the average of squared errors of predictions made on the test dataset.
-* **Relative Absolute Error**: The average of absolute errors relative to the absolute difference between actual values and the average of all actual values.
-* **Relative Squared Error**: The average of squared errors relative to the squared difference between the actual values and the average of all actual values.
-* **Coefficient of Determination**: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
+- **Mean Absolute Error (MAE)**: The average of absolute errors. An error is the difference between the predicted value and the actual value.
+- **Root Mean Squared Error (RMSE)**: The square root of the average of squared errors of predictions made on the test dataset.
+- **Relative Absolute Error**: The average of absolute errors relative to the absolute difference between actual values and the average of all actual values.
+- **Relative Squared Error**: The average of squared errors relative to the squared difference between the actual values and the average of all actual values.
+- **Coefficient of Determination**: Also known as the R squared value, this statistical metric indicates how well a model fits the data.
 
 For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
 
 At this point, we learned how to:
 
-* Create a new pipeline.
-* Import data.
-* Prepare data.
-* Train a machine learning model.
-* Evaluate a machine learning model.
+- Create a new pipeline.
+- Import data.
+- Prepare data.
+- Train a machine learning model.
+- Evaluate a machine learning model.
 
 So far, we have focused on deploying models to Azure Container Instances, which is great for testing scenarios. For production grade deployments, we want to use Azure Kubernetes Service, which we'll do in the [seventh challenge](challenge_07.md).
