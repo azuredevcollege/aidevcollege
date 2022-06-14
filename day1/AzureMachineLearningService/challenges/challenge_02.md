@@ -302,7 +302,7 @@ docker_conf = DockerConfiguration(use_docker=True)  # Use a docker container
 
 # Create a the pip and conda package dependencies
 packages = CondaDependencies.create(pip_packages=["tensorflow","keras==2.6.0", "astor", 'azureml-sdk',
-                                                  'pynacl==1.2.1', 'azureml-dataprep'])
+                                                  'pynacl==1.2.1', 'azureml-dataprep'], pin_sdk_version=False)
 
 # Add the package dependencies to the Python environment for the experiment
 env.python.conda_dependencies = packages
