@@ -44,7 +44,7 @@ If you already have an available Azure ML compute instance, you can select it to
 
 There are several sample datasets included in the designer for you to experiment with. For this tutorial, use 'Automobile price data (Raw)'.
 
-1. To the left of the pipeline canvas is a palette of datasets and components. Select **Sample datasets** to view the available sample datasets.
+1. To the left of the pipeline canvas is a palette of datasets and components.
 
 2. Select the dataset **Automobile price data (Raw)**, and drag it onto the canvas.
 
@@ -98,7 +98,7 @@ When you train a model, you have to do something about the data that's missing. 
 
 Your dataset still has missing values after you remove the **normalized-losses** column. You can remove the remaining missing data by using the **Clean Missing Data** component.
 
-1. In the component palette to the left of the canvas, expand the section **Data Transformation**, and find the **Clean Missing Data** component.
+1. In the component palette to the left search for the **Clean Missing Data** component.
 
 1. Drag the **Clean Missing Data** component to the pipeline canvas. Connect it to the **Select Columns in Dataset** component.
 
@@ -128,7 +128,7 @@ Because you want to predict price, which is a number, you can use a regression a
 
 Splitting data is a common task in machine learning. You'll split your data into two separate datasets. One dataset will train the model and the other will test how well the model performed.
 
-1. In the component palette, expand the section **Data Transformation** and find the **Split Data** component.
+1. In the component palette, search the **Split Data** component.
 
 1. Drag the **Split Data** component to the pipeline canvas.
 
@@ -146,11 +146,9 @@ Splitting data is a common task in machine learning. You'll split your data into
 
 Train the model by giving it a dataset that includes the price. The algorithm constructs a **regression** model that explains the relationship between the features and the price as presented by the training data. The main goal of regression models is to predict a numeric output variable for new data based on learnings from its training data. Common regression examples include insurance risk assessment, predicting advertisement impact or modelling the effect of seasonal conditions like weather to predict product sales.
 
-1. In the component palette, expand **Machine Learning Algorithms**.
 
-   This option displays several categories of components that you can use to initialize learning algorithms.
 
-1. Select **Regression** > **Linear Regression**, and drag it to the pipeline canvas.
+1. In the component palette, search for **Regression** > **Linear Regression**, and drag it to the pipeline canvas.
 
 1. In the component palette, expand the section **Module training**, and drag the **Train Model** component to the canvas.
 
@@ -166,7 +164,7 @@ Train the model by giving it a dataset that includes the price. The algorithm co
 
 1. In the **Label column** dialog box, expand the drop-down menu and select **Column names**.
 
-1. In the text box, enter _price_ to specify the value that your model is going to predict. Make sure you enter the column name exactly. Do not capitalize price.
+1. In the drop down, select *price* to specify the value that your model is going to predict. 
 
 Your pipeline should look like this:
 
@@ -222,7 +220,8 @@ After the run completes, you can view the results of the pipeline run. First, lo
 
 1. Right-click the **Score Model** component, and select **Preview data** > **Scored dataset** to view its output.
 
-   Here you can see the predicted prices and the actual prices from the testing data.
+   Here you can see the predicted prices and the actual prices from the testing data. Select the **Scored Labels** to get this view:
+
 
 ![alt text](../images/06-score-result-2.png "Score Result")
 
