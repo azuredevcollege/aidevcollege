@@ -27,9 +27,9 @@ It should look like this:
 
 ![alt text](../images/01-ml-config.PNG "Create Machine Learning Workspace")
 
-Let's have a look at our Resource Group:
+Let's have a look at our Resource Group, which should look like this:
 
-![alt text](../images/01-resource_group.png "Our resource group")
+![alt text](../images/01-resource-group.PNG "Our resource group")
 
 * Application Insights - used for monitoring our models in production (will be used later)
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
