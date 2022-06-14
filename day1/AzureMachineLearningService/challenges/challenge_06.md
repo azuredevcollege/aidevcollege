@@ -254,4 +254,4 @@ At this point, we learned how to:
 * Train a machine learning model.
 * Evaluate a machine learning model.
 
-So far, we have focused on deploying models to Azure Container Instances, which is great for testing scenarios. For production grade deployments, we want to use Azure Kubernetes Service, which we'll do in the [fifth challenge](challenge_05.md).
+So far, we have focused on deploying models to Azure Container Instances, which is great for testing scenarios. For production grade deployments, we want to use Azure Kubernetes Service, which we'll do in the [seventh challenge](challenge_07.md).
