@@ -199,7 +199,7 @@ In a next step, we need to create a client object ([TextAnalyticsClient](https:/
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.textanalytics import TextAnalyticsClient
 
-subscription_key = "YOUR_SUBSCRIPTION_KEY"
+key = "YOUR_SUBSCRIPTION_KEY"
 region = "YOUR_SUBSCRIPTION_REGION"
 
 credential = AzureKeyCredential(key)
@@ -506,7 +506,7 @@ To use any SDK, you need to first install it. In this case we will install the P
 pip install azure-cognitiveservices-speech
 ```
 
-If you are using a Mac, you might need to run this first:
+If you are using a **Mac**, you might need to run this first:
 
 ```python
 python3 -m pip install --upgrade pip
@@ -518,8 +518,9 @@ Once the SDK is installed, please restart the kernel. After that we can write ou
 import azure.cognitiveservices.speech as speechsdk # import the speech sdk
 import IPython.display as ipd # import IPython.display to display the audio output
 
+speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
+
 def to_file():
-  speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
   speech_config.speech_synthesis_language = "en-US"
   speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
   audio_config = speechsdk.audio.AudioOutputConfig(filename="welcome.wav")
@@ -541,7 +542,6 @@ Paste the following code in the notebook you used before.
 
 ```python
 def from_file():
-  speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
   speech_config.speech_synthesis_language = "en-US"
   speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
   audio_input = speechsdk.AudioConfig(filename="welcome.wav")
