@@ -74,7 +74,7 @@ env.python.user_managed_dependencies = False # Let Azure ML manage dependencies
 # Create a the pip and conda package dependencies
 packages = CondaDependencies.create(pip_packages=["tensorflow", "keras==2.6.0", "astor", 'azureml-sdk', 
                                                   'pynacl==1.2.1', 'azureml-dataprep', "pillow==5.3.0",
-                                                  "azureml-defaults"])
+                                                  "azureml-defaults"], pin_sdk_version=False)
 
 # Add the package dependencies to the Python environment for the experiment
 env.python.conda_dependencies = packages
