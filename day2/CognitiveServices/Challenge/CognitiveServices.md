@@ -855,6 +855,7 @@ for polygon in polygons:
     ax.axes.add_patch(patch)
     plt.text(vertices[0][0], vertices[0][1], text, fontsize=20, va="top")
 _ = plt.axis("off")
+plt.show()
 ```
 
 **Visualization:**
@@ -926,6 +927,7 @@ for word in word_infos:
     ax.axes.add_patch(patch)
     plt.text(origin[0], origin[1], text, fontsize=11, va="top")
 _ = plt.axis("off")
+plt.show()
 ```
 
 **Example Result:**
