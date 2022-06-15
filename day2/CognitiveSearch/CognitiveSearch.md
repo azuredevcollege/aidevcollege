@@ -21,13 +21,13 @@ Today will be an overview of Azure Cognitive Search, as you will learn:
 
 Thus we will cover the following topics in several sections:
 
-| Topic                                                      | Section                                                                                                                                                |
-| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Getting familiar with Cognitive Search                     | [What is Azure Cognitive Search?](#what-is-azure-cognitive-search)                                                                                     |
-| Create Azure Cognitive Search in the Portal                | [Create an Azure Cognitive Search Service in the Portal](#create-an-azure-search-service-in-the-portal)                                                |
-| Connect to Azure Cognitive Search                          | [Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)                                                                                |
-| Index structured & unstructured content with AI enrichment | [Azure Search & Cognitive Search Indexing unstructured content (e.g. images, audio, etc.)](#index-structured--unstructured-content-with-ai-enrichment) |
-| Integrate Azure Search in an Node JS Application           | [Integrate Azure Search in a Node JS Application](#integrate-azure-search-in-an-node-js-application)                                                   |
+| Topic                                                      | Section                                                                                                                                             |
+| ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Getting familiar with Cognitive Search                     | [What is Azure Cognitive Search?](#what-is-azure-cognitive-search)                                                                                  |
+| Create Azure Cognitive Search in the Portal                | [Create an Azure Cognitive Search Service in the Portal](#create-an-azure-search-service-in-the-portal)                                             |
+| Connect to Azure Cognitive Search                          | [Connect to Azure Cognitive Search](#connect-to-azure-cognitive-search)                                                                             |
+| Index structured & unstructured content with AI enrichment | [Index structured & unstructured content with AI enrichment (e.g. images, audio, etc.)](#index-structured--unstructured-content-with-ai-enrichment) |
+| Integrate Azure Search in an Node JS Application           | [Integrate Azure Search in a Node JS Application](#integrate-azure-search-in-an-node-js-application)                                                |
 
 ## Azure Cognitive Search
 
