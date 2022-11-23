@@ -469,6 +469,33 @@ Since we looked at _Entity Linking_ in the last paragraph, let's check out the S
 
 Feel free to try out the Language Studio for some of the other features.
 
+
+
+### Optional: Postman
+
+[Postman](https://www.postman.com/) is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration. Since the Azure Cloud Platform consists out of many APIs this tool is perfect to get a deeper understanding of its functionalities. 
+
+[Here](day2\CognitiveServices\Challenge\postman) you will find 2 Postman collections we have created for you for the Translation and Text API. 
+
+Download Postman and _Import_ the files. After the import is done it should look like this. 
+![Postman after import](./images/02_postman_import.png)
+
+Now go to _Environments_ and create two environments. One will be assigned to the Text API, and one for the translator API.
+
+- For the Translate environment, create two variables: "api_key" and "location". In the api_key variable, select "secret" as a type, and paste your API key from the portal. For the location variable, enter your region - in this case "westeurope".
+
+- For the Text environment, add only the api_key variable. Set it as "secret" and paste the key for that service as found in the portal.
+
+![Postman environments](./images/02_postman_create_environments.png)
+
+Finally, assign the environment created to the respective collection. 
+
+![Postman environment assign](./images/02_environment_select.png).
+
+Now, you can play around with the different APIs! You can select the different services from the collections tab and click on "Send" to send a request. At the bottom, you should receive a response. In the Translation API, you can also change the Parameters to check out different languages, or you can change the body to try out other texts. 
+
+![Postman response](./images/02_postman_result.png)
+
 So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar _Speech_.
 
 # Speech
