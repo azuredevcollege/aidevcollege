@@ -428,6 +428,8 @@ Next, we need to define the `Data Source`:
 
 ![alt text](./img/azure_search_new_datasource.png "Azure Search Existing Data Source")
 
+To choose a `Connection string` click on `Choose an existing connection` and then choose your storage account.
+
 Next, we need to define the skillset. In our case, we'll enable all features:
 
 ![alt text](./img/cognitive_search_skillset.png "Defining the skillset")
