@@ -21,11 +21,7 @@
 						"value": "{{api_key}}",
 						"type": "text"
 					},
-					{
-						"key": "Ocp-Apim-Subscription-Region",
-						"value": "{{location}}",
-						"type": "text"
-					}
+					
 				],
 				"url": {
 					"raw": "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation",
@@ -67,12 +63,8 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
-					},
-					{
-						"key": "Ocp-Apim-Subscription-Region",
-						"value": "{{location}}",
-						"type": "text"
 					}
+			
 				],
 				"body": {
 					"mode": "raw",
@@ -122,12 +114,8 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
-					},
-					{
-						"key": "Ocp-Apim-Subscription-Region",
-						"value": "{{location}}",
-						"type": "text"
 					}
+			
 				],
 				"body": {
 					"mode": "raw",
@@ -181,12 +169,8 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
-					},
-					{
-						"key": "Ocp-Apim-Subscription-Region",
-						"value": "{{location}}",
-						"type": "text"
 					}
+				
 				],
 				"body": {
 					"mode": "raw",
