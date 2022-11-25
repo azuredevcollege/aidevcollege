@@ -2,10 +2,11 @@
 	"info": {
 		"_postman_id": "227448a3-5a19-423a-bd60-420f19b9d9c1",
 		"name": "Text Analytics API (v3.1)",
+		"description": "The Text Analytics API is a cloud-based service that provides Natural Language Processing (NLP) features for text mining and text analysis, including sentiment analysis, opinion mining, key phrase extraction, language detection, and named entity recognition.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "24041745"
 	},
-	"item": [
+	"item":[ 
 		{
 			"name": "Detect Language",
 			"request": {
