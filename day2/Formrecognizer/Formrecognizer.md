@@ -22,7 +22,9 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 
 Before we can start using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
 
-You will be reusing the same Jupyter notebook as in the previous challenges. Create a new file and name it formrecognizer. Then copy the following command, add the missing information and paste it into a cell of your Jupyter notebook.
+Like in the challenges before, open the cloud shell in the Azure portal. To ensure you are using the correct Azure subscription, type ```az account show``` and to change the subscription type ```az account set --subscription <NAME OR ID OF YOUR SUBSCRIPTION>```.
+
+Next copy the following command, edit the needed information and paste the command into your cloud shell.
 
 ```bash
 az cognitiveservices account create --name 'formrecognizer'-$prefix --resou
@@ -32,7 +34,7 @@ rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --locatio
 Now we need to get the key and endpoint of our resource.
 
 ```bash
-az cognitiveservices account keys list --name 'formrecognizer'-$prefix --resource-group <NAME OF YOUR RESOURCE GROUP> #keys
+az cognitiveservices account keys list --name 'formrecognizer'-$prefix --resource-group <NAME OF YOUR RESOURCE GROUP>
 ```
 
 
@@ -43,6 +45,17 @@ As mentioned before, Form Recognizer has a selection of models you can leverage.
 ### Read OCR Model
 
 The [Form Recognizer Read OCR Model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-read?view=form-recog-3.0.0) extracts print and handwritten text from PDF documents and scanned images. It detects paragraphs, text lines, words, locations, and languages. The read model is the underlying OCR engine for other Form Recognizer prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, in addition to custom models.
+
+You will be trying this out using the User Interface - Form Recognizer Studio.
+
+1. Go to the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio) and click on _Read_.
+1. In the pop-up window, select your Azure subscription, resource group and Form Recognizer resource.
+</br>
+![Screenshot of selecting Form Recognizer resource in Form Recognizer studio](img/00Formrecognizer.png)
+
+1. You can analyse the sample document or upload your own sample.
+
+1. Select the _Analyze_ button.
 
 ### General Document Model
 
