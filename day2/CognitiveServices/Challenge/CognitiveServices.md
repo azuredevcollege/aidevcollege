@@ -196,17 +196,88 @@ Now, you can play around with the APIs! You can select the different services fr
 
 Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called _Language Service_. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
-First we deploy the **Language** service in the **Azure Portal**:
+Since we first deployed the **Translator** service via the UI, we now create the **Language** service via the **Azure CLI**.
 
-![Azure Portal](./images/CreateLanguageService.png)
+# Cloud Shell - Coding Your Azure Resources
 
-By default, the service comes with several pre-built capabilities like sentiment analysis, key phrase extraction or question answering. It is possible to add customizable features. However, for this exercise we will stick with the pre-built capabilities:
+## Here is what you will learn 🎯
 
-![Azure Portal](./images/CreateLanguageService2.png)
+- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
+- Use **Cloud Shell** to automate Azure resource creation and configuration.
 
-Fill in the _name_, agree to the _Legal Terms_ and _terms of Responsible AI_ and hit _create_:
+## Table Of Contents
 
-![Azure Portal](./images/CreateLanguageService3.png)
+- [Challenge 2: Cloud Shell - Coding Your Azure Resources](#challenge-2-cloud-shell---coding-your-azure-resources)
+  - [Here is what you will learn 🎯](#here-is-what-you-will-learn-)
+  - [Table Of Contents](#table-of-contents)
+  - [Benefits of the Azure Cloud Shell](#benefits-of-the-azure-cloud-shell)
+  - [Create an Azure Cloud Shell](#create-an-azure-cloud-shell)
+  
+
+## Benefits of the Azure Cloud Shell
+
+Ok - quite impressive what the Azure portal as a single page application allows us to do, isn't it?  
+However sometimes a shell is faster and better for repetitive tasks. But you may not want to install software nor tools for this in your machine.  
+The Azure **Cloud Shell** is a shell | console hosted in your browser window, ready to execute commands to create, delete, modify Azure resources in your subscription.  
+While it is also possible to use PowerShell on your local PC to administer Azure, using the Cloud Shell brings some advantages compared to using your PC.
+
+Using the Cloud Shell saves you time as:
+
+- you do not need to explicitly code the Azure logon within the script - you are already authenticated to Azure via the browser
+- you do not need anything to be installed on your PC. So no more asking [which version of PowerShell and what modules](https://docs.microsoft.com/powershell/azure) are necessary
+
+## Create an Azure Cloud Shell
+
+```
+[Azure Portal]
+-> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
+```
+
+![Cloud Shell](./images/CloudShell.png))
+
+- The Azure Cloud Shell is an in-browser-accessible shell for managing Azure resources.
+- It already has the required SDKs and tools installed to interact with Azure.
+- The Azure Cloud Shell comes in 2 flavors: PowerShell or Bash. When being asked choose PowerShell this time.
+  ![Bash or PowerShell](./images/2variations.png)
+
+- The first time you use the 'Cloud Shell' you will be asked to setup a storage account e.g. to store files you have uploaded persistently. [See](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage)
+
+```
+[Azure Portal] -> Click 'Show advanced settings'
+```
+
+![Cloud Shell Storage Account Setup](./images/CloudShell1.png)
+
+| Name                 | Value               |
+| -------------------- | ------------------- |
+| _Subscription_       | %your subscription% |
+| _Cloud Shell Region_ | e.g. West Europe    |
+| _Resource Group_     | e.g. rg-cloudshell  |
+| _Storage Account_    | %some unique value% |
+| _File Share_         | cloudshell          |
+
+```
+[Azure Portal] -> Create storage
+```
+
+- Once successful your shell should appear at the bottom of the page:
+
+  ![Cloud Shell in the Azure portal](./images/CloudShell2.png)
+
+You can have a look on a list of different available Cognitive Services "kinds" with the following command:
+
+```python
+az cognitiveservices account list-kinds
+```
+
+To create and subscribe to a new Cognitive Services resource, use the **az cognitiveservices account create** command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
+
+Let us create a free tier **Language** service with the following command:
+
+```python
+az cognitiveservices account create --name aidevcollegeLanguage --resource-group our resource group  --kind TextAnalytics --sku F0 --location westeurope --yes
+```
+
 
 This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
 
@@ -534,13 +605,11 @@ In the language of your choice write two small scripts or apps that:
 
 This time, we will use the Python SDK for using the service.
 
-First, we need to deploy a Speech service:
+First, we need to deploy a **Speech** service with **Azure CLI**:
 
-![alt text](./images/speech_api_service.png "Speech API Service")
-
-Fill in a _unique name_ and select _create_:
-
-![Azure Portal](./images/CreateSpeech.png)
+```python
+az cognitiveservices account create --name aidevcollegespeech --resource-group our resource group  --kind SpeechServices --sku F0 --location westeurope --yes
+```
 
 You can find your API key under the service, then `Keys`.
 
@@ -644,11 +713,11 @@ Since more and more apps recognize faces, there is also a **Face Cognitive Servi
 
 This time we will conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`.
 
-1. Deploy a Face API Service in the Portal
+1. Deploy a **Face API** Service with **Azure CLI**:
 
-![Deploy Face API](./images/New_CreateFace.PNG)
-
-![Details of Deploy Face API](./images/deployfacedetails.png)
+```python
+az cognitiveservices account create --name face-martha --resource-group our resource group  --kind Face --sku F0 --location westeurope --yes
+```
 
 To use **Face API**, perform the following steps:
 
@@ -756,11 +825,11 @@ In this section, we will concentrate on the service's OCR capabilities. It can e
 
 :triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written text document in images machine-readable
 
-First, create a `Computer Vision` API Key in the Azure Portal
+First, create a `Computer Vision` API Key with **Azure CLI**:
 
-![Create Computer Vision](./images/ComputerVisionCreate.png)
-
-![Create Computer Vision Details](./images/ComputerVisionCreateDetails.png)
+```python
+az cognitiveservices account create --name aidevcollege-CV --resource-group our resource group  --kind ComputerVision --sku F0 --location westeurope --yes
+```
 
 As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
@@ -1030,6 +1099,8 @@ Let's briefly look at the results and make sure we understand them:
 Under `Quick Test`, we can briefly test images and see what the service will detect. Look for the different flower types online and paste the image URLs in the Quick Test section. We only added a few training images (50 per tag are recommended) with a lot of variance, the results are not great yet. By adding more images, we could most likely improve the performance significantly.
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service. We will do this in a later challenge.
+
+**Hint**: Using **Custom Vision** is also possible with Python SDK (see here [Custom Vision with Python SDK](https://learn.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/quickstarts/image-classification?tabs=visual-studio&pivots=programming-language-python))
 
 ## What we have done so far:
 
