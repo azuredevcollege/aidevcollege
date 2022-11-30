@@ -20,13 +20,19 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 
 ### Create Form Recognizer resource
 
-Before we can start with using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
+Before we can start using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
 
-Copy the following command, ad the missing information and paste it into your terminal (or Jupyter notebook).
+Copy the following command, add the missing information and paste it into your terminal (or Jupyter notebook).
 
 ```bash
-az cognitiveservices account create --name formrecognizer-$prefix --resou
-rce-group <NAME OF YOUR RESOURCE GROUP>  --kind FormRecognizer --sku F0 --location westeurope
+az cognitiveservices account create --name 'formrecognizer'-$prefix --resou
+rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
+```
+
+Now we need to get the key and endpoint of our resource.
+
+```bash
+az cognitiveservices account keys list --name 'formrecognizer'-$prefix --resource-group <NAME OF YOUR RESOURCE GROUP> #keys
 ```
 
 Explain the different models
