@@ -18,7 +18,22 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 1. Create Form Recognizer resource: westeurope, pricing tier free F0
 1. Get key and endpoint
 
+### Create Form Recognizer resource
+
+Before we can start with using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
+
+Copy the following command, ad the missing information and paste it into your terminal (or Jupyter notebook).
+
+```bash
+az cognitiveservices account create --name formrecognizer-$prefix --resou
+rce-group <NAME OF YOUR RESOURCE GROUP>  --kind FormRecognizer --sku F0 --location westeurope
+```
+
 Explain the different models
+
+### Read OCR Model
+
+The [Form Recognizer Read OCR Model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-read?view=form-recog-3.0.0) 
 
 ### General Document Model
 
