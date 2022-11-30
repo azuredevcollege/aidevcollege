@@ -18,11 +18,11 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 1. Create Form Recognizer resource: westeurope, pricing tier free F0
 1. Get key and endpoint
 
-### Create Form Recognizer resource
+## Create Form Recognizer resource
 
 Before we can start using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
 
-Copy the following command, add the missing information and paste it into your terminal (or Jupyter notebook).
+You will be reusing the same Jupyter notebook as in the previous challenges. Create a new file and name it formrecognizer. Then copy the following command, add the missing information and paste it into a cell of your Jupyter notebook.
 
 ```bash
 az cognitiveservices account create --name 'formrecognizer'-$prefix --resou
@@ -35,11 +35,14 @@ Now we need to get the key and endpoint of our resource.
 az cognitiveservices account keys list --name 'formrecognizer'-$prefix --resource-group <NAME OF YOUR RESOURCE GROUP> #keys
 ```
 
-Explain the different models
+
+## Form Recognizer model types
+
+As mentioned before, Form Recognizer has a selection of models you can leverage. In the following, you will get to try out a few of them.
 
 ### Read OCR Model
 
-The [Form Recognizer Read OCR Model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-read?view=form-recog-3.0.0) 
+The [Form Recognizer Read OCR Model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-read?view=form-recog-3.0.0) extracts print and handwritten text from PDF documents and scanned images. It detects paragraphs, text lines, words, locations, and languages. The read model is the underlying OCR engine for other Form Recognizer prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, in addition to custom models.
 
 ### General Document Model
 
