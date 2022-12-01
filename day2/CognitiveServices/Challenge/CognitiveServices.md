@@ -40,7 +40,7 @@ You can solve the tasks in a programming language of your choice. For sake of co
 
 For this entire challenge we will create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the **Azure Machine Learning Service** and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the **Azure Machine Learning Service** and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.8 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
 Let's look at the first pillar of Cognitive Services - Language.
 
@@ -272,14 +272,14 @@ az cognitiveservices account list-kinds
 
 To create and subscribe to a new Cognitive Services resource, use the **az cognitiveservices account create** command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
 
-Let us create a free tier **Language** service with the following command:
+Let us create a free tier **Language** service with the following command in **Azure CLI**:
 
 ```python
 az cognitiveservices account create --name aidevcollegeLanguage --resource-group our resource group  --kind TextAnalytics --sku F0 --location westeurope --yes
 ```
 
 
-This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
+This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Switch to your VM (or whatever you are using) and copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
 
 ```
 pip install azure-ai-textanalytics
@@ -700,105 +700,6 @@ Try performing text-to-speech and speech-to-text with the Speech Studio.
 So far we have focused on the two pillars _Language_ and _Speech_. Now we want to jump to the pillar _Vision_ by analysing images.
 
 # Vision
-
-Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that. The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
-
-## Face
-
-| Azure Cognitive Services                                                    | Information                                                     |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/) | https://docs.microsoft.com/en-us/azure/cognitive-services/face/ |
-
-:triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
-
-This time we will conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`.
-
-1. Deploy a **Face API** Service with **Azure CLI**:
-
-```python
-az cognitiveservices account create --name face-martha --resource-group our resource group  --kind Face --sku F0 --location westeurope --yes
-```
-
-To use **Face API**, perform the following steps:
-
-2. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
-3. Make the following changes in code where needed:
-   1. Replace the value of `api_key` with your api key.
-   2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
-   3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
-4. Run the Cell and examine the response.
-
-```python
-import requests
-import json
-
-# set to your own api key value
-subscription_key = "YOUR_SUBSCRIPTION_KEY"
-endpoint = "YOUR_RESOURCE_ENDPOINT"
-
-face_api_url = endpoint + 'face/v1.0/detect'
-
-image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
-
-headers = {'Ocp-Apim-Subscription-Key': subscription_key}
-
-params = {
-    'returnFaceId': 'true',
-    'returnFaceLandmarks': 'false',
-    'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise',
-}
-
-response = requests.post(face_api_url, params=params,
-                         headers=headers, json={"url": image_url})
-print(json.dumps(response.json(), indent = 2))
-```
-
-### Examine the response
-
-A successful response is returned in JSON (snippet):
-
-```json
-[
-  {
-    "faceId": "e93e0db1-036e-4819-b5b6-4f39e0f73509",
-    "faceRectangle": {
-      "top": 621,
-      "left": 616,
-      "width": 195,
-      "height": 195
-    },
-    "faceAttributes": {
-      "smile": 0,
-      "headPose": {
-        "pitch": 0,
-        "roll": 6.8,
-        "yaw": 3.7
-      },
-      "gender": "male",
-      "age": 37,
-      "facialHair": {
-        "moustache": 0.4,
-        "beard": 0.4,
-        "sideburns": 0.1
-      },
-      "glasses": "NoGlasses",
-      "emotion": {
-        "anger": 0,
-        "contempt": 0,
-        "disgust": 0,
-        "fear": 0,
-        "happiness": 0,
-        "neutral": 0.999,
-        "sadness": 0.001,
-        "surprise": 0
-      }
-```
-
-As you can see in the image yourself and from the JSON-response, the image shows a male 37-year old with a moustache. He is not wearing glasses and shows a neutral emotion. The image also shows a 56-year old female person without glasses.
-
-As we have already started to investigate images, we will now look at a different service the **Computer Vision Cognitive Service** to analyze text on an image.
-
-Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
 
 ## Computer Vision
 
