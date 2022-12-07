@@ -30,6 +30,7 @@ Next copy the following command, edit the needed information and paste the comma
 az cognitiveservices account create --name 'formrecognizer'-$prefix --resou
 rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
 ```
+**Hint**: In case you have already created a Form Recognizer resource with the free tier (F0) previously, change the sku to "S0".
 
 Now we need to get the key and endpoint of our resource.
 
@@ -57,21 +58,17 @@ You will be trying this out using the User Interface - Form Recognizer Studio.
 
 1. Select the _Analyze_ button.
 
-### General Document Model
-
-Explain
-
-### Layout Model
-
-Explain
+It is also possible to utilise the Form Recognizer APIs using the SDK or RestAPI. In the following, you will be leveraging the Prebuilt Invoice Model using the Python SDK.
 
 ### Invoice Model 
 
-Perform with SDK
+The Form Recognizer invoice model combines powerful Optical Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The Form Recognizer invoice model combines powerful Optical Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs.
 
 ### Receipt Model
 
-Explain
+The Form Recognizer receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
+
+Please not that the receipt model does currently not support German language receipts.
 
 Perform in studio
 
