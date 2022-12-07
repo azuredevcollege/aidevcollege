@@ -74,7 +74,7 @@ Perform in studio
 
 ### Custom Model
 
-Explain
+With Form Recognizer, you can use prebuilt or pre-trained models, of which we have introduced you to some previously. Moreover, you can train standalone [custom models](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-custom?view=form-recog-3.0.0). Custom models extract and analyze distinct data and use cases from forms and documents specific to your business.
 
 Perform in studio
 
