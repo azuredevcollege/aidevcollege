@@ -66,7 +66,7 @@ The Form Recognizer invoice model combines powerful Optical Character Recognitio
 
 ### Receipt Model
 
-The Form Recognizer receipt model combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
+The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-receipt?view=form-recog-3.0.0) combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
 
 Please not that the receipt model does currently not support German language receipts.
 
