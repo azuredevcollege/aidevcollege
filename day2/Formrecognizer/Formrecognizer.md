@@ -262,12 +262,12 @@ The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/appl
 
 Please not that the receipt model does currently not support German language receipts.
 
-This time we will perform simple Rest API calls to utilise the API.
+This time we will perform simple Rest API calls to utilise the API. To receive a response from the API, there are two requests necessary - POST request to send the receipt and receive the resultId and a GET request to receive the analyse result.
 
 ### Custom Model
 
 With Form Recognizer, you can use prebuilt or pre-trained models, of which we have introduced you to some previously. Moreover, you can train standalone [custom models](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-custom?view=form-recog-3.0.0). Custom models extract and analyze distinct data and use cases from forms and documents specific to your business.
 
-Perform in studio
+_Perform in studio_
 
 Now that you have tried a selection of Form Recognizer models, you might be wondering which is the right one for your use case. This [table](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0#which-form-recognizer-model-should-i-use) will give you an overview of which model to use.
