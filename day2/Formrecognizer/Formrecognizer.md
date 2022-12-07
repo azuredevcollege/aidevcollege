@@ -262,7 +262,7 @@ The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/appl
 
 Please not that the receipt model does currently not support German language receipts.
 
-Perform in studio
+This time we will perform simple Rest API calls to utilise the API.
 
 ### Custom Model
 
