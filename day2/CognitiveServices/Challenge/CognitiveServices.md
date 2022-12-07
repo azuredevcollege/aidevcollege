@@ -275,7 +275,7 @@ To create and subscribe to a new Cognitive Services resource, use the **az cogni
 Let us create a free tier **Language** service with the following command in **Azure CLI**:
 
 ```python
-az cognitiveservices account create --name aidevcollegeLanguage --resource-group our resource group  --kind TextAnalytics --sku F0 --location westeurope --yes
+az cognitiveservices account create --name aidevcollegeLanguage --resource-group <your resource group>  --kind TextAnalytics --sku F0 --location westeurope --yes
 ```
 
 
