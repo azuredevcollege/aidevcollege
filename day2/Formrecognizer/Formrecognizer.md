@@ -64,6 +64,198 @@ It is also possible to utilise the Form Recognizer APIs using the SDK or RestAPI
 
 The Form Recognizer [invoice model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-invoice?view=form-recog-3.0.0) combines powerful Optical Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The Form Recognizer invoice model combines powerful Optical Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs.
 
+You can reuse the Jupyter notebook created on day one of the AI College for Developers. First of all, create a new `Python 3.8 - AzureML` notebook in your Jupyter notebook.
+
+In the first cell, install the Form Recognizer SDK:
+```bash
+pip install azure-ai-formrecognizer==3.2.0
+```
+
+Then import all necessary libraries:
+```python
+# import libraries
+import os
+from azure.ai.formrecognizer import DocumentAnalysisClient
+from azure.core.credentials import AzureKeyCredential
+```
+
+Find out the API key and endpoint of your Form Recognizer resource using the Azure CLI:
+```bash
+# Get the endpoint for the form recognizer resource
+az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+# Get the endpoint for the form recognizer resource
+az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+```
+
+Afterwards, add this information to the following script and paste it into a new cell in your jupyter notebook:
+```python
+endpoint = "<YOUR-ENDPOINT>"
+key = "<YOUR-API-KEY>"
+```
+
+Finally, paste the following code in a new cell to analyse the invoice. Feel free to use the sample invoice or analyse your own invoice if you prefer. You can do this by editing `invoiceUrl`.
+```python
+def analyze_invoice():
+
+    invoiceUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf"
+
+    document_analysis_client = DocumentAnalysisClient(
+        endpoint=endpoint, credential=AzureKeyCredential(key)
+    )
+
+    poller = document_analysis_client.begin_analyze_document_from_url(
+            "prebuilt-invoice", invoiceUrl)
+    invoices = poller.result()
+
+    for idx, invoice in enumerate(invoices.documents):
+        print("--------Recognizing invoice #{}--------".format(idx + 1))
+        vendor_name = invoice.fields.get("VendorName")
+        if vendor_name:
+            print(
+                "Vendor Name: {} has confidence: {}".format(
+                    vendor_name.value, vendor_name.confidence
+                )
+            )
+        vendor_address = invoice.fields.get("VendorAddress")
+        if vendor_address:
+            print(
+                "Vendor Address: {} has confidence: {}".format(
+                    vendor_address.value, vendor_address.confidence
+                )
+            )
+        customer_name = invoice.fields.get("CustomerName")
+        if customer_name:
+            print(
+                "Customer Name: {} has confidence: {}".format(
+                    customer_name.value, customer_name.confidence
+                )
+            )
+        customer_address = invoice.fields.get("CustomerAddress")
+        if customer_address:
+            print(
+                "Customer Address: {} has confidence: {}".format(
+                    customer_address.value, customer_address.confidence
+                )
+            )
+        invoice_date = invoice.fields.get("InvoiceDate")
+        if invoice_date:
+            print(
+                "Invoice Date: {} has confidence: {}".format(
+                    invoice_date.value, invoice_date.confidence
+                )
+            )
+        invoice_total = invoice.fields.get("InvoiceTotal")
+        if invoice_total:
+            print(
+                "Invoice Total: {} has confidence: {}".format(
+                    invoice_total.value, invoice_total.confidence
+                )
+            )
+        due_date = invoice.fields.get("DueDate")
+        if due_date:
+            print(
+                "Due Date: {} has confidence: {}".format(
+                    due_date.value, due_date.confidence
+                )
+            )
+        billing_address = invoice.fields.get("BillingAddress")
+        if billing_address:
+            print(
+                "Billing Address: {} has confidence: {}".format(
+                    billing_address.value, billing_address.confidence
+                )
+            )
+        billing_address_recipient = invoice.fields.get("BillingAddressRecipient")
+        if billing_address_recipient:
+            print(
+                "Billing Address Recipient: {} has confidence: {}".format(
+                    billing_address_recipient.value,
+                    billing_address_recipient.confidence,
+                )
+            )
+        shipping_address = invoice.fields.get("ShippingAddress")
+        if shipping_address:
+            print(
+                "Shipping Address: {} has confidence: {}".format(
+                    shipping_address.value, shipping_address.confidence
+                )
+            )
+        shipping_address_recipient = invoice.fields.get("ShippingAddressRecipient")
+        if shipping_address_recipient:
+            print(
+                "Shipping Address Recipient: {} has confidence: {}".format(
+                    shipping_address_recipient.value,
+                    shipping_address_recipient.confidence,
+                )
+            )
+        print("Invoice items:")
+        for idx, item in enumerate(invoice.fields.get("Items").value):
+            print("...Item #{}".format(idx + 1))
+            item_description = item.value.get("Description")
+            if item_description:
+                print(
+                    "......Description: {} has confidence: {}".format(
+                        item_description.value, item_description.confidence
+                    )
+                )
+            item_quantity = item.value.get("Quantity")
+            if item_quantity:
+                print(
+                    "......Quantity: {} has confidence: {}".format(
+                        item_quantity.value, item_quantity.confidence
+                    )
+                )
+            unit = item.value.get("Unit")
+            if unit:
+                print(
+                    "......Unit: {} has confidence: {}".format(
+                        unit.value, unit.confidence
+                    )
+                )
+            unit_price = item.value.get("UnitPrice")
+            if unit_price:
+                print(
+                    "......Unit Price: {} has confidence: {}".format(
+                        unit_price.value, unit_price.confidence
+                    )
+                )
+            item_date = item.value.get("Date")
+            if item_date:
+                print(
+                    "......Date: {} has confidence: {}".format(
+                        item_date.value, item_date.confidence
+                    )
+                )
+            amount = item.value.get("Amount")
+            if amount:
+                print(
+                    "......Amount: {} has confidence: {}".format(
+                        amount.value, amount.confidence
+                    )
+                )
+        total_tax = invoice.fields.get("TotalTax")
+        if total_tax:
+            print(
+                "Total Tax: {} has confidence: {}".format(
+                    total_tax.value, total_tax.confidence
+                )
+            )
+        amount_due = invoice.fields.get("AmountDue")
+        if amount_due:
+            print(
+                "Amount Due: {} has confidence: {}".format(
+                    amount_due.value, amount_due.confidence
+                )
+            )
+
+
+if __name__ == "__main__":
+    analyze_invoice()
+
+    print("----------------------------------------")
+```
+
+
 ### Receipt Model
 
 The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-receipt?view=form-recog-3.0.0) combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
