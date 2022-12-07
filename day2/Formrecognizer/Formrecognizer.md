@@ -8,8 +8,8 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 
 ## Here is what you will learn
 
-- Deploy the service
-- Operate the User Interface (Form Recognizer Studio)
+- Deploy the service using Azure CLI
+- Operate the User Interface (Form Recognizer Studio), the SDK and Rest API
 - Utilise Form Recognizer's prebuilt models
 - Build custom models
 
