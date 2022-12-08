@@ -10,7 +10,7 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
-- How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_
+- How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_ with UI and Azure CLI
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
 
@@ -24,6 +24,76 @@ We will cover the following topics in several sections:
 | [Vision](#vision)     | [Face](#face)                                                                                                                                                                                                  | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)                  |
 | [Vision](#vision)     | [Computer Vision](#computer-vision)                                                                                                                                                                            | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)       |
 | [Vision](#vision)     | [Custom Vision](#custom-vision)                                                                                                                                                                                | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/) |
+
+# Cloud Shell - Coding Your Azure Resources
+
+## Why is Cloud Shell aka Azure CLI important?
+
+We want to give you the greatest possible insight into the AI world on Azure. Therefore, we will first deploy the Cognitive Service "Translator" via the UI. After that, all other Cognitive Services will be deployed via the **Azure CLI**, which is why you will find a short introduction in the following text. 
+
+## Here is what you will learn 🎯
+
+- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
+- Use **Cloud Shell** to automate Azure resource creation and configuration.
+
+## Table Of Contents
+
+- [Challenge 2: Cloud Shell - Coding Your Azure Resources](#challenge-2-cloud-shell---coding-your-azure-resources)
+  - [Here is what you will learn 🎯](#here-is-what-you-will-learn-)
+  - [Table Of Contents](#table-of-contents)
+  - [Benefits of the Azure Cloud Shell](#benefits-of-the-azure-cloud-shell)
+  - [Create an Azure Cloud Shell](#create-an-azure-cloud-shell)
+  
+
+## Benefits of the Azure Cloud Shell
+
+Ok - quite impressive what the Azure portal as a single page application allows us to do, isn't it?  
+However sometimes a shell is faster and better for repetitive tasks. But you may not want to install software nor tools for this in your machine.  
+The Azure **Cloud Shell** is a shell | console hosted in your browser window, ready to execute commands to create, delete, modify Azure resources in your subscription.  
+While it is also possible to use PowerShell on your local PC to administer Azure, using the Cloud Shell brings some advantages compared to using your PC.
+
+Using the Cloud Shell saves you time as:
+
+- you do not need to explicitly code the Azure logon within the script - you are already authenticated to Azure via the browser
+- you do not need anything to be installed on your PC. So no more asking [which version of PowerShell and what modules](https://docs.microsoft.com/powershell/azure) are necessary
+
+## Create an Azure Cloud Shell
+
+```
+[Azure Portal]
+-> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
+```
+
+![Cloud Shell](./images/CloudShell.png))
+
+- The Azure Cloud Shell is an in-browser-accessible shell for managing Azure resources.
+- It already has the required SDKs and tools installed to interact with Azure.
+- The Azure Cloud Shell comes in 2 flavors: PowerShell or Bash. When being asked choose PowerShell this time.
+  ![Bash or PowerShell](./images/2variations.png)
+
+- The first time you use the 'Cloud Shell' you will be asked to setup a storage account e.g. to store files you have uploaded persistently. [See](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage)
+
+```
+[Azure Portal] -> Click 'Show advanced settings'
+```
+
+![Cloud Shell Storage Account Setup](./images/CloudShell1.png)
+
+| Name                 | Value               |
+| -------------------- | ------------------- |
+| _Subscription_       | %your subscription% |
+| _Cloud Shell Region_ | e.g. West Europe    |
+| _Resource Group_     | e.g. rg-cloudshell  |
+| _Storage Account_    | %some unique value% |
+| _File Share_         | cloudshell          |
+
+```
+[Azure Portal] -> Create storage
+```
+
+- Once successful your shell should appear at the bottom of the page:
+
+  ![Cloud Shell in the Azure portal](./images/CloudShell2.png)
 
 # Azure Cognitive Services
 
@@ -53,6 +123,8 @@ The world is getting more and more connected and therefore, translation services
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
 Let's get started with using the translator service!
+
+**`Note:`** This is our first Cognitive Service that we are deploying. As mentioned at the beginning, the **Translator** will be the first and only Cognitive Service we deploy using the UI. All other Cognitive Services will be deployed via the Azure CLI. 
 
 First, create a `Translator` API Key in the Azure Portal:
 
@@ -198,81 +270,13 @@ Now let's continue with some of the remaining **Cognitive Services for Language*
 
 Since we first deployed the **Translator** service via the UI, we now create the **Language** service via the **Azure CLI**.
 
-# Cloud Shell - Coding Your Azure Resources
-
-## Here is what you will learn 🎯
-
-- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
-- Use **Cloud Shell** to automate Azure resource creation and configuration.
-
-## Table Of Contents
-
-- [Challenge 2: Cloud Shell - Coding Your Azure Resources](#challenge-2-cloud-shell---coding-your-azure-resources)
-  - [Here is what you will learn 🎯](#here-is-what-you-will-learn-)
-  - [Table Of Contents](#table-of-contents)
-  - [Benefits of the Azure Cloud Shell](#benefits-of-the-azure-cloud-shell)
-  - [Create an Azure Cloud Shell](#create-an-azure-cloud-shell)
-  
-
-## Benefits of the Azure Cloud Shell
-
-Ok - quite impressive what the Azure portal as a single page application allows us to do, isn't it?  
-However sometimes a shell is faster and better for repetitive tasks. But you may not want to install software nor tools for this in your machine.  
-The Azure **Cloud Shell** is a shell | console hosted in your browser window, ready to execute commands to create, delete, modify Azure resources in your subscription.  
-While it is also possible to use PowerShell on your local PC to administer Azure, using the Cloud Shell brings some advantages compared to using your PC.
-
-Using the Cloud Shell saves you time as:
-
-- you do not need to explicitly code the Azure logon within the script - you are already authenticated to Azure via the browser
-- you do not need anything to be installed on your PC. So no more asking [which version of PowerShell and what modules](https://docs.microsoft.com/powershell/azure) are necessary
-
-## Create an Azure Cloud Shell
-
-```
-[Azure Portal]
--> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
-```
-
-![Cloud Shell](./images/CloudShell.png))
-
-- The Azure Cloud Shell is an in-browser-accessible shell for managing Azure resources.
-- It already has the required SDKs and tools installed to interact with Azure.
-- The Azure Cloud Shell comes in 2 flavors: PowerShell or Bash. When being asked choose PowerShell this time.
-  ![Bash or PowerShell](./images/2variations.png)
-
-- The first time you use the 'Cloud Shell' you will be asked to setup a storage account e.g. to store files you have uploaded persistently. [See](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage)
-
-```
-[Azure Portal] -> Click 'Show advanced settings'
-```
-
-![Cloud Shell Storage Account Setup](./images/CloudShell1.png)
-
-| Name                 | Value               |
-| -------------------- | ------------------- |
-| _Subscription_       | %your subscription% |
-| _Cloud Shell Region_ | e.g. West Europe    |
-| _Resource Group_     | e.g. rg-cloudshell  |
-| _Storage Account_    | %some unique value% |
-| _File Share_         | cloudshell          |
-
-```
-[Azure Portal] -> Create storage
-```
-
-- Once successful your shell should appear at the bottom of the page:
-
-  ![Cloud Shell in the Azure portal](./images/CloudShell2.png)
-
-You can have a look on a list of different available Cognitive Services "kinds" with the following command:
+To create and subscribe to a new Cognitive Services resource, use the **az cognitiveservices account create** command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location. You can either get an overview of the different "kinds" of Cognitive Services [here](https://learn.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows), or use the following command:
 
 ```python
 az cognitiveservices account list-kinds
 ```
 
-To create and subscribe to a new Cognitive Services resource, use the **az cognitiveservices account create** command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location:
-
-Let us create a free tier **Language** service with the following command in **Azure CLI**:
+Let us now create a free tier **Language** service with the following command in **Azure CLI**:
 
 ```python
 az cognitiveservices account create --name aidevcollegeLanguage --resource-group <your resource group>  --kind TextAnalytics --sku F0 --location westeurope --yes
