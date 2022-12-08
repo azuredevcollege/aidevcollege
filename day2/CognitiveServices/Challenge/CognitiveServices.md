@@ -279,9 +279,22 @@ This time we will use the Python SDK to use this service. Let's start with insta
 pip install azure-ai-textanalytics
 ```
 
-Get the key and the region under the section _Keys and Endpoint_ from the Azure portal:
+There are two approaches to get the key and the region of your Cognitive Service ressource.
+
+1. under the section _Keys and Endpoint_ from the Azure portal:
 
 ![Azure Portal: Key and URL](./images/keyendpoint.png)
+
+2. Use the **Azure CLI** with the follwing code:
+
+- Get the key:
+```pyhton
+az cognitiveservices account keys list --name <your resource-name> --resource-group <your resource-group-name>
+```
+- Get the endpoint:
+```python
+az cognitiveservices account show --name <your resource-name> --resource-group <your resource-group-name> --query "properties.endpoint"
+```
 
 In a next step, we need to create a client object ([TextAnalyticsClient](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-textanalytics/latest/azure.ai.textanalytics.html#azure.ai.textanalytics.TextAnalyticsClient)). Copy the code with the **filled in key and region** into a new cell in your notebook. We will reuse the client object for all following tasks concerning the language service.
 
@@ -609,7 +622,17 @@ az cognitiveservices account create --name aidevcollegespeech --resource-group <
 **`Hint:`** If you have already created a **Speech** service with SKU F0, please use SKU S0!
 #
 
-You can find your API key under the service, then `Keys`.
+You can find your API key under the service, then `Keys`, or get it via **Azure CLI**:
+
+- Get the key:
+```pyhton
+az cognitiveservices account keys list --name <your resource-name> --resource-group <your resource-group-name>
+```
+- Get the endpoint:
+```python
+az cognitiveservices account show --name <your resource-name> --resource-group <your resource-group-name> --query "properties.endpoint"
+```
+
 
 ## Text-to-Speech
 
