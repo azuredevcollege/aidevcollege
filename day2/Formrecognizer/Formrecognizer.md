@@ -310,6 +310,12 @@ Do not label one of the documents and delete it. We will need this file for test
 
 Now that you have tried a selection of Form Recognizer models, you might be wondering which is the right one for your use case. This [table](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0#which-form-recognizer-model-should-i-use) will give you an overview of which model to use.
 
+## What we have done so far:
+
+- We deployed Azure Form Recognizer using Azure CLI.
+- We tried out different models using the Python SDK, Rest API and Form Recognizer studio.
+- We trained a custom Form Recognizer model using the UI.
+
 In a next step, we want to see how the cognitive services can be embedded into an application.
 
 :zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
