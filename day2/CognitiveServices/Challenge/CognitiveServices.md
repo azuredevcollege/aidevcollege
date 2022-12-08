@@ -654,7 +654,7 @@ Once the SDK is installed, please restart the kernel. After that we can write ou
 import azure.cognitiveservices.speech as speechsdk # import the speech sdk
 import IPython.display as ipd # import IPython.display to display the audio output
 
-speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_RESOURCE_LOCATION")
+speech_config = speechsdk.SpeechConfig(subscription="YOUR_API_KEY", region="YOUR_RESOURCE_LOCATION")
 
 def to_file():
   speech_config.speech_synthesis_language = "en-US"
