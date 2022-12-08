@@ -52,6 +52,7 @@ You will be trying this out using the User Interface - Form Recognizer Studio.
 1. Go to the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio) and click on _Read_.
 1. In the pop-up window, select your Azure subscription, resource group and Form Recognizer resource.
 </br>
+
 ![Screenshot of selecting Form Recognizer resource in Form Recognizer studio](img/00Formrecognizer.png)
 
 1. You can analyse the sample document or upload your own sample.
@@ -62,7 +63,7 @@ It is also possible to utilise the Form Recognizer APIs using the SDK or RestAPI
 
 ### Invoice Model 
 
-The Form Recognizer [invoice model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-invoice?view=form-recog-3.0.0) combines powerful Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The Form Recognizer invoice model combines powerful Optical Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs.
+The Form Recognizer [invoice model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-invoice?view=form-recog-3.0.0) combines powerful Character Recognition (OCR) capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The Form Recognizer invoice model combines powerful OCR capabilities with invoice understanding models to analyze and extract key fields and line items.
 
 You can reuse the Jupyter notebook created on day one of the AI College for Developers. First of all, create a new `Python 3.8 - AzureML` notebook in your Jupyter notebook.
 
@@ -258,7 +259,7 @@ if __name__ == "__main__":
 
 ### Optional: Receipt Model
 
-The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-receipt?view=form-recog-3.0.0) combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
+The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-receipt?view=form-recog-3.0.0) combines powerful OCR capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
 
 Please not that the receipt model does currently not support German language receipts.
 
