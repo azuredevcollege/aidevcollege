@@ -264,6 +264,26 @@ Please not that the receipt model does currently not support German language rec
 
 This time we will perform simple Rest API calls to utilise the API. To receive a response from the API, there are two requests necessary - POST request to send the receipt and receive the resultId and a GET request to receive the analyse result.
 
+1. To perform the POST request go to the [https://westus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-2022-08-31/operations/AnalyzeDocument](Swagger).
+1. Scroll down and select your resource region, e.g. West Europe.
+1. As _Host_ select `*.cognitiveservices.azure.com` and as modelId `prebuilt-receipt`.
+1. Paste the Form Recognizer API key in `Ocp-Apim-Subscription-Key`.
+1. Paste a link to an image of a receipt into the Request body, for example:
+    ```
+    "urlSource": "https://th.bing.com/th/id/OIP.ewjJ7_G84w9uE6-6ZQAvEAHaQk?pid=ImgDet&rs=1"
+    ```
+1. Hit `Send`
+    ![Example of which data to input where](img/01Formrecognizer.png)
+1. Copy the `apim-request-id` from the response.
+1. Go to the [https://westus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-2022-08-31/operations/GetAnalyzeDocumentResult](Swagger) to perform the GET request.
+1. Select your resource region.
+1. Type `prebuilt-receipt` in modelId.
+1. Paste the previously copied `apim-request-id` in resultId.
+1. Input the resource's API key again.
+1. Hit Send
+
+You should now receive a JSON response showing the information on the receipt.
+
 ### Custom Model
 
 With Form Recognizer, you can use prebuilt or pre-trained models, of which we have introduced you to some previously. Moreover, you can train standalone [custom models](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-custom?view=form-recog-3.0.0). Custom models extract and analyze distinct data and use cases from forms and documents specific to your business.
