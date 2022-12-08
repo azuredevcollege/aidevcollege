@@ -52,12 +52,12 @@ Using the Cloud Shell saves you time as:
 -> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
 ```
 
-![Cloud Shell](./images/CloudShell.png))
+![example of how to access Cloud Shell via Azure Portal](./images/CloudShell.png))
 
 - The Azure Cloud Shell is an in-browser-accessible shell for managing Azure resources.
 - It already has the required SDKs and tools installed to interact with Azure.
 - The Azure Cloud Shell comes in 2 flavors: PowerShell or Bash. When being asked choose PowerShell this time.
-  ![Bash or PowerShell](./images/2variations.png)
+  ![example of how to choose between Bash or PowerShell](./images/2variations.png)
 
 - The first time you use the 'Cloud Shell' you will be asked to setup a storage account e.g. to store files you have uploaded persistently. [See](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage)
 
@@ -65,7 +65,7 @@ Using the Cloud Shell saves you time as:
 [Azure Portal] -> Click 'Show advanced settings'
 ```
 
-![Cloud Shell Storage Account Setup](./images/CloudShell1.png)
+![shows the Cloud Shell Storage Account Setup you need to work with Azure CLI](./images/CloudShell1.png)
 
 | Name                 | Value               |
 | -------------------- | ------------------- |
@@ -81,7 +81,7 @@ Using the Cloud Shell saves you time as:
 
 - Once successful your shell should appear at the bottom of the page:
 
-  ![Cloud Shell in the Azure portal](./images/CloudShell2.png)
+  ![shows an example image of Cloud Shell in the Azure portal](./images/CloudShell2.png)
 
 # Azure Cognitive Services
 
