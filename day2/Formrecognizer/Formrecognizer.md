@@ -256,7 +256,7 @@ if __name__ == "__main__":
 ```
 
 
-### Receipt Model
+### Optional: Receipt Model
 
 The Form Recognizer [receipt model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-receipt?view=form-recog-3.0.0) combines powerful Optical Character Recognition (OCR) capabilities with deep learning models to analyze and extract key information from sales receipts. Receipts can be of various formats and quality including printed and handwritten receipts. The API extracts key information such as merchant name, merchant phone number, transaction date, tax, and transaction total and returns structured JSON data.
 
@@ -286,8 +286,26 @@ You should now receive a JSON response showing the information on the receipt.
 
 ### Custom Model
 
-With Form Recognizer, you can use prebuilt or pre-trained models, of which we have introduced you to some previously. Moreover, you can train standalone [custom models](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-custom?view=form-recog-3.0.0). Custom models extract and analyze distinct data and use cases from forms and documents specific to your business.
+With Form Recognizer, you can use prebuilt or pre-trained models, of which we have introduced you to some previously.
 
-_Perform in studio_
+Moreover, you can train standalone [custom models](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-custom?view=form-recog-3.0.0). Custom models extract and analyze distinct data and use cases from forms and documents specific to your business.
+
+We will train our own custom model using the Form Recognizer Studio.
+
+1. Download some sample training data from [here](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/blob/master/curl/form-recognizer/1040-training-data.zip) and unzip it or use your own sample forms for training.
+1. Go into the [studio](https://formrecognizer.appliedai.azure.com/studio?source=azureportal) and Select `Custom model`.
+1. Select the `Create a project` button.
+1. Provide a name for your project and select `continue`.
+1. On the next step, choose your Subscription and Form Recognizer resource.
+1. Select or create a Storage account.
+1. Review your project settings and select `Create Project`.
+1. Next you want to label your data. To start labeling your dataset, you first need to upload the sample data by selecting `Browse for a file`.
+1. Now, you need to label the sample data as shown in the screenshot below:
+![Screenshot of labeling section](img/03Formrecognizer.png)
+Do not label one of the documents and delete it. We will need this file for testing purposes.
+1. Hit the `Train` button, enter a model name and select `Template` as Build Mode.
+1. After a few minutes, the training should be completed and you can see how high the accuracy of your model is. The more training data you use, the higher the accuracy will get.
+1. Select `Test` and upload the file which you didn't use for training.
+1. Hit the `Analyze` button and check out the result.
 
 Now that you have tried a selection of Form Recognizer models, you might be wondering which is the right one for your use case. This [table](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0#which-form-recognizer-model-should-i-use) will give you an overview of which model to use.
