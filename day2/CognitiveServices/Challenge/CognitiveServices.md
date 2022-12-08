@@ -167,22 +167,22 @@ This should be the result:
 
 [Here](./postman/) you will find 2 Postman collections we have created for you for the Translator API and Text Analytics API. 
 
-[Download Postman](https://app.getpostman.com/app/download/win64) and _Import_ the Translation file. After the import is done it should look like this. 
-![Postman after import](./images/02_postman_import.png)
+[Download Postman](https://app.getpostman.com/app/download/win64) and _Import_ the Translation file.
 
 Now go to _Environments_ and create an environment for the Translator API.
 
 - Create a  variable called "api_key", select "secret" as a type, and paste your API key from the portal.
+- Create a variable called "location" with the location you chose for the Translator service (e.g., westeurope)
 
 ![Postman environments](./images/02_postman_create_environments.png)
 
 Finally, assign the environment created to the Translator collection. 
 
-![Postman environment assign](./images/02_environmen_select_translator.png).
+![Postman environment assign](./images/02_postman_selectenvironment.png).
 
 Now, you can play around with the APIs! You can select the different services from the collections tab and click on "Send" to send a request. At the bottom, you should receive a response. You can also change the Parameters to check out different languages, or you can change the body to try out other texts. 
 
-![Postman response](./images/02_postman_result.png)
+![Postman response](./images/02_postman_result_translatorapi.png)
 
 
 
@@ -501,19 +501,17 @@ We can repeat the previous steps to do the same for the Text Analytics API in Po
 
 [Here](./postman/) you will find the Postman collections we have created for you for the Translation and Text Analytics API. 
 
-- Download the Text Analytics file and  _Import_ it to your Postman. After the import is done it should look like this. 
+- Download the Text Analytics file and  _Import_ it to your Postman. 
 - Create an  _Environment_ for the Text Analytics API.
 - Add only the api_key variable. Set it as "secret" and paste the key for that service as found in the portal.
-
-![Postman environments](./images/02_postman_create_environments.png)
-
 - Finally, assign the environment created to the respective collection. 
 
-![Postman environment assign](./images/02_environment_select.png).
+![Postman environment assign](./images/02_selectenvironment_textapi.png).
 
 Try the different APIs!
 
-![Postman response](./images/02_postman_result.png)
+Note: the Text Analytics API has several optional parameters. You can untick those boxes in order to try out the API.
+
 
 So far, we have covered the Language pillar of the Cognitive Services such as Translation. In a next step, we will look at the pillar _Speech_.
 
