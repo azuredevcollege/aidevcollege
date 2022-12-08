@@ -277,7 +277,9 @@ Let us create a free tier **Language** service with the following command in **A
 ```python
 az cognitiveservices account create --name aidevcollegeLanguage --resource-group <your resource group>  --kind TextAnalytics --sku F0 --location westeurope --yes
 ```
-
+#
+**`Hint:`** If you have already created a **Language** service with SKU F0, please use SKU S0!
+#
 
 This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Switch to your VM (or whatever you are using) and copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
 
@@ -608,8 +610,12 @@ This time, we will use the Python SDK for using the service.
 First, we need to deploy a **Speech** service with **Azure CLI**:
 
 ```python
-az cognitiveservices account create --name aidevcollegespeech --resource-group our resource group  --kind SpeechServices --sku F0 --location westeurope --yes
+az cognitiveservices account create --name aidevcollegespeech --resource-group <your resource group>  --kind SpeechServices --sku F0 --location westeurope --yes
 ```
+
+#
+**`Hint:`** If you have already created a **Speech** service with SKU F0, please use SKU S0!
+#
 
 You can find your API key under the service, then `Keys`.
 
@@ -729,8 +735,11 @@ In this section, we will concentrate on the service's OCR capabilities. It can e
 First, create a `Computer Vision` API Key with **Azure CLI**:
 
 ```python
-az cognitiveservices account create --name aidevcollege-CV --resource-group our resource group  --kind ComputerVision --sku F0 --location westeurope --yes
+az cognitiveservices account create --name aidevcollege-CV --resource-group <your resource group>  --kind ComputerVision --sku F0 --location westeurope --yes
 ```
+#
+**`Hint:`** If you already created a **Computer Vision** API Key with SKU F0, please use SKU S0!
+#
 
 As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
