@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b51c1a44-2fb1-47fa-a07d-811cd94a7ecb",
+		"_postman_id": "fe967ea5-edcf-4a79-845e-2748b1de77b5",
 		"name": "Translator API (v3.0)",
 		"description": "Microsoft Translator Text API is a cloud-based machine translation service. With this API you can translate text in near real-time from any app or service through a simple REST API call. The API uses the most modern neural machine translation technology, as well as offering statistical machine translation technology. ",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -21,7 +21,11 @@
 						"value": "{{api_key}}",
 						"type": "text"
 					},
-					
+					{
+						"key": "Ocp-Apim-Subscription-Region",
+						"value": "{{location}}",
+						"type": "text"
+					}
 				],
 				"url": {
 					"raw": "https://api.cognitive.microsofttranslator.com/languages?api-version=3.0&scope=translation",
@@ -52,6 +56,9 @@
 		},
 		{
 			"name": "Translation",
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
 			"request": {
 				"method": "POST",
 				"header": [
@@ -63,15 +70,19 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Region",
+						"value": "{{location}}",
+						"type": "text"
 					}
-			
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "[\n    {\"Text\":\"I want to order 4 pizza Magarita and 8 beer!\"},\n    {\"Text\":\"Please add 42 salads to the order!\"}\n]"
 				},
 				"url": {
-					"raw": "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=it,de",
+					"raw": "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=it,de,es",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -93,7 +104,7 @@
 						},
 						{
 							"key": "to",
-							"value": "it,de"
+							"value": "it,de,es"
 						}
 					]
 				},
@@ -114,15 +125,19 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Region",
+						"value": "{{location}}",
+						"type": "text"
 					}
-			
 				],
 				"body": {
 					"mode": "raw",
 					"raw": "[\n    {\"Text\":\"こんにちは\"},\n    {\"Text\":\"さようなら\"}\n]"
 				},
 				"url": {
-					"raw": "https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0&language=ja&fromScript=jpan&toScript=latn",
+					"raw": "https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0&language=ja&fromScript=jpan&toScript=latn&Ocp-Apim-Subscription-Key={{api_key}}",
 					"protocol": "https",
 					"host": [
 						"api",
@@ -149,6 +164,10 @@
 						{
 							"key": "toScript",
 							"value": "latn"
+						},
+						{
+							"key": "Ocp-Apim-Subscription-Key",
+							"value": "{{api_key}}"
 						}
 					]
 				},
@@ -169,8 +188,12 @@
 						"key": "Ocp-Apim-Subscription-Key",
 						"value": "{{api_key}}",
 						"type": "text"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Region",
+						"value": "{{location}}",
+						"type": "text"
 					}
-				
 				],
 				"body": {
 					"mode": "raw",
