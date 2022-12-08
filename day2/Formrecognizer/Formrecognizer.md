@@ -27,7 +27,7 @@ Like in the challenges before, open the cloud shell in the Azure portal. To ensu
 Next copy the following command, edit the needed information and paste the command into your cloud shell.
 
 ```bash
-az cognitiveservices account create --name 'formrecognizer'-$prefix --resou
+az cognitiveservices account create --name <NAME OF RESOURCE> --resou
 rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
 ```
 **Hint**: In case you have already created a Form Recognizer resource with the free tier (F0) previously, change the sku to "S0".
@@ -35,7 +35,7 @@ rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --locatio
 Now we need to get the key and endpoint of our resource.
 
 ```bash
-az cognitiveservices account keys list --name 'formrecognizer'-$prefix --resource-group <NAME OF YOUR RESOURCE GROUP>
+az cognitiveservices account keys list --name <NAME OF RESOURCE> --resource-group <NAME OF YOUR RESOURCE GROUP>
 ```
 
 
