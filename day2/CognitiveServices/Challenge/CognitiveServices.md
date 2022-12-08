@@ -1018,6 +1018,9 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 - We called those Cognitive Service REST APIs by using Python.
 - We trained custom machine learning models (e.g. Custom Vision) using a UI.
 
+In a next step, we will try out the Azure Form Recognizer, which helps you extract text, tables, structure, and key-value pairs from documents.
+
+:zap: Let's go to **[AI Developer College Day2 - Form Recognizer](../CognitiveServices/Challenge/Formrecognizer.md)**!
 
 ## House Keeping: Lab Cleanup
 
