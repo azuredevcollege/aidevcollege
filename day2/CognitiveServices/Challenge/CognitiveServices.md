@@ -1014,7 +1014,7 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 ## What we have done so far:
 
-- We deployed several Cognitive Services using the Azure Portal.
+- We deployed several Cognitive Services using the Azure Portal and the Azure CLI.
 - We called those Cognitive Service REST APIs by using Python.
 - We trained custom machine learning models (e.g. Custom Vision) using a UI.
 
