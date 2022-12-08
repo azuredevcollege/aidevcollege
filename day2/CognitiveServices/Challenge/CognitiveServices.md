@@ -10,6 +10,8 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
+- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
+- Use **Cloud Shell** to automate Azure resource creation and configuration. 
 - How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_ with UI and Azure CLI
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
@@ -18,32 +20,18 @@ We will cover the following topics in several sections:
 
 | Pillar                | API Service (section)                                                                                                                                                                                          | Documentation                                                                                     |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|[Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)  | - | [Documentation](https://learn.microsoft.com/en-us/azure/cloud-shell/overview) |
 | [Language](#language) | [Translator](#translator)                                                                                                                                                                                      | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/)            |
 | [Language](#language) | [Language Service](#language-service): [Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking) | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/)      |
 | [Speech](#speech)     | [Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)                                                                                                                                           | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)        |
-| [Vision](#vision)     | [Face](#face)                                                                                                                                                                                                  | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)                  |
 | [Vision](#vision)     | [Computer Vision](#computer-vision)                                                                                                                                                                            | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)       |
 | [Vision](#vision)     | [Custom Vision](#custom-vision)                                                                                                                                                                                | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/) |
 
-# Cloud Shell - Coding Your Azure Resources
-
-## Why is Cloud Shell aka Azure CLI important?
+# Why is Cloud Shell aka Azure CLI important?
 
 We want to give you the greatest possible insight into the AI world on Azure. Therefore, we will first deploy the Cognitive Service "Translator" via the UI. After that, all other Cognitive Services will be deployed via the **Azure CLI**, which is why you will find a short introduction in the following text. 
 
-## Here is what you will learn 🎯
-
-- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
-- Use **Cloud Shell** to automate Azure resource creation and configuration.
-
-## Table Of Contents
-
-- [Challenge 2: Cloud Shell - Coding Your Azure Resources](#challenge-2-cloud-shell---coding-your-azure-resources)
-  - [Here is what you will learn 🎯](#here-is-what-you-will-learn-)
-  - [Table Of Contents](#table-of-contents)
-  - [Benefits of the Azure Cloud Shell](#benefits-of-the-azure-cloud-shell)
-  - [Create an Azure Cloud Shell](#create-an-azure-cloud-shell)
-  
+## Cloud Shell - Coding Your Azure Resources 
 
 ## Benefits of the Azure Cloud Shell
 
