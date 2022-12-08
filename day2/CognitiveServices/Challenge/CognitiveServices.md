@@ -1014,13 +1014,10 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 ## What we have done so far:
 
-- We deployed several Cognitive Services using the Azure Portal
-- We called those Cognitive Service REST APIs by using Python
-- We trained custom machine learning models (e.g. Custom Vision) using an UI
+- We deployed several Cognitive Services using the Azure Portal.
+- We called those Cognitive Service REST APIs by using Python.
+- We trained custom machine learning models (e.g. Custom Vision) using a UI.
 
-In a next step, we want to see how the cognitive services can be embedded into an application.
-
-:zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
 
 ## House Keeping: Lab Cleanup
 
