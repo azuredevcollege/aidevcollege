@@ -309,3 +309,11 @@ Do not label one of the documents and delete it. We will need this file for test
 1. Hit the `Analyze` button and check out the result.
 
 Now that you have tried a selection of Form Recognizer models, you might be wondering which is the right one for your use case. This [table](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/overview?view=form-recog-3.0.0#which-form-recognizer-model-should-i-use) will give you an overview of which model to use.
+
+## House Keeping: Lab Cleanup
+
+Remove the sample resource group at the end of the day.
+
+```shell
+$ az group delete -n <yourResourceGroupName>
+```

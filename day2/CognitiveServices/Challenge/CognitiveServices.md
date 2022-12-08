@@ -1030,6 +1030,3 @@ Remove the sample resource group at the end of the day.
 $ az group delete -n <yourResourceGroupName>
 ```
 
-## Optional: Play around with the: Intelligent Kiosk
-
-Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)
