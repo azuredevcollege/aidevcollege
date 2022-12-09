@@ -13,11 +13,6 @@ Form recognizer comes with a selection of prebuilt models. It is also possible t
 - Utilise Form Recognizer's prebuilt models
 - Build custom models
 
-## Challenges
-
-1. Create Form Recognizer resource: westeurope, pricing tier free F0
-1. Get key and endpoint
-
 ## Create Form Recognizer resource
 
 Before we can start using Form Recognizer, we first need to deploy the resource in Azure. We will do this using the Azure CLI.
@@ -27,16 +22,23 @@ Like in the challenges before, open the cloud shell in the Azure portal. To ensu
 Next copy the following command, edit the needed information and paste the command into your cloud shell.
 
 ```bash
-az cognitiveservices account create --name <NAME OF RESOURCE> --resou
-rce-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
+az cognitiveservices account create --name <NAME OF RESOURCE> --resource-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
 ```
 **Hint**: In case you have already created a Form Recognizer resource with the free tier (F0) previously, change the sku to "S0".
 
 Now we need to get the key and endpoint of our resource.
 
 ```bash
-az cognitiveservices account keys list --name <NAME OF RESOURCE> --resource-group <NAME OF YOUR RESOURCE GROUP>
+# Get the keys for the form recognizer resource
+az cognitiveservices account keys list --name "resource-name" --resource-group "resource-group-name" 
 ```
+
+```bash
+# Get the endpoint for the form recognizer resource
+az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+```
+
+Copy the one of the keys and the endpoint and paste it into a notepad in order to use them later.
 
 
 ## Form Recognizer model types
@@ -47,7 +49,7 @@ As mentioned before, Form Recognizer has a selection of models you can leverage.
 
 The [Form Recognizer Read Optical Character Recognition (OCR) Model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-read?view=form-recog-3.0.0) extracts printed and handwritten text from PDF documents and scanned images. It detects paragraphs, text lines, words, locations, and languages. The read model is the underlying OCR engine for other Form Recognizer prebuilt models like Layout, General Document, Invoice, Receipt, Identity (ID) document, in addition to custom models.
 
-You will be trying this out using the User Interface - Form Recognizer Studio.
+You will be trying out the Read OCR model using the User Interface - Form Recognizer Studio.
 
 1. Go to the [Form Recognizer Studio](https://formrecognizer.appliedai.azure.com/studio) and click on _Read_.
 1. In the pop-up window, select your Azure subscription, resource group and Form Recognizer resource.
@@ -82,13 +84,16 @@ from azure.core.credentials import AzureKeyCredential
 
 Find out the API key and endpoint of your Form Recognizer resource using the Azure CLI:
 ```bash
-# Get the endpoint for the form recognizer resource
-az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+# Get the keys for the form recognizer resource
+az cognitiveservices account keys list --name "resource-name" --resource-group "resource-group-name" 
+```
+
+```bash
 # Get the endpoint for the form recognizer resource
 az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
 ```
 
-Afterwards, add this information to the following script and paste it into a new cell in your jupyter notebook:
+Afterwards, copy one of the two keys and the endpoint and paste them to the following script. Then paste the script into a new cell in your jupyter notebook:
 ```python
 endpoint = "<YOUR-ENDPOINT>"
 key = "<YOUR-API-KEY>"
@@ -267,7 +272,7 @@ This time we will perform simple Rest API calls to utilise the API. To receive a
 
 1. To perform the POST request go to the [Swagger](https://westus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-2022-08-31/operations/AnalyzeDocument).
 1. Scroll down and select your resource region, e.g. West Europe.
-1. As _Host_ select `*.cognitiveservices.azure.com` and as modelId `prebuilt-receipt`.
+1. As _Host Name_ select `RESOURCE-REGION.api.cognitive.microsoft.com`, e.g. `westeurope.api.cognitive.microsoft.com` and as modelId `prebuilt-receipt`.
 1. Paste the Form Recognizer API key in `Ocp-Apim-Subscription-Key`.
 1. Paste a link to an image of a receipt into the Request body, for example:
     ```
@@ -275,9 +280,9 @@ This time we will perform simple Rest API calls to utilise the API. To receive a
     ```
 1. Hit `Send`
     ![Example of which data to input where](img/01Formrecognizer.png)
-1. Copy the `apim-request-id` from the response.
-1. Go to the [Swagger](https://westus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-2022-08-31/operations/GetAnalyzeDocumentResult) to perform the GET request.
-1. Select your resource region.
+1. Copy the `apim-request-id` from the response. This is the resultId, which we need for the GET request.
+1. Go to the [Swagger](https://westus.dev.cognitive.microsoft.com/docs/services/form-recognizer-api-2022-08-31/operations/GetAnalyzeDocumentResult) to perform the GET request and select your resource region again.
+1. Select `RESOURCE-REGION.api.cognitive.microsoft.com`, e.g. `westeurope.api.cognitive.microsoft.com`
 1. Type `prebuilt-receipt` in modelId.
 1. Paste the previously copied `apim-request-id` in resultId.
 1. Input the resource's API key again.
