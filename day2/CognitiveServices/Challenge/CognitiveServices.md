@@ -1024,7 +1024,7 @@ In a next step, we will try out the Azure Form Recognizer, which helps you extra
 
 ## House Keeping: Lab Cleanup
 
-Remove the sample resource group at the end of the day.
+Remove the sample resource group at the end of the day. Don't remove it for now as you will be reusing the resources in the next challenge.
 
 ```shell
 $ az group delete -n <yourResourceGroupName>

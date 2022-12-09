@@ -22,7 +22,7 @@ Like in the challenges before, open the cloud shell in the Azure portal. To ensu
 Next copy the following command, edit the needed information and paste the command into your cloud shell.
 
 ```bash
-az cognitiveservices account create --name <NAME OF RESOURCE> --resource-group <NAME OF YOUR RESOURCE GROUP> --kind FormRecognizer --sku F0 --location westeurope
+az cognitiveservices account create --name <RESOURCE-NAME> --resource-group <RESOURCE-GROUP-NAME> --kind FormRecognizer --sku F0 --location westeurope
 ```
 **Hint**: In case you have already created a Form Recognizer resource with the free tier (F0) previously, change the sku to "S0".
 
@@ -30,12 +30,12 @@ Now we need to get the key and endpoint of our resource.
 
 ```bash
 # Get the keys for the form recognizer resource
-az cognitiveservices account keys list --name "resource-name" --resource-group "resource-group-name" 
+az cognitiveservices account keys list --name <RESOURCE-NAME> --resource-group <RESOURCE-GROUP-NAME> 
 ```
 
 ```bash
 # Get the endpoint for the form recognizer resource
-az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+az cognitiveservices account show --name <RESOURCE-NAME> --resource-group <RESOURCE-GROUP-NAME> --query "properties.endpoint"
 ```
 
 Copy the one of the keys and the endpoint and paste it into a notepad in order to use them later.
@@ -67,7 +67,7 @@ It is also possible to utilise the Form Recognizer APIs using the SDK or RestAPI
 
 The Form Recognizer [invoice model](https://learn.microsoft.com/en-us/azure/applied-ai-services/form-recognizer/concept-invoice?view=form-recog-3.0.0) combines powerful OCR capabilities with invoice understanding models to analyze and extract key fields and line items from sales invoices. Invoices can be of various formats and quality including phone-captured images, scanned documents, and digital PDFs. The Form Recognizer invoice model combines powerful OCR capabilities with invoice understanding models to analyze and extract key fields and line items.
 
-You can reuse the Jupyter notebook created on day one of the AI College for Developers. First of all, create a new `Python 3.8 - AzureML` notebook in your Jupyter notebook.
+You can reuse the Jupyter notebook created on day one of the AI College for Developers. First of all, create a new `Python 3.8 - AzureML` notebook in your Jupyter notebook. For this challenge, we will be using Form Recognizer's Python SDK.
 
 In the first cell, install the Form Recognizer SDK:
 ```bash
@@ -85,12 +85,12 @@ from azure.core.credentials import AzureKeyCredential
 Find out the API key and endpoint of your Form Recognizer resource using the Azure CLI:
 ```bash
 # Get the keys for the form recognizer resource
-az cognitiveservices account keys list --name "resource-name" --resource-group "resource-group-name" 
+az cognitiveservices account keys list --name <RESOURCE-NAME> --resource-group <RESOURCE-GROUP-NAME> 
 ```
 
 ```bash
 # Get the endpoint for the form recognizer resource
-az cognitiveservices account show --name "resource-name" --resource-group "resource-group-name" --query "properties.endpoint"
+az cognitiveservices account show --name <RESOURCE-NAME> --resource-group <RESOURCE-GROUP-NAME> --query "properties.endpoint"
 ```
 
 Afterwards, copy one of the two keys and the endpoint and paste them to the following script. Then paste the script into a new cell in your jupyter notebook:
@@ -328,7 +328,7 @@ In a next step, we want to see how the cognitive services can be embedded into a
 
 ## House Keeping: Lab Cleanup
 
-Remove the sample resource group at the end of the day.
+Remove the sample resource group at the end of the day. Don't remove it for now as you will be reusing the resources in the next challenge.
 
 ```shell
 $ az group delete -n <yourResourceGroupName>
