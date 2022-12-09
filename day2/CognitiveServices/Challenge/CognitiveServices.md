@@ -1027,22 +1027,19 @@ If we go to the `Performance` tab, we can get the `Prediction URL` and the `Pred
 
 ## What we have done so far:
 
-- We deployed several Cognitive Services using the Azure Portal
-- We called those Cognitive Service REST APIs by using Python
-- We trained custom machine learning models (e.g. Custom Vision) using an UI
+- We deployed several Cognitive Services using the Azure Portal and the Azure CLI.
+- We called those Cognitive Service REST APIs by using Python.
+- We trained custom machine learning models (e.g. Custom Vision) using a UI.
 
-In a next step, we want to see how the cognitive services can be embedded into an application.
+In a next step, we will try out the Azure Form Recognizer, which helps you extract text, tables, structure, and key-value pairs from documents.
 
-:zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
+:zap: Let's go to **[AI Developer College Day2 - Form Recognizer](../../Formrecognizer/Formrecognizer.md)**!
 
 ## House Keeping: Lab Cleanup
 
-Remove the sample resource group at the end of the day.
+Remove the sample resource group at the end of the day. Don't remove it for now as you will be reusing the resources in the next challenge.
 
 ```shell
 $ az group delete -n <yourResourceGroupName>
 ```
 
-## Optional: Play around with the: Intelligent Kiosk
-
-Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)
