@@ -114,9 +114,7 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 
 ![alt text](media/tutorial-train-deploy-notebook/clone-tutorials.png "Screenshot that shows the Clone tutorials folder.")
 
-    :::image type="content" source="media/tutorial-train-deploy-notebook/clone-tutorials.png" alt-text="Screenshot that shows the Clone tutorials folder.":::
-
-1. A list of folders shows each user who accesses the workspace. Select your folder to clone the **tutorials**  folder there.
+7. A list of folders shows each user who accesses the workspace. Select your folder to clone the **tutorials**  folder there.
 
 ## Open the cloned notebook
 
@@ -126,16 +124,12 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 
 ![alt text](media/tutorial-train-deploy-notebook/expand-folder.png "Screenshot shows the Open tutorials folder.")
 
-    :::image type="content" source="media/tutorial-train-deploy-notebook/expand-folder.png" alt-text="Screenshot shows the Open tutorials folder.":::
-
 ## Install packages
 
 Once the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
 
 1. At the top of the notebook, add a code cell.
 ![alt text](media/tutorial-train-deploy-notebook/add-code-cell.png "Screenshot of add code cell for notebook.")
-
-    :::image type="content" source="media/tutorial-train-deploy-notebook/add-code-cell.png" alt-text="Screenshot of add code cell for notebook.":::
 
 1. Add the following into the cell and then run the cell, either by using the **Run** tool or by using **Shift+Enter**.
 
@@ -150,8 +144,7 @@ You may see a few install warnings.  These can safely be ignored.
 
 This tutorial and accompanying **utils.py** file is also available on [GitHub](https://github.com/Azure/MachineLearningNotebooks/tree/master/tutorials) if you wish to use it on your own [local environment](how-to-configure-environment-v1.md). If you aren't using the compute instance, add `%pip install azureml-sdk[notebooks] azureml-opendatasets matplotlib` to the install above.
 
-> [!Important]
-> The rest of this article contains the same content as you see in the notebook.  
+> **The rest of this training contains the same content as you see in the notebook.**  
 >
 > Switch to the Jupyter Notebook now if you want to run the code while you read along.
 > To run a single code cell in a notebook, click the code cell and hit **Shift+Enter**. Or, run the entire notebook by choosing **Run all** from the top toolbar.
@@ -239,8 +232,8 @@ plt.show()
 ```
 The code above displays a random set of images with their labels, similar to this:
 
-![alt text](media/tutorial-train-deploy-notebook/image-data-with-labels.png "Sample images with their labels.)
-:::image type="content" source="media/tutorial-train-deploy-notebook/image-data-with-labels.png" alt-text="Sample images with their labels.":::
+![alt text](media/tutorial-train-deploy-notebook/image-data-with-labels.png "Sample images with their labels.")
+
 
 ## Train model and log metrics with MLflow
 
@@ -248,8 +241,7 @@ You'll train the model using the code below. Note that you are using MLflow auto
 
 You'll be using the [LogisticRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html) classifier from the [SciKit Learn framework](https://scikit-learn.org/) to classify the data.
 
-> [!NOTE]
-> The model training takes approximately 2 minutes to complete.**
+> **The model training takes approximately 2 minutes to complete.**
 
 
 ```python
@@ -333,8 +325,8 @@ aciconfig = AciWebservice.deploy_configuration(
 
 This next code cell deploys the model to Azure Container Instance.
 
-> [!NOTE]
-> The deployment takes approximately 3 minutes to complete.**
+
+> **The deployment takes approximately 3 minutes to complete.**
 
 
 ```python
