@@ -401,7 +401,7 @@ If you want to control cost further, stop the compute instance by selecting the 
 
 Use these steps to delete your Azure Machine Learning workspace and all compute resources.
 
-[!INCLUDE [aml-delete-resource-group](../../../includes/aml-delete-resource-group.md)]
+> The resources that you created can be used as prerequisites to other Azure Machine Learning tutorials and how-to articles.
 At this point:
 
 * We've trained a Machine Learning model using scikit-learn inside a `Compute Instance` running `Jupyter`
@@ -410,4 +410,4 @@ At this point:
 * Azure ML saved our model file (`scikit-learn-mnist.pkl`) in a Blob storage
 * We have registered our initial model as a Azure ML Model in our Workspace
 
-In the [next challenge](challenge_02.md), we'll build a more powerful model and use Azure Machine Learning Compute to train it on a remote cluster.
+In the [next challenge](challenge_02.md), we'll build an MLOps pipeline and use Github Actions to train and deploy a model automatically.
