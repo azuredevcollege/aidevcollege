@@ -112,6 +112,8 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 
 1. Select the **...** button at the right of the **tutorials** folder, and then select **Clone**.
 
+![alt text](media/tutorial-train-deploy-notebook/clone-tutorials.png "Screenshot that shows the Clone tutorials folder.")
+
     :::image type="content" source="media/tutorial-train-deploy-notebook/clone-tutorials.png" alt-text="Screenshot that shows the Clone tutorials folder.":::
 
 1. A list of folders shows each user who accesses the workspace. Select your folder to clone the **tutorials**  folder there.
@@ -122,6 +124,8 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 
 1. Select the **quickstart-azureml-in-10mins.ipynb** file from your **tutorials/compute-instance-quickstarts/quickstart-azureml-in-10mins** folder. 
 
+![alt text](media/tutorial-train-deploy-notebook/expand-folder.png "Screenshot shows the Open tutorials folder.")
+
     :::image type="content" source="media/tutorial-train-deploy-notebook/expand-folder.png" alt-text="Screenshot shows the Open tutorials folder.":::
 
 ## Install packages
@@ -129,6 +133,8 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 Once the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
 
 1. At the top of the notebook, add a code cell.
+![alt text](media/tutorial-train-deploy-notebook/add-code-cell.png "Screenshot of add code cell for notebook.")
+
     :::image type="content" source="media/tutorial-train-deploy-notebook/add-code-cell.png" alt-text="Screenshot of add code cell for notebook.":::
 
 1. Add the following into the cell and then run the cell, either by using the **Run** tool or by using **Shift+Enter**.
@@ -233,6 +239,7 @@ plt.show()
 ```
 The code above displays a random set of images with their labels, similar to this:
 
+![alt text](media/tutorial-train-deploy-notebook/image-data-with-labels.png "Sample images with their labels.)
 :::image type="content" source="media/tutorial-train-deploy-notebook/image-data-with-labels.png" alt-text="Sample images with their labels.":::
 
 ## Train model and log metrics with MLflow
