@@ -27,22 +27,48 @@ Before following the steps in this article, make sure you have the following pre
 ## Step 1. Get the code
 
 Fork the following repo at GitHub:
-
 ```
 https://github.com/azure/azureml-examples
 ```
 
 ## Step 2. Authenticate with Azure
 
-You'll need to first define how to authenticate with Azure. You can use a [service principal](../active-directory/develop/app-objects-and-service-principals.md#service-principal-object) or [OpenID Connect](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect). 
+You'll need to first define how to authenticate with Azure using a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object).
 
 ### Generate deployment credentials
 
-Create a service principal with the az ad sp create-for-rbac command in the Azure CLI. Run this command with Azure Cloud Shell in the Azure portal or by selecting the Try it button.
+Create a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) with the [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-create-for-rbac) command in the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). Run this command with [Azure Cloud Shell](https://shell.azure.com/) in the Azure portal.
+
+```bash
+az ad sp create-for-rbac --name "myML" --role contributor \
+    --scopes /subscriptions/<subscription-id>/resourceGroups/<group-name> \
+    --sdk-auth
+```
+In the example above, replace the placeholders with your subscription ID, resource group name, and app name. The output is a JSON object with the role assignment credentials that provide access to your App Service app similar to below. Copy this JSON object for later.
+```
+ {
+    "clientId": "<GUID>",
+    "clientSecret": "<GUID>",
+    "subscriptionId": "<GUID>",
+    "tenantId": "<GUID>",
+    (...)
+  }
+```
+
 
 ### Create secrets
 
-[!INCLUDE [include](~/articles/reusable-content/github-actions/create-secrets-with-openid.md)]
+1.In GitHub, go to your repository.
+
+1.Select Security > Secrets and variables > Actions.
+
+"Screenshot of adding a secret"
+
+1.Select New repository secret.
+
+1.Paste the entire JSON output from the Azure CLI command into the secret's value field. Give the secret the name AZURE_CREDENTIALS.
+
+1. Select Add secret.
 
 ## Step 3. Update `setup.sh` to connect to your Azure Machine Learning workspace
 
@@ -121,64 +147,6 @@ Your workflow file is made up of a trigger section and jobs:
     :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
 1. Select **Run workflow** and choose the option to **Run workflow** now. 
     :::image type="content" source="media/how-to-github-actions-machine-learning/github-actions-run-workflow.png" alt-text="Screenshot of run GitHub Actions workflow.":::
-
- # [OpenID Connect](#tab/openid)
-
-Your workflow file is made up of a trigger section and jobs:
-- A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
-- In the jobs section of the workflow, you checkout code and log into Azure with the Azure login action using OpenID Connect.
-- The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
-
-### Enable your workflow
-
-1. In your cloned repository, open `.github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml` and verify that your workflow looks like this.
-
-    ```yaml
-    name: cli-jobs-pipelines-nyc-taxi-pipeline
-    on:
-      workflow_dispatch:
-      schedule:
-        - cron: "0 0/4 * * *"
-      pull_request:
-        branches:
-          - main
-          - sdk-preview
-        paths:
-          - cli/jobs/pipelines/nyc-taxi/**
-          - .github/workflows/cli-jobs-pipelines-nyc-taxi-pipeline.yml
-          - cli/run-pipeline-jobs.sh
-          - cli/setup.sh
-    jobs:
-      build:
-        runs-on: ubuntu-latest
-        steps:
-        - name: check out repo
-          uses: actions/checkout@v2
-        - name: azure login
-          uses: azure/login@v1
-          with:
-              client-id: ${{ secrets.AZURE_CLIENT_ID }}
-              tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-              subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        - name: setup
-          run: bash setup.sh
-          working-directory: cli
-          continue-on-error: true
-        - name: run job
-          run: bash -x ../../../run-job.sh pipeline.yml
-          working-directory: cli/jobs/pipelines/nyc-taxi
-    ```
-    
-1. Select **View runs**. 
-1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
-1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
-
-    :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
-
-1. Select **Run workflow** and choose the option to **Run workflow** now. 
-
-    :::image type="content" source="media/how-to-github-actions-machine-learning/github-actions-run-workflow.png" alt-text="Screenshot of run GitHub Actions workflow.":::
----
 
 ## Step 6: Verify your workflow run
 
