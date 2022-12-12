@@ -221,15 +221,17 @@ This should be the result:
 ]
 ```
 
-### Optional: Postman
+### Optional (but highly recommended): Postman
 
 [Postman](https://www.postman.com/) is an API platform for building and using APIs. Postman simplifies each step of the API lifecycle and streamlines collaboration. Since the Azure Cloud Platform consists out of many APIs this tool is perfect to get a deeper understanding of its functionalities. 
 
-[Here](./postman/) you will find 2 Postman collections we have created for you for the Translator API and Text Analytics API. 
+[Download](https://app.getpostman.com/app/download/win64) and install Postman.
 
-[Download Postman](https://app.getpostman.com/app/download/win64) and _Import_ the Translation file.
+[Here](./postman/) you will find 2 Postman collections we have created for you for the Translator API and Text Analytics API. These collections cover all API requests for the services. Download them.
 
-Now go to _Environments_ and create an environment for the Translator API.
+After you have installed Postman open it. On the left side you will find the tab _Collections_. Navigate there and hit the _Import_ button to upload the Translation collection.
+
+Now go to the _Environments_ tab again on the left side and [create an environment](https://learning.postman.com/docs/sending-requests/managing-environments/#creating-environments) for the Translator API by selecting the **+**. Name it `Translator Environment`.
 
 - Create a  variable called "api_key", select "secret" as a type, and paste your API key from the portal.
 - Create a variable called "location" with the location you chose for the Translator service (e.g., westeurope)
