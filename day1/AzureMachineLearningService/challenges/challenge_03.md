@@ -1,4 +1,4 @@
-# Challenge 2: Use GitHub Actions with Azure Machine Learning
+# Challenge 3: Use GitHub Actions with Azure Machine Learning
 Get started with [GitHub Actions](https://docs.github.com/en/actions) to train a model on Azure Machine Learning. 
 
 This article will teach you how to create a GitHub Actions workflow that builds and deploys a machine learning model to [Azure Machine Learning](./overview-what-is-azure-machine-learning.md). You'll train a [scikit-learn](https://scikit-learn.org/) linear regression model on the NYC Taxi dataset. 
