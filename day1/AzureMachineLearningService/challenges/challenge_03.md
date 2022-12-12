@@ -62,7 +62,7 @@ In the example above, replace the placeholders with your subscription ID, resour
 
 2. Select Security > Secrets and variables > Actions.
 
-![alt text](media/how-to-github-actions-machine-learning/github-select-actions.png "Screenshot of adding a secret")
+![alt text](../media/how-to-github-actions-machine-learning/github-select-actions.png "Screenshot of adding a secret")
 
 3. Select New repository secret.
 
@@ -144,11 +144,11 @@ Your workflow file is made up of a trigger section and jobs:
 1. Select **View runs**. 
 1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
 1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
-     ![alt text](media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png "Screenshot of enable GitHub Actions workflow.")
+     ![alt text](../media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png "Screenshot of enable GitHub Actions workflow.")
     :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
 1. Select **Run workflow** and choose the option to **Run workflow** now. 
     
-    ![alt text](media/how-to-github-actions-machine-learning/github-actions-run-workflow.png "Screenshot of run GitHub Actions workflow.")
+    ![alt text](../media/how-to-github-actions-machine-learning/github-actions-run-workflow.png "Screenshot of run GitHub Actions workflow.")
     
 
 ## Step 6: Verify your workflow run
@@ -156,7 +156,7 @@ Your workflow file is made up of a trigger section and jobs:
 1. Open your completed workflow run and verify that the build job ran successfully. You'll see a green checkmark next to the job. 
 1. Open Azure Machine Learning studio and navigate to the **nyc-taxi-pipeline-example**. Verify that each part of your job (prep, transform, train, predict, score) completed and that you see a green checkmark. 
 
-    ![alt text](media/how-to-github-actions-machine-learning/github-actions-machine-learning-nyc-taxi-complete.png "Screenshot of successful Machine Learning Studio run.")
+    ![alt text](../media/how-to-github-actions-machine-learning/github-actions-machine-learning-nyc-taxi-complete.png "Screenshot of successful Machine Learning Studio run.")
 
    
 
