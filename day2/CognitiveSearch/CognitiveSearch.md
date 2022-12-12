@@ -373,11 +373,13 @@ If you are interested in querying with different `searchstrings` we have listed 
     search_string_option4 = '&search=boutique&$top=2&$select=HotelId,HotelName,Description,Category'
     ```
 
-        Order by a specific field:
+    Order by a specific field:
 
     ```python
     search_string_option5 = '&search=pool&$orderby=Address/City&$select=HotelId, HotelName, Address/City, Address/StateProvince, Tags'
     ```
+
+5. Replace the query in the url from the previous GET request and run it again: `search_string_option<fill In: 3, 4 or 5>`.
 
 Now that you have created and searched an index using REST API calls, we will now do the same using the Azure Portal User Interface. Moreover, you will query unstructured data such as images using AI enrichments.
 
