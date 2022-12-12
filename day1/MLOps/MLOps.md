@@ -308,8 +308,7 @@ Here you can see the overall `variables`, `stages`, `jobs`, `steps` and `tasks` 
 
 ![Stages Jobs, Steps, Tasks](./images/azure_pipelines_explain.png).
 
->> [!IMPORTANT]
-> Now as we are still in the ml expert view combined with the developer view, we still want to retrain our model and register a new version of the model. We did everything manually using Jupyter Notebooks earlier today, now we will to use this convenient automatic MLOps approach.
+> **Now as we are still in the ml expert view combined with the developer view, we still want to retrain our model and register a new version of the model. We did everything manually using Jupyter Notebooks earlier today, now we will to use this convenient automatic MLOps approach.**
 
 Thus we will change our trainings script and trigger a new run of our pipeline. In the end we will have a new registered model as an outcome. 
 
