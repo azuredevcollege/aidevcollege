@@ -653,7 +653,7 @@ import azure.cognitiveservices.speech as speechsdk #Import the speeck SDK
 
 # Add your corresponding speech key and region as found in the portal. 
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
-speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_SUBSCRIPTION_REGION")
+speech_config = speechsdk.SpeechConfig(subscription="YOUR_API_KEY", region="YOUR_RESOURCE_LOCATION")
 
 # The language of the voice that speaks.
 speech_config.speech_synthesis_voice_name='en-US-JennyNeural'
