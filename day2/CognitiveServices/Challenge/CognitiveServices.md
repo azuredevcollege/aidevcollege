@@ -649,7 +649,7 @@ python3 -m pip install --upgrade pip
 Once the SDK is installed, please restart the kernel. After that we can write our code. Firstly, create a speech configuration instance and import the necessary libraries. Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little.
 
 ```python
-import azure.cognitiveservices.speech as speechsdk #Import the speeck SDK
+import azure.cognitiveservices.speech as speechsdk #Import the speech SDK
 
 # Add your corresponding speech key and region as found in the portal. 
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
