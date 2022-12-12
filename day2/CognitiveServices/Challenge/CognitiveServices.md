@@ -561,9 +561,9 @@ Once the SDK is installed, please restart the kernel. After that we can write ou
 ```python
 import azure.cognitiveservices.speech as speechsdk #Import the speeck SDK
 
-# This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION" that you can find in the Azure Portal.
+# Add your corresponding speech key and region as found in the portal. 
 audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
-speech_config = speechsdk.SpeechConfig(subscription="SPEECH_KEY", region="SPEECH_REGION")
+speech_config = speechsdk.SpeechConfig(subscription="YOUR_SUBSCRIPTION_KEY", region="YOUR_SUBSCRIPTION_REGION")
 
 # The language of the voice that speaks.
 speech_config.speech_synthesis_voice_name='en-US-JennyNeural'
