@@ -10,7 +10,9 @@ As we have looked at Cognitive Search so far and saw how we can enrich our searc
 
 Today will be an overview of Azure Cognitive Services, as you will learn:
 
-- How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_
+- Use the **Cloud Shell** as _launch point_ for PowerShell and Bash scripts.
+- Use **Cloud Shell** to automate Azure resource creation and configuration. 
+- How to deploy Cognitive Services from the areas _Language_, _Speech_, _Vision_ and _Decision_ with UI and Azure CLI
 - How to use those Cognitive Services using Python
 - How to train and use custom models (e.g. Custom Vision) yourself
 
@@ -18,12 +20,68 @@ We will cover the following topics in several sections:
 
 | Pillar                | API Service (section)                                                                                                                                                                                          | Documentation                                                                                     |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+|[Cloud Shell](https://learn.microsoft.com/en-us/azure/cloud-shell/overview)  | - | [Documentation](https://learn.microsoft.com/en-us/azure/cloud-shell/overview) |
 | [Language](#language) | [Translator](#translator)                                                                                                                                                                                      | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Translator/)            |
 | [Language](#language) | [Language Service](#language-service): [Language Detection](#language-detection), [Sentiment Analyis](#sentiment-analysis), [Key Phrase Extraction](#key-phrase-extraction), [Entity Linking](#entity-linking) | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/language-service/)      |
 | [Speech](#speech)     | [Text-to-Speech](#text-to-speech), [Speech-to-Text](#speech-to-text)                                                                                                                                           | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/)        |
-| [Vision](#vision)     | [Face](#face)                                                                                                                                                                                                  | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Face/)                  |
 | [Vision](#vision)     | [Computer Vision](#computer-vision)                                                                                                                                                                            | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/)       |
 | [Vision](#vision)     | [Custom Vision](#custom-vision)                                                                                                                                                                                | [Documentation](https://docs.microsoft.com/en-us/azure/cognitive-services/Custom-Vision-Service/) |
+
+# Why is Cloud Shell aka Azure CLI important?
+
+We want to give you the greatest possible insight into the AI world on Azure. Therefore, we will first deploy the Cognitive Service "Translator" via the UI. After that, all other Cognitive Services will be deployed via the **Azure CLI**, which is why you will find a short introduction in the following text. 
+
+## Cloud Shell - Coding Your Azure Resources 
+
+## Benefits of the Azure Cloud Shell
+
+Ok - quite impressive what the Azure portal as a single page application allows us to do, isn't it?  
+However sometimes a shell is faster and better for repetitive tasks. But you may not want to install software nor tools for this in your machine.  
+The Azure **Cloud Shell** is a shell | console hosted in your browser window, ready to execute commands to create, delete, modify Azure resources in your subscription.  
+While it is also possible to use PowerShell on your local PC to administer Azure, using the Cloud Shell brings some advantages compared to using your PC.
+
+Using the Cloud Shell saves you time as:
+
+- you do not need to explicitly code the Azure logon within the script - you are already authenticated to Azure via the browser
+- you do not need anything to be installed on your PC. So no more asking [which version of PowerShell and what modules](https://docs.microsoft.com/powershell/azure) are necessary
+
+## Create an Azure Cloud Shell
+
+```
+[Azure Portal]
+-> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
+```
+
+![example of how to access Cloud Shell via Azure Portal](./images/CloudShell.png))
+
+- The Azure Cloud Shell is an in-browser-accessible shell for managing Azure resources.
+- It already has the required SDKs and tools installed to interact with Azure.
+- The Azure Cloud Shell comes in 2 flavors: PowerShell or Bash. When being asked choose PowerShell this time.
+  ![example of how to choose between Bash or PowerShell](./images/2variations.png)
+
+- The first time you use the 'Cloud Shell' you will be asked to setup a storage account e.g. to store files you have uploaded persistently. [See](https://docs.microsoft.com/azure/cloud-shell/persisting-shell-storage)
+
+```
+[Azure Portal] -> Click 'Show advanced settings'
+```
+
+![shows the Cloud Shell Storage Account Setup you need to work with Azure CLI](./images/CloudShell1.png)
+
+| Name                 | Value               |
+| -------------------- | ------------------- |
+| _Subscription_       | %your subscription% |
+| _Cloud Shell Region_ | e.g. West Europe    |
+| _Resource Group_     | e.g. rg-cloudshell  |
+| _Storage Account_    | %some unique value% |
+| _File Share_         | cloudshell          |
+
+```
+[Azure Portal] -> Create storage
+```
+
+- Once successful your shell should appear at the bottom of the page:
+
+  ![shows an example image of Cloud Shell in the Azure portal](./images/CloudShell2.png)
 
 # Azure Cognitive Services
 
@@ -40,7 +98,7 @@ You can solve the tasks in a programming language of your choice. For sake of co
 
 For this entire challenge we will create a `Resource Group` called `CognitiveServices` as previously shown and described in the **Azure Portal**. All Cognitive Services can be `added` and deployed in this Resource Group.
 
-In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the **Azure Machine Learning Service** and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.6 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
+In the upcoming tasks, we will reuse the `Compute Instance (VM)` from the **Azure Machine Learning Service** and create a new Notebook. We can click the `New` button and create a new Notebook of type: `Python 3.8 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `CognitiveServices.ipynb`.
 
 Let's look at the first pillar of Cognitive Services - Language.
 
@@ -53,6 +111,8 @@ The world is getting more and more connected and therefore, translation services
 :triangular_flag_on_post: **Goal:** Translation of multiple sentences, detection of one or more input languages to one or several output languages concurrently.
 
 Let's get started with using the translator service!
+
+**`Note:`** This is our first Cognitive Service that we are deploying. As mentioned at the beginning, the **Translator** will be the first and only Cognitive Service we deploy using the UI. All other Cognitive Services will be deployed via the Azure CLI. 
 
 First, create a `Translator` API Key in the Azure Portal:
 
@@ -196,27 +256,45 @@ Now, you can play around with the APIs! You can select the different services fr
 
 Now let's continue with some of the remaining **Cognitive Services for Language**. They are deployed using one service called _Language Service_. It provides Natural Language Processing (NLP) features for understanding and analyzing text.
 
-First we deploy the **Language** service in the **Azure Portal**:
+Since we first deployed the **Translator** service via the UI, we now create the **Language** service via the **Azure CLI**.
 
-![Azure Portal](./images/CreateLanguageService.png)
+To create and subscribe to a new Cognitive Services resource, use the **az cognitiveservices account create** command. This command adds a new billable resource to the resource group you created earlier. When you create your new resource, you'll need to know the "kind" of service you want to use, along with its pricing tier (or SKU) and an Azure location. You can either get an overview of the different "kinds" of Cognitive Services [here](https://learn.microsoft.com/en-us/azure/cognitive-services/cognitive-services-apis-create-account-cli?tabs=windows), or use the following command:
 
-By default, the service comes with several pre-built capabilities like sentiment analysis, key phrase extraction or question answering. It is possible to add customizable features. However, for this exercise we will stick with the pre-built capabilities:
+```python
+az cognitiveservices account list-kinds
+```
 
-![Azure Portal](./images/CreateLanguageService2.png)
+Let us now create a free tier **Language** service with the following command in **Azure CLI**:
 
-Fill in the _name_, agree to the _Legal Terms_ and _terms of Responsible AI_ and hit _create_:
+```python
+az cognitiveservices account create --name aidevcollegeLanguage --resource-group <your resource group>  --kind TextAnalytics --sku F0 --location westeurope --yes
+```
+#
+**`Hint:`** If you have already created a **Language** service with SKU F0, please use SKU S0!
+#
 
-![Azure Portal](./images/CreateLanguageService3.png)
-
-This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
+This time we will use the Python SDK to use this service. Let's start with installing the _text analytics_ package. Switch to your VM (or whatever you are using) and copy the following snippet into a new cell in your `CognitiveServices.ipynb` notebook. You might need to restart the kernel.
 
 ```
 pip install azure-ai-textanalytics
 ```
 
-Get the key and the region under the section _Keys and Endpoint_ from the Azure portal:
+There are two approaches to get the key and the region of your Cognitive Service ressource.
+
+1. under the section _Keys and Endpoint_ from the Azure portal:
 
 ![Azure Portal: Key and URL](./images/keyendpoint.png)
+
+2. Use the **Azure CLI** with the follwing code:
+
+- Get the key:
+```pyhton
+az cognitiveservices account keys list --name <your resource-name> --resource-group <your resource-group-name>
+```
+- Get the endpoint:
+```python
+az cognitiveservices account show --name <your resource-name> --resource-group <your resource-group-name> --query "properties.endpoint"
+```
 
 In a next step, we need to create a client object ([TextAnalyticsClient](https://azuresdkdocs.blob.core.windows.net/$web/python/azure-ai-textanalytics/latest/azure.ai.textanalytics.html#azure.ai.textanalytics.TextAnalyticsClient)). Copy the code with the **filled in key and region** into a new cell in your notebook. We will reuse the client object for all following tasks concerning the language service.
 
@@ -532,15 +610,27 @@ In the language of your choice write two small scripts or apps that:
 
 This time, we will use the Python SDK for using the service.
 
-First, we need to deploy a Speech service:
+First, we need to deploy a **Speech** service with **Azure CLI**:
 
-![alt text](./images/speech_api_service.png "Speech API Service")
+```python
+az cognitiveservices account create --name aidevcollegespeech --resource-group <your resource group>  --kind SpeechServices --sku F0 --location westeurope --yes
+```
 
-Fill in a _unique name_ and select _create_:
+#
+**`Hint:`** If you have already created a **Speech** service with SKU F0, please use SKU S0!
+#
 
-![Azure Portal](./images/CreateSpeech.png)
+You can find your API key under the service, then `Keys`, or get it via **Azure CLI**:
 
-You can find your API key under the service, then `Keys`.
+- Get the key:
+```pyhton
+az cognitiveservices account keys list --name <your resource-name> --resource-group <your resource-group-name>
+```
+- Get the endpoint:
+```python
+az cognitiveservices account show --name <your resource-name> --resource-group <your resource-group-name> --query "properties.endpoint"
+```
+
 
 ## Text-to-Speech
 
@@ -585,6 +675,7 @@ elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
         if cancellation_details.error_details:
             print("Error details: {}".format(cancellation_details.error_details))
             print("Did you set the speech resource key and region values?")
+
 
 ```
 
@@ -653,105 +744,6 @@ So far we have focused on the two pillars _Language_ and _Speech_. Now we want t
 
 # Vision
 
-Since more and more apps recognize faces, there is also a **Face Cognitive Service** for that. The Azure Face service provides AI algorithms that detect, recognize, and analyze human faces in images. Facial recognition software is important in many different scenarios, such as security, natural user interface, image content analysis and management, mobile apps, and robotics.
-
-## Face
-
-| Azure Cognitive Services                                                    | Information                                                     |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [Face API](https://docs.microsoft.com/en-us/azure/cognitive-services/face/) | https://docs.microsoft.com/en-us/azure/cognitive-services/face/ |
-
-:triangular_flag_on_post: **Goal:** Detect, identify, and analyze faces in images.
-
-This time we will conduct a REST Call and send an image of a face to the Face Cognitive Service and get a JSON response in return which explains the found characteristics of a face e.g. `faceAttributes`.
-
-1. Deploy a Face API Service in the Portal
-
-![Deploy Face API](./images/New_CreateFace.PNG)
-
-![Details of Deploy Face API](./images/deployfacedetails.png)
-
-To use **Face API**, perform the following steps:
-
-2. Copy code below into a new cell into the `CognitiveServices.ipynb` Notebook.
-3. Make the following changes in code where needed:
-   1. Replace the value of `api_key` with your api key.
-   2. Edit the value of `face_api_url` to include the endpoint URL for your Face API resource.
-   3. Optionally, replace the value of `image_url` with the URL of a different image that you want to analyze.
-4. Run the Cell and examine the response.
-
-```python
-import requests
-import json
-
-# set to your own api key value
-subscription_key = "YOUR_SUBSCRIPTION_KEY"
-endpoint = "YOUR_RESOURCE_ENDPOINT"
-
-face_api_url = endpoint + 'face/v1.0/detect'
-
-image_url = 'https://upload.wikimedia.org/wikipedia/commons/3/37/Dagestani_man_and_woman.jpg'
-
-headers = {'Ocp-Apim-Subscription-Key': subscription_key}
-
-params = {
-    'returnFaceId': 'true',
-    'returnFaceLandmarks': 'false',
-    'returnFaceAttributes': 'age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise',
-}
-
-response = requests.post(face_api_url, params=params,
-                         headers=headers, json={"url": image_url})
-print(json.dumps(response.json(), indent = 2))
-```
-
-### Examine the response
-
-A successful response is returned in JSON (snippet):
-
-```json
-[
-  {
-    "faceId": "e93e0db1-036e-4819-b5b6-4f39e0f73509",
-    "faceRectangle": {
-      "top": 621,
-      "left": 616,
-      "width": 195,
-      "height": 195
-    },
-    "faceAttributes": {
-      "smile": 0,
-      "headPose": {
-        "pitch": 0,
-        "roll": 6.8,
-        "yaw": 3.7
-      },
-      "gender": "male",
-      "age": 37,
-      "facialHair": {
-        "moustache": 0.4,
-        "beard": 0.4,
-        "sideburns": 0.1
-      },
-      "glasses": "NoGlasses",
-      "emotion": {
-        "anger": 0,
-        "contempt": 0,
-        "disgust": 0,
-        "fear": 0,
-        "happiness": 0,
-        "neutral": 0.999,
-        "sadness": 0.001,
-        "surprise": 0
-      }
-```
-
-As you can see in the image yourself and from the JSON-response, the image shows a male 37-year old with a moustache. He is not wearing glasses and shows a neutral emotion. The image also shows a 56-year old female person without glasses.
-
-As we have already started to investigate images, we will now look at a different service the **Computer Vision Cognitive Service** to analyze text on an image.
-
-Azure's Computer Vision API includes Optical Character Recognition (OCR) capabilities that extract printed or handwritten text from images. You can extract text from images, such as photos of license plates or containers with serial numbers, as well as from documents - invoices, bills, financial reports, articles, and more.
-
 ## Computer Vision
 
 | Azure Cognitive Services                                                                             | Information                                                                    |
@@ -777,11 +769,14 @@ In this section, we will concentrate on the service's OCR capabilities. It can e
 
 :triangular_flag_on_post: **Goal:** Leverage OCR to make a hand-written text document in images machine-readable
 
-First, create a `Computer Vision` API Key in the Azure Portal
+First, create a `Computer Vision` API Key with **Azure CLI**:
 
-![Create Computer Vision](./images/ComputerVisionCreate.png)
-
-![Create Computer Vision Details](./images/ComputerVisionCreateDetails.png)
+```python
+az cognitiveservices account create --name aidevcollege-CV --resource-group <your resource group>  --kind ComputerVision --sku F0 --location westeurope --yes
+```
+#
+**`Hint:`** If you already created a **Computer Vision** API Key with SKU F0, please use SKU S0!
+#
 
 As we're dealing with images, we need a few Python packages to help with this. Go ahead and copy the code into a new Cell in your `CognitiveServices.ipynb` Notebook.
 
@@ -1052,24 +1047,23 @@ Under `Quick Test`, we can briefly test images and see what the service will det
 
 If we go to the `Performance` tab, we can get the `Prediction URL` and the `Prediction-Key`. We can use this endpoint to programmatically access the service. We will do this in a later challenge.
 
+**Hint**: Using **Custom Vision** is also possible with Python SDK (see here [Custom Vision with Python SDK](https://learn.microsoft.com/en-us/azure/cognitive-services/custom-vision-service/quickstarts/image-classification?tabs=visual-studio&pivots=programming-language-python))
+
 ## What we have done so far:
 
-- We deployed several Cognitive Services using the Azure Portal
-- We called those Cognitive Service REST APIs by using Python
-- We trained custom machine learning models (e.g. Custom Vision) using an UI
+- We deployed several Cognitive Services using the Azure Portal and the Azure CLI.
+- We called those Cognitive Service REST APIs by using Python.
+- We trained custom machine learning models (e.g. Custom Vision) using a UI.
 
-In a next step, we want to see how the cognitive services can be embedded into an application.
+In a next step, we will try out the Azure Form Recognizer, which helps you extract text, tables, structure, and key-value pairs from documents.
 
-:zap: Let's go to **[AI Developer College Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)**!
+:zap: Let's go to **[AI Developer College Day2 - Form Recognizer](../../Formrecognizer/Formrecognizer.md)**!
 
 ## House Keeping: Lab Cleanup
 
-Remove the sample resource group at the end of the day.
+Remove the sample resource group at the end of the day. Don't remove it for now as you will be reusing the resources in the next challenge.
 
 ```shell
 $ az group delete -n <yourResourceGroupName>
 ```
 
-## Optional: Play around with the: Intelligent Kiosk
-
-Find the Sample on Github here: [Intelligent Kiosk](https://github.com/microsoft/Cognitive-Samples-IntelligentKiosk)
