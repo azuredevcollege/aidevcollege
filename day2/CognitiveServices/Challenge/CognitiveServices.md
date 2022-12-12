@@ -646,44 +646,68 @@ If you are using a **Mac**, you might need to run this first:
 python3 -m pip install --upgrade pip
 ```
 
-Once the SDK is installed, please restart the kernel. After that we can write our code. Firstly, create a speech configuration instance and import the necessary libraries. Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little. Then creates an `AudioOutputConfig` instance, which writes the audio output to a .wav file. Furthermore, execute the speech synthesis and writing to the .wav file. Lastly, display the audio output.
+Once the SDK is installed, please restart the kernel. After that we can write our code. Firstly, create a speech configuration instance and import the necessary libraries. Next, define the [language and voice](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#prebuilt-neural-voices). We have already selected them for your. Feel free to change them up a little.
 
 ```python
-import azure.cognitiveservices.speech as speechsdk # import the speech sdk
-import IPython.display as ipd # import IPython.display to display the audio output
+import azure.cognitiveservices.speech as speechsdk #Import the speeck SDK
 
+# Add your corresponding speech key and region as found in the portal. 
+audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
 speech_config = speechsdk.SpeechConfig(subscription="YOUR_API_KEY", region="YOUR_RESOURCE_LOCATION")
 
-def to_file():
-  speech_config.speech_synthesis_language = "en-US"
-  speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
-  audio_config = speechsdk.audio.AudioOutputConfig(filename="welcome.wav")
-  synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
-  synthesizer.speak_text_async("Hello, welcome to the AI Developer College!")
+# The language of the voice that speaks.
+speech_config.speech_synthesis_voice_name='en-US-JennyNeural'
 
-to_file()
+speech_synthesizer = speechsdk.SpeechSynthesizer(speech_config=speech_config, audio_config=audio_config)
 
-ipd.Audio('welcome.wav')
+# Get text from the console and synthesize to the default speaker.
+print("Enter some text that you want to speak >")
+text = input()
+
+speech_synthesis_result = speech_synthesizer.speak_text_async(text).get()
+
+if speech_synthesis_result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+    print("Speech synthesized for text [{}]".format(text))
+elif speech_synthesis_result.reason == speechsdk.ResultReason.Canceled:
+    cancellation_details = speech_synthesis_result.cancellation_details
+    print("Speech synthesis canceled: {}".format(cancellation_details.reason))
+    if cancellation_details.reason == speechsdk.CancellationReason.Error:
+        if cancellation_details.error_details:
+            print("Error details: {}".format(cancellation_details.error_details))
+            print("Did you set the speech resource key and region values?")
+
+
 ```
 
-As mentioned earlier, there are [many different voices](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech) available to choose from. By updating `speech_config.speech_synthesis_voice_name` and `speech_config.speech_synthesis_voice_name` we can easily specify a different language or voice. From here on, it should be easy to generate German speech. Try it out!
+As mentioned earlier, there are [many different voices](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support#text-to-speech) available to choose from. By updating `speech_config.speech_synthesis_voice_name` we can easily specify a different language or voice. From here on, it should be easy to generate German speech. Try it out!
 
 ## Speech-to-Text
 
-Let's take the generated or provided `welcome.wav` from the example before and convert it back to text.
-
-Paste the following code in the notebook you used before.
+Now we can do the opposite.  Paste the following code in the notebook you used before and speak into your microphone.
 
 ```python
-def from_file():
-  speech_config.speech_synthesis_language = "en-US"
-  speech_config.speech_synthesis_voice_name ="en-GB-SoniaNeural"
-  audio_input = speechsdk.AudioConfig(filename="welcome.wav")
-  speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_input)
-  result = speech_recognizer.recognize_once_async().get()
-  print(result.text)
+def recognize_from_microphone():
 
-from_file()
+    speech_config.speech_recognition_language="en-US"
+
+    audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
+    speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
+
+    print("Speak into your microphone.")
+    speech_recognition_result = speech_recognizer.recognize_once_async().get()
+
+    if speech_recognition_result.reason == speechsdk.ResultReason.RecognizedSpeech:
+        print("Recognized: {}".format(speech_recognition_result.text))
+    elif speech_recognition_result.reason == speechsdk.ResultReason.NoMatch:
+        print("No speech could be recognized: {}".format(speech_recognition_result.no_match_details))
+    elif speech_recognition_result.reason == speechsdk.ResultReason.Canceled:
+        cancellation_details = speech_recognition_result.cancellation_details
+        print("Speech Recognition canceled: {}".format(cancellation_details.reason))
+        if cancellation_details.reason == speechsdk.CancellationReason.Error:
+            print("Error details: {}".format(cancellation_details.error_details))
+            print("Did you set the speech resource key and region values?")
+
+recognize_from_microphone()
 ```
 
 For recognizing longer text with multiple sentences, you can follow the [following tutorial](https://docs.microsoft.com/en-us/azure/cognitive-services/speech-service/quickstart-python).
