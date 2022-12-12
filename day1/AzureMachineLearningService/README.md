@@ -118,7 +118,7 @@ In this last challenge, you'll be using Azure Machine Learning Designer to deplo
 
 # Recommended Certifications
 
-- [Exam AI-100: Designing and Implementing an Azure AI Solution](https://www.microsoft.com/en-us/learning/exam-ai-100.aspx) or [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102)- mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
+- [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102)- mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
 - [Exam DP-100: Designing and Implementing a Data Science Solution on Azure](https://www.microsoft.com/en-us/learning/exam-dp-100.aspx) - very Data Science focussed, requires general Machine Learning knowledge (methologies, algorithms, etc.)
 - [Exam DP-200: Implementing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-200.aspx) - focussed on the data side for a doing point of view (storing, securing, etc.)
 - [Exam DP-201: Designing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-201.aspx) - focussed on the data side from an architectural point of view (storing, securing, etc.)
