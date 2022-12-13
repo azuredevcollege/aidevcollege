@@ -124,24 +124,19 @@ In this last challenge, you'll be using Azure Machine Learning Designer to deplo
 # Further Trainings
 
 - :star: [Microsoft Learn - Machine Learning](https://docs.microsoft.com/en-us/learn/browse/?roles=data-scientist&term=machine%20learning) - great selection of short training units and exercises! :star:
-- [AI Business School](https://aischool.microsoft.com) - great for gaining specific, practical knowledge for defining and implementing an AI strategy in your company (more targeted at business users, but also covers the responsible use of AI)
-- [Microsoft Professional Program for Artificial Intelligence track](https://academy.microsoft.com/en-us/tracks/artificial-intelligence) - extremely in-depth and very extensive Machine Learning training (includes a lot of mandatory hands-on)
 
 # Further Material
 
 - :star: [Azure Machine Learning Notebook Samples](https://github.com/Azure/MachineLearningNotebooks) - this should solve 99% of your problems :star:
-- [Azure Machine Learning Overview](https://azure.microsoft.com/en-us/blog/azure-ai-making-ai-real-for-business/)
-- [Azure Machine Learning Overview - What's new](https://azure.microsoft.com/en-us/blog/what-s-new-in-azure-machine-learning-service/)
-- [Automated Machine Learning Overview](https://azure.microsoft.com/en-us/blog/announcing-automated-ml-capability-in-azure-machine-learning/)
+- [Automated Machine Learning Overview](https://learn.microsoft.com/en-us/azure/machine-learning/concept-automated-ml)
 - [Hyperparameter Tuning](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters)
 - [Understand automated machine learning results](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-understand-automated-ml)
 - Distributed Training with [TensorFlow or Keras](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-tensorflow#distributed-training) and [PyTorch](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-pytorch#distributed-training)
 - [AI Tools for VS Code](https://visualstudio.microsoft.com/downloads/ai-tools-vscode/)
 - [PyTorch Support for Azure ML](https://azure.microsoft.com/en-us/blog/world-class-pytorch-support-on-azure/)
 - [Azure Machine Learning Pipelines](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-ml-pipelines)
-- [MLOps with Azure ML](https://github.com/microsoft/MLOpsPython) - running a ML Pipeline in Azure DevOps
-- [DevOps for AI: Deploying everywhere (Build 2018)](https://www.youtube.com/watch?v=Fo220toRwhM) - might be not fully up to date but gives some good ideas
+- [MLOps with Azure ML](https://github.com/microsoft/MLOpsPython)
 
-⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
+⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today. To save costs, you should stop the Compute Instance over night.** :grin:
 
 :zap: Let's go to **[AI Developer College Day 1 - MLOps](../MLOps/MLOps.md)**!
