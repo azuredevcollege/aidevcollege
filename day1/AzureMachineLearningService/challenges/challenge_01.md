@@ -234,7 +234,6 @@ You'll be using the [LogisticRegression](https://scikit-learn.org/stable/modules
 
 > **The model training takes approximately 2 minutes to complete.**
 
-
 ```python
 # create the model
 import mlflow
@@ -280,7 +279,7 @@ model_uri = "runs:/{}/model".format(run.info.run_id)
 model = mlflow.register_model(model_uri, "sklearn_mnist_model")
 ```
 
-At this point:
+## What we have learned so far
 
 * We've trained a Machine Learning model using scikit-learn inside a `Compute Instance` running `Jupyter`
 * Azure ML knows about our experiment and our initial run and tracked metrics
