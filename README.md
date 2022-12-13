@@ -42,7 +42,7 @@ This workshop consists of multiple challenges, you have to complete. Your traine
 Here's the overview of the training week. Happy hacking!
 
 - [Day 1 - Azure Machine Learning Service](day1/AzureMachineLearningService/README.md)
-- [Day 1 - Azure Machine Learning Operations - MLOps](day1/MLOps/MLOps.md)
+- [Day 1 - Azure Machine Learning Operations - MLOps](day1/AzureMachineLearningService/challenges/challenge_03.md)
 - [Day 2 - Cognitive Search](day2/CognitiveSearch/CognitiveSearch.md)
 - [Day 2 - Cognitive Services](day2/CognitiveServices/Challenge/CognitiveServices.md)
 - [Day 2 - Cognitive Services Kitchen Sink App](https://github.com/azuredevcollege/cognitive-services-kitchen-sink)
