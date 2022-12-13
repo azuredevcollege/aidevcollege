@@ -1,6 +1,6 @@
 # Challenge 5 - Production deployment to Azure Kubernetes Service (AKS)
 
-In this challenge we will be training a model to showcase how you can use AutoML for a simple classification problem. The goal is to predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy to Azure Kubernetes Service (AKS). We'll also enable the following features:
+In this challenge we will be training a model to showcase how you can use AutoML via Jupyter Notebook for a simple classification problem. The goal is to predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy to Azure Kubernetes Service (AKS). We'll also enable the following features:
 
 * Authentication - users of our API will require an authentication key to use the model
 * Monitoring - we'll be using Application Insights for monitoring telemetry data of our model
