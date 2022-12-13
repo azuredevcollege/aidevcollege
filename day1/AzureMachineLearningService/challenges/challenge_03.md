@@ -5,6 +5,8 @@ This article will teach you how to create a GitHub Actions workflow that builds 
 
 GitHub Actions uses a workflow YAML (.yml) file in the `/.github/workflows/` path in your repository. This definition contains the various steps and parameters that make up the workflow. These steps include **data preparation, model training, testing and scoring**.
 
+**A similar tutorial based on Azure DevOps can be found** [here](day1/MLOps/MLOps.md).
+
 
 ## Prerequisites
 
