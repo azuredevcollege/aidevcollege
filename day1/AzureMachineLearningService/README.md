@@ -139,4 +139,4 @@ In this last challenge, you'll be using Azure Machine Learning Designer to deplo
 
 ⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today. To save costs, you should stop the Compute Instance over night.** :grin:
 
-:zap: Let's go to **[AI Developer College Day 1 - MLOps](../MLOps/MLOps.md)**!
+:zap: Let's go to **[AI Developer College Day 1 - Challenge 1](./challenges/challenge_01.md)**!
