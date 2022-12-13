@@ -1,6 +1,6 @@
 
 
-# Challenge 7: Designer - deploy a machine learning model
+# Challenge 7: Deploy to AKS using Azure Machine Learning Designer
 
 Use the designer to deploy a machine learning model to predict the price of cars. This tutorial is part two of a two-part series.
 
@@ -168,3 +168,5 @@ You can unregister datasets from your workspace by selecting each dataset and se
 ![alt text](../images/06-unregister-dataset1225.png "Unregistering Dataset")
 
 To delete a dataset, go to the storage account by using the Azure portal or Azure Storage Explorer and manually delete those assets.
+
+Make sure to stop your `Compute Instance` to avoid charges. You can restart it tomorrow.
