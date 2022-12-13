@@ -1,17 +1,8 @@
 # Challenge 2: Version control your models with the model registry
 
-You can use model registration to store and version your models in your workspace. Registered models are identified by name and version. Each time you register a model with the same name as an existing one, the registry increments the version. The code below registers and versions the model you trained above. Once you have executed the code cell below you will be able to see the model in the registry by selecting __Models__ in the left-hand menu in Azure Machine Learning studio.
-
-```python
-# register the model
-model_uri = "runs:/{}/model".format(run.info.run_id)
-model = mlflow.register_model(model_uri, "sklearn_mnist_model")
-```
-
-
 ## Deploy the model as an online endpoint
 
-Now deploy your machine learning model as a web service in the Azure cloud, an [`online endpoint`](concept-endpoints.md).
+Once your model has been registered, you can deploy your machine learning model as a web service in the Azure cloud, an [`online endpoint`](https://learn.microsoft.com/en-us/azure/machine-learning/concept-endpoints).
 
 To deploy a machine learning service, you usually need:
 
