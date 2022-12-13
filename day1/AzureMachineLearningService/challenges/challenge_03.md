@@ -67,14 +67,14 @@ The output is a JSON object with the role assignment credentials of your service
 
 1. In GitHub, go to your forked repository.
 
-2. Select Settings > Secrets > Actions.
+1. Select Settings > Secrets > Actions.
 !["Screenshot of adding a secret"](../images/03-secret.png)
 
-3. Select New repository secret.
+1. Select New repository secret.
 
-4. Paste the entire JSON output from the Azure CLI command into the secret's value field. Give the secret the name AZURE_CREDENTIALS.
+1. Paste the entire JSON output from the Azure CLI command into the secret's value field. Give the secret the name AZURE_CREDENTIALS.
 
-5. Select Add secret.
+1. Select Add secret.
 
 ## Step 3. Update `setup.sh` to connect to your Azure Machine Learning workspace
 
