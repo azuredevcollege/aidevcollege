@@ -68,11 +68,11 @@ Inside the newly created Compute Instance, first create a new folder via the `Ne
 
 > **Note:** The next block is **not** needed, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
 
-<Run Azure ML on local machine>
+<details>
 Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):
 
 ```json
- # Ignore this block, unless you run Jupyer directly on e.g., your laptop
+ # Ignore this block, unless you run Jupyter directly on e.g., your laptop
  {
     "subscription_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx",
     "resource_group": "
