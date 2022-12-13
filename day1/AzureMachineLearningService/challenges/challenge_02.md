@@ -14,6 +14,7 @@ Moreover, you create a _deployment configuration_, which specifies the amount of
 
 To get started with the challenge, go back to your `aidevcollege` folder in your Jupyter notebook and create a new `Python 3.8 - AzureML` file. Give it the name `challenge02.ipnb`.
 
+Copy the following code and paste it into the first cell of your notebook.
 
 ```python
 # create environment for the deploy
