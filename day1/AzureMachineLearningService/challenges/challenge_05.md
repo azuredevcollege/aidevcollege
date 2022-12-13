@@ -11,7 +11,7 @@ For this challenge, we'll use the `associated credit card dataset` dataset: The 
 
 Sounds good? Let's get started!
 
-Back to Jupyter now, and let's create a notebook called `challenge05.ipynb`. First, we'll import the necessary packages and connect to our workspace:
+Back to Jupyter now, and let's create a notebook called `challenge05.ipynb` in the `aidevcollege` folder. First, we'll import the necessary packages and connect to our workspace:
 
 ## Connect to Workspace
 
