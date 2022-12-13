@@ -23,14 +23,6 @@ Before following the steps in this article, make sure you have the following pre
   ```
 
   ![example of how to access Cloud Shell via Azure Portal](../../../day2/CognitiveServices/Challenge/images/CloudShell.png)
-* To install the Python SDK v2, use the following command:
-
-    ```bash
-    pip install azure-ai-ml
-    ```
-
-    For more information, see [Install the Python SDK v2 for Azure Machine Learning](/python/api/overview/azure/ai-ml-readme).
-
 * A GitHub account. If you don't have one, sign up for [free](https://github.com/join).  
 
 ## Step 1. Get the code
@@ -159,12 +151,6 @@ Your workflow file is made up of a trigger section and jobs:
 1. Open Azure Machine Learning studio and navigate to the **nyc-taxi-pipeline-example**. Verify that each part of your job (prep, transform, train, predict, score) completed and that you see a green checkmark. 
 
     ![alt text](../media/how-to-github-actions-machine-learning/github-actions-machine-learning-nyc-taxi-complete.png "Screenshot of successful Machine Learning Studio run.")
-
-   
-
-## Clean up resources
-
-When your resource group and repository are no longer needed, clean up the resources you deployed by deleting the resource group and your GitHub repository. 
 
 ## Next steps
 Often, we have a simpler data set and want to figure out how we can best classify or predict certain data points - without trying out a lot of Machine Learning algorithms ourselves. Hence, we'll look at Automated Machine Learning in the [fourth challenge](challenge_04.md).
