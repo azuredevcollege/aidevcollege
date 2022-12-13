@@ -129,4 +129,4 @@ At this point:
 * Azure ML saved our model file (`scikit-learn-mnist.pkl`) in a Blob storage
 * We have registered our initial model as a Azure ML Model in our Workspace
 
-In the [next challenge](challenge_02.md), we'll build an MLOps pipeline and use Github Actions to train and deploy a model automatically.
+In the [next challenge](challenge_03.md), we'll build an MLOps pipeline and use Github Actions to train and deploy a model automatically.
