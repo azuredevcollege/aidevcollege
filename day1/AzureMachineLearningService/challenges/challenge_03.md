@@ -86,8 +86,10 @@ You'll need to update the CLI setup file variables to match your workspace.
     |Variable  | Description  |
     |---------|---------|
     |GROUP     |      Name of resource group    |
-    |LOCATION     |    Location of your workspace (example: `eastus2`)    |
+    |LOCATION     |    Location of your workspace (example: `westeurope`)    |
     |WORKSPACE     |     Name of Azure ML workspace     | 
+1. Commit your changes.
+![Screenshot of how to commit a change in GitHub](../images//03-commit-changes.png)
 
 ## Step 4. Update `pipeline.yml` with your compute cluster name
 
