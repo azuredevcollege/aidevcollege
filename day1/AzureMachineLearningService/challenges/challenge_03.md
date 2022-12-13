@@ -1,7 +1,8 @@
-# Challenge 3: Use GitHub Actions with Azure Machine Learning
+# Challenge 3: Use GitHub Actions with Azure Machine Learning for MLOps
+
 Get started with [GitHub Actions](https://docs.github.com/en/actions) to train a model on Azure Machine Learning. 
 
-This article will teach you how to create a GitHub Actions workflow that builds and deploys a machine learning model to [Azure Machine Learning](./overview-what-is-azure-machine-learning.md). You'll train a [scikit-learn](https://scikit-learn.org/) linear regression model on the NYC Taxi dataset. 
+This challenge will teach you how to create a GitHub Actions workflow that builds and deploys a machine learning model to Azure Machine Learning. You'll train a [scikit-learn](https://scikit-learn.org/) linear regression model on the NYC Taxi dataset. 
 
 GitHub Actions uses a workflow YAML (.yml) file in the `/.github/workflows/` path in your repository. This definition contains the various steps and parameters that make up the workflow. These steps include **data preparation, model training, testing and scoring**.
 
@@ -14,10 +15,14 @@ GitHub Actions uses a workflow YAML (.yml) file in the `/.github/workflows/` pat
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* Create an Azure Cloud Shell
 
-* An Azure Machine Learning workspace. If you don't have one, use the steps in the [Quickstart: Create workspace resources](../articles/machine-learning/quickstart-create-resources.md) article to create one.
+  ```
+  [Azure Portal]
+  -> Click the 'Cloud Shell' symbol close to your login details on the right upper corner.
+  ```
 
+  ![example of how to access Cloud Shell via Azure Portal](../../../day2/CognitiveServices/Challenge/images/CloudShell.png)
 * To install the Python SDK v2, use the following command:
 
     ```bash
@@ -30,10 +35,9 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Step 1. Get the code
 
-Fork the following repo at GitHub:
-```
-https://github.com/azure/azureml-examples
-```
+Fork the following repo on GitHub to your own GitHub account: [https://github.com/azure/azureml-examples](https://github.com/azure/azureml-examples)
+
+![Screenshot of how to fork a repository](../images/03-fork-repo.png)
 
 ## Step 2. Authenticate with Azure
 
@@ -41,12 +45,11 @@ You'll need to first define how to authenticate with Azure using a [service prin
 
 ### Generate deployment credentials
 
-Create a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) with the [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-create-for-rbac) command in the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). Run this command with [Azure Cloud Shell](https://shell.azure.com/) in the Azure portal.
+Create a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) with the [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-create-for-rbac) command in the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). Run this command with [Azure Cloud Shell](https://shell.azure.com/) in the Azure portal. Add your subscription id to the command. You can find it if you type it it in the search bar.
+![Screenshot of where to find subscription id](../images/03-subscription.png)
 
 ```bash
-az ad sp create-for-rbac --name "myML" --role contributor \
-    --scopes /subscriptions/<subscription-id>/resourceGroups/<group-name> \
-    --sdk-auth
+az ad sp create-for-rbac --name "myML" --role contributor --scopes /subscriptions/<YOUR-SUBSCRIPTION-ID> --sdk-auth
 ```
 In the example above, replace the placeholders with your subscription ID, resource group name, and app name. The output is a JSON object with the role assignment credentials that provide access to your App Service app similar to below. Copy this JSON object for later.
 ```
