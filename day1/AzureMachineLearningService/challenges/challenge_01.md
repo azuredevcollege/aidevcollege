@@ -114,21 +114,23 @@ In this part you will complete the following experiment setup and run steps in a
 
 ## Install packages
 
-Once the Jupyter Notebook is open, the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
+1. Open the notebook **quickstart-azureml-in-10mins.ipynb**.
 
-> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue) and type **`b`** it will add another cell *below* the first cell. 
+1. Once the Jupyter Notebook is open, the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
+
+    > To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue) and type **`b`** it will add another cell *below* the first cell. 
 
 1. At the top of the notebook, add a code cell.
 ![alt text](../media/tutorial-train-deploy-notebook/jupyter-landing.png "Screenshot of add code cell for notebook.")
 
-1. Add the following into the cell and then run the cell, either by using the **Run** tool or by using **Shift+Enter**.
+1. Add the following code into the cell and then run the cell, either by using the **Run** tool or by using **Shift+Enter**.
 
     ```bash
     %pip install scikit-learn==0.22.1
     %pip install scipy==1.5.2
     ```
 
-You may see a few install warnings.  These can safely be ignored.
+    You may see a few install warnings. These can safely be ignored.
 
 ## Run the notebook
 
@@ -165,7 +167,6 @@ mnist_file_dataset.download(data_folder, overwrite=True)
 Load the compressed files into `numpy` arrays. Then use `matplotlib` to plot 30 random images from the dataset with their labels above them. 
 
 Note this step requires a `load_data` function that's included in an `utils.py` file. This file is placed in the same folder as this notebook. The `load_data` function simply parses the compressed files into numpy arrays.
-
 
 ```python
 from utils import load_data
@@ -224,10 +225,9 @@ The code above displays a random set of images with their labels, similar to thi
 
 ![alt text](../media/tutorial-train-deploy-notebook/image-data-with-labels.png "Sample images with their labels.")
 
-
 ## Train model and log metrics with MLflow
 
-You'll train the model using the code below. Note that you are using MLflow autologging to track metrics and log model artifacts.
+You'll train the model using the code below. Note that you are using [MLflow autologging to track metrics](https://learn.microsoft.com/en-us/azure/machine-learning/concept-mlflow#tracking-with-mlflow) and log model artifacts.
 
 You'll be using the [LogisticRegression](https://scikit-learn.org/stable/modules/generated/
 .linear_model.LogisticRegression.html) classifier from the [SciKit Learn framework](https://scikit-learn.org/) to classify the data.
