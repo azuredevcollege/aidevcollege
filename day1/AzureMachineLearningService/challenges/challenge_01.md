@@ -66,7 +66,7 @@ Inside the newly created Compute Instance, first create a new folder via the `Ne
 
 ![alt text](../images/01-new_folder.png "Screenshot to create new folder")
 
-> **Note:** The next block is **not** needed, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
+> **Note:** The next paragraph is **not** needed, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
 
 <details>
 Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):
@@ -88,23 +88,15 @@ Next, create a text file called `config.json` (also via the `New` button) and re
 
 ## Clone a notebook folder
 
-You complete the following experiment setup and run steps in a Jupyter Notebook provided by Azure Machine Learning. To use it, you will need to clone it into your `aidevcollege` folder.
-
-1. Sign in to [Azure Machine Learning studio](https://ml.azure.com/).
-
-1. Select your subscription and the workspace you created.
+In this part you will complete the following experiment setup and run steps in a Jupyter Notebook provided by Azure Machine Learning. To use it, you will need to clone it into your `aidevcollege` folder.
 
 1. On the left, select **Notebooks**.
 
-1. At the top, select the **Samples** tab.
-
-1. Open the **SDK v1** folder.
-
-1. Select the **...** button at the right of the **tutorials** folder, and then select **Clone**.
+1. At the top, select the **Samples** tab, open the **SDK v1** folder and select the **tutorials** folder. Right click it and select **Clone**.
 
 ![alt text](../media/tutorial-train-deploy-notebook/clone-tutorials.png "Screenshot that shows the Clone tutorials folder.")
 
-7. A list of folders shows each user who accesses the workspace. Select your `aidevcollege` folder to clone the **tutorials**  folder there.
+7. A list of folders shows each user who accesses the workspace. Select your `aidevcollege` folder to clone the **tutorials** folder there.
 
 ![alt text](../media/tutorial-train-deploy-notebook/AML-Clone-Snippet.png "Screenshot that shows the Clone tutorials folder.")
 
