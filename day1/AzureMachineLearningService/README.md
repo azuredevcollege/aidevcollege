@@ -49,9 +49,8 @@ Guidance:
 
 - Deploy from Azure Portal: `Machine Learning service workspace`
 - Write your code in a Jupyter Notebook in a [Compute VM](https://docs.microsoft.com/en-us/azure/machine-learning/service/quickstart-run-cloud-notebook) and use the [new Azure ML UI](https://ml.azure.com)
-- Use `Python 3.6 - AzureML` as the Notebook type in Jupyter 
+- Use `Python 3.8 - AzureML` as the Notebook type in Jupyter 
 - We'll be using [scikit-learn](https://scikit-learn.org/stable/index.html) to train a simple `LogisticRegression` classifier
-- Target accuracy of our model on the test data set: `>92%`
 
 ## Challenge 2 - Advanced model training on Azure
 
