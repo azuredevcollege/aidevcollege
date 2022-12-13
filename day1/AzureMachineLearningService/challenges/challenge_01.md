@@ -40,25 +40,23 @@ Now we can either launch the `Machine Learning service workspace` from the porta
 
 ## Creating a Compute Instance
 
-Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute Instance.`
+1. Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute Instance.`
 
 A [compute instance](https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-instance) can be used as fully configured and managed development environment in the cloud for machine learning. It actually sits inside this `Machine Learning service workspace` and is a **regular Azure Virtual Machine**.
 
-**The [Azure Machine Learning Service Workspace](https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace) is the "umbrella" that groups all your machine learning resources**
+**The [Azure Machine Learning Service Workspace](https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace) is the "umbrella" that groups all your machine learning resources.**
 
 ![alt text](../images/ComputeOverview.png "Compute Instance")
 
-Hit `Create`, select `STANDARD_D3_V2` and give it a unique name:
+2. Hit `Create`, select `STANDARD_D3_V2` and give it a unique name:
 
 ![alt text](../images/Compute.png "Creating the Compute Instance for the college")
 
-It'll take a few minutes until the Compute Instance has been created. This Compute Instance provides us with the same Jupyter environment. In this exercise, we'll use this Compute Instance to train a simple Machine Learning model. In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute (challenge 2).
+It'll take a few minutes until the Compute Instance has been created. In this exercise, we'll use this Compute Instance to train a simple Machine Learning model using Jupyter notebooks.
 
-> Behind the scenes a Azure Virtual Machine will be deployed:
-![alt text](../images/behindTheScences.png)
-> For more Details check out the following [documentation](https://docs.microsoft.com/en-us/azure/machine-learning/concept-compute-instance)
+In a real-world setup, we might consider using a GPU-enabled instance, in case we need to perform Deep Learning or just rely on Azure Machine Learning Compute.
 
-Once it is running, the UI will already give us links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this ai dev college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
+Once the Compute Instance is running, the UI will already give us links to `Jupyter`, `JupyterLab` and `RStudio`. To keep things simple, we'll use `Jupyter` throughout this college, but if you feel adventurous, use `JupyerLab` or `RStudio` solving the challenges in R.
 
 ![alt text](../images/OurComputeVMRunning.png "Our Compute Instance is running")
 
