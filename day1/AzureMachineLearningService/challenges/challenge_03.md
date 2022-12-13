@@ -149,7 +149,7 @@ Your workflow file is made up of a trigger section and jobs:
 1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
 1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
      ![alt text](../media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png "Screenshot of enable GitHub Actions workflow.")
-    :::image type="content" source="media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png" alt-text="Screenshot of enable GitHub Actions workflow.":::
+  
 1. Select **Run workflow** and choose the option to **Run workflow** now. 
     
     ![alt text](../media/how-to-github-actions-machine-learning/github-actions-run-workflow.png "Screenshot of run GitHub Actions workflow.")
