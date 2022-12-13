@@ -1,27 +1,25 @@
-# Challenge 1
+# Challenge 1 - Basic model training on Azure
 
 ## Setup part
 
-In the Azure Portal, first we create a `Resource Group` and name it `aidevcollege`:
-
+1. In the Azure Portal, first we create a `Resource Group` and name it `aidevcollege`:
 ![Azure Portal](../images/01-resource-group-creation.PNG)
 
-Once the Resource Group is created, select **+ Create a resource** in the upper-left corner of Azure portal,
+1. Once the Resource Group is created, select **+ Create a resource** in the upper-left corner of the Azure portal.
 
-Use the search bar to find **Machine Learning**.
+1. Use the search bar to find **Machine Learning**.
 
-Select **Machine Learning**.
+1. Select **Machine Learning**.
 
-In the Machine Learning pane, select **Create** to begin.
-
+1. In the Machine Learning pane, select **Create** to begin.
 ![alt text](../images/01-create-workspace.gif "Azure Machine Learning Workspace")
 
-Use the following inputs to create the Azure Machine Learning Workspace:
+1. Use the following inputs to create the Azure Machine Learning Workspace:
 
 * Workspace name: `aidevcollege`
 * Resource Group: `aidevcollege`
 * Location: `West Europe`
-* Leave the rest at default and create the service.
+* Leave the rest as default and create the service.
 
 It should look like this:
 
@@ -30,6 +28,8 @@ It should look like this:
 Let's have a look at our Resource Group, which should look like this:
 
 ![alt text](../images/01-resource-group.PNG "Our resource group")
+
+As you can see, more resources apart from the intended Machine Learning workspace have also been created. This was done automatically for you. Their tasks are the following:
 
 * Application Insights - used for monitoring our models in production (will be used later)
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
