@@ -22,10 +22,10 @@ Here are the top two resources you'll need today:
 ## Before we start
 
 The challenges can be grouped into two paths:
-- Challenges 1,2 and 3 have a focus on running custom code on Azure Machine Learning, including experiment tracking, model deployment and setting up an MLOs pipeline using Github Actions
-- These challenges are recommended for developers and data scientists with experience using Python, Jupyter Notebooks and Github
-- Challenges 4,5,6 and 7 focus on using AutoML and Designer to quickly develop and deploy machine learning models with as little code as possible
-- These challenges are for machine learning beginners and developers that want to learn more about the basics of machine learning, develop their first model and publish it as an API for further use
+- Challenges 1, 2 and 3 have a focus on running custom code on Azure Machine Learning, including experiment tracking, model deployment and setting up an MLOps pipeline using Github Actions.
+- These challenges are recommended for developers and data scientists with experience using Python, Jupyter Notebooks and Github.
+- Challenges 4, 5, 6 and 7 focus on using AutoML and Designer to quickly develop and deploy machine learning models with as little code as possible.
+- These challenges are for machine learning beginners and developers that want to learn more about the basics of machine learning, develop their first model and publish it as an API for further use.
 
 ## Challenge 1 - Basic model training on Azure
 
