@@ -1,4 +1,4 @@
-# Challenge 4
+# Challenge 4 - Automated Machine Learning
 
 By now, we have a good understanding how Azure Machine Learning works. In this challenge, we'll take a data set and use Automated Machine Learning for testing out different regression algorithms automatically. Automated Machine Learning is currently able to perform `classification`, `regression` and also `forecasting`.
 
