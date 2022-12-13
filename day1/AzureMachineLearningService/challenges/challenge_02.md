@@ -2,12 +2,17 @@
 
 ## Deploy the model for real-time inference
 
-Once your model has been registered, you can deploy your machine learning model as an Azure Container Instance in the Azure cloud.
-In this section you learn how to deploy a model so that an application can consume (inference) the model over REST.
+Once your model has been registered, you can deploy your machine learning model as an Azure Container Instance in the Azure cloud
+.
+In this challenge you will learn how to deploy a model so that an application can consume (inference) the model over REST.
 
 ### Create deployment configuration
 
-The code cell gets a _curated environment_, which specifies all the dependencies required to host the model (for example, the packages like scikit-learn). Also, you create a _deployment configuration_, which specifies the amount of compute required to host the model. In this case, the compute will have 1CPU and 1GB memory.
+The code cell gets a _curated environment_, which specifies all the dependencies required to host the model (for example, the packages like scikit-learn).
+
+Moreover, you create a _deployment configuration_, which specifies the amount of compute required to host the model. In this case, the compute will have 1CPU and 1GB memory.
+
+To get started with the challenge, go back to your `aidevcollege` folder in your Jupyter notebook and create a new `Python 3.8 - AzureML` file. Give it the name `challenge02.ipnb`.
 
 
 ```python

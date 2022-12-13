@@ -52,7 +52,7 @@ Guidance:
 - Use `Python 3.8 - AzureML` as the Notebook type in Jupyter 
 - We'll be using [scikit-learn](https://scikit-learn.org/stable/index.html) to train a simple `LogisticRegression` classifier
 
-## Challenge 2 - Model deployment on Azure
+## Challenge 2 - Model deployment as an Azure Container Instance
 
 :zap: Let's go to **[challenge 2](challenges/challenge_02.md)**!
 
