@@ -360,19 +360,20 @@ Enter `traces` in the query text field and hit run:
 
 From here, we can start building more complex queries, set alarms or start exploring what is happening with our models.
 
-At this point:
+## What we have learned so far
 
 * We've deployed our model from AutoML to Azure Kubernetes Service
 * We've enabled authentication to protect our API endpoint (we can also enable [token-based authentication](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-azure-kubernetes-service#authentication-with-tokens))
 * We've used Application Insights to monitor model telemetry - this will allow us to set alarms if the model is down or getting slow
-
 <br>
-
-⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
 
 :zap: Let's go to **[challenge 6](../challenges/challenge_06.md)**!
 
 <br>
+
+
+
+
 
 Acknowledgements:
 
