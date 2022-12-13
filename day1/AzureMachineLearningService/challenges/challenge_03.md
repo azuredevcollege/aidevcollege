@@ -72,7 +72,7 @@ The output is a JSON object with the role assignment credentials of your service
 
 1. Select New repository secret.
 
-1. Paste the entire JSON output from the Azure CLI command into the secret's value field. Give the secret the name AZURE_CREDENTIALS.
+1. Paste the entire JSON output from the Azure CLI command into the secret's value field. Give the secret the name AZUREML_CREDENTIALS.
 
 1. Select Add secret.
 
@@ -93,23 +93,21 @@ You'll need to update the CLI setup file variables to match your workspace.
 
 ## Step 4. Update `pipeline.yml` with your compute cluster name
 
-You'll use a `pipeline.yml` file to deploy your Azure ML pipeline. This is a machine learning pipeline and not a DevOps pipeline. You only need to make this update if you're using a name other than `cpu-cluster` for your computer cluster name. 
+You'll use a `pipeline.yml` file to deploy your Azure ML pipeline. This is a machine learning pipeline and not a DevOps pipeline.
 
 1. In your forked repository, go to `azureml-examples/cli/jobs/pipelines/nyc-taxi/pipeline.yml`. 
 1. Each time you see `compute: azureml:cpu-cluster`, update the value of `cpu-cluster` with your compute cluster name. For example, if your cluster is named `my-cluster`, your new value would be `azureml:my-cluster`. There are five updates.
+1. Commit the changes.
 
 ## Step 5: Run your GitHub Actions workflow
 
 Your workflow authenticates with Azure, sets up the Azure Machine Learning CLI, and uses the CLI to train a model in Azure Machine Learning. 
 
-# [Service principal](#tab/userlevel)
-
-
 Your workflow file is made up of a trigger section and jobs:
+
 - A trigger starts the workflow in the `on` section. The workflow runs by default on a cron schedule and when a pull request is made from matching branches and paths. Learn more about [events that trigger workflows](https://docs.github.com/actions/using-workflows/events-that-trigger-workflows). 
 - In the jobs section of the workflow, you checkout code and log into Azure with your service principal secret.
-- The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](how-to-configure-cli.md). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
-
+- The jobs section also includes a setup action that installs and sets up the [Machine Learning CLI (v2)](https://learn.microsoft.com/en-us/azure/machine-learning/concept-v2). Once the CLI is installed, the run job action runs your Azure Machine Learning `pipeline.yml` file to train a model with NYC taxi data.
 
 ### Enable your workflow
 
@@ -150,10 +148,6 @@ Your workflow file is made up of a trigger section and jobs:
     ```
 
 1. Select **View runs**. 
-1. Enable workflows by selecting **I understand my workflows, go ahead and enable them**.
-1. Select the **cli-jobs-pipelines-nyc-taxi-pipeline workflow** and choose to **Enable workflow**. 
-     ![alt text](../media/how-to-github-actions-machine-learning/enable-github-actions-ml-workflow.png "Screenshot of enable GitHub Actions workflow.")
-  
 1. Select **Run workflow** and choose the option to **Run workflow** now. 
     
     ![alt text](../media/how-to-github-actions-machine-learning/github-actions-run-workflow.png "Screenshot of run GitHub Actions workflow.")
