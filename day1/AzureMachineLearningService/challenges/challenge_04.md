@@ -150,7 +150,7 @@ Pretty easy, right?
 
 More details can be found [here](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-create-portal-experiments#deploy-model). We can obviously relatively easily re-use the code from challenge 3, and just swap out the `score.py` and the `conda.yml` for programmatically deploying the model.
 
-At this point:
+## What we have learned so far
 
 * We took the `Pima Indians Diabetes Dataset` and ran automated Automated Machine Learning for classification on it
 * We evaluated 25 algorithms and achieved an accuracy of ~77.9% (your accuracy might vary, since it is not necessarily deterministic)
