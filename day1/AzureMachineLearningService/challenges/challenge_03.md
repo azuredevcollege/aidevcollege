@@ -26,7 +26,7 @@ Before following the steps in this article, make sure you have the following pre
 
 ## Step 1. Get the code
 
-Fork the following repo at GitHub:
+Clone the following repo at GitHub:
 ```
 https://github.com/azure/azureml-examples
 ```
