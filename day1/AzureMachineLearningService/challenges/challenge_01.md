@@ -127,10 +127,10 @@ You complete the following experiment setup and run steps in a Jupyter Notebook 
 
 Once the Jupyter Notebook is open, the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
 
-> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue on the left hand side) and type **`b`** it will add another cell *below* the first cell. 
+> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue) and type **`b`** it will add another cell *below* the first cell. 
 
 1. At the top of the notebook, add a code cell.
-![alt text](../media/tutorial-train-deploy-notebook/add-code-cell.png "Screenshot of add code cell for notebook.")
+![alt text](../media/tutorial-train-deploy-notebook/jupyter-landing.png "Screenshot of add code cell for notebook.")
 
 1. Add the following into the cell and then run the cell, either by using the **Run** tool or by using **Shift+Enter**.
 
