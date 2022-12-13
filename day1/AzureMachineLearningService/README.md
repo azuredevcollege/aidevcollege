@@ -110,7 +110,7 @@ In this challenge, you'll be using Azure Machine Learning Designer to define a m
 
 The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
 
-## Challenge 7 - Deploy using Azure Machine Learning Designer
+## Challenge 7 - Deploy to AKS using Azure Machine Learning Designer
 
 :zap: Let's go to **[challenge 7](challenges/challenge_07.md)**!
 
