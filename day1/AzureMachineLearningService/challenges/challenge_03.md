@@ -45,13 +45,14 @@ You'll need to first define how to authenticate with Azure using a [service prin
 
 ### Generate deployment credentials
 
-Create a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) with the [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-create-for-rbac) command in the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). Run this command with [Azure Cloud Shell](https://shell.azure.com/) in the Azure portal. Add your subscription id to the command. You can find it if you type it it in the search bar.
-![Screenshot of where to find subscription id](../images/03-subscription.png)
-
+Create a [service principal](https://learn.microsoft.com/en-us/azure/active-directory/develop/app-objects-and-service-principals#service-principal-object) with the [az ad sp create-for-rbac](https://learn.microsoft.com/en-us/cli/azure/ad/sp#az-ad-sp-create-for-rbac) command in the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/). Run this command with [Azure Cloud Shell](https://shell.azure.com/) in the Azure portal.
 ```bash
 az ad sp create-for-rbac --name "myML" --role contributor --scopes /subscriptions/<YOUR-SUBSCRIPTION-ID> --sdk-auth
 ```
-In the example above, replace the placeholders with your subscription ID, resource group name, and app name. The output is a JSON object with the role assignment credentials that provide access to your App Service app similar to below. Copy this JSON object for later.
+In the example above, replace the `<YOUR-SUBSCRIPTION-ID>` placeholders with your subscription ID. You can find it if you type it it in the search bar of the Azure portal.
+![Screenshot of where to find subscription id](../images/03-subscription.png)
+
+The output is a JSON object with the role assignment credentials of your service principal. Copy this JSON object and save it in a notepad for later.
 ```
  {
     "clientId": "<GUID>",
@@ -62,14 +63,12 @@ In the example above, replace the placeholders with your subscription ID, resour
   }
 ```
 
-
 ### Create secrets
 
-1. In GitHub, go to your repository.
+1. In GitHub, go to your forked repository.
 
-2. Select Security > Secrets and variables > Actions.
-
-![alt text](../media/how-to-github-actions-machine-learning/github-select-actions.png "Screenshot of adding a secret")
+2. Select Settings > Secrets > Actions.
+!["Screenshot of adding a secret"](../images/03-secret.png)
 
 3. Select New repository secret.
 
