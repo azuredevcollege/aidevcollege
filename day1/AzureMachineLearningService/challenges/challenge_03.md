@@ -8,7 +8,7 @@ GitHub Actions uses a workflow YAML (.yml) file in the `/.github/workflows/` pat
 
 ## Prerequisites
 
-**The following prerequisites are required if you want to clone the repository instead of forking it, but it is not a requirement. You can do this challenge entirely in GitHub**
+**The following prerequisites are required if you want to clone the repository instead of forking it, but it is not a requirement. Forking will create a copy of the repository in a remote location such as GitHub, whereas cloning will create a local copy. You can do this challenge entirely in GitHub.**
 
 Before following the steps in this article, make sure you have the following prerequisites:
 
