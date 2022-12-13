@@ -77,7 +77,8 @@ Next, create a text file called `config.json` (also via the `New` button) and re
  # Ignore this block, unless you run Jupyer directly on e.g., your laptop
  {
     "subscription_id": "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx",
-    "resource_group": "aidevcollege",
+    "resource_group": "
+ ",
     "workspace_name": "aidevcollege"
  }
  ```
@@ -86,19 +87,10 @@ Next, create a text file called `config.json` (also via the `New` button) and re
 
 </details>
 
-Finally, we can click the `New` button and create a new Notebook of type: `Python 3.8 - AzureML`. A new browser tab should open up and we can click the name `Untitled` and rename it to `challenge01.ipynb`. 
-
-> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue on the left hand side) and type **`b`** it will add another cell *below* the first cell. 
-
-![alt text](../images/01-new_notebook.png "Our new Notebook")
-
-## Run a notebook from your workspace
-
-Azure Machine Learning includes a cloud notebook server in your workspace for an install-free and pre-configured experience. Use [your own environment](how-to-configure-environment-v1.md) if you prefer to have control over your environment, packages, and dependencies.
 
 ## Clone a notebook folder
 
-You complete the following experiment setup and run steps in Azure Machine Learning studio. This consolidated interface includes machine learning tools to perform data science scenarios for data science practitioners of all skill levels.
+You complete the following experiment setup and run steps in a Jupyter Notebook provided by Azure Machine Learning. To use it, you will need to clone it into your `aidevcollege` folder.
 
 1. Sign in to [Azure Machine Learning studio](https://ml.azure.com/).
 
@@ -114,19 +106,28 @@ You complete the following experiment setup and run steps in Azure Machine Learn
 
 ![alt text](../media/tutorial-train-deploy-notebook/clone-tutorials.png "Screenshot that shows the Clone tutorials folder.")
 
-7. A list of folders shows each user who accesses the workspace. Select your folder to clone the **tutorials**  folder there.
+7. A list of folders shows each user who accesses the workspace. Select your `aidevcollege` folder to clone the **tutorials**  folder there.
+
+![alt text](../media/tutorial-train-deploy-notebook/AML Clone Snip.png "Screenshot that shows the Clone tutorials folder.")
 
 ## Open the cloned notebook
 
-1. Open the **tutorials** folder that was cloned into your **User files** section.
+1. Return to the Jupyter Notebook landing page that was previously accessed using the Azure Machine Learning UI.
 
-1. Select the **quickstart-azureml-in-10mins.ipynb** file from your **tutorials/compute-instance-quickstarts/quickstart-azureml-in-10mins** folder. 
+![alt text](../images/OurComputeVMRunning.png "Our Compute Instance is running")
 
-![alt text](../media/tutorial-train-deploy-notebook/expand-folder.png "Screenshot shows the Open tutorials folder.")
+
+3. Open the **tutorials** folder that was cloned into your `aidevcollege` folder.
+
+3. Select the **quickstart-azureml-in-10mins.ipynb** file from your **aidevcollege/quickstart-azureml-in-10mins** folder and open it. 
+
+![alt text](../media/tutorial-train-deploy-notebook/Cloned-Notebook-Jupyter.png "Screenshot shows the Open Quickstart-AzureML-in-10mins folder.")
 
 ## Install packages
 
-Once the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
+Once the Jupyter Notebook is open, the compute instance is running and the kernel appears, add a new code cell to install packages needed for this tutorial.  
+
+> To quickly create **new cells** you select the **first cell** (make sure it is in *Code mode* and highlighted by the color blue on the left hand side) and type **`b`** it will add another cell *below* the first cell. 
 
 1. At the top of the notebook, add a code cell.
 ![alt text](../media/tutorial-train-deploy-notebook/add-code-cell.png "Screenshot of add code cell for notebook.")
