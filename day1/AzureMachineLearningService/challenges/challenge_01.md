@@ -64,11 +64,11 @@ Once the Compute Instance is running, the UI will already give us links to `Jupy
 
 Inside the newly created Compute Instance, first create a new folder via the `New` button on the top right of Jupyter. *Everything we'll do in this workshop should happen in this folder*. We will call this **folder:** `aidevcollege`. This is because Machine Learning Services will persist the whole contents of the experiment's folder, which exceeds the limit when you run your Jupyter Notebooks in the root folder.
 
-![alt text](../images/01-new_folder.png "New folder")
+![alt text](../images/01-new_folder.png "Screenshot to create new folder")
 
 > **Note:** The next block is **not** needed, but you'd need it if you want to connect to your Azure Machine Learning Workspace from e.g., your local machine. Since the `Compute Instance` runs inside the workspace, it automatically connects to the workspace it lives in.
 
-<details>
+<Run Azure ML on local machine>
 Next, create a text file called `config.json` (also via the `New` button) and replace the values with your own (you'll find your Subscription ID in the Azure Portal at the top of your Resource Group):
 
 ```json
