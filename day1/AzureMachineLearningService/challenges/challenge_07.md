@@ -19,7 +19,7 @@ To deploy your pipeline, you must first convert the training pipeline into a rea
 
 ### Create a real-time inference pipeline
 
-1. On pipeline job detail page, above the pipeline canvas, select **Create inference pipeline** > **Real-time inference pipeline**.
+1. Open the pipeline job detail page by clicking on *Job Details* on the left pane of the Designer after submitting a pipeline run. Above the pipeline canvas, select **Create inference pipeline** > **Real-time inference pipeline**.
 
 ![alt text](../images/07-create-real-time-inference.png "Real Time Inference")
 
