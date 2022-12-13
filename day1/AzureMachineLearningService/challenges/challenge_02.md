@@ -12,10 +12,6 @@ The code cell gets a _curated environment_, which specifies all the dependencies
 
 Moreover, you create a _deployment configuration_, which specifies the amount of compute required to host the model. In this case, the compute will have 1CPU and 1GB memory.
 
-To get started with the challenge, go back to your `aidevcollege` folder in your Jupyter notebook and create a new `Python 3.8 - AzureML` file. Give it the name `challenge02.ipnb`.
-
-Copy the following code and paste it into the first cell of your notebook. Then run the cell.
-
 ```python
 # create environment for the deploy
 from azureml.core.environment import Environment
@@ -43,9 +39,7 @@ aciconfig = AciWebservice.deploy_configuration(
 
 This next code cell deploys the model to Azure Container Instance.
 
-
 > **The deployment takes approximately 3 minutes to complete.**
-
 
 ```python
 %%time
@@ -86,7 +80,6 @@ Once the model has been successfully deployed, you can view the endpoint by navi
 
 You can test the model by sending a raw HTTP request to test the web service.
 
-
 ```python
 # send raw HTTP request to test the web service.
 import requests
@@ -113,15 +106,9 @@ If you're not going to continue to use this model, delete the Model service usin
 service.delete()
 ```
 
-If you want to control cost further, stop the compute instance by selecting the "Stop compute" button next to the **Compute** dropdown.  Then start the compute instance again the next time you need it.
+If you want to control cost further, stop the compute instance by selecting the "Stop compute" button next to the **Compute** dropdown. Then start the compute instance again the next time you need it. **Please don't stop the compute right now, as you will be reuising it in the following challenges.**
 
-### Delete everything
-
-Use these steps to delete your Azure Machine Learning workspace and all compute resources.
-
-> The resources that you created can be used as prerequisites to other Azure Machine Learning tutorials and how-to articles.
-
-At this point:
+## What we have learned so far
 
 * We've trained a Machine Learning model using scikit-learn inside a `Compute Instance` running `Jupyter`
 * We achieved `~92%` accuracy (not very good for this data set)
