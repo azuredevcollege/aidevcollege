@@ -104,13 +104,13 @@ Azure Machine Learning includes a cloud notebook server in your workspace for an
 2. Make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`.  If not, use the dropdown to select this kernel.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/set-kernel.png" alt-text="Screenshot: Set the kernel.":::
-
+![alt text](../media/tutorial-azure-ml-in-a-day/set-kernel.png "Screenshot: Set the kernel.")
 Make sure that the kernel, found on the top right, is `Python 3.10 - SDK v2`.  If not, use the dropdown to select this kernel.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/set-kernel.png" alt-text="Screenshot: Set the kernel.":::
+![alt text](../media/tutorial-azure-ml-in-a-day/set-kernel.png "Screenshot: Set the kernel.")
 
-> [!Important]
-> The rest of this tutorial contains cells of the tutorial notebook.  Copy/paste them into your new notebook, or switch to the notebook now if you cloned it.
+> **The rest of this tutorial contains cells of the tutorial notebook.  Copy/paste them into your new notebook, or switch to the notebook now if you cloned it.**
 >
 > To run a single code cell in a notebook, click the code cell and hit **Shift+Enter**. Or, run the entire notebook by choosing **Run all** from the top toolbar.
 
@@ -149,8 +149,7 @@ In the next cell, enter your Subscription ID, Resource Group name and Workspace 
 1. You'll need to copy one value, close the area and paste, then come back for the next one.
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/find-credentials.png" alt-text="Screenshot: find the credentials for your code in the upper right of the toolbar.":::
-
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=ml_client)]
+![alt text](../media/tutorial-azure-ml-in-a-day/find-credentials.png "Screenshot: find the credentials for your code in the upper right of the toolbar.")
 ```python
 # Handle to the workspace
 from azure.ai.ml import MLClient
@@ -231,7 +230,6 @@ from azure.identity import DefaultAzureCredential
 
 credential = DefaultAzureCredential()
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=dependencies_dir)]
 
 Now, create the file in the dependencies directory. The cell below uses IPython magic to write the file into the directory you just created.
 ```python
@@ -256,7 +254,6 @@ dependencies:
     - ipykernel~=6.0
     - matplotlib
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=write_model)]
 
 The specification contains some usual packages, that you'll use in your job (numpy, pip).
 
@@ -279,7 +276,6 @@ print(
     f"Environment with name {pipeline_job_env.name} is registered to workspace, the environment version is {pipeline_job_env.version}"
 )
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=custom_env_name)]
 
 ## What is a command job?
 
@@ -303,7 +299,6 @@ import os
 train_src_dir = "./src"
 os.makedirs(train_src_dir, exist_ok=True)
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=train_src_dir)]
 
 This script handles the preprocessing of the data, splitting it into test and train data. It then consumes this data to train a tree based model and return the output model. 
 
@@ -414,7 +409,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=write_main)]
 
 As you can see in this script, once the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
 
@@ -452,7 +446,6 @@ job = command(
     display_name="credit_default_prediction",
 )
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=registered_model_name)]
 
 ## Submit the job 
 
@@ -460,7 +453,6 @@ It's now time to submit the job to run in AzureML. This time you'll use `create_
 ```python
 ml_client.create_or_update(job)
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=create_job)]
 
 ## View job output and wait for job completion
 
@@ -469,9 +461,9 @@ View the job in AzureML studio by selecting the link in the output of the previo
 The output of this job will look like this in the AzureML studio. Explore the tabs for various details like metrics, outputs etc. Once completed, the job will register a model in your workspace as a result of training. 
 
 ![Screenshot that shows the job overview](media/tutorial-azure-ml-in-a-day/view-job.gif "Overview of the job.")
+![alt text](../media/tutorial-azure-ml-in-a-day/view-job.gif "Overview of the job.")
 
-> [!IMPORTANT]
-> Wait until the status of the job is complete before returning to this notebook to continue. The job will take 2 to 3 minutes to run. It could take longer (up to 10 minutes) if the compute cluster has been scaled down to zero nodes and custom environment is still building.
+> **Wait until the status of the job is complete before returning to this notebook to continue. The job will take 2 to 3 minutes to run. It could take longer (up to 10 minutes) if the compute cluster has been scaled down to zero nodes and custom environment is still building.**
 
 ## Deploy the model as an online endpoint
 
@@ -493,10 +485,8 @@ import uuid
 # Creating a unique name for the endpoint
 online_endpoint_name = "credit-endpoint-" + str(uuid.uuid4())[:8]
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=online_endpoint_name)]
 
-> [!NOTE]
-> Expect the endpoint creation to take approximately 6 to 8 minutes.
+> **Expect the endpoint creation to take approximately 6 to 8 minutes.**
 ```python
 from azure.ai.ml.entities import (
     ManagedOnlineEndpoint,
@@ -520,8 +510,6 @@ endpoint = ml_client.online_endpoints.begin_create_or_update(endpoint).result()
 
 print(f"Endpoint {endpoint.name} provisioning state: {endpoint.provisioning_state}")
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=endpoint)]
-
 Once you've created an endpoint, you can retrieve it as below:
 ```python
 endpoint = ml_client.online_endpoints.get(name=online_endpoint_name)
@@ -530,8 +518,6 @@ print(
     f'Endpoint "{endpoint.name}" with provisioning state "{endpoint.provisioning_state}" is retrieved'
 )
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=retrieve_endpoint)]
-
 ## Deploy the model to the endpoint
 
 Once the endpoint is created, deploy the model with the entry script. Each endpoint can have multiple deployments. Direct traffic to these deployments can be specified using rules. Here you'll create a single deployment that handles 100% of the incoming traffic. We have chosen a color name for the deployment, for example, *blue*, *green*, *red* deployments, which is arbitrary.
@@ -544,12 +530,9 @@ latest_model_version = max(
     [int(m.version) for m in ml_client.models.list(name=registered_model_name)]
 )
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=latest_model_version)]
-
 Deploy the latest version of the model.  
 
-> [!NOTE]
-> Expect this deployment to take approximately 6 to 8 minutes.
+> **Expect this deployment to take approximately 6 to 8 minutes.**
 
 ```python
 # picking the model to deploy. Here we use the latest version of our registered model
@@ -567,8 +550,6 @@ blue_deployment = ManagedOnlineDeployment(
 
 blue_deployment = ml_client.begin_create_or_update(blue_deployment).result()
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=blue_deployment)]
-
 
 ### Test with a sample query
 
@@ -579,7 +560,6 @@ Create a sample request file following the design expected in the run method in 
 deploy_dir = "./deploy"
 os.makedirs(deploy_dir, exist_ok=True)
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=deploy_dir)]
 
 ```python
 %%writefile {deploy_dir}/sample-request.json
@@ -594,7 +574,6 @@ os.makedirs(deploy_dir, exist_ok=True)
   }
 }
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=write_sample)]
 ```python
 # test the blue deployment with some sample data
 ml_client.online_endpoints.invoke(
@@ -603,24 +582,30 @@ ml_client.online_endpoints.invoke(
     deployment_name="blue",
 )
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=test)]
-
 ## Clean up resources
 
 If you're not going to use the endpoint, delete it to stop using the resource.  Make sure no other deployments are using an endpoint before you delete it.
 
-> [!NOTE]
-> Expect this step to take approximately 6 to 8 minutes.
+
+> **Expect this step to take approximately 6 to 8 minutes.**
 ```python
 ml_client.online_endpoints.begin_delete(name=online_endpoint_name)
 ```
-[!notebook-python[](~/azureml-examples-main/tutorials/azureml-in-a-day/azureml-in-a-day.ipynb?name=delete_endpoint)]
-
 
 ### Delete everything
 
 Use these steps to delete your Azure Machine Learning workspace and all compute resources.
 
-[!INCLUDE [aml-delete-resource-group](../../includes/aml-delete-resource-group.md)]
+> **The resources that you created can be used as prerequisites to other Azure Machine Learning tutorials and how-to articles.**
+
+If you don't plan to use any of the resources that you created, delete them so you don't incur any charges:
+
+1. In the Azure portal, select Resource groups on the far left.
+
+1. From the list, select the resource group that you created.
+
+1. Select Delete resource group.
+
+1. Enter the resource group name. Then select Delete.
 
 In the [next challenge](challenge_02.md), we're going to register our model and deploy it as an endpoint in an Azure Container Instance.
