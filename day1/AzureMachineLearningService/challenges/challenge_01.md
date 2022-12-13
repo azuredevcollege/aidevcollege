@@ -31,20 +31,20 @@ Let's have a look at our Resource Group, which should look like this:
 
 As you can see, more resources apart from the intended Machine Learning workspace have also been created. This was done automatically for you. Their tasks are the following:
 
-* Application Insights - used for monitoring our models in production (will be used later)
+* Application Insights - used for monitoring our models in production (will be used later).
 * Storage account - this will store our logs, model outputs, training/testing data, etc.
-* Key vault - stores our secrets
-* Machine Learning service workspace - the center point for Machine Learning on Azure
+* Key vault - stores our secrets.
+* Machine Learning service workspace - the center point for Machine Learning on Azure.
 
 Now we can either launch the `Machine Learning service workspace` from the portal or we can open the [Azure Machine Learning Studio](https://ml.azure.com/) directly.
-
 
 ## Creating a Compute Instance
 
 Launch the `Machine Learning service workspace` and navigate to **Compute** so we can create a new `Compute Instance.`
-A compute instance can be used as fully configured and managed development environment in the cloud for machine learning.
-The Compute Instance actually sits inside this `Machine Learning service workspace`. It is just a **regular Azure Virtual Machine**.
-**Azure Machine Learning Service Workspace is the "umbrella" that groups all your machine learning resources**
+
+A [compute instance](https://learn.microsoft.com/en-us/azure/machine-learning/concept-compute-instance) can be used as fully configured and managed development environment in the cloud for machine learning. It actually sits inside this `Machine Learning service workspace` and is a **regular Azure Virtual Machine**.
+
+**The [Azure Machine Learning Service Workspace](https://learn.microsoft.com/en-us/azure/machine-learning/concept-workspace) is the "umbrella" that groups all your machine learning resources**
 
 ![alt text](../images/ComputeOverview.png "Compute Instance")
 
