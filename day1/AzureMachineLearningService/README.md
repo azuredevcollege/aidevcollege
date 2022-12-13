@@ -57,24 +57,25 @@ Guidance:
 
 :zap: Let's go to **[challenge 2](challenges/challenge_02.md)**!
 
-In this challenge, you'll be training a more advanced machine learning model on Azure (in fact, you'll be training a [Deep Convolution Neural Network](https://en.wikipedia.org/wiki/Convolutional_neural_network)). We'll be using the same data set, but this time, we'll use Azure Machine Learning Compute for speeding up and scaling our training.
-
-Guidance:
-
-- Use `Keras` with a TensorFlow backend to train a Convolution Neural Network on Azure Machine Learning Compute
-- Target accuracy of our model on the test data set: `>99%`
-
-## Challenge 3 - Model deployment on Azure
-
-:zap: Let's go to **[challenge 3](challenges/challenge_03.md)**!
-
-In this third challenge, you'll be taking the model you've trained in the second challenge and deploy it to Azure Container Instances (ACI). This is perfect for test/dev scenarios and giving our model a quick test drive (we'll get to production deployments in a later challenge).
+In this challenge, you'll be deploying the model from challenge 1 as an Azure Container Instance, make the model available as a REST API and query it.
 
 Guidance:
 
 - Take the model from challenge 2 and containerize it (Azure ML will do most of that for us)
 - Deploy it on ACI as a RESTful API
 
+## Challenge 3 - Model deployment on Azure
+
+:zap: Let's go to **[challenge 3](challenges/challenge_03.md)**!
+
+In this third challenge, you will use Github Actions together with the Azure Machine Learning service to create and run a workflow that automatically prepares data, trains and tests a model on it and runs a scoring script against it.
+
+Guidance:
+
+- Create a Service Principal
+- Update setup.sh
+- Run the Github Actions workflow
+- 
 ## Challenge 4 - Automated Machine Learning
 
 :zap: Let's go to **[challenge 4](challenges/challenge_04.md)**!
