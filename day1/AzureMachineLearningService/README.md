@@ -52,7 +52,7 @@ Guidance:
 - Use `Python 3.8 - AzureML` as the Notebook type in Jupyter 
 - We'll be using [scikit-learn](https://scikit-learn.org/stable/index.html) to train a simple `LogisticRegression` classifier
 
-## Challenge 2 - Advanced model training on Azure
+## Challenge 2 - Model deployment on Azure
 
 :zap: Let's go to **[challenge 2](challenges/challenge_02.md)**!
 
@@ -63,7 +63,7 @@ Guidance:
 - Take the model from challenge 2 and containerize it (Azure ML will do most of that for us)
 - Deploy it on ACI as a RESTful API
 
-## Challenge 3 - Model deployment on Azure
+## Challenge 3 - Machine Learning Operations (MLOps) using GitHub
 
 :zap: Let's go to **[challenge 3](challenges/challenge_03.md)**!
 
@@ -74,7 +74,7 @@ Guidance:
 - Create a Service Principal
 - Update setup.sh
 - Run the Github Actions workflow
-- 
+
 ## Challenge 4 - Automated Machine Learning
 
 :zap: Let's go to **[challenge 4](challenges/challenge_04.md)**!
@@ -110,7 +110,7 @@ In this challenge, you'll be using Azure Machine Learning Designer to define a m
 
 The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
 
-## Challenge 7 - Azure Machine Learning Designer
+## Challenge 7 - Deploy using Azure Machine Learning Designer
 
 :zap: Let's go to **[challenge 7](challenges/challenge_07.md)**!
 
@@ -118,10 +118,8 @@ In this last challenge, you'll be using Azure Machine Learning Designer to deplo
 
 # Recommended Certifications
 
-- [Exam AI-100: Designing and Implementing an Azure AI Solution](https://www.microsoft.com/en-us/learning/exam-ai-100.aspx) or [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102)- mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
+- [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102) - mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
 - [Exam DP-100: Designing and Implementing a Data Science Solution on Azure](https://www.microsoft.com/en-us/learning/exam-dp-100.aspx) - very Data Science focussed, requires general Machine Learning knowledge (methologies, algorithms, etc.)
-- [Exam DP-200: Implementing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-200.aspx) - focussed on the data side for a doing point of view (storing, securing, etc.)
-- [Exam DP-201: Designing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-201.aspx) - focussed on the data side from an architectural point of view (storing, securing, etc.)
 
 # Further Trainings
 
