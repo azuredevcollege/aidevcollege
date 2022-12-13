@@ -1,4 +1,4 @@
-# Challenge 6
+# Challenge 6 - Azure Machine Learning Designer
 
 Another way of creating models in Azure Machine Learning without coding is the **Azure Machine Learning Designer**. In this challenge, we'll take an automobile price data set and use the Designer to create our own machine learning pipeline to predict car prices.
 
@@ -241,7 +241,7 @@ The following statistics are shown for your model:
 
 For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
 
-At this point, we learned how to:
+## What we have learned so far
 
 - Create a new pipeline.
 - Import data.
