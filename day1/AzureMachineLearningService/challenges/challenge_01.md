@@ -108,7 +108,7 @@ You complete the following experiment setup and run steps in a Jupyter Notebook 
 
 7. A list of folders shows each user who accesses the workspace. Select your `aidevcollege` folder to clone the **tutorials**  folder there.
 
-![alt text](../media/tutorial-train-deploy-notebook/AML Clone Snip.png "Screenshot that shows the Clone tutorials folder.")
+![alt text](../media/tutorial-train-deploy-notebook/AML-Clone-Snippet.png "Screenshot that shows the Clone tutorials folder.")
 
 ## Open the cloned notebook
 
