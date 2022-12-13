@@ -108,7 +108,7 @@ In this part you will complete the following experiment setup and run steps in a
 
 1. Open the **tutorials** folder that was cloned into your `aidevcollege` folder.
 
-1. Select the **quickstart-azureml-in-10mins.ipynb** file from your **aidevcollege/copmute-instance-quickstarts** folder and open it. 
+1. Select the **quickstart-azureml-in-10mins.ipynb** file from your **aidevcollege/copmute-instance-quickstarts/quickstart-azureml-in-10mins** folder and open it. 
 
 ![alt text](../media/tutorial-train-deploy-notebook/Cloned-Notebook-Jupyter.png "Screenshot shows the Open Quickstart-AzureML-in-10mins folder.")
 
