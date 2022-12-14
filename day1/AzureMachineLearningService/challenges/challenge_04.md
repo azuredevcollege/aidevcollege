@@ -82,7 +82,7 @@ Under **`View additional configuration settings`**, we can further configure our
 
 ![Exit criteria](../images/04_automl_exit_criteria.png)
 
-Once we start the training, it'll take ~6 minutes to prepare the experiment. Overall, the default 100 iterations would take quite a while, but since we limited the training time to 15 minutes, it'll terminate earlier. Once the job has finished, we should see something like this:
+Once we start the training, it'll take ~6 minutes to prepare the experiment. Overall, the default 100 iterations would take quite a while, but since we limited the training time to 30 minutes, it'll terminate earlier. Once the job has finished, we should see something like this:
 
 ![Final results](../images/04-automl_final_results.png)
 
