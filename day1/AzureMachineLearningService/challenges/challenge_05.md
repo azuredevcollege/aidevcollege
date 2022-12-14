@@ -1,6 +1,6 @@
-# Challenge 5
+# Challenge 5 - Production deployment to Azure Kubernetes Service (AKS)
 
-In this challenge we will be training a model to showcase how you can use AutoML for a simple classification problem. The goal is to predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy to Azure Kubernetes Service (AKS). We'll also enable the following features:
+In this challenge we will be training a model to showcase how you can use AutoML via Jupyter Notebook for a simple classification problem. The goal is to predict if a credit card transaction is considered a fraudulent charge. But this time we'll deploy to Azure Kubernetes Service (AKS). We'll also enable the following features:
 
 * Authentication - users of our API will require an authentication key to use the model
 * Monitoring - we'll be using Application Insights for monitoring telemetry data of our model
@@ -11,7 +11,7 @@ For this challenge, we'll use the `associated credit card dataset` dataset: The 
 
 Sounds good? Let's get started!
 
-Back to Jupyter now, and let's create a notebook called `challenge05.ipynb`. First, we'll import the necessary packages and connect to our workspace:
+Back to Jupyter now, and let's create a notebook called `challenge05.ipynb` in the `aidevcollege` folder. First, we'll import the necessary packages and connect to our workspace:
 
 ## Connect to Workspace
 
@@ -360,19 +360,20 @@ Enter `traces` in the query text field and hit run:
 
 From here, we can start building more complex queries, set alarms or start exploring what is happening with our models.
 
-At this point:
+## What we have learned so far
 
 * We've deployed our model from AutoML to Azure Kubernetes Service
 * We've enabled authentication to protect our API endpoint (we can also enable [token-based authentication](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-deploy-azure-kubernetes-service#authentication-with-tokens))
 * We've used Application Insights to monitor model telemetry - this will allow us to set alarms if the model is down or getting slow
-
 <br>
-
-⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
 
 :zap: Let's go to **[challenge 6](../challenges/challenge_06.md)**!
 
 <br>
+
+
+
+
 
 Acknowledgements:
 

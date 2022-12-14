@@ -22,10 +22,10 @@ Here are the top two resources you'll need today:
 ## Before we start
 
 The challenges can be grouped into two paths:
-- Challenges 1,2 and 3 have a focus on running custom code on Azure Machine Learning, including experiment tracking and model deployment
-- These challenges are recommended for data scientists with experience using Python and Jupyter Notebooks
-- Challenges 4,5,6 and 7 focus on using AutoML and Designer to quickly develop and deploy machine learning models with as little code as possible
-- These challenges are for machine learning beginners and developers that want to learn more about the basics of machine learning, develop their first model and publish it as an API for further use
+- Challenges 1, 2 and 3 have a focus on running custom code on Azure Machine Learning, including experiment tracking, model deployment and setting up an MLOps pipeline using Github Actions.
+- These challenges are recommended for developers and data scientists with experience using Python, Jupyter Notebooks and Github.
+- Challenges 4, 5, 6 and 7 focus on using AutoML and Designer to quickly develop and deploy machine learning models with as little code as possible.
+- These challenges are for machine learning beginners and developers that want to learn more about the basics of machine learning, develop their first model and publish it as an API for further use.
 
 ## Challenge 1 - Basic model training on Azure
 
@@ -49,31 +49,31 @@ Guidance:
 
 - Deploy from Azure Portal: `Machine Learning service workspace`
 - Write your code in a Jupyter Notebook in a [Compute VM](https://docs.microsoft.com/en-us/azure/machine-learning/service/quickstart-run-cloud-notebook) and use the [new Azure ML UI](https://ml.azure.com)
-- Use `Python 3.6 - AzureML` as the Notebook type in Jupyter 
+- Use `Python 3.8 - AzureML` as the Notebook type in Jupyter 
 - We'll be using [scikit-learn](https://scikit-learn.org/stable/index.html) to train a simple `LogisticRegression` classifier
-- Target accuracy of our model on the test data set: `>92%`
 
-## Challenge 2 - Advanced model training on Azure
+## Challenge 2 - Model deployment as an Azure Container Instance
 
 :zap: Let's go to **[challenge 2](challenges/challenge_02.md)**!
 
-In this challenge, you'll be training a more advanced machine learning model on Azure (in fact, you'll be training a [Deep Convolution Neural Network](https://en.wikipedia.org/wiki/Convolutional_neural_network)). We'll be using the same data set, but this time, we'll use Azure Machine Learning Compute for speeding up and scaling our training.
-
-Guidance:
-
-- Use `Keras` with a TensorFlow backend to train a Convolution Neural Network on Azure Machine Learning Compute
-- Target accuracy of our model on the test data set: `>99%`
-
-## Challenge 3 - Model deployment on Azure
-
-:zap: Let's go to **[challenge 3](challenges/challenge_03.md)**!
-
-In this third challenge, you'll be taking the model you've trained in the second challenge and deploy it to Azure Container Instances (ACI). This is perfect for test/dev scenarios and giving our model a quick test drive (we'll get to production deployments in a later challenge).
+In this challenge, you'll be deploying the model from challenge 1 as an Azure Container Instance, make the model available as a REST API and query it.
 
 Guidance:
 
 - Take the model from challenge 2 and containerize it (Azure ML will do most of that for us)
 - Deploy it on ACI as a RESTful API
+
+## Challenge 3 - Machine Learning Operations (MLOps) using GitHub
+
+:zap: Let's go to **[challenge 3](challenges/challenge_03.md)**!
+
+In this third challenge, you will use Github Actions together with the Azure Machine Learning service to create and run a workflow that automatically prepares data, trains and tests a model on it and runs a scoring script against it.
+
+Guidance:
+
+- Create a Service Principal
+- Update setup.sh
+- Run the Github Actions workflow
 
 ## Challenge 4 - Automated Machine Learning
 
@@ -110,7 +110,7 @@ In this challenge, you'll be using Azure Machine Learning Designer to define a m
 
 The goal of this challenge is to create a machine learning model based on regression that will predict the price of a car based on its technical properties.
 
-## Challenge 7 - Azure Machine Learning Designer
+## Challenge 7 - Deploy to AKS using Azure Machine Learning Designer
 
 :zap: Let's go to **[challenge 7](challenges/challenge_07.md)**!
 
@@ -118,32 +118,25 @@ In this last challenge, you'll be using Azure Machine Learning Designer to deplo
 
 # Recommended Certifications
 
-- [Exam AI-100: Designing and Implementing an Azure AI Solution](https://www.microsoft.com/en-us/learning/exam-ai-100.aspx) or [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102)- mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
+- [Exam AI 102: Designing and Implementing a Microsoft Azure AI Solution](https://docs.microsoft.com/en-us/learn/certifications/exams/ai-102) - mostly focussed on AI, Machine Learning and in some cases also IoT as an use case
 - [Exam DP-100: Designing and Implementing a Data Science Solution on Azure](https://www.microsoft.com/en-us/learning/exam-dp-100.aspx) - very Data Science focussed, requires general Machine Learning knowledge (methologies, algorithms, etc.)
-- [Exam DP-200: Implementing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-200.aspx) - focussed on the data side for a doing point of view (storing, securing, etc.)
-- [Exam DP-201: Designing an Azure Data Solution](https://www.microsoft.com/en-us/learning/exam-dp-201.aspx) - focussed on the data side from an architectural point of view (storing, securing, etc.)
 
 # Further Trainings
 
 - :star: [Microsoft Learn - Machine Learning](https://docs.microsoft.com/en-us/learn/browse/?roles=data-scientist&term=machine%20learning) - great selection of short training units and exercises! :star:
-- [AI Business School](https://aischool.microsoft.com) - great for gaining specific, practical knowledge for defining and implementing an AI strategy in your company (more targeted at business users, but also covers the responsible use of AI)
-- [Microsoft Professional Program for Artificial Intelligence track](https://academy.microsoft.com/en-us/tracks/artificial-intelligence) - extremely in-depth and very extensive Machine Learning training (includes a lot of mandatory hands-on)
 
 # Further Material
 
 - :star: [Azure Machine Learning Notebook Samples](https://github.com/Azure/MachineLearningNotebooks) - this should solve 99% of your problems :star:
-- [Azure Machine Learning Overview](https://azure.microsoft.com/en-us/blog/azure-ai-making-ai-real-for-business/)
-- [Azure Machine Learning Overview - What's new](https://azure.microsoft.com/en-us/blog/what-s-new-in-azure-machine-learning-service/)
-- [Automated Machine Learning Overview](https://azure.microsoft.com/en-us/blog/announcing-automated-ml-capability-in-azure-machine-learning/)
+- [Automated Machine Learning Overview](https://learn.microsoft.com/en-us/azure/machine-learning/concept-automated-ml)
 - [Hyperparameter Tuning](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-tune-hyperparameters)
 - [Understand automated machine learning results](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-understand-automated-ml)
 - Distributed Training with [TensorFlow or Keras](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-tensorflow#distributed-training) and [PyTorch](https://docs.microsoft.com/en-us/azure/machine-learning/service/how-to-train-pytorch#distributed-training)
 - [AI Tools for VS Code](https://visualstudio.microsoft.com/downloads/ai-tools-vscode/)
 - [PyTorch Support for Azure ML](https://azure.microsoft.com/en-us/blog/world-class-pytorch-support-on-azure/)
 - [Azure Machine Learning Pipelines](https://docs.microsoft.com/en-us/azure/machine-learning/service/concept-ml-pipelines)
-- [MLOps with Azure ML](https://github.com/microsoft/MLOpsPython) - running a ML Pipeline in Azure DevOps
-- [DevOps for AI: Deploying everywhere (Build 2018)](https://www.youtube.com/watch?v=Fo220toRwhM) - might be not fully up to date but gives some good ideas
+- [MLOps with Azure ML](https://github.com/microsoft/MLOpsPython)
 
-⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today yet.** :grin:
+⚠ **Lastly, we will use our `Compute Instance` tomorrow in day 2, *do not* delete it today. To save costs, you should stop the Compute Instance over night.** :grin:
 
-:zap: Let's go to **[AI Developer College Day 1 - MLOps](../MLOps/MLOps.md)**!
+:zap: Let's go to **[AI Developer College Day 1 - Challenge 1](./challenges/challenge_01.md)**!

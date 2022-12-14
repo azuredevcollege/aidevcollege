@@ -1,4 +1,4 @@
-# Challenge 6
+# Challenge 6 - Azure Machine Learning Designer
 
 Another way of creating models in Azure Machine Learning without coding is the **Azure Machine Learning Designer**. In this challenge, we'll take an automobile price data set and use the Designer to create our own machine learning pipeline to predict car prices.
 
@@ -28,7 +28,7 @@ In your Machine Learning workspace, navigate to the **Designer** section and sel
 
 To run our pipeline, we need to define a compute target.
 
-1. Next to the pipeline name, select the Gear icon ![alt text](../images/06-gear-icon.png "Launch Designer") that is in the UI at the top of the canvas to open the 'Settings' pane.
+1. Next to the pipeline name, select the Settings button with the Gear icon ![alt text](../images/06-gear-icon.png "Launch Designer") that is in the UI at the top of the canvas to open the 'Settings' pane.
 
 2. In the **Settings** pane to the right of the canvas, select **Select compute type** and then **Compute Instance**.
 
@@ -46,7 +46,7 @@ There are several sample datasets included in the designer for you to experiment
 
 1. To the left of the pipeline canvas is a palette of datasets and components.
 
-2. Select the dataset **Automobile price data (Raw)**, and drag it onto the canvas.
+2. Select **Component**, then **Sample Data** and then the dataset **Automobile price data (Raw)**, and drag it onto the canvas.
 
 ![alt text](../images/06-drag-data.gif "Drag and Drop Process")
 
@@ -241,7 +241,7 @@ The following statistics are shown for your model:
 
 For each of the error statistics, smaller is better. A smaller value indicates that the predictions are closer to the actual values. For the coefficient of determination, the closer its value is to one (1.0), the better the predictions.
 
-At this point, we learned how to:
+## What we have learned so far
 
 - Create a new pipeline.
 - Import data.

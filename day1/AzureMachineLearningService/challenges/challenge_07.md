@@ -1,6 +1,6 @@
 
 
-# Challenge 7: Designer - deploy a machine learning model
+# Challenge 7: Deploy to AKS using Azure Machine Learning Designer
 
 Use the designer to deploy a machine learning model to predict the price of cars. This tutorial is part two of a two-part series.
 
@@ -19,7 +19,7 @@ To deploy your pipeline, you must first convert the training pipeline into a rea
 
 ### Create a real-time inference pipeline
 
-1. On pipeline job detail page, above the pipeline canvas, select **Create inference pipeline** > **Real-time inference pipeline**.
+1. Open the pipeline job detail page by clicking on *Job Details* on the left pane of the Designer after submitting a pipeline run. Above the pipeline canvas, select **Create inference pipeline** > **Real-time inference pipeline**.
 
 ![alt text](../images/07-create-real-time-inference.png "Real Time Inference")
 
@@ -168,3 +168,5 @@ You can unregister datasets from your workspace by selecting each dataset and se
 ![alt text](../images/06-unregister-dataset1225.png "Unregistering Dataset")
 
 To delete a dataset, go to the storage account by using the Azure portal or Azure Storage Explorer and manually delete those assets.
+
+Make sure to stop your `Compute Instance` to avoid charges. You can restart it tomorrow.
