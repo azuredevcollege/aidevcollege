@@ -60,7 +60,7 @@ Lastly we confirm the details:
 
 ![alt text](../images/04_automl_confirm_details.png "AutoML Confirm Details")
 
-Then we can name our experiment and we can either re-use our Compute Instance, but we could also create a new `Azure Machine Learning compute` cluster or re-use the cluster from challenge 2. The `Create a new compute` window is self-explanatory after the last challenges (set minimum to `0` and maximum number of nodes to `1`)! 
+Then we can name our experiment and we can either re-use our Compute Instance, but we could also create a new `Azure Machine Learning compute` cluster. The `Create a new compute` window is self-explanatory after the last challenges (set minimum to `0` and maximum number of nodes to `1`)! 
 
 > To avoid charges when no jobs are running, set the minimum nodes to 0. This setting allows Azure Machine Learning to de-allocate the compute nodes when idle. Any higher value will result in charges for the number of nodes allocated.
 
