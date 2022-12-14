@@ -21,7 +21,7 @@ from azureml.core.webservice import AciWebservice
 # get a curated environment
 env = Environment.get(
     workspace=ws, 
-    name="AzureML-sklearn-0.24.1-ubuntu18.04-py37-cpu-inference",
+    name="AzureML-sklearn-1.0-ubuntu20.04-py38-cpu",
     version=1
 )
 env.inferencing_stack_version='latest'
