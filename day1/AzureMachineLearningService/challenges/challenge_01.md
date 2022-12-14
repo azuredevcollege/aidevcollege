@@ -229,8 +229,7 @@ The code above displays a random set of images with their labels, similar to thi
 
 You'll train the model using the code below. Note that you are using [MLflow autologging to track metrics](https://learn.microsoft.com/en-us/azure/machine-learning/concept-mlflow#tracking-with-mlflow) and log model artifacts.
 
-You'll be using the [LogisticRegression](https://scikit-learn.org/stable/modules/generated/
-.linear_model.LogisticRegression.html) classifier from the [SciKit Learn framework](https://scikit-learn.org/) to classify the data.
+You'll be using the [Logistic Regression](https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression) classifier from the [SciKit Learn framework](https://scikit-learn.org/) to classify the data.
 
 > **The model training takes approximately 2 minutes to complete.**
 
